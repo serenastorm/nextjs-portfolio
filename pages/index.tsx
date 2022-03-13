@@ -40,7 +40,7 @@ const ProjectLink = ({
           />
         ) : (
           <Link href={url} passHref>
-            <a className="project-link" tabIndex={-1} aria-hidden="true">
+            <a className={styles.landingProjectNewTabLink} tabIndex={-1} aria-hidden="true">
               {label}
             </a>
           </Link>
@@ -60,7 +60,11 @@ const ProjectLink = ({
       />
     ) : (
       <Link href={url} passHref>
-        <a className="project-link" tabIndex={-1} aria-hidden="true" />
+        <a
+          className={styles.landingProjectLink}
+          tabIndex={-1}
+          aria-hidden="true"
+        />
       </Link>
     )}
   </div>

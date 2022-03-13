@@ -106,11 +106,11 @@
       color: var(--link);
 
       svg {
-        path[fill="#EAF0F5"] {
+        path[data-layer="background"] {
           fill: var(--arrow-bg-color-hover);
         }
 
-        .icon-arrow {
+        g[data-layer="arrow"] {
           transform: translate(1.2em, -1.2em);
 
           path {
@@ -129,27 +129,27 @@
   &:nth-of-type(1) {
     .landingProjectImg {
       background-color: #e0e8ff;
-      // background-image: url("~Main/assets/Landing/landing-projectImg1.svg");
+      background-image: url("~assets/Landing/landing-projectImg1.svg");
     }
   }
 
   &:nth-of-type(2) {
     .landingProjectImg {
       background-color: #7fb3b1;
-      // background-image: url("~Main/assets/Landing/landing-projectImg2.png");
+      background-image: url("~assets/Landing/landing-projectImg2.png");
     }
   }
 
   &:nth-of-type(3) {
     .landingProjectImg {
       background-color: #231f20;
-      // background-image: url("~Main/assets/Landing/landing-projectImg3.svg");
+      background-image: url("~assets/Landing/landing-projectImg3.svg");
     }
   }
 
   &:nth-of-type(4) {
     .landingProjectImg {
-      // background-image: url("~Main/assets/Landing/landing-projectImg4.jpg");
+      background-image: url("~assets/Landing/landing-projectImg4.jpg");
     }
   }
 
@@ -212,11 +212,11 @@ a.landingProjectNewTabLink {
 
   @include onHoverAndTouch {
     svg {
-      path[fill="#EAF0F5"] {
+      path[data-layer="background"] {
         fill: var(--arrow-bg-color-hover);
       }
 
-      .icon-arrow {
+      g[data-layer="arrow"] {
         path {
           fill: var(--arrow-pointer-color-hover);
         }
