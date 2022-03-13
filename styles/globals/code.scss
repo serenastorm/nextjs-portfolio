@@ -1,0 +1,178 @@
+@import "~styles/modules/mixins.scss";
+
+.sp-wrapper {
+  --sp-layout-height: clamp(300px, 70vh, 700px) !important;
+}
+
+.cm-scroller {
+  font-family: var(--type-code) !important;
+  font-size: 1.2em !important;
+}
+
+.sp-layout > .sp-stack {
+  @include breakpoint(0, 768) {
+    height: var(--sp-layout-height) !important;
+  }
+}
+
+.sp-code-editor > div {
+  padding-bottom: var(--sp-expand-height) !important;
+}
+
+.sp-tab-button {
+  cursor: pointer;
+}
+
+.sp-cube-wrapper {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  right: initial !important;
+  bottom: initial !important;
+}
+
+.cm-gutter {
+  opacity: 0.4 !important;
+}
+
+pre {
+  &:hover {
+    button {
+      opacity: 1;
+    }
+  }
+
+  .hljs {
+    .hljs-comment {
+      color: var(--code-comment);
+    }
+
+    &.language-scss,
+    &.language-css {
+      .hljs-selector-id {
+        color: var(--code-blue);
+      }
+
+      .hljs-attribute,
+      .hljs-built_in {
+        color: var(--code-blue);
+      }
+
+      .hljs-number {
+        color: var(--code-purple);
+      }
+
+      .hljs-string {
+        color: var(--code-yellow);
+      }
+
+      .hljs-variable {
+        color: var(--code-orange);
+      }
+
+      .hljs-selector-pseudo {
+        color: var(--code-purple);
+      }
+
+      .hljs-keyword {
+        color: var(--code-pink);
+      }
+
+      .hljs-meta {
+        color: var(--code-pink);
+      }
+    }
+
+    &.language-tsx {
+      .hljs-keyword,
+      .hljs-attr {
+        color: var(--code-pink);
+      }
+
+      .hljs-function {
+        color: var(--code-green);
+      }
+
+      .hljs-literal,
+      .hljs-class,
+      .hljs-built_in {
+        color: var(--code-blue);
+      }
+
+      .hljs-params {
+        color: var(--code-yellow);
+      }
+
+      .hljs-tag {
+        color: var(--code-blue);
+      }
+
+      .hljs-name,
+      .hljs-number {
+        color: var(--code-purple);
+      }
+
+      .hljs-string {
+        color: var(--code-yellow);
+      }
+    }
+
+    &.language-html,
+    &.language-tsx > .xml {
+      .hljs-tag {
+        color: var(--code-blue);
+      }
+
+      .hljs-name {
+        color: var(--code-pink);
+      }
+
+      .hljs-attr {
+        color: var(--code-green);
+      }
+
+      .hljs-string {
+        color: var(--code-yellow);
+      }
+    }
+  }
+
+  --tomato-bg: #481a14;
+  --tomato: #f16a50;
+  --red-bg: #481a1d;
+  --red: #ff6369;
+  --crimson-bg: #481a2d;
+  --crimson: #f76190;
+  --pink-bg: #451a37;
+  --pink: #f65cb6;
+  --plum-bg: #3e1d40;
+  --plum: #d864d8;
+  --purple-bg: #3a1e48;
+  --purple: #bf7af0;
+  --violet-bg: #2c2250;
+  --violet: #9e8cfc;
+  --indigo-bg: #1c274f;
+  --indigo: #849dff;
+  --blue-bg: #102a4c;
+  --blue: #52a9ff;
+  --sky-bg: #082d41;
+  --sky: #2ec8ee;
+  --cyan-bg: #07303b;
+  --cyan: #00c2d7;
+  --teal-bg: #07312b;
+  --teal: #0ac5b3;
+  --mint-bg: #04312c;
+  --mint: #25d0ab;
+  --green-bg: #113123;
+  --green: #4cc38a;
+  --grass-bg: #16301d;
+  --grass: #63c174;
+  --lime-bg: #252e0f;
+  --lime: #87be22;
+  --yellow-bg: #352800;
+  --yellow: #f0c000;
+  --amber-bg: #3f2200;
+  --amber: #f1a10d;
+  --orange-bg: #441f04;
+  --orange: #ff8b3e;
+}

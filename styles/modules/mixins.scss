@@ -1,0 +1,146 @@
+@mixin breakpoint($min: 0, $max: 0) {
+  $query: "all";
+  $minValue: #{$min}px;
+  $maxValue: #{$max}px;
+
+  @if $max == 0 {
+    $query: "(min-width: #{$minValue})";
+  } @else if $min == 0 {
+    $query: "(max-width: #{$maxValue})";
+  } @else {
+    $query: "(min-width: #{$minValue}) and (max-width: #{$maxValue})";
+  }
+
+  @media #{$query} {
+    @content;
+  }
+}
+
+@mixin prefix($property, $value, $prefixes: (moz, webkit, ms, o)) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+
+  // Output standard non-prefixed declaration
+  #{$property}: $value;
+}
+
+@mixin animation($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin onHover() {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin onTouch() {
+  @media (hover: none) {
+    &:active {
+      @content;
+    }
+  }
+}
+
+@mixin onHoverAndTouch() {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      @content;
+    }
+  }
+}
+
+@mixin removeFocusOutline() {
+  /* :focus and focus-visible need to be targeted separately for 
+  styles to work in Safari since it doesn't support focus-visible */
+  &:active,
+  &:focus,
+  &.focus-visible {
+    outline: none !important;
+  }
+
+  &:focus-visible {
+    outline: none !important;
+  }
+}
+
+@mixin onKeyboardFocus() {
+  /* :focus and focus-visible need to be targeted separately for 
+  styles to work in Safari since it doesn't support focus-visible */
+  &.focus-visible {
+    @content;
+  }
+
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin onMouseFocus() {
+  /* Some browsers don't support :focus-visible so I'm using a 
+polyfill that adds a .focus-visible className
+https://github.com/WICG/focus-visible */
+  &:focus:not(.focus-visible) {
+    @content;
+  }
+}
+
+@mixin onFocus() {
+  /* :focus and focus-visible need to be targeted separately for 
+  styles to work in Safari since it doesn't support focus-visible */
+  &:focus,
+  &.focus-visible {
+    @content;
+  }
+
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin onHoverAndFocus() {
+  /* :focus and focus-visible need to be targeted separately for 
+  styles to work in Safari since it doesn't support focus-visible */
+  &.focus-visible {
+    @content;
+  }
+
+  &:focus-visible {
+    @content;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      @content;
+    }
+  }
+}

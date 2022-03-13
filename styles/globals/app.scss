@@ -1,0 +1,65 @@
+@import "~styles/modules/typography.scss";
+@import "~styles/modules/mixins.scss";
+@import "~styles/modules/functions.scss";
+
+$link: #ed5497;
+$link-rgb: hexToRGB($link);
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body,
+[data-reactroot] {
+  height: 100%;
+}
+
+:root {
+  // Colors
+  --white: #ffffff;
+  --light-gray: #f5f7fb;
+  --text: #5e5252;
+  --text-light: #856b6b;
+  --link: #{$link};
+  --link-rgb: #{$link-rgb};
+  --link-sm: #833deb;
+
+  --code-bg-color: #282a36;
+  --code-color: #f8f8f2;
+
+  // Spacing
+  @include breakpoint(0, 799.98) {
+    --max-text-width: calc(100vw - (1.6rem * 2));
+  }
+
+  @include breakpoint(800) {
+    --container-padding-top: 8vw;
+  }
+
+  @include breakpoint(800, 1199.98) {
+    --page-padding-sides: 2vw;
+  }
+
+  @include breakpoint(1200) {
+    --max-text-width: 88rem;
+  }
+
+  // Typography
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  // TODO: Add fallback fonts
+  --type-paragraph: "IBM Plex Sans", sans-serif;
+  --type-serif: "EB Garamond", serif;
+  --type-code: "Inconsolata", monospace;
+  // Use a monospace font for numbers
+  --type-numbers: "Azeret Mono", monospace;
+  --type-italic: "Cormorant Garamond", serif;
+}

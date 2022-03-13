@@ -1,0 +1,90 @@
+@import "~styles/modules/mixins.scss";
+@import "~styles/modules/placeholders.scss";
+
+.blogPost {
+  @include breakpoint(0, 399.98) {
+    padding: 1.6rem 0;
+  }
+
+  @include breakpoint(400) {
+    padding: 3.2rem 1.6rem;
+  }
+}
+
+p.loading {
+  font-style: italic;
+  font-family: var(--type-italic);
+  font-weight: var(--font-weight-medium);
+  font-size: 2.4rem;
+
+  @include breakpoint(400) {
+    padding: 0 1.6rem;
+  }
+}
+
+.blogPostTitle {
+  text-decoration: underline;
+}
+
+.blogPostLink {
+  @include onHoverAndFocus {
+    .blogPostTitle {
+      color: var(--link);
+    }
+  }
+}
+
+.linkWithIcon {
+  @include onHoverAndFocus {
+    svg circle {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+.blogArticleMeta {
+  margin-top: 4rem;
+
+  time {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex: 1;
+
+    p::first-letter {
+      text-transform: capitalize;
+    }
+
+    & > p {
+      font-family: var(--type-serif);
+    }
+  }
+}
+
+.blogGoToLinkIcon {
+  width: 1.2em;
+  height: auto;
+  margin-left: 0.1em;
+}
+
+.blogPosts {
+  margin-top: 0;
+}
+
+.blogIndexTitle {
+  font-weight: var(--font-weight-regular);
+
+  @include breakpoint(400) {
+    padding: 0 1.6rem;
+  }
+
+  span {
+    color: var(--text-light);
+  }
+}
+
+.blogIndex {
+  h1 + ul > li {
+    border-top: 2px solid var(--light-gray);
+  }
+}

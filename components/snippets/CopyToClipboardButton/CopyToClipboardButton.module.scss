@@ -1,0 +1,56 @@
+@import "~styles/modules/mixins.scss";
+
+$icon-size: 2rem;
+$button-padding: 0.4rem;
+$button-spacing: 0.8rem;
+$button-size: calc($icon-size + (#{$button-padding} * 2));
+
+.copyToClipboardButton {
+  position: absolute;
+  right: $button-spacing;
+  top: $button-spacing;
+  padding: $button-padding;
+  opacity: 0;
+  transition: all 200ms ease-in;
+
+  background-color: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--code-comment);
+  border-radius: 0.4rem;
+  color: var(--code-comment);
+  cursor: pointer;
+
+  svg {
+    width: $icon-size;
+    height: auto;
+
+    path {
+      &[data-layer="clipboard"] {
+        stroke: currentColor;
+      }
+
+      &[data-layer="clipboard-fill"] {
+        fill: currentColor;
+      }
+    }
+  }
+
+  @include onHoverAndFocus {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--code-color);
+    border-color: var(--code-color);
+  }
+}
+
+p.copyToClipboardButtonLabel {
+  position: absolute;
+  margin: 0;
+  top: calc(0.8rem + (#{$button-size} / 2));
+  right: calc(0.8rem + #{$button-size} + #{$button-spacing});
+  transform: translate(0, -50%);
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-medium);
+  background-color: #343746;
+  color: var(--white);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.2rem;
+}

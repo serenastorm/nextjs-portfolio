@@ -1,0 +1,131 @@
+@import "~styles/modules/mixins.scss";
+@import "~styles/modules/placeholders.scss";
+
+.blog {
+  color: var(--text);
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--type-serif);
+  }
+
+  h1 {
+    @include breakpoint(0, 859.98) {
+      margin-bottom: 4rem;
+      font-size: 2.4rem;
+    }
+
+    @include breakpoint(860) {
+      margin-bottom: 6.4rem;
+      font-size: 2.8vw;
+    }
+  }
+
+  h2 {
+    @include breakpoint(860) {
+      font-size: 2.2vw;
+    }
+
+    @include breakpoint(0, 859.98) {
+      font-size: 2.2rem;
+    }
+
+    a {
+      border-bottom: 0.08em solid currentColor;
+    }
+  }
+
+  p,
+  li {
+    font-family: var(--type-paragraph);
+    font-weight: var(--font-weight-regular);
+    font-size: 1.8rem;
+    line-height: 160%;
+  }
+
+  --tomato-bg: #ffe6e2;
+  --tomato: #ca3214;
+  --red-bg: #ffe5e5;
+  --red: #cd2b31;
+  --crimson-bg: #fce5f0;
+  --crimson: #d31e66;
+  --pink-bg: #fce5f3;
+  --pink: #cd1d8d;
+  --plum-bg: #f9e5f9;
+  --plum: #9c2bad;
+  --purple-bg: #f3e7fc;
+  --purple: #793aaf;
+  --violet-bg: #ede9fe;
+  --violet: #5746af;
+  --indigo-bg: #e6edfe;
+  --indigo: #3451b2;
+  --blue-bg: #e1f0ff;
+  --blue: #006adc;
+  --sky-bg: #d5f4fd;
+  --sky: #0078a1;
+  --cyan-bg: #d8f3f6;
+  --cyan: #0c7792;
+  --teal-bg: #d9f3ee;
+  --teal: #067a6f;
+  --mint-bg: #d2f7ed;
+  --mint: #147d6f;
+  --green-bg: #ddf3e4;
+  --green: #18794e;
+  --grass-bg: #dff3df;
+  --grass: #297c3b;
+  --lime-bg: #e4f7c7;
+  --lime: #5d770d;
+  --yellow-bg: #fff8bb;
+  --yellow: #946800;
+  --amber-bg: #ffecbc;
+  --amber: #ad5700;
+  --orange-bg: #ffe8d7;
+  --orange: #bd4b00;
+}
+
+.blogArticleMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+
+  & > p {
+    flex: 1;
+  }
+
+  & > p {
+    font-family: var(--type-serif);
+  }
+
+  p {
+    color: var(--text-light);
+    margin: 0;
+
+    a {
+      --underline-color: currentColor;
+      @extend %link-with-underline;
+      border-bottom: 0.05em solid currentColor;
+      padding: 0.05em 0.1em 0.1em 0.1em;
+
+      &::after {
+        height: 0.05em;
+      }
+
+      @include onHoverAndFocus {
+        background-color: var(--blue-bg);
+        color: #006adc;
+        border-bottom-color: var(--blue);
+
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

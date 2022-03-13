@@ -1,0 +1,1 @@
+export { NewTabLink } from "./NewTabLink";

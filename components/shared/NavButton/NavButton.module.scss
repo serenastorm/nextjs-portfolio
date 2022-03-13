@@ -1,0 +1,94 @@
+@import "~styles/modules/mixins.scss";
+@import "~styles/modules/placeholders.scss";
+
+$navButton-transition: all 200ms ease-in;
+
+.navButtons {
+  --nav-button-width: 4rem;
+  --nav-buttons-gap: 0.8rem;
+  position: fixed;
+  z-index: 50;
+  top: 1.6rem;
+  right: 1.6rem;
+  display: flex;
+  list-style-type: none;
+  padding-left: 0;
+  gap: var(--nav-buttons-gap);
+}
+
+.navButtonIndicator {
+  content: "";
+  display: block;
+  position: absolute;
+  width: var(--nav-button-width);
+  height: var(--nav-button-width);
+  border-radius: 50%;
+  background-color: var(--text);
+  z-index: 0;
+  transition: $navButton-transition;
+
+  &[data-active-btn-index="1"] {
+    transform: translateX(0);
+  }
+
+  &[data-active-btn-index="2"] {
+    transform: translateX(
+      calc(#{var(--nav-button-width)} + #{var(--nav-buttons-gap)})
+    );
+  }
+}
+
+.navButton {
+  position: relative;
+  z-index: 1;
+}
+
+.navButtonLabel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, 0.8rem);
+  font-size: 1.2rem;
+  font-family: var(--type-paragraph);
+  font-weight: var(--font-weight-medium);
+  color: var(--text);
+  transition: $navButton-transition;
+}
+
+.navButtonLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--nav-button-width);
+  height: var(--nav-button-width);
+  color: var(--text);
+  border-radius: 50%;
+  transition: $navButton-transition;
+
+  svg {
+    width: 2rem;
+    height: auto;
+
+    path {
+      fill: unset;
+    }
+  }
+
+  &[aria-current="page"] {
+    // background-color: var(--text);
+    color: var(--light-gray);
+    cursor: initial;
+  }
+
+  &[aria-current="false"] {
+    background-color: var(--light-gray);
+  }
+
+  @include onHoverAndFocus {
+    & + .navButtonLabel {
+      opacity: 1;
+      transform: translate(-50%, 0.4rem);
+    }
+  }
+}
