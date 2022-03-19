@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SnippetLikeButton, SnippetPills } from "components/snippets";
 import { GoToLinkIcon } from "assets/icons";
 import { BlogPostResponse, BlogPosts } from "infrastructure/blog/types";
-import { getCategory } from "helpers/blog/constants";
+import { getCategory } from "helpers/blog";
 import { routes } from "infrastructure/routes/constants";
 import { useLikes } from "infrastructure/hooks";
 

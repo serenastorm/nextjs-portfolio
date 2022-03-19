@@ -3,11 +3,10 @@ import type { CoreOptions } from "react-markdown/lib/react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import { rehypeMetaAsAttributes } from "helpers/blog/rehypeMetaAsAttributes";
+import { rehypeMetaAsAttributes, reactNodeToString } from "helpers/blog";
 import { SnippetCopyToClipboardButton } from "components/snippets";
 import { NewTabLink } from "components/shared";
 import { ElementContent } from "react-markdown/lib/ast-to-react";
-import reactNodeToString from "helpers/blog/reactNodeToString";
 
 import styles from "./SnippetMarkdown.module.scss";
 import blogArticleStyles from "styles/blog/BlogArticle.module.scss";

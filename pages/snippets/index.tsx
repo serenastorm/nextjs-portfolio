@@ -2,14 +2,16 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { SnippetLink } from "components/snippets";
 import { Page } from "components/shared/Page";
-import { usePosts } from "infrastructure/hooks";
-import { getCategory } from "helpers/blog/constants";
+import { filterPosts, getCategory } from "helpers/blog";
+import type { GetStaticProps } from "next/types";
+import type { BlogPostResponse } from "infrastructure/blog/types";
 
 import blogStyles from "styles/blog/Blog.module.scss";
 import blogIndexStyles from "styles/blog/BlogIndex.module.scss";
 import blogPageStyles from "styles/blog/BlogPage.module.scss";
+import { fetchEntries } from "helpers/blog/api";
 
-const BlogCategoryPage = () => {
+const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
   const { query } = useRouter();
 
   const { cat, tag: queryTag } = query;
@@ -18,7 +20,8 @@ const BlogCategoryPage = () => {
   const subcategory = Array.isArray(cat) ? cat[0] : cat || "";
   const tag = Array.isArray(queryTag) ? queryTag[0] : queryTag || "";
 
-  const { posts, isLoading, isEmpty } = usePosts({
+  const posts = filterPosts({
+    entries,
     category,
     subcategory,
     tag: tag ? getCategory(tag).value : null,
@@ -50,15 +53,21 @@ const BlogCategoryPage = () => {
           )}
         </h1>
         <ul className={blogIndexStyles.blogPosts}>
-          <SnippetLink
-            posts={posts}
-            isLoading={isLoading}
-            isEmpty={isEmpty}
-          />
+          <SnippetLink posts={posts} />
         </ul>
       </Page>
     </>
   );
 };
 
-export default BlogCategoryPage;
+export default SnippetsPage;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const entries = await fetchEntries();
+
+  return {
+    props: {
+      entries,
+    },
+  };
+};

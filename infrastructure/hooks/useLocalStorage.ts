@@ -1,8 +1,7 @@
 import { useState } from "react";
+import { isBrowser } from "helpers/main/constants";
 
 function useLocalStorage(key: string, initialValue: string) {
-  const isBrowser: boolean = ((): boolean => typeof window !== "undefined")();
-
   const [storedValue, setStoredValue] = useState(() => {
     try {
       // Get from local storage by key

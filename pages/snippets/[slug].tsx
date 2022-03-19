@@ -1,11 +1,26 @@
 import Link from "next/link";
 import Head from "next/head";
+import type { ParsedUrlQuery } from "querystring";
+import type { GetStaticProps } from "next/types";
 import { useRouter } from "next/router";
 import { Page } from "components/shared/Page";
-import { SnippetLikeButton, SnippetMarkdown, SnippetPills, SnippetSandpack } from "components/snippets";
+import {
+  SnippetLikeButton,
+  SnippetMarkdown,
+  SnippetPills,
+  SnippetSandpack,
+} from "components/snippets";
 import { routes } from "infrastructure/routes/constants";
-import { getCategory } from "helpers/blog/constants";
-import { useSinglePost, usePostNavigation } from "infrastructure/hooks";
+import { useLikes } from "infrastructure/hooks";
+import { allEntries } from "helpers/blog/constants";
+import { getCategory } from "helpers/blog";
+import {
+  fetchEntry,
+  fetchNextEntry,
+  fetchPreviousEntry,
+} from "helpers/blog/api";
+
+import type { BlogPostResponse } from "infrastructure/blog/types";
 
 import styles from "styles/blog/BlogArticlePage.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
@@ -14,7 +29,17 @@ import blogPageStyles from "styles/blog/BlogPage.module.scss";
 
 const category = "snippets";
 
-const BlogArticlePage = () => {
+type BlogArticlePageProps = {
+  entry: BlogPostResponse;
+  previousPost: BlogPostResponse | null;
+  nextPost: BlogPostResponse | null;
+};
+
+const BlogArticlePage = ({
+  entry,
+  previousPost,
+  nextPost,
+}: BlogArticlePageProps) => {
   const router = useRouter();
   const getSlug = (): string => {
     if (Array.isArray(router.query.slug)) {
@@ -24,9 +49,9 @@ const BlogArticlePage = () => {
     }
   };
   const slug = getSlug();
-  const { post, isLoading, isEmpty, likes } = useSinglePost(category, slug);
-  const { previousPost, nextPost } = usePostNavigation(category, slug);
-  const { fields, sys } = post || {};
+  const { fields, sys } = entry;
+
+  const { totalLikes, addLike, removeLike, likesAreLoading } = useLikes(sys.id);
 
   const {
     title,
@@ -35,18 +60,18 @@ const BlogArticlePage = () => {
     tags,
     sandpackSettings,
     sandpackContent,
-  } = fields || {};
+  } = fields;
 
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      {!isLoading && (
-        <a className={styles.skipToContentLink} href="#mainContent">
-          Skip to main content
-        </a>
-      )}
+
+      <a className={styles.skipToContentLink} href="#mainContent">
+        Skip to main content
+      </a>
+
       <Page
         className={`${blogPageStyles.blogPage} ${blogStyles.blog} ${blogArticleStyles.blogArticle}`}
         as="article"
@@ -75,20 +100,19 @@ const BlogArticlePage = () => {
 
           {tags && <SnippetPills types={tags} />}
         </header>
-        {!content || isLoading || isEmpty ? (
-          <h1>{isEmpty && !isLoading ? "No article here." : "Loading..."}</h1>
-        ) : (
-          <main id="mainContent" key={`${subcategory}/${slug}/mainContent`}>
-            <h1>{title}</h1>
-            <SnippetMarkdown content={content} />
-            {sandpackContent && sandpackSettings && (
-              <>
-                <h2>Demo</h2>
-                <SnippetSandpack markdown={sandpackContent} setup={sandpackSettings} />
-              </>
-            )}
-          </main>
-        )}
+        <main id="mainContent" key={`${subcategory}/${slug}/mainContent`}>
+          <h1>{title}</h1>
+          <SnippetMarkdown content={content} />
+          {sandpackContent && sandpackSettings && (
+            <>
+              <h2>Demo</h2>
+              <SnippetSandpack
+                markdown={sandpackContent}
+                setup={sandpackSettings}
+              />
+            </>
+          )}
+        </main>
         {(nextPost || previousPost) && (
           <footer className={blogArticleStyles.blogArticleNav}>
             <div
@@ -129,10 +153,49 @@ const BlogArticlePage = () => {
             </div>
           </footer>
         )}
-        {sys?.id && <SnippetLikeButton {...likes} articleId={sys.id} fixed />}
+        {!likesAreLoading && (
+          <SnippetLikeButton
+            total={totalLikes}
+            add={addLike}
+            remove={removeLike}
+            articleId={sys.id}
+            fixed
+          />
+        )}
       </Page>
     </>
   );
 };
 
 export default BlogArticlePage;
+
+export async function getStaticPaths() {
+  const paths = allEntries.map((slug: string) => ({ params: { slug } }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+interface Params extends ParsedUrlQuery {
+  slug: string;
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const params = context.params as Params;
+  const { slug } = params;
+
+  const entry = await fetchEntry(slug);
+
+  const previousPost = await fetchPreviousEntry(slug);
+  const nextPost = await fetchNextEntry(slug);
+
+  return {
+    props: {
+      entry,
+      previousPost,
+      nextPost,
+    },
+  };
+};

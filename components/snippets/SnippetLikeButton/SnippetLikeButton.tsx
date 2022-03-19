@@ -1,5 +1,6 @@
 import SnippetLikeButtonHeart from "./SnippetLikeButtonHeart";
 import { useLocalStorage } from "infrastructure/hooks";
+import { isBrowser } from "helpers/main/constants";
 
 import styles from "./SnippetLikeButton.module.scss";
 
@@ -23,9 +24,10 @@ const SnippetLikeButton = ({
     localStorageKey,
     "false"
   );
-  const localStorageItem = window.localStorage.getItem(localStorageKey);
 
-  const inputShouldBeChecked = JSON.parse(localStorageItem || "{}") === "true";
+  const localStorageItem = window.localStorage.getItem(localStorageKey);
+  const inputShouldBeChecked =
+    isBrowser && JSON.parse(localStorageItem || "{}") === "true";
 
   // If user has liked snippet, likes count shouldn't go below 1
   const minLikesCount = inputShouldBeChecked ? 1 : 0;

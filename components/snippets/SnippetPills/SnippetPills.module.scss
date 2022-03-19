@@ -51,7 +51,7 @@ $backgroundColors: var(--tomato-bg), var(--red-bg), var(--crimson-bg),
     color: $textColor;
   }
 
-  a .pill#{"" + $color} {
+  a.pill#{"" + $color} {
     @include onHoverAndFocus {
       background-color: $textColor;
       color: $background-color;
