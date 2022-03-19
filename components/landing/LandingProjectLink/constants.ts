@@ -1,11 +1,10 @@
-import { routes } from "infrastructure/routes/constants";
 import { LinkProps } from "helpers/main/types";
 
 export const projects: LinkProps[] = [
   {
     label: "myqr.studio",
     description: "case study",
-    url: routes.myqr.intro.url,
+    url: "https://zealous-visvesvaraya-033757.netlify.app",
   },
   {
     label: "cmts2a",
