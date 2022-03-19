@@ -1,4 +1,4 @@
-export { SnippetLink } from "./SnippetLink";
+export { SnippetLink, SnippetLinks } from "./SnippetLink";
 export { SnippetCopyToClipboardButton } from "./SnippetCopyToClipboardButton";
 export { SnippetLikeButton } from "./SnippetLikeButton";
 export { SnippetMarkdown } from "./SnippetMarkdown";

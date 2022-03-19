@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { SnippetLink } from "components/snippets";
+import { SnippetLinks } from "components/snippets";
 import { Page } from "components/shared/Page";
 import { filterPosts, getCategory } from "helpers/blog";
 import type { GetStaticProps } from "next/types";
@@ -53,7 +53,7 @@ const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
           )}
         </h1>
         <ul className={blogIndexStyles.blogPosts}>
-          <SnippetLink posts={posts} />
+          <SnippetLinks posts={posts} />
         </ul>
       </Page>
     </>

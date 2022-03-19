@@ -9,7 +9,7 @@ import {
 } from "components/landing";
 import { Page } from "components/shared/Page";
 import { routes, apiUrl } from "infrastructure/routes/constants";
-import { SnippetLink } from "components/snippets";
+import { SnippetLinks } from "components/snippets";
 
 import styles from "styles/Home.module.scss";
 import blogIndexStyles from "styles/blog/BlogIndex.module.scss";
@@ -66,11 +66,7 @@ const Home: NextPage = ({
             </span>
           </div>
           <ul className={blogIndexStyles.blogPosts}>
-            <SnippetLink
-              posts={[{ ...mostRecentPost }]}
-              isLoading={!mostRecentPost}
-              isEmpty={!mostRecentPost}
-            />
+            <SnippetLinks posts={[{ ...mostRecentPost }]} />
           </ul>
         </div>
       </Page>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SnippetLikeButton, SnippetPills } from "components/snippets";
 import { GoToLinkIcon } from "assets/icons";
-import { BlogPostResponse, BlogPosts } from "infrastructure/blog/types";
+import { BlogPostResponse } from "infrastructure/blog/types";
 import { getCategory } from "helpers/blog";
 import { routes } from "infrastructure/routes/constants";
 import { useLikes } from "infrastructure/hooks";
@@ -13,7 +13,7 @@ type BlogPost = BlogPostResponse & {
   postIndex: number;
 };
 
-const SnippetLink = ({ fields, sys, postIndex }: BlogPost) => {
+export const SnippetLink = ({ fields, sys }: BlogPost) => {
   const { totalLikes, likesAreLoading, addLike, removeLike } = useLikes(sys.id);
   const relativeTimeFormatter = new Intl.RelativeTimeFormat("en", {
     numeric: "auto",
@@ -103,20 +103,21 @@ const SnippetLink = ({ fields, sys, postIndex }: BlogPost) => {
   );
 };
 
-const SnippetLinks = ({ posts, isLoading, isEmpty }: BlogPosts) => {
-  if (isLoading) return <p className={blogIndexStyles.loading}>Loading...</p>;
-
-  return isEmpty ? (
-    <li className={blogIndexStyles.blogPost}>
-      No posts to show.{" "}
-      <Link href={routes.blog.snippets.url} passHref>
-        <a className="semibold">
-          All snippets
-          <GoToLinkIcon />
-        </a>
-      </Link>
-    </li>
-  ) : (
+const SnippetLinks = ({ posts }: { posts: BlogPostResponse[] | null }) => {
+  if (!posts) {
+    return (
+      <li className={blogIndexStyles.blogPost}>
+        No posts to show.{" "}
+        <Link href={routes.blog.snippets.url} passHref>
+          <a className="semibold">
+            All snippets
+            <GoToLinkIcon />
+          </a>
+        </Link>
+      </li>
+    );
+  }
+  return (
     <>
       {posts.map((post: BlogPostResponse, postIndex: number) => (
         <SnippetLink postIndex={postIndex} key={post.sys.id} {...post} />

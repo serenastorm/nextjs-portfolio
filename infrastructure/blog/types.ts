@@ -17,14 +17,3 @@ export type BlogPostMeta = {
 };
 
 export type BlogPostResponse = { fields: BlogPost; sys: BlogPostMeta };
-
-export type BlogPosts = {
-  posts: BlogPostResponse[];
-  isLoading: boolean;
-  isEmpty: boolean;
-};
-
-export type NavigationBlogPosts = {
-  previousPost: BlogPostResponse | null;
-  nextPost: BlogPostResponse | null;
-};
