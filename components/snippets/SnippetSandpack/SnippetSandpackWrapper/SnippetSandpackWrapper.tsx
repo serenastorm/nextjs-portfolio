@@ -96,7 +96,7 @@ const SandPackNavigation = () => {
   return (
     <div className={styles.sandPackCustomNav}>
       <FileTabs />
-      <div className={styles.sandPackCustomNavButtons}>
+      <div className={styles.sandPackCustomNavButtonss}>
         <button
           type="button"
           onClick={() => refresh()}

@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { routes } from "infrastructure/routes/constants";
 import { HomeIcon, SnippetsIcon } from "assets/icons";
 
-import styles from "./NavButton.module.scss";
+import styles from "./NavButtons.module.scss";
 
-const NavButton = () => {
+const NavButtons = () => {
   const { pathname } = useRouter();
 
   const isSnippets = pathname.startsWith("/snippets");
@@ -56,4 +56,4 @@ const NavButton = () => {
   );
 };
 
-export default NavButton;
+export default NavButtons;

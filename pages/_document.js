@@ -93,7 +93,6 @@ export default function Document() {
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/ */}
 
         <link rel="manifest" href="/manifest.json" />
-        {/* We're loading IBM Plex Sans here since we need it for our noscript styles */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -102,6 +101,14 @@ export default function Document() {
         />
         <link
           href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=EB+Garamond:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600&display=swap"
           rel="stylesheet"
         />
       </Head>

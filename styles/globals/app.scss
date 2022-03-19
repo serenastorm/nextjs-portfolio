@@ -1,4 +1,3 @@
-@import "~styles/modules/typography.scss";
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/functions.scss";
 
@@ -59,7 +58,5 @@ body,
   --type-paragraph: "IBM Plex Sans", sans-serif;
   --type-serif: "EB Garamond", serif;
   --type-code: "Inconsolata", monospace;
-  // Use a monospace font for numbers
-  --type-numbers: "Azeret Mono", monospace;
   --type-italic: "Cormorant Garamond", serif;
 }
