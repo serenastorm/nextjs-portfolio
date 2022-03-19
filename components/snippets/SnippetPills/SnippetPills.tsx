@@ -1,9 +1,10 @@
 import { createElement } from "react";
 import Link from "next/link";
-import { CategoryLabels, CategoryUrls } from "helpers/blog/types";
+import type { CategoryLabels, CategoryUrls } from "helpers/blog/types";
+
 import { routes } from "infrastructure/routes/constants";
 
-import styles from "./Pills.module.scss";
+import styles from "./SnippetPills.module.scss";
 
 type Color =
   | "tomato"
@@ -26,15 +27,15 @@ type Color =
   | "amber"
   | "orange";
 
-type PillProps = {
+type SnippetPillProps = {
   animationDelay?: number;
   as?: "div" | "li";
   className?: string;
   type: string;
 };
 
-export const Pill = ({ as = "div", className = "", type }: PillProps) => {
-  const getPillColor = (): {
+export const SnippetPill = ({ as = "div", className = "", type }: SnippetPillProps) => {
+  const getSnippetPillColor = (): {
     color: Color;
     label: CategoryLabels | string;
     url: CategoryUrls | "";
@@ -59,13 +60,13 @@ export const Pill = ({ as = "div", className = "", type }: PillProps) => {
     }
   };
 
-  const { color, label, url } = getPillColor();
+  const { color, label, url } = getSnippetPillColor();
 
-  const shouldPillBeLink = as === "li";
+  const shouldSnippetPillBeLink = as === "li";
   const pillClassName = `${styles.pill} ${styles[`pill${color}`]} ${className}`;
 
   const renderChildren = () =>
-    shouldPillBeLink
+    shouldSnippetPillBeLink
       ? createElement(
           Link,
           {
@@ -84,14 +85,14 @@ export const Pill = ({ as = "div", className = "", type }: PillProps) => {
   return createElement(as, {}, renderChildren());
 };
 
-const Pills = ({ types }: { types: string[] }) => {
+const SnippetPills = ({ types }: { types: string[] }) => {
   return (
     <ul className={styles.pills}>
       {types.map((type, pillIndex: number) => (
-        <Pill type={type} as="li" key={type} />
+        <SnippetPill type={type} as="li" key={type} />
       ))}
     </ul>
   );
 };
 
-export default Pills;
+export default SnippetPills;

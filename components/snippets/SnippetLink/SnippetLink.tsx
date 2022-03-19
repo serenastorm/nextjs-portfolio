@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LikeButton, Pills } from "components/snippets";
+import { SnippetLikeButton, SnippetPills } from "components/snippets";
 import { GoToLinkIcon } from "assets/icons";
 import { BlogPostResponse, BlogPosts } from "infrastructure/blog/types";
 import { getCategory } from "helpers/blog/constants";
@@ -13,11 +13,12 @@ type BlogPost = BlogPostResponse & {
   postIndex: number;
 };
 
-const BlogArticleLink = ({ fields, sys, postIndex }: BlogPost) => {
+const SnippetLink = ({ fields, sys, postIndex }: BlogPost) => {
   const { totalLikes, likesAreLoading, addLike, removeLike } = useLikes(sys.id);
   const relativeTimeFormatter = new Intl.RelativeTimeFormat("en", {
     numeric: "auto",
   });
+  const { category, date, shortText, slug, subcategory, title } = fields;
 
   const timeDivisions: {
     amount: number;
@@ -50,49 +51,45 @@ const BlogArticleLink = ({ fields, sys, postIndex }: BlogPost) => {
   return (
     <li className={blogIndexStyles.blogPost}>
       <Link
-        href={`/${encodeURIComponent(fields.category)}/${encodeURIComponent(
-          fields.slug
-        )}`}
+        href={`/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`}
         passHref
       >
         <a
           className={`${blogIndexStyles.blogPostLink} ${blogIndexStyles.linkWithIcon}`}
         >
           <h3 className={blogIndexStyles.blogPostTitle}>
-            {fields.title}{" "}
+            {title}{" "}
             <GoToLinkIcon className={blogIndexStyles.blogGoToLinkIcon} />
           </h3>
         </a>
       </Link>
-      {fields.shortText && <p>{fields.shortText}</p>}
+      {shortText && <p>{shortText}</p>}
 
       <div
         className={`${blogStyles.blogArticleMeta} ${blogIndexStyles.blogArticleMeta}`}
       >
-        <time dateTime={new Date(fields.date).toISOString()}>
+        <time dateTime={new Date(date).toISOString()}>
           <p className="semibold">
-            {formatRelativeTime(new Date(fields.date))}
+            {formatRelativeTime(new Date(date))}
 
-            {fields.subcategory && (
+            {subcategory && (
               <>
                 {"  "}
                 in{" "}
                 <Link
                   href={{
                     pathname: routes.blog.snippets.url,
-                    query: { cat: fields.subcategory },
+                    query: { cat: subcategory },
                   }}
                   passHref
                 >
-                  <a className="medium">
-                    {getCategory(fields.subcategory).label}
-                  </a>
+                  <a className="medium">{getCategory(subcategory).label}</a>
                 </Link>
               </>
             )}
           </p>
           {!likesAreLoading && (
-            <LikeButton
+            <SnippetLikeButton
               total={totalLikes}
               add={addLike}
               remove={removeLike}
@@ -100,13 +97,13 @@ const BlogArticleLink = ({ fields, sys, postIndex }: BlogPost) => {
             />
           )}
         </time>
-        {fields.tags && <Pills types={fields.tags} />}
+        {fields.tags && <SnippetPills types={fields.tags} />}
       </div>
     </li>
   );
 };
 
-const BlogArticleLinks = ({ posts, isLoading, isEmpty }: BlogPosts) => {
+const SnippetLinks = ({ posts, isLoading, isEmpty }: BlogPosts) => {
   if (isLoading) return <p className={blogIndexStyles.loading}>Loading...</p>;
 
   return isEmpty ? (
@@ -122,10 +119,10 @@ const BlogArticleLinks = ({ posts, isLoading, isEmpty }: BlogPosts) => {
   ) : (
     <>
       {posts.map((post: BlogPostResponse, postIndex: number) => (
-        <BlogArticleLink postIndex={postIndex} key={post.sys.id} {...post} />
+        <SnippetLink postIndex={postIndex} key={post.sys.id} {...post} />
       ))}
     </>
   );
 };
 
-export default BlogArticleLinks;
+export default SnippetLinks;

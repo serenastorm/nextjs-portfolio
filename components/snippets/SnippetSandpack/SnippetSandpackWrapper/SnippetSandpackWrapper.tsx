@@ -23,9 +23,9 @@ import {
 import "@codesandbox/sandpack-react/dist/index.css";
 import scrollIntoView from "scroll-into-view-if-needed";
 import { ExpandIcon, ReloadIcon, OpenInCodeSandboxIcon } from "assets/icons";
-import { CodeSnippetProps } from "../types";
+import type { CodeSnippetProps } from "../types";
 
-import styles from "./SandpackWrapper.module.scss";
+import styles from "./SnippetSandpackWrapper.module.scss";
 
 type SandPackExpandButtonProps = {
   buttonContainerHeight: number;

@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="apple-touch-icon"
@@ -84,7 +84,6 @@ export default function Document() {
 
         <meta property="og:image" content="/OG.jpg" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="description"
           content="The portfolio of product designer & front-end developer Serena Antonetti."

@@ -1,8 +1,8 @@
 import { SandpackSetup } from "@codesandbox/sandpack-react";
-import { SandpackWrapper } from "./SandpackWrapper";
-import { CodeSnippetProps } from "./types";
+import { SnippetSandpackWrapper } from "./SnippetSandpackWrapper";
+import type { CodeSnippetProps } from "./types";
 
-const Sandpack = ({
+const SnippetSandpack = ({
   markdown,
   setup,
 }: {
@@ -53,7 +53,7 @@ const Sandpack = ({
     return result;
   };
 
-  return <SandpackWrapper setup={setup} codeSnippets={preTagsObjectArray()} />;
+  return <SnippetSandpackWrapper setup={setup} codeSnippets={preTagsObjectArray()} />;
 };
 
-export default Sandpack;
+export default SnippetSandpack;

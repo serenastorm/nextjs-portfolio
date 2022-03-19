@@ -1,13 +1,13 @@
-import { useState, useRef, AriaAttributes } from "react";
+import { useState, useRef } from "react";
 import { CopyToClipboardIcon } from "assets/icons";
 
-import styles from "./CopyToClipboardButton.module.scss";
+import styles from "./SnippetCopyToClipboardButton.module.scss";
 
-type CopyToClipboardButtonProps = {
+type SnippetCopyToClipboardButtonProps = {
   textToCopy: string;
 };
 
-const CopyToClipboardButton = ({ textToCopy }: CopyToClipboardButtonProps) => {
+const SnippetCopyToClipboardButton = ({ textToCopy }: SnippetCopyToClipboardButtonProps) => {
   const [textCopiedToClipboard, setTextCopiedToClipboard] =
     useState<boolean>(false);
   // For browsers that don't support navigator.clipboard, we need to add the email to an input, select it, and copy the value
@@ -45,7 +45,7 @@ const CopyToClipboardButton = ({ textToCopy }: CopyToClipboardButtonProps) => {
       />
       <button
         onClick={onCopyButtonClick}
-        className={styles.copyToClipboardButton}
+        className={styles.snippetCopyToClipboardButton}
         title="Copy to clipboard"
       >
         <CopyToClipboardIcon copied={textCopiedToClipboard} />
@@ -54,7 +54,7 @@ const CopyToClipboardButton = ({ textToCopy }: CopyToClipboardButtonProps) => {
         <p
           aria-live="assertive"
           aria-relevant="additions"
-          className={styles.copyToClipboardButtonLabel}
+          className={styles.snippetCopyToClipboardButtonLabel}
         >
           Copied!
         </p>
@@ -63,4 +63,4 @@ const CopyToClipboardButton = ({ textToCopy }: CopyToClipboardButtonProps) => {
   );
 };
 
-export default CopyToClipboardButton;
+export default SnippetCopyToClipboardButton;

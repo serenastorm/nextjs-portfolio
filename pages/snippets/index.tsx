@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { BlogArticleLink } from "components/snippets";
+import { SnippetLink } from "components/snippets";
 import { Page } from "components/shared/Page";
 import { usePosts } from "infrastructure/hooks";
 import { getCategory } from "helpers/blog/constants";
@@ -50,7 +50,7 @@ const BlogCategoryPage = () => {
           )}
         </h1>
         <ul className={blogIndexStyles.blogPosts}>
-          <BlogArticleLink
+          <SnippetLink
             posts={posts}
             isLoading={isLoading}
             isEmpty={isEmpty}

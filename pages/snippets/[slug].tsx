@@ -1,55 +1,32 @@
-import { isValidElement, ReactNode } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import ReactMarkdown from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
-import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
-import { rehypeMetaAsAttributes } from "helpers/blog/rehypeMetaAsAttributes";
 import { Page } from "components/shared/Page";
-import {
-  CopyToClipboardButton,
-  LikeButton,
-  Pills,
-  Sandpack,
-} from "components/snippets";
-import { NewTabLink } from "components/shared";
+import { SnippetLikeButton, SnippetMarkdown, SnippetPills, SnippetSandpack } from "components/snippets";
 import { routes } from "infrastructure/routes/constants";
-import { ElementContent } from "react-markdown/lib/ast-to-react";
 import { getCategory } from "helpers/blog/constants";
 import { useSinglePost, usePostNavigation } from "infrastructure/hooks";
 
 import styles from "styles/blog/BlogArticlePage.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
 import blogArticleStyles from "styles/blog/BlogArticle.module.scss";
-import blogMarkdownStyles from "styles/blog/BlogMarkdown.module.scss";
 import blogPageStyles from "styles/blog/BlogPage.module.scss";
 
 const category = "snippets";
 
 const BlogArticlePage = () => {
   const router = useRouter();
-  const { slug }: { slug: string } = router.query;
+  const getSlug = (): string => {
+    if (Array.isArray(router.query.slug)) {
+      return router.query.slug[0];
+    } else {
+      return router.query.slug || "";
+    }
+  };
+  const slug = getSlug();
   const { post, isLoading, isEmpty, likes } = useSinglePost(category, slug);
   const { previousPost, nextPost } = usePostNavigation(category, slug);
   const { fields, sys } = post || {};
-
-  const reactNodeToString = function (
-    reactNode: ReactNode & ReactNode[]
-  ): string {
-    let string = "";
-    if (typeof reactNode === "string") {
-      string += reactNode;
-    } else if (reactNode instanceof Array) {
-      reactNode.forEach((child) => {
-        string += reactNodeToString(child);
-      });
-    } else if (isValidElement(reactNode)) {
-      string += reactNodeToString(reactNode.props.children);
-    }
-    return string;
-  };
 
   const {
     title,
@@ -96,99 +73,18 @@ const BlogArticlePage = () => {
             )}
           </p>
 
-          {tags && <Pills types={tags} />}
+          {tags && <SnippetPills types={tags} />}
         </header>
         {!content || isLoading || isEmpty ? (
           <h1>{isEmpty && !isLoading ? "No article here." : "Loading..."}</h1>
         ) : (
           <main id="mainContent" key={`${subcategory}/${slug}/mainContent`}>
             <h1>{title}</h1>
-            <div>
-              <ReactMarkdown
-                // eslint-disable-next-line react/no-children-prop
-                children={content}
-                key="main"
-                className={blogMarkdownStyles.markdown}
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[
-                  rehypeMetaAsAttributes,
-                  rehypeHighlight,
-                  rehypeRaw,
-                ]}
-                components={{
-                  code({ node, inline, className, children, ...props }) {
-                    const match = /language-(\w+)/.exec(className || "");
-                    const filename = node?.properties?.filename;
-
-                    const renderSnippet = () => (
-                      <code className={className} {...props}>
-                        {children}
-                      </code>
-                    );
-
-                    return inline ? (
-                      renderSnippet()
-                    ) : (
-                      <>
-                        {filename && (
-                          <div className={blogMarkdownStyles.codeBlockNav}>
-                            <div>
-                              <code>{filename}</code>
-                            </div>
-                          </div>
-                        )}
-                        <pre>
-                          <CopyToClipboardButton
-                            textToCopy={reactNodeToString(children)}
-                          />
-                          {/* {match && (
-                          <Pill
-                            type={match[1]}
-                            className={blogArticleStyles.codePill}
-                          />
-                        )} */}
-                          {renderSnippet()}
-                        </pre>
-                      </>
-                    );
-                  },
-                  pre({ children }) {
-                    return <>{children}</>;
-                  },
-                  a({ children, node, href, ...props }) {
-                    const indexOfExternalLink = node.children.findIndex(
-                      (child) =>
-                        child.type === "text" &&
-                        (child.value === "View full criteria" ||
-                          child.value === "View design pattern")
-                    );
-
-                    const isExternalLink = indexOfExternalLink > -1;
-
-                    const nodeChildren: Array<
-                      ElementContent & { value?: string }
-                    > = node.children;
-                    const linkCopy = nodeChildren[indexOfExternalLink]?.value;
-
-                    return isExternalLink && href && !!linkCopy ? (
-                      <NewTabLink
-                        copy={linkCopy}
-                        to={href}
-                        shouldOpenInNewTab
-                        className={`medium ${blogArticleStyles.newTabLink}`}
-                        withUnderline={false}
-                      />
-                    ) : (
-                      <a {...props}>{children}</a>
-                    );
-                  },
-                }}
-              />
-            </div>
+            <SnippetMarkdown content={content} />
             {sandpackContent && sandpackSettings && (
               <>
                 <h2>Demo</h2>
-                <Sandpack markdown={sandpackContent} setup={sandpackSettings} />
+                <SnippetSandpack markdown={sandpackContent} setup={sandpackSettings} />
               </>
             )}
           </main>
@@ -233,22 +129,10 @@ const BlogArticlePage = () => {
             </div>
           </footer>
         )}
-        {sys?.id && <LikeButton {...likes} articleId={sys.id} fixed />}
+        {sys?.id && <SnippetLikeButton {...likes} articleId={sys.id} fixed />}
       </Page>
     </>
   );
 };
 
 export default BlogArticlePage;
-
-// export async function getStaticPaths() {
-//   return {
-//     paths: [
-//       // String variant:
-//       "/snippets/first-post",
-//       // Object variant:
-//       { params: { slug: "second-post" } },
-//     ],
-//     fallback: true,
-//   };
-// }

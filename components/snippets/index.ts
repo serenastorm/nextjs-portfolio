@@ -1,5 +1,6 @@
-export { BlogArticleLink } from "./BlogArticleLink";
-export { CopyToClipboardButton } from "./CopyToClipboardButton";
-export { LikeButton } from "./LikeButton";
-export { Pill, Pills } from "./Pills";
-export { Sandpack } from "./Sandpack";
+export { SnippetLink } from "./SnippetLink";
+export { SnippetCopyToClipboardButton } from "./SnippetCopyToClipboardButton";
+export { SnippetLikeButton } from "./SnippetLikeButton";
+export { SnippetMarkdown } from "./SnippetMarkdown";
+export { SnippetPill, SnippetPills } from "./SnippetPills";
+export { SnippetSandpack } from "./SnippetSandpack";
