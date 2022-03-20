@@ -88,7 +88,7 @@ export const SnippetPill = ({ as = "div", className = "", type }: SnippetPillPro
 const SnippetPills = ({ types }: { types: string[] }) => {
   return (
     <ul className={styles.pills}>
-      {types.map((type, pillIndex: number) => (
+      {types.map((type) => (
         <SnippetPill type={type} as="li" key={type} />
       ))}
     </ul>

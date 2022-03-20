@@ -1,0 +1,28 @@
+.errorPage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    text-align: center;
+    font-family: var(--type-serif);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 0.8rem;
+    margin-top: 0;
+  }
+
+  p {
+    font-family: var(--type-paragraph);
+    font-weight: var(--font-weight-regular);
+    color: var(--text);
+    font-size: 1.8rem;
+    line-height: 160%;
+    margin-bottom: 4rem;
+
+    a {
+      color: var(--link);
+    }
+  }
+}
