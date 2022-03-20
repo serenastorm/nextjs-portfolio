@@ -1,12 +1,15 @@
+@import "~styles/modules/mixins.scss";
+
 .errorPage {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-left: calc((100vw - var(--max-text-width)) / 2);
+  padding-right: calc((100vw - var(--max-text-width)) / 2);
 
   h1 {
-    text-align: center;
     font-family: var(--type-serif);
     font-weight: var(--font-weight-medium);
     margin-bottom: 0.8rem;
@@ -23,6 +26,32 @@
 
     a {
       color: var(--link);
+    }
+  }
+
+  h1,
+  p {
+    @include breakpoint(0, 519.98) {
+      min-width: 100%;
+    }
+
+    @include breakpoint(520) {
+      text-align: center;
+    }
+  }
+
+  ul {
+    @include breakpoint(0, 519.98) {
+      min-width: 100%;
+    }
+
+    @include breakpoint(520) {
+      align-items: center;
+      justify-content: center;
+    }
+
+    li a {
+      display: block;
     }
   }
 }
