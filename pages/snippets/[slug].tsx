@@ -126,9 +126,7 @@ const BlogArticlePage = ({
                     href={`/${previousPost.fields.category}/${previousPost.fields.slug}`}
                     passHref
                   >
-                    <a>
-                      <h2>{previousPost.fields.title}</h2>
-                    </a>
+                    <a>{previousPost.fields.title}</a>
                   </Link>
                 </>
               )}
@@ -144,9 +142,7 @@ const BlogArticlePage = ({
                     href={`/${nextPost.fields.category}/${nextPost.fields.slug}`}
                     passHref
                   >
-                    <a>
-                      <h2>{nextPost.fields.title}</h2>
-                    </a>
+                    <a>{nextPost.fields.title}</a>
                   </Link>
                 </>
               )}

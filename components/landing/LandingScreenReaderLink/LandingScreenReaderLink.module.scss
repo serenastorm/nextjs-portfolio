@@ -18,6 +18,8 @@ $link-hover-gradient: linear-gradient(125deg, var(--link), var(--link-sm));
     font-size: 1.2em;
     line-height: calc(100 / 120 * 1em);
 
+    background-size: 100% 0.07em;
+
     &::after {
       height: 0.07em;
     }

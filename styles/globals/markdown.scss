@@ -46,18 +46,6 @@ article {
     }
   }
 
-  .codeTabs {
-    & + h2 {
-      margin-top: 6.4rem;
-    }
-  }
-
-  p {
-    & + .codeTabs {
-      margin-top: 2rem;
-    }
-  }
-
   .codeTab {
     p {
       & + pre {
@@ -67,13 +55,26 @@ article {
   }
 
   .codeTabs {
-    @include breakpoint(800) {
-      display: flex;
-      gap: 0.8rem;
+    ul {
+      margin: 2rem 0 0 0;
+    }
+
+    &[filenames] {
+      @for $i from 1 through 3 {
+        &[data-activetab="#{$i}"] {
+          .codeTab:not(:nth-of-type(#{$i})) {
+            display: none;
+          }
+        }
+      }
     }
 
     .codeTab {
       flex: 1;
+
+      & > div {
+        display: none;
+      }
     }
   }
 }

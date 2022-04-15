@@ -64,20 +64,7 @@
   }
 
   a {
-    color: var(--blue);
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 25%,
-      var(--blue-bg) 25%
-    );
-    background-repeat: no-repeat;
-    background-size: 100% 200%;
-    background-position: 0% 0%;
-    transition: all 150ms ease;
-
-    @include onHoverAndFocus {
-      background-position: center bottom;
-    }
+    @extend %link-with-background;
   }
 }
 
@@ -86,12 +73,36 @@
   border-radius: 0.4rem 0.4rem 0 0;
   display: flex;
   margin-top: 2rem;
+  gap: 1px;
 
-  & > div {
+  & > div,
+  button {
     background-color: #343746;
-    border-radius: 0.4rem 0.4rem 0 0;
+    border-radius: inherit;
     padding: 0.4rem 1.6rem;
     font-size: 1.4rem;
     color: #f8f8f2;
+    border-width: 0;
+  }
+
+  & > li {
+    border-radius: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: var(--type-code);
+    line-height: 160%;
+    @include removeFocusOutline;
+
+    &[aria-selected="true"] {
+      border-bottom: 1px solid var(--code-blue);
+      color: var(--code-blue);
+    }
+
+    @include onKeyboardFocus {
+      background-color: var(--blue-bg);
+      color: var(--blue);
+    }
   }
 }
