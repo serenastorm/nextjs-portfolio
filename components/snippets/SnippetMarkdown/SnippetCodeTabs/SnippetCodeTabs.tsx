@@ -119,13 +119,17 @@ const SnippetCodeTabs = ({
 }) => {
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
-  return renderWrapper(
-    activeTabIndex,
-    <CodeTabs
-      activeTabIndex={activeTabIndex}
-      setActiveTabIndex={setActiveTabIndex}
-      {...props}
-    />
+  return (
+    <>
+      {renderWrapper(
+        activeTabIndex,
+        <CodeTabs
+          activeTabIndex={activeTabIndex}
+          setActiveTabIndex={setActiveTabIndex}
+          {...props}
+        />
+      )}
+    </>
   );
 };
 
