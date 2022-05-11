@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import Router from "next/router";
 import type { AppProps } from "next/app";
-import { Loader, NavButtons } from "components/shared";
+import { Loader, NavButtons, SkipToContentLink } from "components/shared";
 
 import "../styles/globals.scss";
 
@@ -31,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       {isLoading && <Loader />}
+      <SkipToContentLink />
       <NavButtons />
       <Component {...pageProps} />
     </>

@@ -26,15 +26,21 @@ const NavButtons = () => {
     },
   ];
 
-  if (!isSnippets && !isHomepage) {
-    return null;
+  const activeBtnIndex = () => {
+    if (isSnippets) {
+      return 2;
+    } else if (isHomepage) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 
   return (
     <ul className={styles.navButtons}>
       <div
         className={styles.navButtonIndicator}
-        data-active-btn-index={isSnippets ? "2" : "1"}
+        data-active-btn-index={`${activeBtnIndex()}`}
       />
       {navItems.map((navItem) => (
         <li className={styles.navButton} key={navItem.label}>

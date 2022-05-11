@@ -22,7 +22,6 @@ import {
 
 import type { BlogPostResponse } from "infrastructure/blog/types";
 
-import styles from "styles/blog/BlogArticlePage.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
 import blogArticleStyles from "styles/blog/BlogArticle.module.scss";
 import blogPageStyles from "styles/blog/BlogPage.module.scss";
@@ -67,10 +66,6 @@ const BlogArticlePage = ({
       <Head>
         <title>{title}</title>
       </Head>
-
-      <a className={styles.skipToContentLink} href="#mainContent">
-        Skip to main content
-      </a>
 
       <Page
         className={`${blogPageStyles.blogPage} ${blogStyles.blog} ${blogArticleStyles.blogArticle}`}

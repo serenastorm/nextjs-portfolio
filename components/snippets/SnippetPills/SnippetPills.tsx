@@ -1,4 +1,10 @@
-import { createElement } from "react";
+import {
+  createElement,
+  useState,
+  useRef,
+  LegacyRef,
+  KeyboardEvent,
+} from "react";
 import Link from "next/link";
 import type { CategoryLabels, CategoryUrls } from "helpers/blog/types";
 
@@ -32,9 +38,19 @@ type SnippetPillProps = {
   as?: "div" | "li";
   className?: string;
   type: string;
+  linkRef: LegacyRef<HTMLAnchorElement>;
+  onKeyDown: (event: KeyboardEvent<HTMLAnchorElement>) => void;
+  tabIndex: 0 | -1;
 };
 
-export const SnippetPill = ({ as = "div", className = "", type }: SnippetPillProps) => {
+export const SnippetPill = ({
+  as = "div",
+  className = "",
+  type,
+  linkRef,
+  onKeyDown,
+  tabIndex,
+}: SnippetPillProps) => {
   const getSnippetPillColor = (): {
     color: Color;
     label: CategoryLabels | string;
@@ -76,7 +92,15 @@ export const SnippetPill = ({ as = "div", className = "", type }: SnippetPillPro
             },
             passHref: true,
           },
-          <a title={`Snippets tagged ${label}`} className={pillClassName}>
+          <a
+            title={`Snippets tagged ${label}`}
+            className={pillClassName}
+            ref={linkRef}
+            onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
+              onKeyDown(event)
+            }
+            tabIndex={tabIndex}
+          >
             {label}
           </a>
         )
@@ -86,10 +110,65 @@ export const SnippetPill = ({ as = "div", className = "", type }: SnippetPillPro
 };
 
 const SnippetPills = ({ types }: { types: string[] }) => {
+  const [focusedPillIndex, setFocusedPillIndex] = useState<number>(0);
+  const pillsRefs = useRef<Array<HTMLAnchorElement | null>>([]);
+
+  const focusPill = (newFocusedPillIndex: number) => {
+    pillsRefs?.current[newFocusedPillIndex]?.focus();
+    setFocusedPillIndex(newFocusedPillIndex);
+  };
+
+  const totalPills = types.length;
+
+  const onKeyPressed = (
+    event: KeyboardEvent<HTMLAnchorElement>,
+    pillIndex: number
+  ) => {
+    const shouldGoToNextTab = event.key === "ArrowRight";
+    const shouldGoToPreviousTab = event.key === "ArrowLeft";
+    const shouldGoToFirstTab = event.key === "Home";
+    const shouldGoToLastTab = event.key === "End";
+
+    const prevPillIndex = pillIndex - 1;
+    const nextPillIndex = pillIndex + 1;
+    const lastTab = totalPills - 1;
+
+    if (shouldGoToNextTab) {
+      if (pillIndex >= totalPills - 1) {
+        focusPill(0);
+      } else {
+        focusPill(nextPillIndex);
+      }
+    } else if (shouldGoToPreviousTab) {
+      if (pillIndex <= 0) {
+        focusPill(lastTab);
+      } else {
+        focusPill(prevPillIndex);
+      }
+    } else if (shouldGoToFirstTab) {
+      focusPill(0);
+    } else if (shouldGoToLastTab) {
+      focusPill(lastTab);
+    } else {
+      return null;
+    }
+  };
+
   return (
     <ul className={styles.pills}>
-      {types.map((type) => (
-        <SnippetPill type={type} as="li" key={type} />
+      {types.map((type, pillIndex) => (
+        <SnippetPill
+          type={type}
+          as="li"
+          key={type}
+          linkRef={(el: HTMLAnchorElement) =>
+            (pillsRefs.current[pillIndex] = el)
+          }
+          onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
+            onKeyPressed(event, pillIndex)
+          }
+          tabIndex={pillIndex === focusedPillIndex ? 0 : -1}
+        />
       ))}
     </ul>
   );

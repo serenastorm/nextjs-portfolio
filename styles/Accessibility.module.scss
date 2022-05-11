@@ -1,0 +1,26 @@
+@import "~styles/modules/mixins.scss";
+@import "~styles/modules/placeholders.scss";
+
+.accessibilityPage {
+  @extend %grid-page;
+
+  h1 {
+    font-family: var(--type-serif);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 0.8rem;
+    margin-top: 0;
+  }
+
+  p {
+    font-family: var(--type-paragraph);
+    font-weight: var(--font-weight-regular);
+    color: var(--text);
+    font-size: 1.8rem;
+    line-height: 160%;
+    margin-bottom: 4rem;
+
+    a {
+      @extend %link-with-background;
+    }
+  }
+}

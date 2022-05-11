@@ -27,6 +27,10 @@ $navButton-transition: all 200ms ease-in;
   z-index: 0;
   transition: $navButton-transition;
 
+  &[data-active-btn-index="0"] {
+    opacity: 0;
+  }
+
   &[data-active-btn-index="1"] {
     transform: translateX(0);
   }

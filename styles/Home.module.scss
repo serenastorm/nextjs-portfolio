@@ -2,22 +2,7 @@
 @import "~styles/modules/placeholders.scss";
 
 .landingPage {
-  --landing-padding-top: calc(6.4rem + 4vh);
-  --landing-padding-sides: 6vw;
-
-  padding-top: var(--landing-padding-top);
-  padding-bottom: var(--landing-padding-top);
-  // Also theme-color in document head
-  background-color: var(--light-gray);
-  min-height: 100%;
-
-  display: grid;
-  grid-template-columns: 1fr var(--max-text-width) 1fr;
-  grid-template-rows: max-content auto;
-
-  & > *:not(footer) {
-    grid-column: 2;
-  }
+  @extend %grid-page;
 
   h1 {
     @extend %landing-paragraph;
