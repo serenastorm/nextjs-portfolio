@@ -1,9 +1,7 @@
 @import "~styles/modules/mixins.scss";
 
 .blogPage {
-  --container-padding-top: calc(6.4rem + 4vh);
-
-  padding: var(--container-padding-top)
+  padding: var(--content-padding-top)
     calc((100vw - #{var(--max-text-width)}) / 2);
   // Also theme-color in index.html
   background-color: var(--white);

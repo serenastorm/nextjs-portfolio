@@ -2,11 +2,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { routes } from "infrastructure/routes/constants";
 import { HomeIcon, SnippetsIcon } from "assets/icons";
+import { useScrollDirection } from "infrastructure/hooks";
 
 import styles from "./NavButtons.module.scss";
 
 const NavButtons = () => {
   const { pathname } = useRouter();
+  const scrollDirection = useScrollDirection();
 
   const isSnippets = pathname.startsWith("/snippets");
   const isHomepage = pathname === "/";
@@ -34,10 +36,16 @@ const NavButtons = () => {
     } else {
       return 0;
     }
-  }
+  };
 
   return (
-    <ul className={styles.navButtons}>
+    <ul
+      className={`${styles.navButtons} ${
+        scrollDirection === "down"
+          ? styles.navButtonsHidden
+          : styles.navButtonsVisible
+      }`}
+    >
       <div
         className={styles.navButtonIndicator}
         data-active-btn-index={`${activeBtnIndex()}`}
@@ -51,11 +59,11 @@ const NavButtons = () => {
               aria-current={navItem.isCurrent ? "page" : "false"}
             >
               {navItem.icon}
+              <p aria-hidden="true" className={styles.navButtonLabel}>
+                {navItem.label}
+              </p>
             </a>
           </Link>
-          <p aria-hidden="true" className={styles.navButtonLabel}>
-            {navItem.label}
-          </p>
         </li>
       ))}
     </ul>

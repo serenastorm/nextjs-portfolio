@@ -2,7 +2,7 @@
 @import "~styles/modules/placeholders.scss";
 
 .blogArticleMeta {
-  margin-bottom: 20vh;
+  margin-bottom: var(--content-padding-top);
 }
 
 .blogArticle {
@@ -78,8 +78,7 @@
 .blogArticleNav {
   display: flex;
   gap: 1.6rem;
-
-  margin-top: 20vh;
+  margin-top: var(--content-padding-top);
   border-top: 2px solid var(--light-gray);
   padding-top: 4rem;
 }
