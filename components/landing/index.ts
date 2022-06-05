@@ -1,2 +1,2 @@
 export { LandingProjectLinks } from "./LandingProjectLink";
-export { LandingScreenReaderLink } from "./LandingScreenReaderLink";
+export { LandingFootnotes, LandingFootnote, LandingFootnoteLink } from "./LandingFootnoteLink";

@@ -52,7 +52,10 @@ const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
             "All snippets"
           )}
         </h1>
-        <ul className={blogIndexStyles.blogPosts}>
+        <ul
+          className={blogIndexStyles.blogPosts} // list-style-type: "none" removes list semantics so this is needed
+          role="list"
+        >
           <SnippetLinks posts={posts} />
         </ul>
       </Page>

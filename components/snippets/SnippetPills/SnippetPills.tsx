@@ -155,7 +155,11 @@ const SnippetPills = ({ types }: { types: string[] }) => {
   };
 
   return (
-    <ul className={styles.pills}>
+    <ul
+      className={styles.pills}
+      // list-style-type: "none" removes list semantics so this is needed
+      role="list"
+    >
       {types.map((type, pillIndex) => (
         <SnippetPill
           type={type}

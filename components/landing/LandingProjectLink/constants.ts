@@ -5,6 +5,7 @@ export const projects: LinkProps[] = [
     label: "myqr.studio",
     description: "case study",
     url: "https://zealous-visvesvaraya-033757.netlify.app",
+    isExternal: true,
   },
   {
     label: "cmts2a",

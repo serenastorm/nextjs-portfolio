@@ -70,6 +70,13 @@ abbr[title] {
   font-family: var(--type-italic);
 }
 
+i {
+  font-style: italic;
+  font-family: var(--type-italic);
+  font-weight: var(--font-weight-medium);
+  font-size: 1.2em;
+}
+
 .regular {
   font-weight: var(--font-weight-regular);
 }

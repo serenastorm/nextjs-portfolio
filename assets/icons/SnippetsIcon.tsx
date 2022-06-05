@@ -13,7 +13,7 @@ const SnippetsIcon = () => {
   };
 
   return (
-    <svg {...svgProps}>
+    <svg {...svgProps} role="presentation">
       <path d="M16 18L22 12 16 6"></path>
       <path d="M8 6L2 12 8 18"></path>
     </svg>

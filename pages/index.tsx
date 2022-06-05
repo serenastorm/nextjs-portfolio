@@ -5,7 +5,9 @@ import Head from "next/head";
 import { GoToLinkIcon } from "assets/icons";
 import {
   LandingProjectLinks,
-  LandingScreenReaderLink,
+  LandingFootnoteLink,
+  LandingFootnote,
+  LandingFootnotes,
 } from "components/landing";
 import { Page } from "components/shared/Page";
 import { routes, apiUrl } from "infrastructure/routes/constants";
@@ -21,6 +23,28 @@ const Home: NextPage = ({
   children?: ReactNode;
   mostRecentPost?: any;
 }) => {
+  const links = [
+    {
+      label: "Serena,",
+      url: "https://www.linkedin.com/in/serena-antonetti",
+      description: "LinkedIn Profile",
+    },
+    {
+      label: "Storm Ideas,",
+      description: "Storm Ideas' website",
+      url: "https://stormideas.com/",
+    },
+    {
+      label: "Github.",
+      description: "Source code on Github",
+      url: "https://github.com/serenastorm/nextjs-portfolio",
+    },
+  ];
+
+  const renderTextWithFootnote = (linkIndex: number) => (
+    <LandingFootnoteLink text={links[linkIndex].label} linkIndex={linkIndex} />
+  );
+
   return (
     <>
       <Head>
@@ -29,45 +53,39 @@ const Home: NextPage = ({
       <Page className={styles.landingPage}>
         {/* ARIA role="text" prevents 'text splitting' in VoiceOver iOS https://axesslab.com/text-splitting/  */}
         <h1 role="text">
-          Hi, I’m{" "}
-          <LandingScreenReaderLink
-            text="Serena,"
-            url="https://www.linkedin.com/in/serena-antonetti"
-            label="Visit Linkedin profile"
-          />{" "}
-          a product designer & front-end developer currently based in Edinburgh.
-          I recently worked at{" "}
-          <LandingScreenReaderLink
-            text="Storm&nbsp;Ideas,"
-            url="https://stormideas.com/"
-            label="Visit Storm Ideas' website"
-          />{" "}
-          where most of my projects were under{" "}
+          Hi, I’m {renderTextWithFootnote(0)} a product designer &amp; front-end
+          developer currently based in Edinburgh. I recently worked at{" "}
+          {renderTextWithFootnote(1)} where most of my projects were under{" "}
           <abbr title="Non Disclosure Agreements">NDAs</abbr>, but you can find
           some of my public works below. You can also check out the code for
-          this portfolio on my{" "}
-          <LandingScreenReaderLink
-            text="Github."
-            url="https://github.com/serenastorm/nextjs-portfolio"
-            label="View source code on Github"
-          />{" "}
+          this portfolio on my {renderTextWithFootnote(2)}
         </h1>
+        <LandingFootnotes>
+          {links.map((link, linkIndex) => (
+            <LandingFootnote
+              key={link.label}
+              linkIndex={linkIndex}
+              url={link.url}
+              description={link.description}
+            />
+          ))}
+        </LandingFootnotes>
         <LandingProjectLinks />
-        <div className={blogStyles.blog}>
-          <div className={styles.landingBlogNav}>
-            <h2>Last snippet</h2>
-            <span>
-              <Link href={routes.blog.snippets.url} passHref>
-                <a className={blogIndexStyles.linkWithIcon}>
-                  View all snippets{" "}
-                  <GoToLinkIcon className={blogIndexStyles.blogGoToLinkIcon} />
-                </a>
-              </Link>
-            </span>
-          </div>
-          <ul className={blogIndexStyles.blogPosts}>
+        <div className={`${blogStyles.blog} ${styles.blogWrapper}`}>
+          <h2 className={styles.landingBlogTitle}>Last snippet</h2>
+          <ul
+            className={`${blogIndexStyles.blogPosts} ${styles.landingBlogPost}`}
+          >
             <SnippetLinks posts={[{ ...mostRecentPost }]} />
           </ul>
+          <Link href={routes.blog.snippets.url} passHref>
+            <a
+              className={`${blogIndexStyles.linkWithIcon} ${styles.landingBlogLink}`}
+            >
+              View all snippets{" "}
+              <GoToLinkIcon className={blogIndexStyles.blogGoToLinkIcon} />
+            </a>
+          </Link>
         </div>
       </Page>
     </>

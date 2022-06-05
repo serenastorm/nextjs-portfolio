@@ -13,7 +13,9 @@ const SkipToContentLink = () => {
     <>
       {!isAccessibility && (
         <Link href="/accessibility" passHref>
-          <a className={styles.skipToContentLink}>Accessibility</a>
+          <a className={styles.skipToContentLink}>
+            Accessibility feedback
+          </a>
         </Link>
       )}
       {isSnippets && (

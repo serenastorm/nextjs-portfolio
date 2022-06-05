@@ -45,6 +45,8 @@ const NavButtons = () => {
           ? styles.navButtonsHidden
           : styles.navButtonsVisible
       }`}
+      // list-style-type: "none" removes list semantics so this is needed
+      role="list"
     >
       <div
         className={styles.navButtonIndicator}
