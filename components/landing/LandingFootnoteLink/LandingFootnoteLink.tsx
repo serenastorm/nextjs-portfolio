@@ -38,9 +38,6 @@ export const LandingFootnote = ({
 }: LandingFootnoteProps) => {
   return (
     <li id={`footnote:${linkIndex}`} className={styles.footnote}>
-      <a href={url} target="_blank" rel="noopener noreferrer">
-        {description}
-      </a>{" "}
       <b>
         <a
           className={styles.footnoteReturnLink}
@@ -48,9 +45,12 @@ export const LandingFootnote = ({
           title="Jump up"
           aria-label="Jump up"
         >
-          ↩
+          ^
         </a>
-      </b>
+      </b>{" "}
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        {description}
+      </a>
     </li>
   );
 };
