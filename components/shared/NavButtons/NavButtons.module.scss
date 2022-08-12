@@ -12,7 +12,6 @@ $navButton-transition: all 200ms ease-in;
     ((100vw - (24px * 2)) - (var(--nav-buttons-gap) * 3)) / 4,
     12rem
   );
-  --nav-button-height: 6.4rem;
   --nav-button-radius: 4px;
 
   position: fixed;
@@ -23,7 +22,7 @@ $navButton-transition: all 200ms ease-in;
   padding-left: 0;
   gap: var(--nav-buttons-gap);
   transition: all 250ms ease;
-  bottom: clamp(24px, 4vh, 64px);
+  bottom: var(--nav-button-margin);
   left: 50%;
   transform: translate(-50%, 0);
   background-color: var(--light-gray);

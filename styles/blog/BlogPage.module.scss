@@ -2,6 +2,8 @@
 
 .blogPage {
   padding: var(--content-padding-top)
+    calc((100vw - #{var(--max-text-width)}) / 2)
+    calc(var(--nav-button-height) + (var(--nav-button-margin) * 2))
     calc((100vw - #{var(--max-text-width)}) / 2);
   // Also theme-color in index.html
   background-color: var(--white);

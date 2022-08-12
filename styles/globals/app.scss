@@ -35,6 +35,8 @@ body,
 
   // Spacing
   --content-padding-top: 10vh;
+  --nav-button-height: 6.4rem;
+  --nav-button-margin: clamp(24px, 4vh, 64px);
 
   @include breakpoint(0, 1199.98) {
     --max-text-width: calc(100vw - (1.6rem * 2));
