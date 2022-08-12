@@ -124,7 +124,7 @@ https://github.com/WICG/focus-visible */
 @mixin onHoverAndFocus() {
   /* :focus and focus-visible need to be targeted separately for 
   styles to work in Safari since it doesn't support focus-visible */
-  &.focus-visible {
+  &:focus {
     @content;
   }
 

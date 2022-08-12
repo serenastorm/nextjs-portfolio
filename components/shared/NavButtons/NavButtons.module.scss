@@ -38,10 +38,10 @@ $navButton-transition: all 200ms ease-in;
   transform: translate(-50%, 100%);
   transition-duration: 600ms;
 
-  // @media (hover: hover) {
-  //   opacity: initial;
-  //   transform: initial;
-  // }
+  &:focus-within {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 .navButtonIndicator {
@@ -85,16 +85,6 @@ $navButton-transition: all 200ms ease-in;
   font-family: var(--type-paragraph);
   font-weight: var(--font-weight-medium);
   margin: 0;
-
-  // @media (hover: hover) {
-  //   position: absolute;
-  //   top: 100%;
-  //   left: 50%;
-  //   opacity: 0;
-  //   transform: translate(-50%, 0.8rem);
-  //   transition: $navButton-transition;
-  //   color: var(--text);
-  // }
 }
 
 .navButtonLink {
@@ -125,27 +115,16 @@ $navButton-transition: all 200ms ease-in;
 
     & > .navButtonLabel {
       color: var(--light-gray);
-
-      // @media (hover: hover) {
-      //   color: var(--text);
-      // }
     }
   }
 
   &[aria-current="false"] {
-    background-color: var(--light-gray);
-
     & > .navButtonLabel {
       color: var(--text);
     }
   }
 
-  // @media (hover: hover) {
-  //   @include onHoverAndFocus {
-  //     & > .navButtonLabel {
-  //       opacity: 1;
-  //       transform: translate(-50%, 0.4rem);
-  //     }
-  //   }
-  // }
+  &:focus-visible {
+    box-shadow: 0 0 0 1px var(--light-gray), 0 0 0 3px var(--text);
+  }
 }

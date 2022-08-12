@@ -35,9 +35,16 @@ $button-size: calc($icon-size + (#{$button-padding} * 2));
   }
 
   @include onHoverAndFocus {
+    opacity: 1;
     background-color: rgba(255, 255, 255, 0.05);
     color: var(--code-color);
     border-color: var(--code-color);
+  }
+
+  @include removeFocusOutline;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 1px var(--code-bg-color), 0 0 0 2px var(--code-comment);
   }
 }
 
@@ -47,7 +54,7 @@ p.snippetCopyToClipboardButtonLabel {
   top: calc(0.8rem + (#{$button-size} / 2));
   right: calc(0.8rem + #{$button-size} + #{$button-spacing});
   transform: translate(0, -50%);
-  font-size: 1.2rem;
+  font-size: 1.2rem !important;
   font-weight: var(--font-weight-medium);
   background-color: #343746;
   color: var(--white);
