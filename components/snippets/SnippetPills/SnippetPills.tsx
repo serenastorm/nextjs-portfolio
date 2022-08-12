@@ -27,7 +27,7 @@ export const SnippetPill = ({
       case "accessibility":
         return { color: "red", label: "Accessibility", url: "accessibility" };
       case "features":
-        return { color: "pink", label: "Features" };
+        return { color: "pink", label: "Features", url: "" };
       case "tsx":
         return { color: "pink", label: "TypeScript", url: "typescript" };
       case "jsx":
