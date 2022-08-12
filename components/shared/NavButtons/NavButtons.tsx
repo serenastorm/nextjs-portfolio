@@ -26,17 +26,15 @@ const NavButtons = () => {
       icon: <SnippetsIcon />,
       isCurrent: isSnippets,
     },
+    {
+      url: routes.accessibility,
+      label: "Accessibility",
+      icon: <SnippetsIcon />,
+      isCurrent: pathname === routes.accessibility,
+    },
   ];
 
-  const activeBtnIndex = () => {
-    if (isSnippets) {
-      return 2;
-    } else if (isHomepage) {
-      return 1;
-    } else {
-      return 0;
-    }
-  };
+  const activeBtnIndex = navItems.findIndex((navItem) => navItem.isCurrent);
 
   return (
     <ul
@@ -50,7 +48,7 @@ const NavButtons = () => {
     >
       <div
         className={styles.navButtonIndicator}
-        data-active-btn-index={`${activeBtnIndex()}`}
+        data-active-btn-index={`${activeBtnIndex}`}
       />
       {navItems.map((navItem) => (
         <li className={styles.navButton} key={navItem.label}>

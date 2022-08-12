@@ -10,11 +10,6 @@
     text-align: center;
   }
 
-  h1,
-  h2 {
-    font-weight: var(--font-weight-medium);
-  }
-
   pre {
     position: relative;
     width: 100%;
@@ -126,10 +121,3 @@
 //   right: 0.8rem;
 //   top: 0.8rem;
 // }
-
-.newTabLink {
-  --arrow-bg-color: rgba(0, 106, 220, 0.3);
-  --arrow-pointer-color: var(--blue);
-  --arrow-bg-color-hover: rgba(0, 106, 220, 0.3);
-  --arrow-pointer-color-hover: var(--blue);
-}

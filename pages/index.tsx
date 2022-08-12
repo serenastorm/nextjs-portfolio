@@ -58,7 +58,7 @@ const Home: NextPage = ({
           {renderTextWithFootnote(1)} where most of my projects were under{" "}
           <abbr title="Non Disclosure Agreements">NDAs</abbr>, but you can find
           some of my public works below. You can also check out the code for
-          this portfolio on my {renderTextWithFootnote(2)}
+          this website on my {renderTextWithFootnote(2)}
         </h1>
         <LandingFootnotes>
           {links.map((link, linkIndex) => (

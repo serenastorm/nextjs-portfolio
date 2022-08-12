@@ -36,10 +36,8 @@ const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
       <Head>
         <title>{subtitle ? `${subtitle} | ` : ""}Snippets</title>
       </Head>
-      <Page
-        className={`${blogPageStyles.blogPage} ${blogStyles.blog} ${blogIndexStyles.blogIndex}`}
-      >
-        <h1 className={blogIndexStyles.blogIndexTitle}>
+      <Page className={`${blogStyles.blog} ${blogPageStyles.blogPage}`}>
+        <h1 className={blogStyles.blogIndexTitle}>
           {tag || subcategory ? (
             <>
               Snippets {tag ? "tagged" : "in"}:{" "}
