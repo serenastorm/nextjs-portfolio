@@ -80,7 +80,6 @@ export default function Document() {
           name="msapplication-TileImage"
           content="/favicons/ms-icon-144x144.png"
         />
-        <meta name="theme-color" content="#f5f7fb" />
 
         <meta property="og:image" content="/OG.jpg" />
 

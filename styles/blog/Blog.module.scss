@@ -15,25 +15,14 @@
   }
 
   h1 {
-    @include breakpoint(0, 859.98) {
-      margin-bottom: 4rem;
-      font-size: 2.4rem;
-    }
-
-    @include breakpoint(860) {
-      margin-bottom: 6.4rem;
-      font-size: 2.8vw;
-    }
+    font-size: clamp(2.4rem, 6.8vw, 4rem);
+    font-weight: var(--font-weight-regular);
+    padding-bottom: clamp(4rem, 12vh, 6.4rem);
   }
 
   h2 {
-    @include breakpoint(860) {
-      font-size: 2.2vw;
-    }
-
-    @include breakpoint(0, 859.98) {
-      font-size: 2.2rem;
-    }
+    font-weight: var(--font-weight-medium);
+    font-size: clamp(2rem, 4vw, 2.8rem);
 
     a {
       border-bottom: 0.08em solid currentColor;
@@ -92,4 +81,33 @@
       }
     }
   }
+}
+
+.blogIndexTitle {
+  border-bottom: 2px solid var(--light-gray);
+
+  @include breakpoint(400) {
+    padding: 0 1.6rem;
+  }
+
+  span {
+    color: var(--text-light);
+  }
+}
+
+.blogPost {
+  @include breakpoint(0, 399.98) {
+    padding: 1.6rem 0;
+  }
+
+  @include breakpoint(400) {
+    padding: 3.2rem 1.6rem;
+  }
+}
+
+.newTabLink {
+  --arrow-bg-color: rgba(0, 106, 220, 0.3);
+  --arrow-pointer-color: var(--blue);
+  --arrow-bg-color-hover: rgba(0, 106, 220, 0.3);
+  --arrow-pointer-color-hover: var(--blue);
 }

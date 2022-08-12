@@ -49,7 +49,7 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
   };
 
   return (
-    <li className={blogIndexStyles.blogPost}>
+    <li className={blogStyles.blogPost}>
       <Link
         href={`/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`}
         passHref
@@ -106,7 +106,7 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
 const SnippetLinks = ({ posts }: { posts: BlogPostResponse[] | null }) => {
   if (!posts) {
     return (
-      <li className={blogIndexStyles.blogPost}>
+      <li className={blogStyles.blogPost}>
         No posts to show.{" "}
         <Link href={routes.blog.snippets.url} passHref>
           <a className="semibold">

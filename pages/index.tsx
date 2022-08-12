@@ -49,6 +49,7 @@ const Home: NextPage = ({
     <>
       <Head>
         <title>Portfolio | Serena Antonetti</title>
+        <meta name="theme-color" content="#f5f7fb" />
       </Head>
       <Page className={styles.landingPage}>
         {/* ARIA role="text" prevents 'text splitting' in VoiceOver iOS https://axesslab.com/text-splitting/  */}
@@ -58,7 +59,7 @@ const Home: NextPage = ({
           {renderTextWithFootnote(1)} where most of my projects were under{" "}
           <abbr title="Non Disclosure Agreements">NDAs</abbr>, but you can find
           some of my public works below. You can also check out the code for
-          this portfolio on my {renderTextWithFootnote(2)}
+          this website on my {renderTextWithFootnote(2)}
         </h1>
         <LandingFootnotes>
           {links.map((link, linkIndex) => (

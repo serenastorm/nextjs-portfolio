@@ -1,27 +1,37 @@
-import Link from "next/link";
+import Head from "next/head";
+
 import { Page } from "components/shared/Page";
 
-import styles from "styles/Accessibility.module.scss";
 import { NewTabLink } from "components/shared";
 
-import blogArticleStyles from "styles/blog/BlogArticle.module.scss";
+import styles from "styles/Accessibility.module.scss";
+import blogStyles from "styles/blog/Blog.module.scss";
+import blogPageStyles from "styles/blog/BlogPage.module.scss";
 
 const Accessibility = () => {
   return (
     <>
-      <Page className={styles.accessibilityPage}>
-        <h1>Accessibility</h1>
-        <p>
-          The web should be accessible to everyone. If your accessibility
-          requirements are not met, please{" "}
-          <NewTabLink
-            copy="open an issue on Github."
-            to="https://github.com/serenastorm/nextjs-portfolio/issues"
-            shouldOpenInNewTab
-            className={`medium ${blogArticleStyles.newTabLink}`}
-            withUnderline={false}
-          />
-        </p>
+      <Head>
+        <title>Accessibility</title>
+        <meta name="theme-color" content="#ffffff" />
+      </Head>
+      <Page
+        className={`${blogStyles.blog} ${blogPageStyles.blogPage} ${styles.accessibilityPage}`}
+      >
+        <h1 className={blogStyles.blogIndexTitle}>Accessibility</h1>
+        <div className={blogStyles.blogPost}>
+          <p>
+            The web should be accessible to everyone. If your accessibility
+            requirements are not met, please{" "}
+            <NewTabLink
+              copy="open an issue on Github."
+              to="https://github.com/serenastorm/nextjs-portfolio/issues"
+              shouldOpenInNewTab
+              className={`medium ${blogStyles.newTabLink}`}
+              withUnderline={false}
+            />
+          </p>
+        </div>
       </Page>
     </>
   );

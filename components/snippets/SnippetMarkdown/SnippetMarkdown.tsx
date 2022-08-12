@@ -11,6 +11,7 @@ import { NewTabLink } from "components/shared";
 import { ElementContent } from "react-markdown/lib/ast-to-react";
 
 import styles from "./SnippetMarkdown.module.scss";
+import blogStyles from "styles/blog/Blog.module.scss";
 import blogArticleStyles from "styles/blog/BlogArticle.module.scss";
 
 const SnippetMarkdown = ({ content }: { content: CoreOptions["children"] }) => {
@@ -154,7 +155,7 @@ const SnippetMarkdown = ({ content }: { content: CoreOptions["children"] }) => {
                 copy={linkCopy}
                 to={href}
                 shouldOpenInNewTab
-                className={`medium ${blogArticleStyles.newTabLink}`}
+                className={`medium ${blogStyles.newTabLink}`}
                 withUnderline={false}
               />
             ) : (
