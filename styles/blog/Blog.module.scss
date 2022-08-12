@@ -22,7 +22,7 @@
 
   h2 {
     font-weight: var(--font-weight-medium);
-    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-size: clamp(2.2rem, 4vw, 2.8rem);
 
     a {
       border-bottom: 0.08em solid currentColor;
@@ -110,4 +110,10 @@
   --arrow-pointer-color: var(--blue);
   --arrow-bg-color-hover: rgba(0, 106, 220, 0.3);
   --arrow-pointer-color-hover: var(--blue);
+}
+
+.blogGoToLinkIcon {
+  width: 1.2em;
+  height: auto;
+  margin-left: 0.1em;
 }

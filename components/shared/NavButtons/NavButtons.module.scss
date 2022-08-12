@@ -4,7 +4,17 @@
 $navButton-transition: all 200ms ease-in;
 
 .navButtons {
+  --nav-buttons-width: calc(100vw - (24px * 2));
   --nav-buttons-gap: 0.8rem;
+  --nav-buttons-padding: 8px;
+  --nav-button-width: clamp(
+    ((320px - (16px * 2)) - (var(--nav-buttons-gap) * 3)) / 4,
+    ((100vw - (24px * 2)) - (var(--nav-buttons-gap) * 3)) / 4,
+    12rem
+  );
+  --nav-button-height: 6.4rem;
+  --nav-button-radius: 4px;
+
   position: fixed;
   z-index: 50;
   margin: 0;
@@ -13,13 +23,7 @@ $navButton-transition: all 200ms ease-in;
   padding-left: 0;
   gap: var(--nav-buttons-gap);
   transition: all 250ms ease;
-
-  // Styles for devices that don't support hover
-  --nav-buttons-padding: 8px;
-  --nav-button-width: calc((clamp(320px, 80vw, 40rem) - (1.6rem * 2)) / 3);
-  --nav-button-height: 6.4rem;
-  --nav-button-radius: 4px;
-  bottom: clamp(24px, 5vh, 64px);
+  bottom: clamp(24px, 4vh, 64px);
   left: 50%;
   transform: translate(-50%, 0);
   background-color: var(--light-gray);
@@ -27,19 +31,6 @@ $navButton-transition: all 200ms ease-in;
   border-radius: var(--nav-button-radius);
   box-shadow: 37px 64px 45px rgba(17, 62, 99, 0.02),
     4px 7px 18px rgba(17, 62, 99, 0.08), 0px 0px 0px rgba(17, 62, 99, 0.08);
-
-  // @media (hover: hover) {
-  //   --nav-button-width: 4rem;
-  //   --nav-button-height: var(--nav-button-width);
-  //   --nav-button-radius: 50%;
-  //   bottom: initial;
-  //   left: initial;
-  //   transform: initial;
-  //   background-color: initial;
-  //   box-shadow: initial;
-  //   top: 1.6rem;
-  //   right: 1.6rem;
-  // }
 }
 
 .navButtonsHidden {

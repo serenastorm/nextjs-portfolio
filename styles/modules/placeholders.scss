@@ -55,3 +55,11 @@
     grid-column: 2;
   }
 }
+
+%link-with-icon {
+  @include onHoverAndFocus {
+    svg circle {
+      stroke-dashoffset: 0;
+    }
+  }
+}

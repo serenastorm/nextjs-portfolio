@@ -11,7 +11,7 @@ import {
 } from "components/landing";
 import { Page } from "components/shared/Page";
 import { routes, apiUrl } from "infrastructure/routes/constants";
-import { SnippetLinks } from "components/snippets";
+import { SnippetLinks } from "components/entries/EntryCollection";
 
 import styles from "styles/Home.module.scss";
 import blogIndexStyles from "styles/blog/BlogIndex.module.scss";
@@ -81,10 +81,10 @@ const Home: NextPage = ({
           </ul>
           <Link href={routes.blog.snippets.url} passHref>
             <a
-              className={`${blogIndexStyles.linkWithIcon} ${styles.landingBlogLink}`}
+              className={`${styles.landingBlogLink}`}
             >
               View all snippets{" "}
-              <GoToLinkIcon className={blogIndexStyles.blogGoToLinkIcon} />
+              <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
             </a>
           </Link>
         </div>

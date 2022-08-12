@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { routes } from "infrastructure/routes/constants";
-import { HomeIcon, SnippetsIcon } from "assets/icons";
+import {
+  AccessibilityIcon,
+  HomeIcon,
+  ChangelogIcon,
+  SnippetsIcon,
+} from "assets/icons";
 import { useScrollDirection } from "infrastructure/hooks";
 
 import styles from "./NavButtons.module.scss";
@@ -29,8 +34,14 @@ const NavButtons = () => {
     {
       url: routes.accessibility,
       label: "Accessibility",
-      icon: <SnippetsIcon />,
+      icon: <AccessibilityIcon />,
       isCurrent: pathname === routes.accessibility,
+    },
+    {
+      url: routes.changelog,
+      label: "Changelog",
+      icon: <ChangelogIcon />,
+      isCurrent: pathname === routes.changelog,
     },
   ];
 

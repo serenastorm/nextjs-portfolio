@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { SnippetLinks } from "components/snippets";
+import { SnippetLinks } from "components/entries/EntryCollection";
 import { Page } from "components/shared/Page";
 import { filterPosts, getCategory } from "helpers/blog";
 import type { GetStaticProps } from "next/types";
@@ -9,6 +9,7 @@ import type { BlogPostResponse } from "infrastructure/blog/types";
 import blogStyles from "styles/blog/Blog.module.scss";
 import blogIndexStyles from "styles/blog/BlogIndex.module.scss";
 import blogPageStyles from "styles/blog/BlogPage.module.scss";
+
 import { fetchEntries } from "helpers/blog/api";
 
 const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {

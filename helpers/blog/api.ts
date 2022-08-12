@@ -26,8 +26,10 @@ export async function fetchNextEntry(
   return entry[0] || null;
 }
 
-export async function fetchEntries(): Promise<BlogPostResponse[]> {
-  const res = await fetch(`${apiUrl}/snippets/all`);
+export async function fetchEntries(
+  entryType?: "snippets" | "changelog"
+): Promise<BlogPostResponse[]> {
+  const res = await fetch(`${apiUrl}/${entryType ?? "snippets"}/all`);
   const entries = await res.json();
 
   return entries;

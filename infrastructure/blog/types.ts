@@ -12,8 +12,17 @@ export type BlogPost = {
   sandpackSettings?: any;
 };
 
-export type BlogPostMeta = {
+export type EntryMeta = {
   id: string;
 };
 
-export type BlogPostResponse = { fields: BlogPost; sys: BlogPostMeta };
+export type BlogPostResponse = { fields: BlogPost; sys: EntryMeta };
+
+export type ChangeLog = {
+  title: string;
+  tags?: string[];
+  content?: string;
+  date: Date;
+};
+
+export type ChangeLogResponse = { fields: BlogPost; sys: EntryMeta };

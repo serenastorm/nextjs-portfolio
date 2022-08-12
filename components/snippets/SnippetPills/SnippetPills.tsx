@@ -1,47 +1,14 @@
-import {
-  createElement,
-  useState,
-  useRef,
-  LegacyRef,
-  KeyboardEvent,
-} from "react";
+import { createElement, useState, useRef, KeyboardEvent } from "react";
 import Link from "next/link";
-import type { CategoryLabels, CategoryUrls } from "helpers/blog/types";
-
 import { routes } from "infrastructure/routes/constants";
+import type { CategoryLabels, CategoryUrls } from "helpers/blog/types";
+import type {
+  SnippetColor,
+  SnippetPillProps,
+  SnippetPillsProps,
+} from "./types";
 
 import styles from "./SnippetPills.module.scss";
-
-type Color =
-  | "tomato"
-  | "red"
-  | "crimson"
-  | "pink"
-  | "plum"
-  | "purple"
-  | "violet"
-  | "indigo"
-  | "blue"
-  | "sky"
-  | "cyan"
-  | "teal"
-  | "mint"
-  | "green"
-  | "grass"
-  | "lime"
-  | "yellow"
-  | "amber"
-  | "orange";
-
-type SnippetPillProps = {
-  animationDelay?: number;
-  as?: "div" | "li";
-  className?: string;
-  type: string;
-  linkRef: LegacyRef<HTMLAnchorElement>;
-  onKeyDown: (event: KeyboardEvent<HTMLAnchorElement>) => void;
-  tabIndex: 0 | -1;
-};
 
 export const SnippetPill = ({
   as = "div",
@@ -52,13 +19,15 @@ export const SnippetPill = ({
   tabIndex,
 }: SnippetPillProps) => {
   const getSnippetPillColor = (): {
-    color: Color;
+    color: SnippetColor;
     label: CategoryLabels | string;
     url: CategoryUrls | "";
   } => {
     switch (type) {
       case "accessibility":
         return { color: "red", label: "Accessibility", url: "accessibility" };
+      case "features":
+        return { color: "pink", label: "Features" };
       case "tsx":
         return { color: "pink", label: "TypeScript", url: "typescript" };
       case "jsx":
@@ -109,7 +78,7 @@ export const SnippetPill = ({
   return createElement(as, {}, renderChildren());
 };
 
-const SnippetPills = ({ types }: { types: string[] }) => {
+const SnippetPills = ({ asLinks = true, types }: SnippetPillsProps) => {
   const [focusedPillIndex, setFocusedPillIndex] = useState<number>(0);
   const pillsRefs = useRef<Array<HTMLAnchorElement | null>>([]);
 
@@ -162,16 +131,19 @@ const SnippetPills = ({ types }: { types: string[] }) => {
     >
       {types.map((type, pillIndex) => (
         <SnippetPill
-          type={type}
-          as="li"
+          type={type.toLowerCase()}
+          as={asLinks ? "li" : "div"}
           key={type}
           linkRef={(el: HTMLAnchorElement) =>
             (pillsRefs.current[pillIndex] = el)
           }
-          onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
-            onKeyPressed(event, pillIndex)
-          }
-          tabIndex={pillIndex === focusedPillIndex ? 0 : -1}
+          onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) => {
+            if (!asLinks) {
+              return null;
+            }
+            onKeyPressed(event, pillIndex);
+          }}
+          tabIndex={pillIndex === focusedPillIndex && asLinks ? 0 : -1}
         />
       ))}
     </ul>

@@ -12,51 +12,6 @@ p.loading {
   }
 }
 
-.blogPostTitle {
-  text-decoration: underline;
-}
-
-.blogPostLink {
-  @include onHoverAndFocus {
-    .blogPostTitle {
-      color: var(--link);
-    }
-  }
-}
-
-.linkWithIcon {
-  @include onHoverAndFocus {
-    svg circle {
-      stroke-dashoffset: 0;
-    }
-  }
-}
-
-.blogArticleMeta {
-  margin-top: 4rem;
-
-  time {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex: 1;
-
-    p::first-letter {
-      text-transform: capitalize;
-    }
-
-    & > p {
-      font-family: var(--type-serif);
-    }
-  }
-}
-
-.blogGoToLinkIcon {
-  width: 1.2em;
-  height: auto;
-  margin-left: 0.1em;
-}
-
 .blogPosts {
   margin-top: 0;
 }

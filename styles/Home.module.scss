@@ -72,6 +72,8 @@ $link-hover-gradient: linear-gradient(125deg, var(--link), var(--link-sm));
 }
 
 .landingBlogLink {
+  @extend %link-with-icon;
+
   grid-area: blogLink;
   font-family: var(--type-paragraph);
   font-weight: var(--font-weight-medium);

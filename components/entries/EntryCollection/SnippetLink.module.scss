@@ -1,0 +1,35 @@
+@import "~styles/modules/mixins.scss";
+@import "~styles/modules/placeholders.scss";
+
+.blogPostLink {
+  @extend %link-with-icon;
+
+  .blogPostTitle {
+    text-decoration: underline;
+  }
+
+  @include onHoverAndFocus {
+    .blogPostTitle {
+      color: var(--link);
+    }
+  }
+}
+
+.blogArticleTags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.blogArticleMeta {
+  margin-top: 4rem;
+
+  time {
+    flex: 1;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.15em;
+    font-weight: var(--font-weight-medium);
+  }
+}

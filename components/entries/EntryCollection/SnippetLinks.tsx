@@ -6,8 +6,8 @@ import { getCategory } from "helpers/blog";
 import { routes } from "infrastructure/routes/constants";
 import { useLikes } from "infrastructure/hooks";
 
+import styles from "./SnippetLink.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
-import blogIndexStyles from "styles/blog/BlogIndex.module.scss";
 
 type BlogPost = BlogPostResponse & {
   postIndex: number;
@@ -55,39 +55,23 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
         passHref
       >
         <a
-          className={`${blogIndexStyles.blogPostLink} ${blogIndexStyles.linkWithIcon}`}
+          className={`${styles.blogPostLink}`}
         >
-          <h3 className={blogIndexStyles.blogPostTitle}>
+          <h3 className={styles.blogPostTitle}>
             {title}{" "}
-            <GoToLinkIcon className={blogIndexStyles.blogGoToLinkIcon} />
+            <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
           </h3>
         </a>
       </Link>
       {shortText && <p>{shortText}</p>}
 
       <div
-        className={`${blogStyles.blogArticleMeta} ${blogIndexStyles.blogArticleMeta}`}
+        className={`${blogStyles.blogArticleMeta} ${styles.blogArticleMeta}`}
       >
         <time dateTime={new Date(date).toISOString()}>
-          <p className="semibold">
-            {formatRelativeTime(new Date(date))}
-
-            {subcategory && (
-              <>
-                {"  "}
-                in{" "}
-                <Link
-                  href={{
-                    pathname: routes.blog.snippets.url,
-                    query: { cat: subcategory },
-                  }}
-                  passHref
-                >
-                  <a className="medium">{getCategory(subcategory).label}</a>
-                </Link>
-              </>
-            )}
-          </p>
+          {formatRelativeTime(new Date(date))}
+        </time>
+        <div className={styles.blogArticleTags}>
           {!likesAreLoading && (
             <SnippetLikeButton
               total={totalLikes}
@@ -96,8 +80,8 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
               articleId={sys.id}
             />
           )}
-        </time>
-        {fields.tags && <SnippetPills types={fields.tags} />}
+          <SnippetPills types={[subcategory]} />
+        </div>
       </div>
     </li>
   );
