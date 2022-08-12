@@ -35,6 +35,7 @@ const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
     <>
       <Head>
         <title>{subtitle ? `${subtitle} | ` : ""}Snippets</title>
+        <meta name="theme-color" content="#ffffff" />
       </Head>
       <Page className={`${blogStyles.blog} ${blogPageStyles.blogPage}`}>
         <h1 className={blogStyles.blogIndexTitle}>

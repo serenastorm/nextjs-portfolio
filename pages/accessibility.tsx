@@ -1,3 +1,5 @@
+import Head from "next/head";
+
 import { Page } from "components/shared/Page";
 
 import { NewTabLink } from "components/shared";
@@ -9,6 +11,10 @@ import blogPageStyles from "styles/blog/BlogPage.module.scss";
 const Accessibility = () => {
   return (
     <>
+      <Head>
+        <title>Accessibility</title>
+        <meta name="theme-color" content="#ffffff" />
+      </Head>
       <Page
         className={`${blogStyles.blog} ${blogPageStyles.blogPage} ${styles.accessibilityPage}`}
       >

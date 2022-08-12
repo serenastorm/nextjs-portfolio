@@ -65,6 +65,7 @@ const BlogArticlePage = ({
     <>
       <Head>
         <title>{title}</title>
+        <meta name="theme-color" content="#ffffff" />
       </Head>
 
       <Page
