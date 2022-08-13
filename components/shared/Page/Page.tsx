@@ -1,4 +1,5 @@
-import { createElement, ReactNode } from "react";
+import { createElement } from "react";
+import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
 type PageContainerType = "div" | "article";
 
@@ -8,11 +9,17 @@ type PageProps = {
   className?: string;
 };
 
-const Page = ({ as = "div", children, className = "" }: PageProps) => {
+const Page = ({
+  as = "div",
+  children,
+  className = "",
+  ...props
+}: PageProps & DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>) => {
   return createElement(
     as,
     {
       className,
+      ...props,
     },
     children
   );

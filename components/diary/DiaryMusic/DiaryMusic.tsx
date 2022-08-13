@@ -6,7 +6,9 @@ const DiaryMusic = ({ song, author }: { song: string; author: string }) => {
     <section className={styles.music}>
       <div className={`${styles.albumCover} ${diaryImageStyles.overlayImg}`} />
       <div>
-        <h2>{author}</h2>
+        <h2>
+          <a>{author}</a>
+        </h2>
         <p>{song}</p>
       </div>
     </section>

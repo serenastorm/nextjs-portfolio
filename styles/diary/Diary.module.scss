@@ -6,8 +6,6 @@
   --card-border-color: rgba(94, 82, 82, 0.1);
   --card-border-radius: 2px;
 
-  // cursor: url("../../assets/diary/images/cursor.svg"), auto;
-
   color: var(--text);
   padding: var(--content-padding-top)
     calc((100vw - #{var(--max-text-width)}) / 2)
@@ -50,6 +48,35 @@
   h2 {
     font-size: clamp(18px, 5vw, 2rem);
   }
+
+  &[data-cursor-index="1"],
+  &[data-cursor-index="3"] {
+    cursor: url("../../assets/diary/images/cute-cursor-1.png"), auto;
+  }
+
+  &[data-cursor-index="2"],
+  &[data-cursor-index="4"] {
+    cursor: url("../../assets/diary/images/cute-cursor-2.png"), auto;
+  }
+
+  &[data-cursor-index="5"],
+  &[data-cursor-index="7"] {
+    cursor: url("../../assets/diary/images/cute-cursor-3.png"), auto;
+  }
+
+  &[data-cursor-index="6"],
+  &[data-cursor-index="8"] {
+    cursor: url("../../assets/diary/images/cute-cursor-4.png"), auto;
+  }
+
+  a {
+    cursor: inherit;
+
+    @include onHoverAndFocus {
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+    }
+  }
 }
 
 .main {
@@ -57,6 +84,13 @@
   grid-row: 1;
 }
 
-#demoCanvas {
-  margin: 0 auto;
+.sparklesContainer {
+  z-index: 40;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+
+  & > div {
+    position: relative;
+  }
 }

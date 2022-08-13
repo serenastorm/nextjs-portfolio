@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import Image from "next/image";
@@ -7,22 +8,37 @@ import {
   DiaryEntry,
   DiaryEntryStat,
   DiaryMusic,
-  DiaryMouseEffect,
 } from "components/diary";
 
 import styles from "styles/diary/Diary.module.scss";
 
 const Fun = () => {
+  const [activeCursorIndex, setActiveCursorIndex] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveCursorIndex((active) => active + 1);
+    }, 300);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (activeCursorIndex === 8) {
+      setActiveCursorIndex(0);
+    }
+  }, [activeCursorIndex]);
+
   return (
     <>
       <Head>
         <title>Blog | Serena Antonetti</title>
         <meta name="theme-color" content="#F8F3F4" />
       </Head>
-      <DiaryMouseEffect />
-
-      <Page className={`${styles.fun}`}>
-        {/* <Script src="/diary/sparkles.js" /> */}
+      <div id="sparkles-container" className={styles.sparklesContainer}>
+        <div />
+      </div>
+      <Page className={`${styles.fun}`} data-cursor-index={activeCursorIndex + 1}>
+        {/* <Script src="/diary/sparkles.js" strategy="lazyOnload" /> */}
         <DiaryAside />
         <main className={styles.main}>
           <DiaryMusic

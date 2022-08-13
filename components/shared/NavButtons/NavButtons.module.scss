@@ -82,6 +82,12 @@ $navButton-transition: all 200ms ease-in;
   position: relative;
   z-index: 1;
   flex: 1;
+
+  &:nth-of-type(5) {
+    .navButtonLink {
+      cursor: url("../../../assets/diary/images/cute-cursor-2.png"), auto;
+    }
+  }
 }
 
 .navButtonLabel {
