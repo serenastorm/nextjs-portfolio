@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { routes } from "infrastructure/routes/constants";
 import {
   AccessibilityIcon,
+  DiaryIcon,
   HomeIcon,
   ChangelogIcon,
   SnippetsIcon,
@@ -46,7 +47,7 @@ const NavButtons = () => {
     {
       url: routes.diary,
       label: "Blog",
-      icon: <ChangelogIcon />,
+      icon: <DiaryIcon />,
       isCurrent: pathname === routes.diary,
     },
   ];

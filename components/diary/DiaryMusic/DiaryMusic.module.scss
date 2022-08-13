@@ -6,8 +6,7 @@
   border: 1px solid var(--card-border-color);
   border-radius: var(--card-border-radius);
   background-color: var(--card-bg-color);
-  padding: 32px var(--content-padding) var(--content-padding)
-    var(--content-padding);
+  padding: var(--content-padding);
   position: relative;
 
   display: flex;
@@ -16,7 +15,13 @@
 
   @include breakpoint(0, 999.99) {
     margin-top: 6.4rem;
+    padding-top: 16px;
   }
+
+  @include breakpoint(1000) {
+    padding-top: 32px;
+  }
+
 
   &::before {
     content: "listening to (probably)";
