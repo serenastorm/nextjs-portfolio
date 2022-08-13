@@ -8,8 +8,8 @@ $navButton-transition: all 200ms ease-in;
   --nav-buttons-gap: 0.8rem;
   --nav-buttons-padding: 8px;
   --nav-button-width: clamp(
-    ((320px - (16px * 2)) - (var(--nav-buttons-gap) * 3)) / 4,
-    ((100vw - (24px * 2)) - (var(--nav-buttons-gap) * 3)) / 4,
+    ((320px - (16px * 2)) - (var(--nav-buttons-gap) * 4)) / 5,
+    ((100vw - (24px * 2)) - (var(--nav-buttons-gap) * 4)) / 5,
     12rem
   );
   --nav-button-radius: 4px;
@@ -62,7 +62,11 @@ $navButton-transition: all 200ms ease-in;
     transform: translateX(0);
   }
 
-  @for $i from 1 through 3 {
+  &[data-active-btn-index="4"] {
+    background: var(--fun-gradient);
+  }
+
+  @for $i from 1 through 4 {
     &[data-active-btn-index="#{$i}"] {
       transform: translateX(
         calc(
@@ -77,13 +81,21 @@ $navButton-transition: all 200ms ease-in;
 .navButton {
   position: relative;
   z-index: 1;
+  flex: 1;
 }
 
 .navButtonLabel {
-  font-size: 1.2rem;
   font-family: var(--type-paragraph);
   font-weight: var(--font-weight-medium);
   margin: 0;
+
+  @include breakpoint(0, 499.99) {
+    font-size: 2.6vw;
+  }
+
+  @include breakpoint(500) {
+    font-size: 1.2rem;
+  }
 }
 
 .navButtonLink {

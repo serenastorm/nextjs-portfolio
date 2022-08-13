@@ -33,6 +33,14 @@ body,
   --code-bg-color: #282a36;
   --code-color: #f8f8f2;
 
+  // --fun-gradient: linear-gradient(
+  //   96.3deg,
+  //   #5fd1ca 1.78%,
+  //   #86a8e7 47.82%,
+  //   #dabcec 100%
+  // );
+  --fun-gradient: linear-gradient(116.24deg, #fc6767 6.87%, #ec008c 98.94%);
+
   // Spacing
   --content-padding-top: 10vh;
   --nav-button-height: 6.4rem;
@@ -56,7 +64,7 @@ body,
   }
 
   @media (hover: hover) {
-    --content-padding-top: calc(6.4rem + 4vh);;
+    --content-padding-top: calc(6.4rem + 4vh);
   }
 
   // Typography

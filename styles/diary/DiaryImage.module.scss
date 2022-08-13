@@ -1,0 +1,12 @@
+.profilePicture {
+   --diary-overlay-img: url("../../assets/diary/images/profile-picture.jpg");
+  border-radius: 50%;
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 1px var(--card-border-color);
+}
+
+.overlayImg {
+  background: var(--fun-gradient), var( --diary-overlay-img);
+  background-blend-mode: screen, normal;
+  background-size: 100% 100%, cover;
+}

@@ -1,0 +1,106 @@
+// Aside
+
+.asideWrapper {
+  grid-column: 9 / 13;
+  grid-row: 1;
+  position: relative;
+}
+
+.aside {
+  position: sticky;
+  top: 4rem;
+}
+
+.asideIntro {
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--card-border-radius);
+  background-color: var(--card-bg-color);
+  padding-bottom: var(--content-padding);
+
+  display: grid;
+  grid-template-columns: var(--content-padding) auto var(--content-padding);
+  grid-template-rows: max-content auto;
+
+  h1 {
+    text-align: center;
+  }
+
+  h1,
+  p,
+  .asideProfilePicture {
+    grid-column: 2;
+  }
+}
+
+.asideHero {
+  grid-column: 1 / 4;
+  min-height: clamp(6.4rem, 5vh, 300px);
+  background: linear-gradient(
+      175.52deg,
+      rgba(255, 255, 255, 0.63) 3.35%,
+      rgba(255, 255, 255, 0.15) 118.81%
+    ),
+    var(--fun-gradient);
+}
+
+.asideProfilePicture {
+  width: 80px;
+  height: 80px;
+  margin: -40px auto 0 auto;
+}
+
+.asideStatus {
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--card-border-radius);
+  background-color: var(--card-bg-color);
+  padding: var(--content-padding);
+  margin: var(--grid-gutter) 0;
+
+  dd,
+  dl {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.statusItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  & + .statusItem {
+    margin-top: 12px;
+  }
+}
+
+.asideOnline {
+  border: 1px solid var(--card-border-color);
+  border-radius: 20px;
+  background-color: var(--card-bg-color);
+  min-height: 24px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  max-width: max-content;
+  margin: 0 auto;
+  padding-right: 12px;
+
+  display: flex;
+  align-items: center;
+
+  p {
+    font-size: 1.2rem !important;
+    font-weight: var(--font-weight-semibold) !important;
+    margin: 0 0 0 6px;
+    word-spacing: -0.25em;
+    letter-spacing: 0.25em;
+  }
+
+  &::before {
+    content: "";
+    display: inline-block;
+    background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='24' height='24' fill='url(%23paint0_linear_334_596)'/%3E%3Cpath d='M11.715 6.84814C11.8279 6.60628 12.1718 6.60628 12.2847 6.84814L13.7849 10.0631C13.8162 10.13 13.87 10.1837 13.9368 10.215L17.1518 11.7153C17.3936 11.8281 17.3936 12.1721 17.1518 12.2849L13.9368 13.7852C13.87 13.8164 13.8162 13.8702 13.7849 13.9371L12.2847 17.152C12.1718 17.3939 11.8279 17.3939 11.715 17.152L10.2147 13.9371C10.1835 13.8702 10.1297 13.8164 10.0628 13.7852L6.84789 12.2849C6.60604 12.1721 6.60604 11.8281 6.84789 11.7153L10.0628 10.215C10.1297 10.1837 10.1835 10.13 10.2147 10.0631L11.715 6.84814Z' fill='white' stroke='white' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_334_596' x1='5.43963' y1='-6.03973' x2='31.9797' y2='7.0408' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FC6767'/%3E%3Cstop offset='1' stop-color='%23EC008C'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E%0A");
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+  }
+}

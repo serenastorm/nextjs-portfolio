@@ -43,6 +43,12 @@ const NavButtons = () => {
       icon: <ChangelogIcon />,
       isCurrent: pathname === routes.changelog,
     },
+    {
+      url: routes.diary,
+      label: "Blog",
+      icon: <ChangelogIcon />,
+      isCurrent: pathname === routes.diary,
+    },
   ];
 
   const activeBtnIndex = navItems.findIndex((navItem) => navItem.isCurrent);

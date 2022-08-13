@@ -1,4 +1,5 @@
 import { SnippetMarkdown, SnippetPills } from "components/snippets";
+import { formatRelativeTime } from "helpers/blog";
 import type { ChangeLogResponse } from "infrastructure/blog/types";
 
 import styles from "./SnippetLink.module.scss";
@@ -9,38 +10,7 @@ type ChangeLog = ChangeLogResponse & {
 };
 
 export const ChangeLogEntry = ({ fields, sys }: ChangeLog) => {
-  const relativeTimeFormatter = new Intl.RelativeTimeFormat("en", {
-    numeric: "auto",
-  });
   const { date, content, title, tags } = fields;
-
-  const timeDivisions: {
-    amount: number;
-    name: Intl.RelativeTimeFormatUnit;
-  }[] = [
-    { amount: 60, name: "seconds" },
-    { amount: 60, name: "minutes" },
-    { amount: 24, name: "hours" },
-    { amount: 7, name: "days" },
-    { amount: 4.34524, name: "weeks" },
-    { amount: 12, name: "months" },
-    { amount: Number.POSITIVE_INFINITY, name: "years" },
-  ];
-
-  const formatRelativeTime = (date: Date) => {
-    let duration = (date.getTime() - new Date().getTime()) / 1000;
-
-    for (let i = 0; i <= timeDivisions.length; i++) {
-      const division = timeDivisions[i];
-      if (Math.abs(duration) < division.amount) {
-        return relativeTimeFormatter.format(
-          Math.round(duration),
-          division.name
-        );
-      }
-      duration /= division.amount;
-    }
-  };
 
   return (
     <li className={blogStyles.blogPost}>

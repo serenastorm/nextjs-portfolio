@@ -1,0 +1,48 @@
+// Music
+
+.music {
+  border: 1px solid var(--card-border-color);
+  border-radius: var(--card-border-radius);
+  background-color: var(--card-bg-color);
+  padding: 32px var(--content-padding) var(--content-padding)
+    var(--content-padding);
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &::before {
+    content: "listening to (probably)";
+    color: var(--white);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: var(--fun-gradient);
+    box-shadow: 0 0 0 1px var(card-border-color);
+    border-radius: 20px;
+    padding: 6px 20px;
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+  }
+
+  h2 {
+    margin: 0 0 8px 0;
+    font-size: 2rem;
+    color: var(--link);
+  }
+
+  h2,
+  p {
+    grid-column: 2;
+  }
+}
+
+.albumCover {
+  --diary-overlay-img: url("../../../assets/diary/images/celine-dion-deux.jpeg");
+  border-radius: var(--card-border-radius);
+  width: 80px;
+  height: 80px;
+}
