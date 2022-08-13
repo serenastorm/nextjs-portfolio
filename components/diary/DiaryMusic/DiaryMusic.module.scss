@@ -1,3 +1,5 @@
+@import "~styles/modules/mixins.scss";
+
 // Music
 
 .music {
@@ -12,6 +14,10 @@
   align-items: center;
   gap: 16px;
 
+  @include breakpoint(0, 999.99) {
+    margin-top: 6.4rem;
+  }
+
   &::before {
     content: "listening to (probably)";
     color: var(--white);
@@ -25,7 +31,16 @@
     padding: 6px 20px;
     position: absolute;
     top: 0;
-    transform: translateY(-50%);
+
+    @include breakpoint(0, 999.99) {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: max-content;
+    }
+
+    @include breakpoint(1000) {
+      transform: translateY(-50%);
+    }
   }
 
   h2 {
@@ -38,11 +53,28 @@
   p {
     grid-column: 2;
   }
+
+  p {
+    line-height: 120% !important;
+
+    @include breakpoint(0, 1199.99) {
+      font-size: 1.4rem !important;
+    }
+  }
 }
 
 .albumCover {
   --diary-overlay-img: url("../../../assets/diary/images/celine-dion-deux.jpeg");
   border-radius: var(--card-border-radius);
-  width: 80px;
-  height: 80px;
+  width: var(--album-cover-size);
+  min-width: var(--album-cover-size);
+  height: var(--album-cover-size);
+
+  @include breakpoint(0, 999.99) {
+    --album-cover-size: 64px;
+  }
+
+  @include breakpoint(1000) {
+    --album-cover-size: 80px;
+  }
 }

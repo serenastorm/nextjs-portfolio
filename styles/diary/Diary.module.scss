@@ -2,11 +2,9 @@
 @import "~styles/modules/placeholders.scss";
 
 .fun {
-  --content-padding: 24px;
   --card-bg-color: var(--white);
   --card-border-color: rgba(94, 82, 82, 0.1);
   --card-border-radius: 2px;
-  --grid-gutter: 32px;
 
   // cursor: url("../../assets/diary/images/cursor.svg"), auto;
 
@@ -20,14 +18,23 @@
   min-height: 100%;
   font-family: var(--type-code);
 
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: var(--grid-gutter);
-  grid-row-gap: var(--grid-gutter);
+  @include breakpoint(0, 1199.99) {
+    --content-padding: 8px;
+    --grid-gutter: 16px;
+  }
+
+  @include breakpoint(1000) {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: var(--grid-gutter);
+    grid-row-gap: var(--grid-gutter);
+  }
 
   @include breakpoint(1200) {
     --max-text-width: 120rem;
+    --content-padding: 24px;
+    --grid-gutter: 32px;
   }
 
   p {
@@ -37,7 +44,11 @@
 
   h1 {
     color: var(--link);
-    font-size: 2rem;
+  }
+
+  h1,
+  h2 {
+    font-size: clamp(18px, 5vw, 2rem);
   }
 }
 

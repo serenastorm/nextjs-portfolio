@@ -29,14 +29,13 @@ const Fun = () => {
             author="Céline Dion"
             song="J'irai où tu iras (en duo avec Jean-Jacques Goldman)"
           />
-          <DiaryEntry type="Diary" date={new Date()}>
-            <p>
-              Like many others, I started my design + code journey by
-              customising Tumblr themes. I miss social media that allowed us to
-              show to show our personnality, so this my own experiment.
-            </p>
+          <DiaryEntry type="Quote" date={new Date("2022-08-13")}>
+            <blockquote>
+              For some, who are travelers, the stars are guides.
+              <cite>Antoine de Saint-Exupéry</cite>
+            </blockquote>
           </DiaryEntry>
-          <DiaryEntry type="Stats" date={new Date()}>
+          <DiaryEntry type="Stats" date={new Date("2022-08-08")}>
             <ul>
               <DiaryEntryStat label="Coding" score={5} />
               <DiaryEntryStat label="Sleeping" score={3} />
@@ -44,7 +43,7 @@ const Fun = () => {
               <DiaryEntryStat label="Adulting" score={3} />
             </ul>
           </DiaryEntry>
-          <DiaryEntry type="Snapshot" date={new Date()}>
+          <DiaryEntry type="Snapshot" date={new Date("2022-08-06")}>
             <figure>
               <Image
                 src="/diary/images/alba.jpg"
@@ -54,6 +53,13 @@ const Fun = () => {
               />
               <figcaption>Alba at the river 🐾</figcaption>
             </figure>
+          </DiaryEntry>
+          <DiaryEntry type="Diary" date={new Date("2022-08-02")}>
+            <p>
+              Like many others, I started my design + code journey by
+              customising Tumblr themes. I miss social media that allowed us to
+              show to show our personnality, so this my own experiment.
+            </p>
           </DiaryEntry>
         </main>
       </Page>

@@ -1,3 +1,5 @@
+@import "~styles/modules/mixins.scss";
+
 // Entries
 
 .entryWrapper {
@@ -8,8 +10,15 @@
 }
 
 .entryProfilePicture {
-  width: 64px;
-  height: 64px;
+  @include breakpoint(0, 999.99) {
+    width: 32px;
+    height: 32px;
+  }
+
+  @include breakpoint(1000) {
+    width: 64px;
+    height: 64px;
+  }
 }
 
 .entry {
@@ -47,6 +56,46 @@
 
 .entryContent {
   padding: var(--content-padding);
+
+  blockquote {
+    line-height: 140%;
+    padding: clamp(24px, 4rem, 40px);
+    margin: 0;
+    position: relative;
+
+    &::before,
+    &::after {
+      font-family: "EB Garamond", serif;
+      font-weight: 600;
+      color: var(--link);
+      font-size: 4rem;
+      position: absolute;
+      opacity: 0.25;
+    }
+
+    &::before {
+      content: "“";
+      top: 16px;
+      left: 16px;
+    }
+
+    &::after {
+      content: "”";
+      right: 16px;
+      bottom: 16px;
+    }
+  }
+
+  cite {
+    display: block;
+    margin: 8px 0 0 0;
+    font-weight: var(--font-weight-bold);
+    font-size: 1.4rem;
+    font-style: normal;
+    line-height: 140%;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
 }
 
 .snapshotEntry {
@@ -57,7 +106,7 @@
   ul {
     list-style-type: none;
     padding: 0;
-    margin: 0 auto;
+    margin: 0;
     max-width: 40rem;
   }
 
@@ -65,9 +114,22 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     & + li {
       margin-top: 8px;
+    }
+  }
+
+  svg {
+    height: auto;
+
+    @include breakpoint(0, 999.99) {
+      width: 24px;
+    }
+
+    @include breakpoint(1000) {
+      width: 32px;
     }
   }
 }
@@ -78,7 +140,6 @@
   line-height: 140%;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 4px 16px;
   background: linear-gradient(
       0deg,
       rgba(255, 255, 255, 0.5),
@@ -87,4 +148,12 @@
     #f3f6f8;
   border: 1px solid var(--card-border-color);
   border-radius: 20px;
+
+  @include breakpoint(0, 999.99) {
+    padding: 2px 8px;
+  }
+
+  @include breakpoint(1000) {
+    padding: 4px 16px;
+  }
 }
