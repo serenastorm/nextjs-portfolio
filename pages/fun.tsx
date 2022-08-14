@@ -53,7 +53,7 @@ const Fun = () => {
             <figure>
               <Image
                 src="/diary/images/alba.jpg"
-                alt="Alba at the river"
+                alt="Alba, a small black puppy, stands on a rock with a river behind her"
                 width="400"
                 height="533.33"
               />

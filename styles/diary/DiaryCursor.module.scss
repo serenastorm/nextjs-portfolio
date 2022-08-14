@@ -1,4 +1,6 @@
 .cursorContainer {
+  // Links
+
   &[data-cursor-index="1"],
   &[data-cursor-index="3"] {
     a {
@@ -24,6 +26,36 @@
   &[data-cursor-index="8"] {
     a {
       cursor: url("../../assets/diary/images/cute-cursor-4.png"), auto;
+    }
+  }
+
+  // Images of Alba
+
+  &[data-cursor-index="1"],
+  &[data-cursor-index="5"] {
+    img[alt*="Alba"] {
+      cursor: url("../../assets/diary/images/heart-cursor-1.png"), auto;
+    }
+  }
+
+  &[data-cursor-index="2"],
+  &[data-cursor-index="6"] {
+    img[alt*="Alba"] {
+      cursor: url("../../assets/diary/images/heart-cursor-2.png"), auto;
+    }
+  }
+
+  &[data-cursor-index="3"],
+  &[data-cursor-index="7"] {
+    img[alt*="Alba"] {
+      cursor: url("../../assets/diary/images/heart-cursor-3.png"), auto;
+    }
+  }
+
+  &[data-cursor-index="4"],
+  &[data-cursor-index="8"] {
+    img[alt*="Alba"] {
+      cursor: url("../../assets/diary/images/heart-cursor-4.png"), auto;
     }
   }
 }
