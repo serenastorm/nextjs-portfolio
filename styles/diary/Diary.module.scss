@@ -38,6 +38,14 @@
   p {
     font-size: 1.6rem;
     line-height: 140%;
+
+    a {
+      text-decoration: underline;
+
+      @include onHoverAndFocus {
+        color: var(--link);
+      }
+    }
   }
 
   h1 {
@@ -50,9 +58,10 @@
   }
 
   a {
+    text-underline-offset: 0.15em;
+
     @include onHoverAndFocus {
       text-decoration: underline;
-      text-underline-offset: 0.15em;
     }
   }
 }
@@ -62,13 +71,20 @@
   grid-row: 1;
 }
 
-// .sparklesContainer {
-//   z-index: 40;
-//   pointer-events: none;
-//   position: fixed;
-//   inset: 0;
+.sparklesContainer {
+  z-index: 40;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
 
-//   & > div {
-//     position: relative;
-//   }
-// }
+  & > div {
+    position: relative;
+  }
+}
+
+.diaryCredits {
+  margin-top: 4rem;
+  font-size: 1.4rem !important;
+  color: var(--text-light);
+  text-align: right;
+}

@@ -110,6 +110,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600&display=swap"
           rel="stylesheet"
         />
+
       </Head>
       <body>
         <Main />

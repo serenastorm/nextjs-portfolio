@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
 import Head from "next/head";
-// import Script from "next/script";
+import Script from "next/script";
 import Image from "next/image";
 import { Page } from "components/shared/Page";
 import {
@@ -23,14 +22,21 @@ const Fun = () => {
         <title>Blog | Serena Antonetti</title>
         <meta name="theme-color" content="#F8F3F4" />
       </Head>
-      {/* <div id="sparkles-container" className={styles.sparklesContainer}>
-        <div />
-      </div> */}
+      <div className={styles.sparklesContainer}>
+        <div id="sparkles-container" />
+      </div>
       <Page
         className={`${styles.fun} ${cursorStyles.cursorContainer}`}
         data-cursor-index={activeCursorIndex + 1}
       >
-        {/* <Script src="/diary/sparkles.js" strategy="lazyOnload" /> */}
+        <Script
+          src="/diary/sparkles.js"
+          strategy="lazyOnload"
+          onLoad={() => {
+            window.initDots();
+            window.initSparkles();
+          }}
+        />
         <DiaryAside />
         <main className={styles.main}>
           <DiaryMusic
@@ -66,6 +72,24 @@ const Fun = () => {
           <DiaryEntry type="Diary" date={new Date("2022-08-02")}>
             <p>Welcome to my garden 🌸</p>
           </DiaryEntry>
+          <p className={styles.diaryCredits}>
+            Credits:{" "}
+            <a
+              href="http://www.rw-designer.com/user/wildflower"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Animated cursor
+            </a>{" "}
+            |{" "}
+            <a
+              href="https://codepen.io/sarahwfox"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Sparkle trail
+            </a>
+          </p>
         </main>
       </Page>
     </>
