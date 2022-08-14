@@ -28,6 +28,8 @@ $task-list-checkmark-size: 1.6rem;
 }
 
 ul.contains-task-list {
+  list-style-type: none;
+
   li + li {
     margin-top: 0.8rem;
   }
@@ -56,6 +58,7 @@ article {
 
   .codeTabs {
     ul {
+      list-style-type: none;
       margin: 2rem 0 0 0;
     }
 
@@ -76,5 +79,12 @@ article {
         display: none;
       }
     }
+  }
+}
+
+.markdown {
+  & > ul:not(.contains-task-list) {
+    list-style-type: disc;
+    padding-left: 16px !important;
   }
 }

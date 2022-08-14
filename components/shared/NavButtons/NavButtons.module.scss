@@ -84,13 +84,39 @@ $navButton-transition: all 200ms ease-in;
   flex: 1;
 
   &:nth-of-type(3) {
-    .navButtonLink[aria-current="page"] {
-      cursor: initial !important;
+    .navButtonLink {
+      &[aria-current="page"] {
+        cursor: initial !important;
+      }
+
+      &[aria-current="false"] {
+        @include onHoverAndFocus {
+          color: var(--link);
+        }
+      }
+    }
+  }
+
+  &:not(:nth-of-type(3)) {
+    .navButtonLink {
+      &[aria-current="page"] {
+        &:focus-visible {
+          box-shadow: 0 0 0 1px var(--light-gray), 0 0 0 3px var(--text);
+        }
+      }
+
+      &[aria-current="false"] {
+        @include onHoverAndFocus {
+          color: var(--link);
+        }
+      }
     }
   }
 }
 
 .navButtonLabel {
+  color: inherit;
+  transition: inherit;
   font-family: var(--type-paragraph);
   font-weight: var(--font-weight-medium);
   margin: 0;
@@ -114,10 +140,11 @@ $navButton-transition: all 200ms ease-in;
   min-height: var(--nav-button-height);
   color: var(--text);
   border-radius: var(--nav-button-radius);
-  transition: $navButton-transition;
+  transition: all 100ms ease-in;
   padding: var(--nav-buttons-padding);
 
   svg {
+    transition: inherit;
     width: 2rem;
     height: auto;
 
@@ -126,22 +153,16 @@ $navButton-transition: all 200ms ease-in;
     }
   }
 
+  p {
+    transition: inherit;
+  }
+
   &[aria-current="page"] {
     color: var(--light-gray);
     cursor: initial;
-
-    & > .navButtonLabel {
-      color: var(--light-gray);
-    }
-  }
-
-  &[aria-current="false"] {
-    & > .navButtonLabel {
-      color: var(--text);
-    }
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 1px var(--light-gray), 0 0 0 3px var(--text);
+    box-shadow: 0 0 0 1px var(--light-gray), 0 0 0 3px var(--link);
   }
 }
