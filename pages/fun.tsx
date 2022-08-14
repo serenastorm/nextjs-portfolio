@@ -64,11 +64,7 @@ const Fun = () => {
             </figure>
           </DiaryEntry>
           <DiaryEntry type="Diary" date={new Date("2022-08-02")}>
-            <p>
-              Like many others, I started my design + code journey by
-              customising Tumblr themes. I miss social media that allowed us to
-              show to show our personnality, so this my own experiment.
-            </p>
+            <p>Welcome to my garden 🌸</p>
           </DiaryEntry>
         </main>
       </Page>

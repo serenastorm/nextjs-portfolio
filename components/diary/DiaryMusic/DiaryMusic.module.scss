@@ -15,7 +15,7 @@
 
   @include breakpoint(0, 999.99) {
     margin-top: 6.4rem;
-    padding-top: 16px;
+    padding-top: 24px;
   }
 
   @include breakpoint(1000) {
