@@ -1,7 +1,4 @@
-
-
-
-var colour = "#DABCEC";
+var colour = "#ed5497";
 
 var containerDiv = document.getElementById("sparkles-container");
 
@@ -23,7 +20,7 @@ var tinyv = new Array();
 
 colours = new Array('#ff0000', '#00ff00', '#ffffff', '#ff00ff', '#ffa500', '#ffff00', '#00ff00', '#ffffff', 'ff00ff')
 
-let loaded = false;
+var loaded = false;
 
 n = 10;
 y = 0;
@@ -152,35 +149,6 @@ function initSparkles() {
     set_width();
     sparkle();
 }
-
-// window.onload = function () {
-//     if (document.getElementById) {
-//         var i, rats, rlef, rdow;
-//         for (var i = 0; i < sparkles; i++) {
-//             var rats = createDiv(3, 3);
-//             rats.style.visibility = "hidden";
-//             rats.style.zIndex = "999";
-//             containerDiv.appendChild(tiny[i] = rats);
-//             starv[i] = 0;
-//             tinyv[i] = 0;
-//             var rats = createDiv(5, 5);
-//             rats.style.backgroundColor = "transparent";
-//             rats.style.visibility = "hidden";
-//             rats.style.zIndex = "999";
-//             var rlef = createDiv(1, 5);
-//             var rdow = createDiv(5, 1);
-//             rats.appendChild(rlef);
-//             rats.appendChild(rdow);
-//             rlef.style.top = "2px";
-//             rlef.style.left = "0px";
-//             rdow.style.top = "0px";
-//             rdow.style.left = "2px";
-//             containerDiv.appendChild(star[i] = rats);
-//         }
-//         set_width();
-//         sparkle();
-//     }
-// }
 
 function sparkle() {
     if (!loaded) {

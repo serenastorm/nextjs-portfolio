@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Script from "next/script";
 import Image from "next/image";
 import { Page } from "components/shared/Page";
 import {
@@ -29,14 +28,6 @@ const Fun = () => {
         className={`${styles.fun} ${cursorStyles.cursorContainer}`}
         data-cursor-index={activeCursorIndex + 1}
       >
-        <Script
-          src="/diary/sparkles.js"
-          strategy="lazyOnload"
-          onLoad={() => {
-            window.initDots();
-            window.initSparkles();
-          }}
-        />
         <DiaryAside />
         <main className={styles.main}>
           <DiaryMusic
