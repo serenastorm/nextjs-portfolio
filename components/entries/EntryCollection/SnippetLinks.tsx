@@ -34,10 +34,10 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
       <div
         className={`${blogStyles.blogArticleMeta} ${styles.blogArticleMeta}`}
       >
-        <time dateTime={new Date(date).toISOString()}>
-          {formatRelativeTime(new Date(date))}
-        </time>
         <div className={styles.blogArticleTags}>
+          <time dateTime={new Date(date).toISOString()}>
+            {formatRelativeTime(new Date(date))}
+          </time>
           {!likesAreLoading && (
             <SnippetLikeButton
               total={totalLikes}
@@ -46,8 +46,8 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
               articleId={sys.id}
             />
           )}
-          <SnippetPills types={[subcategory]} />
         </div>
+        <SnippetPills types={[subcategory]} />
       </div>
     </li>
   );

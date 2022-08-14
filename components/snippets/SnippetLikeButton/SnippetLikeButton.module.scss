@@ -26,13 +26,15 @@
     backdrop-filter: blur(2px);
 
     @include breakpoint(0, 1199.98) {
-      top: 1.6rem;
-      left: 1.6rem;
+      top: 16px;
+      left: 16px;
     }
 
     @include breakpoint(1200) {
-      bottom: 1.6rem;
-      right: 1.6rem;
+      top: 50vh;
+      right: 0;
+      transform: translateX(calc((var(--content-padding-inline) * -0.5) + 50%))
+        translateY(-50%);
     }
   }
 
@@ -40,7 +42,6 @@
     --heart-size: 2.4rem;
     position: relative;
     padding: 0.2rem;
-    margin-bottom: -0.2em;
   }
 
   svg {

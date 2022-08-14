@@ -1,13 +1,15 @@
 @import "~styles/modules/mixins.scss";
 
 .blogPage {
-  padding: var(--content-padding-top)
-    calc((100vw - #{var(--max-text-width)}) / 2)
+  --content-padding-inline: calc((100vw - #{var(--max-text-width)}) / 2);
+
+  padding: var(--content-padding-top) var(--content-padding-inline)
     calc(var(--nav-button-height) + (var(--nav-button-margin) * 2))
-    calc((100vw - #{var(--max-text-width)}) / 2);
+    var(--content-padding-inline);
   // Also theme-color in index.html
   background-color: var(--white);
   min-height: 100%;
+  position: relative;
 
   @include breakpoint(1200) {
     --max-text-width: 88rem;
