@@ -84,8 +84,8 @@ $navButton-transition: all 200ms ease-in;
   flex: 1;
 
   &:nth-of-type(5) {
-    .navButtonLink {
-      cursor: url("../../../assets/diary/images/cute-cursor-2.png"), auto;
+    .navButtonLink[aria-current="page"] {
+      cursor: initial !important;
     }
   }
 }

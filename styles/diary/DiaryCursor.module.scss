@@ -1,0 +1,29 @@
+.cursorContainer {
+  &[data-cursor-index="1"],
+  &[data-cursor-index="3"] {
+    a {
+      cursor: url("../../assets/diary/images/cute-cursor-1.png"), auto;
+    }
+  }
+
+  &[data-cursor-index="2"],
+  &[data-cursor-index="4"] {
+    a {
+      cursor: url("../../assets/diary/images/cute-cursor-2.png"), auto;
+    }
+  }
+
+  &[data-cursor-index="5"],
+  &[data-cursor-index="7"] {
+    a {
+      cursor: url("../../assets/diary/images/cute-cursor-3.png"), auto;
+    }
+  }
+
+  &[data-cursor-index="6"],
+  &[data-cursor-index="8"] {
+    a {
+      cursor: url("../../assets/diary/images/cute-cursor-4.png"), auto;
+    }
+  }
+}

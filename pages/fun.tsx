@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import Script from "next/script";
+// import Script from "next/script";
 import Image from "next/image";
 import { Page } from "components/shared/Page";
 import {
@@ -9,24 +9,13 @@ import {
   DiaryEntryStat,
   DiaryMusic,
 } from "components/diary";
+import { useAnimatedCursor } from "infrastructure/hooks";
 
 import styles from "styles/diary/Diary.module.scss";
+import cursorStyles from "styles/diary/DiaryCursor.module.scss";
 
 const Fun = () => {
-  const [activeCursorIndex, setActiveCursorIndex] = useState(0);
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveCursorIndex((active) => active + 1);
-    }, 300);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    if (activeCursorIndex === 8) {
-      setActiveCursorIndex(0);
-    }
-  }, [activeCursorIndex]);
+  const activeCursorIndex = useAnimatedCursor();
 
   return (
     <>
@@ -34,16 +23,20 @@ const Fun = () => {
         <title>Blog | Serena Antonetti</title>
         <meta name="theme-color" content="#F8F3F4" />
       </Head>
-      <div id="sparkles-container" className={styles.sparklesContainer}>
+      {/* <div id="sparkles-container" className={styles.sparklesContainer}>
         <div />
-      </div>
-      <Page className={`${styles.fun}`} data-cursor-index={activeCursorIndex + 1}>
+      </div> */}
+      <Page
+        className={`${styles.fun} ${cursorStyles.cursorContainer}`}
+        data-cursor-index={activeCursorIndex + 1}
+      >
         {/* <Script src="/diary/sparkles.js" strategy="lazyOnload" /> */}
         <DiaryAside />
         <main className={styles.main}>
           <DiaryMusic
             author="Céline Dion"
             song="J'irai où tu iras (en duo avec Jean-Jacques Goldman)"
+            youtubeUrl="https://www.youtube.com/watch?v=0J3wIDAaLSU"
           />
           <DiaryEntry type="Quote" date={new Date("2022-08-13")}>
             <blockquote>

@@ -8,11 +8,13 @@ import {
   ChangelogIcon,
   SnippetsIcon,
 } from "assets/icons";
-import { useScrollDirection } from "infrastructure/hooks";
-
+import { useAnimatedCursor, useScrollDirection } from "infrastructure/hooks";
 import styles from "./NavButtons.module.scss";
+import cursorStyles from "styles/diary/DiaryCursor.module.scss";
 
 const NavButtons = () => {
+  const activeCursorIndex = useAnimatedCursor();
+
   const { pathname } = useRouter();
   const scrollDirection = useScrollDirection();
 
@@ -69,7 +71,15 @@ const NavButtons = () => {
         data-active-btn-index={`${activeBtnIndex}`}
       />
       {navItems.map((navItem) => (
-        <li className={styles.navButton} key={navItem.label}>
+        <li
+          key={navItem.label}
+          className={`${styles.navButton} ${
+            navItem.label === "Blog" ? cursorStyles.cursorContainer : ""
+          }`}
+          data-cursor-index={
+            navItem.label === "Blog" ? activeCursorIndex + 1 : null
+          }
+        >
           <Link href={navItem.url} passHref>
             <a
               className={styles.navButtonLink}
