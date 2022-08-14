@@ -58,6 +58,7 @@ const SnippetLikeButton = ({
           }
         }}
       />
+      <div className={styles.likeButtonFocusMarker} />
       <SnippetLikeButtonHeart filled={inputShouldBeChecked} />
       <p className={styles.likeButtonLabel}>
         {likesCount === 0 && fixed ? "No" : likesCount}

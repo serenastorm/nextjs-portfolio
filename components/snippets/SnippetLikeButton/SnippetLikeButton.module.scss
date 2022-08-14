@@ -36,12 +36,45 @@
       transform: translateX(calc((var(--content-padding-inline) * -0.5) + 50%))
         translateY(-50%);
     }
+
+    .likeButtonFocusMarker {
+      inset: 0;
+      box-shadow: 0 0 0 2px var(--link);
+      border-radius: inherit;
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    .likeButtonInput {
+      @include onFocus {
+        & ~ .likeButtonFocusMarker {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    }
   }
 
   &:not(.likeButtonIsFixed) {
     --heart-size: 2.4rem;
     position: relative;
     padding: 0.2rem;
+
+    .likeButtonFocusMarker {
+      width: calc(var(--heart-size) * 2);
+      height: calc(var(--heart-size) * 2);
+      background-color: rgba(var(--link-rgb), 0.15);
+      border-radius: 50%;
+      transform: translateX(calc(var(--heart-size) * 0.1)) scale(0);
+    }
+
+    .likeButtonInput {
+      @include onHoverAndFocus {
+        & ~ .likeButtonFocusMarker {
+          transform: translateX(calc(var(--heart-size) * 0.1)) scale(1);
+        }
+      }
+    }
   }
 
   svg {
@@ -87,12 +120,12 @@ p.likeButtonLabel {
   cursor: pointer;
 
   @include onHoverAndFocus {
-    & + svg {
+    & ~ svg {
       transform: scale(1.2);
     }
   }
 
-  &:checked + svg {
+  &:checked ~ svg {
     path[data-layer="mainHeart"] {
       transform: scale(0.2);
       animation: animateHeart 0.3s linear forwards 0.25s;
@@ -257,4 +290,10 @@ p.likeButtonLabel {
       transition: 0.1s opacity 0.3s;
     }
   }
+}
+
+.likeButtonFocusMarker {
+  pointer-events: none;
+  position: absolute;
+  transition: all 100ms ease-in-out;
 }
