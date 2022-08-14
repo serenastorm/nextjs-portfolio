@@ -13,7 +13,8 @@ $button-size: calc($icon-size + (#{$button-padding} * 2));
   opacity: 0;
   transition: all 200ms ease-in;
 
-  background-color: rgba(255, 255, 255, 0.025);
+  // background-color: rgba(255, 255, 255, 0.025);
+  background-color: var(--code-bg-color);
   border: 1px solid var(--code-comment);
   border-radius: 0.4rem;
   color: var(--code-comment);
@@ -36,7 +37,7 @@ $button-size: calc($icon-size + (#{$button-padding} * 2));
 
   @include onHoverAndFocus {
     opacity: 1;
-    background-color: rgba(255, 255, 255, 0.05);
+    // background-color: rgba(255, 255, 255, 0.05);
     color: var(--code-color);
     border-color: var(--code-color);
   }
@@ -60,4 +61,9 @@ p.snippetCopyToClipboardButtonLabel {
   color: var(--white);
   padding: 0.4rem 0.8rem;
   border-radius: 0.2rem;
+}
+
+.snippetCopyToClipboardButtonWrapper {
+  position: sticky;
+  inset: 0;
 }

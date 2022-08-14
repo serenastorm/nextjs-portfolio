@@ -7,7 +7,9 @@ type SnippetCopyToClipboardButtonProps = {
   textToCopy: string;
 };
 
-const SnippetCopyToClipboardButton = ({ textToCopy }: SnippetCopyToClipboardButtonProps) => {
+const SnippetCopyToClipboardButton = ({
+  textToCopy,
+}: SnippetCopyToClipboardButtonProps) => {
   const [textCopiedToClipboard, setTextCopiedToClipboard] =
     useState<boolean>(false);
   // For browsers that don't support navigator.clipboard, we need to add the email to an input, select it, and copy the value
@@ -34,31 +36,33 @@ const SnippetCopyToClipboardButton = ({ textToCopy }: SnippetCopyToClipboardButt
 
   return (
     <>
-      <input
-        className="screenReaderText"
-        readOnly
-        ref={textInputRef}
-        tabIndex={-1}
-        type="text"
-        value={textToCopy}
-        aria-hidden
-      />
-      <button
-        onClick={onCopyButtonClick}
-        className={styles.snippetCopyToClipboardButton}
-        title="Copy to clipboard"
-      >
-        <CopyToClipboardIcon copied={textCopiedToClipboard} />
-      </button>
-      {textCopiedToClipboard && (
-        <p
-          aria-live="assertive"
-          aria-relevant="additions"
-          className={styles.snippetCopyToClipboardButtonLabel}
+      <div className={styles.snippetCopyToClipboardButtonWrapper}>
+        <input
+          className="screenReaderText"
+          readOnly
+          ref={textInputRef}
+          tabIndex={-1}
+          type="text"
+          value={textToCopy}
+          aria-hidden
+        />
+        <button
+          onClick={onCopyButtonClick}
+          className={styles.snippetCopyToClipboardButton}
+          title="Copy to clipboard"
         >
-          Copied!
-        </p>
-      )}
+          <CopyToClipboardIcon copied={textCopiedToClipboard} />
+        </button>
+        {textCopiedToClipboard && (
+          <p
+            aria-live="assertive"
+            aria-relevant="additions"
+            className={styles.snippetCopyToClipboardButtonLabel}
+          >
+            Copied!
+          </p>
+        )}
+      </div>
     </>
   );
 };

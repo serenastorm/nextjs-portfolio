@@ -1,6 +1,6 @@
 @import "~styles/modules/mixins.scss";
 
-$task-list-checkmark-size: 1.6rem;
+$task-list-checkmark-size: 2rem;
 
 .task-list-item {
   input {
@@ -9,6 +9,7 @@ $task-list-checkmark-size: 1.6rem;
     min-width: $task-list-checkmark-size;
     height: $task-list-checkmark-size;
     margin-right: calc(0.8rem - 0.25em);
+    transform: translateY(10%);
 
     &::after {
       content: "";
@@ -21,7 +22,7 @@ $task-list-checkmark-size: 1.6rem;
 
     &:checked {
       &::after {
-        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='2' y='2' width='20' height='20' rx='2' fill='%23E1F0FF'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M19.4627 6.91928L9.54193 18.2573L4.53473 13.2501L5.75007 12.0348L9.45821 15.7429L18.1692 5.78748L19.4627 6.91928Z' fill='%23006ADC'/%3E%3C/svg%3E%0A");
+        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.25 10.75L12 14.5L22 4.5' stroke='%23006ADC' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M22 12C22 17.5229 17.5229 22 12 22C6.47715 22 2 17.5229 2 12C2 6.47715 6.47715 2 12 2C13.1841 2 14.3201 2.2058 15.3742 2.58357' stroke='%235E5252' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E%0A"); // background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM10.5303 16.0303L17.5303 9.03033L16.4697 7.96967L10 14.4393L7.53033 11.9697L6.46967 13.0303L9.46967 16.0303C9.76256 16.3232 10.2374 16.3232 10.5303 16.0303Z' fill='%23006ADC'/%3E%3C/svg%3E%0A");
       }
     }
   }

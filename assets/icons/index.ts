@@ -1,5 +1,6 @@
 export { default as AccessibilityIcon } from "./AccessibilityIcon";
 export { default as ChangelogIcon } from "./ChangelogIcon";
+export { default as CheckmarkIcon } from "./CheckmarkIcon";
 export { default as CopyToClipboardIcon } from "./CopyToClipboardIcon";
 export { default as DiaryIcon } from "./DiaryIcon";
 export { default as ExpandIcon } from "./ExpandIcon";
