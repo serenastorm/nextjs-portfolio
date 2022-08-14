@@ -35,6 +35,12 @@ const NavButtons = () => {
       isCurrent: isSnippets,
     },
     {
+      url: routes.diary,
+      label: "Blog",
+      icon: <DiaryIcon />,
+      isCurrent: pathname === routes.diary,
+    },
+    {
       url: routes.accessibility,
       label: "Accessibility",
       icon: <AccessibilityIcon />,
@@ -45,12 +51,6 @@ const NavButtons = () => {
       label: "Changelog",
       icon: <ChangelogIcon />,
       isCurrent: pathname === routes.changelog,
-    },
-    {
-      url: routes.diary,
-      label: "Blog",
-      icon: <DiaryIcon />,
-      isCurrent: pathname === routes.diary,
     },
   ];
 

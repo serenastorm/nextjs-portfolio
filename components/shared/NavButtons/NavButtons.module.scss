@@ -62,7 +62,7 @@ $navButton-transition: all 200ms ease-in;
     transform: translateX(0);
   }
 
-  &[data-active-btn-index="4"] {
+  &[data-active-btn-index="2"] {
     background: var(--fun-gradient);
   }
 
@@ -83,7 +83,7 @@ $navButton-transition: all 200ms ease-in;
   z-index: 1;
   flex: 1;
 
-  &:nth-of-type(5) {
+  &:nth-of-type(3) {
     .navButtonLink[aria-current="page"] {
       cursor: initial !important;
     }
