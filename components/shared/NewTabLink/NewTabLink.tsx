@@ -18,7 +18,13 @@ const NewTabLink = ({
   shouldOpenInNewTab,
   withUnderline = true,
 }: NewTabLinkProps) => {
+  // We need to split the content in two so the
+  // last word can always be on the same line
+  // as the icon using white-space: nowrap;
   const destinationUrl = `${type === "email" ? "mailto:" : ""}${to}`;
+  const linkLabelWords = copy.match(/\b(\w+)\b/g);
+  const lastWord = linkLabelWords?.pop();
+  const wordsTotal = linkLabelWords?.length || 0;
 
   return (
     <a
@@ -29,8 +35,14 @@ const NewTabLink = ({
       target={shouldOpenInNewTab ? "blank" : undefined}
       rel={shouldOpenInNewTab ? "noopener noreferrer" : undefined}
     >
-      {copy}
-      {type === "email" ? <SendEmailIcon /> : <OpenInNewTabIcon />}
+      <span>
+        {wordsTotal > 1 &&
+          linkLabelWords?.map((linkLabelWord) => `${linkLabelWord} `)}
+      </span>
+      <span>
+        {lastWord}
+        {type === "email" ? <SendEmailIcon /> : <OpenInNewTabIcon />}
+      </span>
     </a>
   );
 };

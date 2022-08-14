@@ -144,11 +144,15 @@ const SnippetMarkdown = ({ content }: { content: CoreOptions["children"] }) => {
                   child.value === "View design pattern")
             );
 
-            const isExternalLink = indexOfExternalLink > -1;
+            const indexOfLink = node.children.findIndex(
+              (child) => child.type === "text"
+            );
+
+            const isExternalLink = href?.startsWith("http") || href?.startsWith("https");
 
             const nodeChildren: Array<ElementContent & { value?: string }> =
               node.children;
-            const linkCopy = nodeChildren[indexOfExternalLink]?.value;
+            const linkCopy = nodeChildren[indexOfLink]?.value;
 
             return isExternalLink && href && !!linkCopy ? (
               <NewTabLink

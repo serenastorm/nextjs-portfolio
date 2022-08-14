@@ -1,9 +1,6 @@
 @import "~styles/modules/mixins.scss";
 
 .newTabLink {
-  // TODO: find a better solution for long links
-  white-space: nowrap;
-
   svg {
     width: 0.8em;
     height: auto;
@@ -23,6 +20,10 @@
         fill: var(--arrow-pointer-color);
       }
     }
+  }
+
+  span:last-of-type {
+    white-space: nowrap;
   }
 
   @include onHoverAndTouch {
