@@ -43,10 +43,10 @@ const Fun = () => {
           </DiaryEntry>
           <DiaryEntry type="Stats" date={new Date("2022-08-08")}>
             <ul>
-              <DiaryEntryStat label="Coding" score={5} />
-              <DiaryEntryStat label="Sleeping" score={3} />
+              <DiaryEntryStat label="Code" score={5} />
+              <DiaryEntryStat label="Sleep" score={3} />
               <DiaryEntryStat label="Gym" score={4} />
-              <DiaryEntryStat label="Adulting" score={3} />
+              <DiaryEntryStat label="Life" score={3} />
             </ul>
           </DiaryEntry>
           <DiaryEntry type="Snapshot" date={new Date("2022-08-06")}>

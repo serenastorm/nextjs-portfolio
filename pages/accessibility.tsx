@@ -12,7 +12,7 @@ const Accessibility = () => {
   return (
     <>
       <Head>
-        <title>Accessibility</title>
+        <title>Accessibility | Serena Antonetti</title>
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <Page

@@ -15,7 +15,7 @@ const Changelog = ({ entries }: { entries: ChangeLogResponse[] }) => {
   return (
     <>
       <Head>
-        <title>Changelog</title>
+        <title>Changelog | Serena Antonetti</title>
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <Page
