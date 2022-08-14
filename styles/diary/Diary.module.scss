@@ -38,13 +38,13 @@
   p {
     font-size: 1.6rem;
     line-height: 140%;
+  }
 
+  p,
+  dd {
     a {
+      color: var(--link);
       text-decoration: underline;
-
-      @include onHoverAndFocus {
-        color: var(--link);
-      }
     }
   }
 

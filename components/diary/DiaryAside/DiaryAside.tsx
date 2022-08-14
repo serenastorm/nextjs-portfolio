@@ -26,7 +26,15 @@ const DiaryAside = () => {
                 <span className="screenReaderText">Location</span>
                 <LocationIcon />
               </dt>
-              <dd>Edinburgh</dd>
+              <dd>
+                <a
+                  href="https://www.google.com/maps/place/Edinburgh/@55.9411885,-3.275378,12z/data=!3m1!4b1!4m5!3m4!1s0x4887b800a5982623:0x64f2147b7ce71727!8m2!3d55.953252!4d-3.188267"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Edinburgh
+                </a>
+              </dd>
             </div>
             <div className={styles.statusItem}>
               <dt>

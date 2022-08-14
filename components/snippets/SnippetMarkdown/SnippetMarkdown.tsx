@@ -159,7 +159,9 @@ const SnippetMarkdown = ({ content }: { content: CoreOptions["children"] }) => {
                 withUnderline={false}
               />
             ) : (
-              <a {...props}>{children}</a>
+              <a href={href} {...props}>
+                {children}
+              </a>
             );
           },
         }}
