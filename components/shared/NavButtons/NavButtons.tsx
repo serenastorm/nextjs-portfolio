@@ -14,21 +14,6 @@ const NavButtons = () => {
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
   const tabsRefs = useRef<Array<HTMLAnchorElement | null>>([]);
 
-  const updateActiveTabIndex = (newIndex: number) => {
-    setActiveTabIndex((currentIndex: number) => {
-      setPreviousTabIndex(currentIndex);
-      return newIndex;
-    });
-  };
-
-  const getAnimationDuration = () => {
-    const initialDiff = activeTabIndex - previousTabIndex;
-    const diffIsNegative = initialDiff < 0;
-    const diff = diffIsNegative ? initialDiff * -1 : initialDiff;
-
-    return `${50 + (diff - 1) * 150}ms`;
-  };
-
   const activeCursorIndex = useAnimatedCursor();
   const { pathname } = useRouter();
   const scrollDirection = useScrollDirection();
@@ -44,6 +29,21 @@ const NavButtons = () => {
   });
 
   const totalTabs = items.length;
+
+  const updateActiveTabIndex = (newIndex: number) => {
+    setActiveTabIndex((currentIndex: number) => {
+      setPreviousTabIndex(currentIndex);
+      return newIndex;
+    });
+  };
+
+  const getAnimationDuration = () => {
+    const initialDiff = activeTabIndex - previousTabIndex;
+    const diffIsNegative = initialDiff < 0;
+    const diff = diffIsNegative ? initialDiff * -1 : initialDiff;
+
+    return `${50 + (diff - 1) * 150}ms`;
+  };
 
   const activeBtnIndex = items.findIndex((navItem) => navItem.isCurrent);
 
