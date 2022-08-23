@@ -6,3 +6,4 @@ export { default as useLikes } from "./useLikes";
 
 // Diary
 export { default as useAnimatedCursor } from "./useAnimatedCursor";
+export { default as usePrefersReducedMotion } from "./usePrefersReducedMotion";

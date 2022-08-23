@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Router, { useRouter } from "next/router";
-import type { AppProps } from "next/app";
 import { Loader, NavButtons, SkipToContentLink } from "components/shared";
 import { routes } from "infrastructure/routes/constants";
+import { usePrefersReducedMotion } from "infrastructure/hooks";
+import type { AppProps } from "next/app";
 
 import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const userPrefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     const start = () => {
@@ -41,7 +43,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       return null;
     };
 
-    if (pathname === routes.diary) {
+    if (pathname === routes.diary && !userPrefersReducedMotion) {
       document.body.appendChild(script);
       script.onload = () => {
         window.initDots();
