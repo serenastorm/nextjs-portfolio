@@ -12,9 +12,9 @@ import {
 } from "components/snippets";
 import { routes } from "infrastructure/routes/constants";
 import { useLikes } from "infrastructure/hooks";
-import { allEntries } from "helpers/blog/constants";
 import { getCategory } from "helpers/blog";
 import {
+  fetchEntries,
   fetchEntry,
   fetchNextEntry,
   fetchPreviousEntry,
@@ -162,12 +162,15 @@ const BlogArticlePage = ({
 export default BlogArticlePage;
 
 export async function getStaticPaths() {
-  const paths = allEntries.map((slug: string) => ({ params: { slug } }));
+  const entries = await fetchEntries();
 
-  return {
-    paths,
-    fallback: false,
-  };
+  // Get the paths we want to pre-render based on posts
+  const paths = entries.map((entry) => ({
+    params: { slug: entry.fields.slug },
+  }));
+
+  // We'll pre-render only these paths at build time.
+  return { paths, fallback: "blocking" };
 }
 
 interface Params extends ParsedUrlQuery {

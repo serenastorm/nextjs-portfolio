@@ -4,7 +4,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{ validated: boolean } | { message: string }>
 ) {
-  if (process.env.CF_BLOG_WEBHOOK_SECRET !== req.headers["webhook_secret"]) {
+  if (process.env.CF_BLOG_WEBHOOK_SECRET !== req.headers["CF_BLOG_WEBHOOK_SECRET"]) {
     return res.status(401).json({ message: "Invalid secret" });
   }
 
