@@ -16,8 +16,7 @@ import { getCategory } from "helpers/blog";
 import {
   fetchEntries,
   fetchEntry,
-  fetchNextEntry,
-  fetchPreviousEntry,
+  fetchRelatedEntries,
 } from "helpers/blog/api";
 
 import type { BlogPostResponse } from "infrastructure/blog/types";
@@ -170,6 +169,7 @@ export async function getStaticPaths() {
   }));
 
   // We'll pre-render only these paths at build time.
+  // https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration
   return { paths, fallback: "blocking" };
 }
 
@@ -182,9 +182,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = params;
 
   const entry = await fetchEntry(slug);
-
-  const previousPost = await fetchPreviousEntry(slug);
-  const nextPost = await fetchNextEntry(slug);
+  const { previous: previousPost, next: nextPost } = await fetchRelatedEntries(
+    slug
+  );
 
   return {
     props: {
@@ -192,9 +192,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       previousPost,
       nextPost,
     },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 30 seconds
     revalidate: 30,
   };
 };

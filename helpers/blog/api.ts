@@ -8,22 +8,16 @@ export async function fetchEntry(slug: string): Promise<BlogPostResponse> {
   return entry;
 }
 
-export async function fetchPreviousEntry(
-  slug: string
-): Promise<BlogPostResponse | null> {
-  const res = await fetch(`${apiUrl}/prevsnippet/${slug}`);
-  const entry = await res.json();
+export async function fetchRelatedEntries(slug: string): Promise<{
+  previous: BlogPostResponse | null;
+  next: BlogPostResponse | null;
+}> {
+  const previousEntryRes = await fetch(`${apiUrl}/prevsnippet/${slug}`);
+  const previousEntry = await previousEntryRes.json();
+  const nextEntryRes = await fetch(`${apiUrl}/nextsnippet/${slug}`);
+  const nextEntry = await nextEntryRes.json();
 
-  return entry[0] || null;
-}
-
-export async function fetchNextEntry(
-  slug: string
-): Promise<BlogPostResponse | null> {
-  const res = await fetch(`${apiUrl}/nextsnippet/${slug}`);
-  const entry = await res.json();
-
-  return entry[0] || null;
+  return { previous: previousEntry[0] || null, next: nextEntry[0] || null };
 }
 
 export async function fetchEntries(
