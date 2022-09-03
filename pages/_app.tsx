@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return () => {
       removeScript();
     };
-  }, [pathname]);
+  }, [pathname, userPrefersReducedMotion]);
 
   return (
     <>
