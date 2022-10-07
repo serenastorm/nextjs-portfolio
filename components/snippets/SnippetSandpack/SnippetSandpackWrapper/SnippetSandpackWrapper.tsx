@@ -20,9 +20,10 @@ import {
   useSandpackNavigation,
   UnstyledOpenInCodeSandboxButton,
 } from "@codesandbox/sandpack-react";
-import "@codesandbox/sandpack-react/dist/index.css";
 import scrollIntoView from "scroll-into-view-if-needed";
 import { ExpandIcon, ReloadIcon, OpenInCodeSandboxIcon } from "assets/icons";
+import { sandpackTheme } from "../sandpackTheme";
+
 import type { CodeSnippetProps } from "../types";
 
 import styles from "./SnippetSandpackWrapper.module.scss";
@@ -167,17 +168,8 @@ const SandpackWrapper = ({
         } as CSSProperties
       }
     >
-      <SandpackProvider
-        template={template}
-        customSetup={{ ...setup, files: files }}
-      >
-        <SandpackThemeProvider
-          theme={{
-            palette: {
-              accent: "var(--pink)",
-            },
-          }}
-        >
+      <SandpackProvider template={template} customSetup={setup} files={files}>
+        <SandpackThemeProvider theme={sandpackTheme}>
           <SandPackNavigation />
           <div ref={codeEditorRef} style={{ position: "relative" }}>
             <SandpackLayout>
@@ -186,14 +178,14 @@ const SandpackWrapper = ({
                 showInlineErrors
                 showLineNumbers
                 wrapContent={false}
-                customStyle={{
+                style={{
                   height: codeEditorHeight,
                 }}
               />
               <SandpackPreview
                 showOpenInCodeSandbox={false}
                 showRefreshButton={false}
-                customStyle={{
+                style={{
                   height: "auto",
                 }}
               />

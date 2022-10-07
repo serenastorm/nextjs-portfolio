@@ -8,7 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^0.13.5",
+    "@codesandbox/sandpack-react": "^1.14.2",
     "framer-motion": "^6.2.1",
     "next": "^12.2.5",
     "next-mdx-remote": "^4.0.0",

@@ -2,6 +2,9 @@
 
 .sp-wrapper {
   --sp-layout-height: clamp(300px, 70vh, 700px) !important;
+  --sp-colors-bg-default: var(--sp-colors-surface1);
+  --sp-colors-fg-inactive: var(--sp-colors-surface2);
+  --sp-colors-bg-active: var(--sp-colors-surface3);
 }
 
 .cm-scroller {
@@ -9,9 +12,29 @@
   font-size: 1.2em !important;
 }
 
-.sp-layout > .sp-stack {
-  @include breakpoint(0, 768) {
-    height: var(--sp-layout-height) !important;
+.sp-tabs {
+  border-bottom-color: var(--sp-colors-surface1) !important;
+  border-radius: inherit;
+  background-color: inherit !important;
+}
+
+.sp-layout {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-right-color: var(--sp-colors-surface2) !important;
+  border-top-color: var(--sp-colors-surface1) !important;
+  border-left-color: var(--sp-colors-surface1) !important;
+  border-bottom-color: var(--sp-colors-surface1) !important;
+
+  & + div {
+    background-color: #21222c;
+    border-color: #21222c;
+  }
+
+  & > .sp-stack {
+    @include breakpoint(0, 768) {
+      height: var(--sp-layout-height) !important;
+    }
   }
 }
 
@@ -21,6 +44,15 @@
 
 .sp-tab-button {
   cursor: pointer;
+  border-bottom: 1px solid transparent !important;
+
+  &[data-active="true"] {
+    border-bottom-color: var(--sp-colors-accent) !important;
+  }
+
+  &:hover {
+    background: var(--sp-colors-surface3);
+  }
 }
 
 .sp-cube-wrapper {

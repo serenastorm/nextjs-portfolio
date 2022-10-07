@@ -6,10 +6,12 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  background: var(--sp-colors-bg-default);
+  background: #21222c;
   padding-right: var(--sp-space-4);
   font-family: var(--type-paragraph);
   gap: 0.4rem;
+  border-top-left-radius: var(--sp-border-radius);
+  border-top-right-radius: var(--sp-border-radius);
 }
 
 .sandPackCustomNavButtonss {
@@ -39,7 +41,7 @@
     height: auto;
 
     path {
-      fill: var(--pink);
+      fill: #8ae8fc;
     }
   }
 }
