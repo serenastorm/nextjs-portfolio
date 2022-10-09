@@ -72,11 +72,13 @@ const ScrollProgress = ({
         href="/"
         className={`${styles.progressIndicator} ${className}`}
         data-complete={progress >= 100 ? "true" : "false"}
+        title="Back to homepage"
       >
         <svg
           height={radius * 2}
           width={radius * 2}
           preserveAspectRatio="xMidYMid meet"
+          role="presentation"
         >
           <circle
             className={styles.track}
