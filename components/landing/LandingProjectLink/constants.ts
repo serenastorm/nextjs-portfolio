@@ -13,6 +13,12 @@ export const projects: LinkProps[] = [
     url: "https://cmts2a.fr/",
     isExternal: true,
   },
+  // {
+  //   label: "Flexbox",
+  //   description: "",
+  //   url: "/flexbox",
+  //   isExternal: false,
+  // },
   {
     label: "react-native-side-nav",
     description: "open source npm package",

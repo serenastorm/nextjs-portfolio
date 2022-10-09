@@ -1,15 +1,8 @@
+@import "~components/snippets/variables.scss";
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/placeholders.scss";
 
 .markdown {
-  --code-blue: #8ae8fc;
-  --code-pink: #ff79c6;
-  --code-yellow: #f1fa8c;
-  --code-green: #4ff67a;
-  --code-purple: #b58dee;
-  --code-orange: #ffb86c;
-  --code-comment: #6272a4;
-
   code {
     font-family: var(--type-code);
     line-height: 160%;
@@ -96,8 +89,8 @@
     @include removeFocusOutline;
 
     &[aria-selected="true"] {
-      border-bottom: 1px solid var(--code-blue);
-      color: var(--code-blue);
+      border-bottom: 1px solid $code-blue;
+      color: $code-blue;
     }
 
     @include onKeyboardFocus {

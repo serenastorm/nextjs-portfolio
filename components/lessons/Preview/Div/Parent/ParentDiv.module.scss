@@ -1,0 +1,38 @@
+@import "~styles/modules/mixins.scss";
+
+.parentDiv {
+  position: relative;
+  padding: var(--parent-padding);
+  max-width: 100%;
+  max-height: calc(80vh - #{var(--preview-padding)});
+  border: 1px solid var(--yellow);
+  border-radius: 0.8rem;
+  display: flex;
+  font-family: var(--font-code);
+  box-shadow: inset 0px 0px 0px var(--parent-padding) var(--bg-level-0);
+
+  &::after {
+    display: block;
+    content: attr(data-name);
+    position: absolute;
+    bottom: calc(100% + 0.4rem);
+    left: 0;
+    color: var(--yellow);
+  }
+
+  @include breakpoint(0, desktop) {
+    --min-child-width: clamp(80px, 25%, 14rem);
+    --parent-padding: 8px;
+    font-size: 1.4rem;
+
+    & + .parentDiv {
+      margin-top: 16px;
+    }
+  }
+
+  @include breakpoint(desktop) {
+    --min-child-width: 14rem;
+    --parent-padding: 16px;
+    font-size: 1.6rem;
+  }
+}

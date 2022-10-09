@@ -1,7 +1,37 @@
 @mixin breakpoint($min: 0, $max: 0) {
+  $known-breakpoints: desktop;
+
+  @if not index($known-breakpoints, $min) and type-of($min) != number {
+    @error "Unknown breakpoint #{$min}.";
+  }
+
+  @if not index($known-breakpoints, $max) and type-of($max) != number {
+    @error "Unknown breakpoint #{$max}.";
+  }
+
   $query: "all";
   $minValue: #{$min}px;
   $maxValue: #{$max}px;
+
+  $minBreakpoints: (
+    desktop: 1100px,
+  );
+
+  $maxBreakpoints: (
+    desktop: 1099.99px,
+  );
+
+  @if type-of($min) == string {
+    $minValue: map-get($minBreakpoints, $min);
+  } @else if type-of($min) == number {
+    $minValue: #{$min}px;
+  }
+
+  @if type-of($max) == string {
+    $maxValue: map-get($maxBreakpoints, $max);
+  } @else if type-of($max) == number {
+    $maxValue: #{$max}px;
+  }
 
   @if $max == 0 {
     $query: "(min-width: #{$minValue})";

@@ -15,10 +15,10 @@ export const sandpackTheme: SandpackTheme = {
     plain: "#f8f8f2", // code
     comment: { color: "#6272a4", fontStyle: "normal" },
     keyword: "#8ae8fc", // code-blue
-    tag: "#ffb86c", // code-orange
+    tag: { color: "#ffb86c", fontWeight: "600" }, // code-orange
     punctuation: "#f8f8f2", // code
-    definition: "#4ff67a", // code-green
-    property: "#4ff67a", // code-green
+    definition: "#4ff67a", // code-green 
+    property: { color: "#4ff67a", fontWeight: "600" }, // code-green
     static: "#ff79c6", // code-pink
     string: "#f1fa8c", // code-yellow
   },

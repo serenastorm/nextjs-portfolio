@@ -1,0 +1,25 @@
+@import "~styles/modules/mixins.scss";
+
+.coursePreviewIntro {
+  position: absolute;
+
+  p.coursePreviewTitle {
+    color: var(--text-contrast-10);
+    font-family: var(--font-headings);
+    font-weight: var(--font-weight-regular);
+
+    @include breakpoint(0, desktop) {
+      font-size: clamp(32px, 24vw, 120px);
+    }
+
+    @include breakpoint(desktop) {
+      font-size: 8vw;
+    }
+  }
+
+  & + div {
+    & > div {
+      background-color: var(--bg-level-1);
+    }
+  }
+}

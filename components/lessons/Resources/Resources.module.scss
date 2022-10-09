@@ -1,0 +1,72 @@
+@import "~styles/lessons/placeholders.scss";
+@import "~styles/modules/mixins.scss";
+
+.resources {
+  --resource-gap: 1rem;
+
+  @extend %text-block;
+
+  --text-block-highlighted: var(--pink);
+  background-color: var(--bg-level-1);
+  margin-top: 6.4rem;
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+}
+
+.resource {
+  &:nth-of-type(n + 2) {
+    margin-top: var(--resource-gap);
+  }
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-contrast-8);
+  font-family: var(--font-paragraph);
+  display: flex;
+  text-align: left;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--pink);
+
+  @include removeFocusOutline;
+
+  @include onHoverAndFocus {
+    color: var(--pink);
+
+    .icon {
+      transform: scale(1.15);
+    }
+  }
+}
+
+.icon {
+  border-width: 0;
+  border-radius: 50%;
+  padding: 0;
+  width: 2.8rem;
+  min-width: 2.8rem;
+  height: 2.8rem;
+  transition: all 250ms ease;
+  transform: scale(1);
+  background-color: var(--pink-bg);
+
+  svg {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    inset: 0;
+
+    path {
+      stroke: var(--pink);
+      fill: transparent;
+    }
+  }
+}

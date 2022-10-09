@@ -1,0 +1,58 @@
+.devTools {
+  margin-top: 4rem;
+}
+
+.value {
+  padding: 0;
+  border: 1px solid #878787;
+  cursor: pointer;
+
+  &[data-selected="true"] {
+    background-color: #878787;
+  }
+
+  &[data-selected="false"] {
+    background-color: transparent;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &:first-of-type {
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+  }
+
+  &:last-child {
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+  }
+
+  svg {
+    width: 3.2rem;
+    height: auto;
+
+    @media (hover: hover) {
+      width: 2.6rem;
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0px 0px 0px 2px var(--white);
+    position: relative;
+    border-radius: 0.2rem;
+    transform: scale(1.05);
+  }
+}
+
+.attribute {
+  &:nth-of-type(n + 2) {
+    margin-top: 1.6rem;
+  }
+
+  p {
+    margin-bottom: 0.4rem;
+  }
+}

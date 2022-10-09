@@ -1,0 +1,43 @@
+@import "~styles/lessons/placeholders";
+
+.spacing {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-code);
+
+  &::before,
+  &::after {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &::before {
+    left: 2px;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M1.14645 5.03553C0.951184 4.84027 0.951184 4.52369 1.14645 4.32843L4.32843 1.14645C4.52369 0.951184 4.84027 0.951184 5.03553 1.14645C5.2308 1.34171 5.2308 1.65829 5.03553 1.85355L2.70711 4.18198H9.5V5.18198H2.70711L5.03553 7.51041C5.2308 7.70567 5.2308 8.02225 5.03553 8.21751C4.84027 8.41278 4.52369 8.41278 4.32843 8.21751L1.14645 5.03553Z' fill='%23F46EF7'/%3E%3C/svg%3E%0A");
+  }
+
+  &::after {
+    right: 2px;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M6.17157 1.14645L9.35355 4.32843C9.54882 4.52369 9.54882 4.84027 9.35355 5.03553L6.17157 8.21751C5.97631 8.41278 5.65973 8.41278 5.46447 8.21751C5.2692 8.02225 5.2692 7.70567 5.46447 7.51041L7.79289 5.18198L1 5.18198L1 4.18198L7.79289 4.18198L5.46447 1.85355C5.2692 1.65829 5.2692 1.34171 5.46447 1.14645C5.65973 0.951185 5.97631 0.951185 6.17157 1.14645Z' fill='%23F46EF7'/%3E%3C/svg%3E%0A");
+  }
+}
+
+.yellowText {
+  @extend %yellow-text;
+}
+
+.blueText {
+  @extend %blue-text;
+}
+
+.pinkText {
+  @extend %pink-text;
+}

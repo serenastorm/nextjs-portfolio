@@ -1,0 +1,8 @@
+@import "~styles/lessons/placeholders.scss";
+
+.inlineCode {
+  @extend %inline-text-block;
+
+  font-size: 0.95em;
+  background-color: var(--bg-level-1);
+}

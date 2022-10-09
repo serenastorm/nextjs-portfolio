@@ -1,3 +1,4 @@
+@import "~components/snippets/variables.scss";
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/placeholders.scss";
 
@@ -41,7 +42,7 @@
     height: auto;
 
     path {
-      fill: #8ae8fc;
+      fill: $code-blue;
     }
   }
 }

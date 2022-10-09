@@ -1,0 +1,12 @@
+@import "~styles/lessons/placeholders.scss";
+@import "~styles/modules/mixins.scss";
+
+p.subcopy {
+  @extend %text-small;
+}
+
+.previewCaption {
+  @include breakpoint(0, desktop) {
+    display: none;
+  }
+}

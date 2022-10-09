@@ -1,0 +1,9 @@
+@import "~styles/lessons/placeholders.scss";
+
+.tip {
+  @extend %text-block;
+
+  --text-block-highlighted: var(--blue);
+  background-color: var(--bg-level-1);
+  margin-top: 6.4rem;
+}

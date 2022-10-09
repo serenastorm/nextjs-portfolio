@@ -1,0 +1,114 @@
+@import "~styles/modules/mixins.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500;1,400&display=swap");
+
+@font-face {
+  font-family: "BN Chester";
+  src: url("~assets/lessons/fonts/BNChesterRegular.eot");
+  src: url("~assets/lessons/fonts/BNChesterRegular.eot?#iefix")
+      format("embedded-opentype"),
+    url("~assets/lessons/fonts/BNChesterRegular.woff2") format("woff2"),
+    url("~assets/lessons/fonts/BNChesterRegular.woff") format("woff"),
+    url("~assets/lessons/fonts/BNChesterRegular.ttf") format("truetype"),
+    url("~assets/lessons/fonts/BNChesterRegular.svg#BNChesterRegular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+$pink-dm: #f46ef6;
+$pink-bg-dm: rgba($pink-dm, 0.2);
+
+$yellow-dm: #f6c468;
+$yellow-bg-dm: rgba($pink-dm, 0.1);
+
+$blue-dm: #82aaff;
+$blue-bg-dm: rgba($blue-dm, 0.1);
+
+$success-dm: #1de431;
+$success-bg-dm: rgba($success-dm, 0.2);
+
+$error-dm: #ff1313;
+$error-bg-dm: rgba($error-dm, 0.3);
+
+.lessonPage {
+  --bg-level-0: #181a1d;
+  --bg-level-1: #222427;
+
+  --text-contrast-8: #d7d7d7;
+  --text-contrast-10: #f5f5f5;
+
+  --white: #ffffff;
+  --pink: #{$pink-dm};
+  --pink-bg: #{$pink-bg-dm};
+  --yellow: #{$yellow-dm};
+  --yellow-bg: #{$yellow-bg-dm};
+  --blue: #{$blue-dm};
+  --blue-bg: #{$blue-bg-dm};
+  --success: #{$success-dm};
+  --success-bg: #{$success-bg-dm};
+  --error: #{$error-dm};
+  --error-bg: #{$error-bg-dm};
+
+  --font-paragraph: "Cabin", sans-serif;
+  --font-code: "Ubuntu Mono", monospace;
+  --font-headings: "BN Chester", serif;
+  --font-tabs: "Rubik", sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  display: flex;
+  background-color: var(--bg-level-0);
+
+  @include breakpoint(0, desktop) {
+    flex-direction: column;
+  }
+
+  @include breakpoint(desktop) {
+  }
+
+  h1 {
+    font-size: 7.2rem;
+    margin-bottom: 4rem;
+    color: var(--text-contrast-10);
+    font-family: var(--font-headings);
+    font-weight: var(--font-weight-regular);
+  }
+
+  h2 {
+    font-size: clamp(32px, 5vw, 4.8rem);
+    margin-bottom: 3.2rem;
+    color: var(--text-contrast-10);
+    font-family: var(--font-headings);
+    font-weight: var(--font-weight-regular);
+  }
+
+  h3 {
+    font-size: 2.4rem;
+    margin: 0.4rem 0 1.2rem 0;
+    font-family: var(--font-paragraph);
+    font-weight: var(--font-weight-regular);
+  }
+
+  p,
+  li {
+    font-size: 2rem;
+    color: var(--text-contrast-8);
+    font-family: var(--font-paragraph);
+    line-height: 1.5;
+  }
+
+  code {
+    font-family: var(--font-code);
+  }
+
+  a,
+  button {
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.3em;
+  }
+}

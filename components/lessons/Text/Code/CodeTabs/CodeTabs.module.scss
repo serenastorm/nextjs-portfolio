@@ -1,0 +1,61 @@
+@import "~styles/lessons/placeholders";
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--text-contrast-8);
+  margin-top: 2.4rem;
+
+  & + *[role="tabpanel"] {
+    pre {
+      margin-top: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+
+  button {
+    font-size: 1.6rem;
+    font-family: var(--font-tabs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.01em;
+    padding: 8px 12px;
+    border-width: 0;
+    border-radius: 0.4rem 0.4rem 0 0;
+    cursor: pointer;
+
+    &[aria-selected="false"] {
+      background-color: transparent;
+      color: var(--text-contrast-8);
+    }
+
+    &[aria-selected="true"] {
+      background-color: var(--text-contrast-8);
+      color: var(--bg-level-1);
+    }
+
+    &:focus-visible {
+      outline: none;
+      background-color: var(--pink);
+      // color: var(--pink);
+      position: relative;
+    }
+  }
+}
+
+.wrapper {
+  @extend %code-block-wrapper;
+}
+
+.codeBlock {
+  @extend %code-block;
+}
+
+.copyToClipboardButton {
+  position: absolute;
+
+  &:hover {
+    button {
+      opacity: 1;
+    }
+  }
+}

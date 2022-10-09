@@ -1,0 +1,41 @@
+@import "~styles/modules/mixins.scss";
+
+.wrapper {
+  --preview-padding: clamp(24px, 10vw, 4rem);
+  --back-button-top: var(--preview-padding);
+  position: sticky;
+  align-self: flex-start;
+  top: 0;
+  z-index: 10;
+
+  padding: var(--preview-padding);
+  background-color: var(--bg-level-1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: var(--preview-width);
+  height: var(--preview-height);
+
+  @include breakpoint(0, desktop) {
+    --preview-height: 40vh;
+    --preview-width: 100vw;
+    gap: 3vh;
+  }
+
+  @include breakpoint(desktop) {
+    --preview-height: 100vh;
+    --preview-width: 50vw;
+    gap: 6.4rem;
+  }
+}
+
+.course-previewTitle {
+  font-size: 10vw;
+  text-align: left;
+}
+
+.backButton {
+  top: var(--back-button-top);
+}

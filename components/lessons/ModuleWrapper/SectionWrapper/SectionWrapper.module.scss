@@ -1,0 +1,14 @@
+.wrapper {
+  position: relative;
+  min-height: 40vh;
+
+  h2 {
+    margin-top: clamp(64px, 8vh, 8rem);
+  }
+
+  // .resource-icon {
+  //   position: absolute;
+  //   right: calc(100% + 1.2rem);
+  //   top: 1.8rem;
+  // }
+}

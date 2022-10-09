@@ -18,6 +18,8 @@ const NavButtons = () => {
   const { pathname } = useRouter();
   const scrollDirection = useScrollDirection();
 
+  const isLessonPage = pathname.startsWith("/flexbox");
+
   const items = navItems.map((navItem) => {
     return {
       ...navItem,
@@ -87,6 +89,10 @@ const NavButtons = () => {
       return null;
     }
   };
+
+  if (isLessonPage) {
+    return null;
+  }
 
   return (
     <ul

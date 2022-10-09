@@ -1,0 +1,98 @@
+@import "~styles/lessons/placeholders.scss";
+
+.browserSupport {
+  @extend %text-block;
+
+  --text-block-highlighted: var(--blue);
+  margin-top: 6.4rem;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  h3 {
+    color: var(--text-block-highlighted);
+  }
+
+  p.caption {
+    @extend %text-small;
+
+    a {
+      text-decoration: underline;
+      text-decoration-color: var(--pink);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--pink);
+      }
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.browser {
+  flex: 1;
+  background-color: var(--bg-level-1);
+  border-radius: 0.8rem;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.8rem;
+  min-width: max-content;
+
+  .browserName {
+    margin-bottom: 0;
+  }
+
+  .marketShare {
+    @extend %text-smaller;
+    color: var(--text-contrast-8);
+  }
+}
+
+.supportTag {
+  @extend %text-small;
+
+  width: 100%;
+  margin-top: 0.8rem;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  svg {
+    width: 16px;
+    height: 16px;
+
+    path {
+      fill: var(--success);
+    }
+  }
+
+  &[data-supported="true"] {
+    background: var(--success-bg);
+  }
+
+  &[data-supported="false"] {
+    background: var(--error-bg);
+  }
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.8rem;
+}

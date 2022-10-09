@@ -1,0 +1,50 @@
+@import "~styles/lessons/placeholders";
+@import "~styles/modules/mixins.scss";
+
+.childDiv {
+  border: 1px dashed var(--blue);
+  border-radius: 0.8rem;
+  pointer-events: none;
+  line-height: 1.4;
+
+  @include breakpoint(0, desktop) {
+    font-size: 1.2rem;
+  }
+
+  @include breakpoint(desktop) {
+    font-size: 1.4rem;
+  }
+
+  &[data-content="true"] {
+    padding: var(--parent-padding);
+  }
+
+  &[data-content="false"] {
+    min-width: var(--min-child-width);
+    text-align: center;
+
+    @include breakpoint(0, desktop) {
+      padding: 16px 12px;
+    }
+
+    @include breakpoint(desktop) {
+      padding: 40px var(--parent-padding);
+    }
+  }
+
+  &[data-spacing-top="32"] {
+    margin-top: 3.2rem;
+  }
+}
+
+.yellowText {
+  @extend %yellow-text;
+}
+
+.blueText {
+  @extend %blue-text;
+}
+
+.pinkText {
+  @extend %pink-text;
+}

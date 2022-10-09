@@ -1,0 +1,10 @@
+@import "~styles/modules/mixins.scss";
+
+.wrapper {
+  --back-button-top: 16px;
+  --content-padding: clamp(24px, 5vw, 8rem);
+
+  flex: 1;
+  padding: var(--content-padding);
+  padding-top: clamp(calc((var(--back-button-top) * 2) + 4rem), 5vw, 8rem);
+}

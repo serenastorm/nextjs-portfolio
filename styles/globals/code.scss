@@ -1,70 +1,38 @@
-@import "~styles/modules/mixins.scss";
+@import "~components/snippets/variables";
 
-.sp-wrapper {
-  --sp-layout-height: clamp(300px, 70vh, 700px) !important;
-  --sp-colors-bg-default: var(--sp-colors-surface1);
-  --sp-colors-fg-inactive: var(--sp-colors-surface2);
-  --sp-colors-bg-active: var(--sp-colors-surface3);
+.sp-syntax-property,
+.sp-syntax-tag,
+.sp-syntax-string,
+.sp-syntax-definition,
+.hljs-property,
+.hljs-tag,
+.hljs-string,
+.hljs-function {
+  font-weight: var(--font-weight-semibold);
 }
 
-.cm-scroller {
-  font-family: var(--type-code) !important;
-  font-size: 1.2em !important;
+.code-selector {
+  color: $code-selector-color;
 }
 
-.sp-tabs {
-  border-bottom-color: var(--sp-colors-surface1) !important;
-  border-radius: inherit;
-  background-color: inherit !important;
+.code-attribute {
+  color: $code-attribute-color;
 }
 
-.sp-layout {
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-  border-right-color: var(--sp-colors-surface2) !important;
-  border-top-color: var(--sp-colors-surface1) !important;
-  border-left-color: var(--sp-colors-surface1) !important;
-  border-bottom-color: var(--sp-colors-surface1) !important;
-
-  & + div {
-    background-color: #21222c;
-    border-color: #21222c;
-  }
-
-  & > .sp-stack {
-    @include breakpoint(0, 768) {
-      height: var(--sp-layout-height) !important;
-    }
-  }
+.code-comment {
+  color: $code-comment-color;
 }
 
-.sp-code-editor > div {
-  padding-bottom: var(--sp-expand-height) !important;
+.code-keyword {
+  color: $code-keyword-color;
 }
 
-.sp-tab-button {
-  cursor: pointer;
-  border-bottom: 1px solid transparent !important;
-
-  &[data-active="true"] {
-    border-bottom-color: var(--sp-colors-accent) !important;
-  }
-
-  &:hover {
-    background: var(--sp-colors-surface3);
-  }
+.code-number {
+  color: $code-number-color;
 }
 
-.sp-cube-wrapper {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  right: initial !important;
-  bottom: initial !important;
-}
-
-.cm-gutter {
-  opacity: 0.4 !important;
+.code-selector-pseudo {
+  color: $code-selector-pseudo-color;
 }
 
 pre {
@@ -76,135 +44,101 @@ pre {
 
   .hljs {
     .hljs-comment {
-      color: var(--code-comment);
+      color: $code-comment-color;
     }
 
     &.language-scss,
     &.language-css {
+      .hljs-selector-tag,
+      .hljs-selector-class {
+        color: $code-selector-color;
+      }
+
       .hljs-selector-id {
-        color: var(--code-blue);
+        color: $code-blue;
       }
 
       .hljs-attribute,
       .hljs-built_in {
-        color: var(--code-blue);
+        color: $code-attribute-color;
       }
 
       .hljs-number {
-        color: var(--code-purple);
+        color: $code-number-color;
       }
 
       .hljs-string {
-        color: var(--code-yellow);
+        color: $code-yellow;
       }
 
       .hljs-variable {
-        color: var(--code-orange);
+        color: $code-orange;
       }
 
       .hljs-selector-pseudo {
-        color: var(--code-purple);
+        color: $code-selector-pseudo-color;
       }
 
       .hljs-keyword {
-        color: var(--code-pink);
+        color: $code-keyword-color;
       }
 
       .hljs-meta {
-        color: var(--code-pink);
+        color: $code-pink;
       }
     }
 
     &.language-tsx {
       .hljs-keyword,
       .hljs-attr {
-        color: var(--code-pink);
+        color: $code-keyword-color;
       }
 
       .hljs-function {
-        color: var(--code-green);
+        color: $code-green;
       }
 
       .hljs-literal,
       .hljs-class,
       .hljs-built_in {
-        color: var(--code-blue);
+        color: $code-blue;
       }
 
       .hljs-params {
-        color: var(--code-yellow);
+        color: $code-yellow;
       }
 
       .hljs-tag {
-        color: var(--code-blue);
+        color: $code-blue;
       }
 
       .hljs-name,
       .hljs-number {
-        color: var(--code-purple);
+        color: $code-number-color;
       }
 
       .hljs-string {
-        color: var(--code-yellow);
+        color: $code-yellow;
       }
     }
 
     &.language-html,
     &.language-tsx > .xml {
       .hljs-tag {
-        color: var(--code-blue);
+        color: $code-blue;
       }
 
       .hljs-name {
-        color: var(--code-pink);
+        color: $code-pink;
       }
 
       .hljs-attr {
-        color: var(--code-green);
+        color: $code-green;
       }
 
       .hljs-string {
-        color: var(--code-yellow);
+        color: $code-yellow;
       }
     }
   }
-
-  --tomato-bg: #481a14;
-  --tomato: #f16a50;
-  --red-bg: #481a1d;
-  --red: #ff6369;
-  --crimson-bg: #481a2d;
-  --crimson: #f76190;
-  --pink-bg: #451a37;
-  --pink: #f65cb6;
-  --plum-bg: #3e1d40;
-  --plum: #d864d8;
-  --purple-bg: #3a1e48;
-  --purple: #bf7af0;
-  --violet-bg: #2c2250;
-  --violet: #9e8cfc;
-  --indigo-bg: #1c274f;
-  --indigo: #849dff;
-  --blue-bg: #102a4c;
-  --blue: #52a9ff;
-  --sky-bg: #082d41;
-  --sky: #2ec8ee;
-  --cyan-bg: #07303b;
-  --cyan: #00c2d7;
-  --teal-bg: #07312b;
-  --teal: #0ac5b3;
-  --mint-bg: #04312c;
-  --mint: #25d0ab;
-  --green-bg: #113123;
-  --green: #4cc38a;
-  --grass-bg: #16301d;
-  --grass: #63c174;
-  --lime-bg: #252e0f;
-  --lime: #87be22;
-  --yellow-bg: #352800;
-  --yellow: #f0c000;
-  --amber-bg: #3f2200;
-  --amber: #f1a10d;
-  --orange-bg: #441f04;
-  --orange: #ff8b3e;
 }

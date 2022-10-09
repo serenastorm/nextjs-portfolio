@@ -4,10 +4,12 @@ import { CopyToClipboardIcon } from "assets/icons";
 import styles from "./SnippetCopyToClipboardButton.module.scss";
 
 type SnippetCopyToClipboardButtonProps = {
+  className?: string;
   textToCopy: string;
 };
 
 const SnippetCopyToClipboardButton = ({
+  className = "",
   textToCopy,
 }: SnippetCopyToClipboardButtonProps) => {
   const [textCopiedToClipboard, setTextCopiedToClipboard] =
@@ -36,7 +38,9 @@ const SnippetCopyToClipboardButton = ({
 
   return (
     <>
-      <div className={styles.snippetCopyToClipboardButtonWrapper}>
+      <div
+        className={`${styles.snippetCopyToClipboardButtonWrapper} ${className}`}
+      >
         <input
           className="screenReaderText"
           readOnly

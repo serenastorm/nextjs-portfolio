@@ -1,0 +1,74 @@
+@import "~styles/modules/mixins.scss";
+
+$progress-transition-duration: 350ms;
+$button-size: 4rem;
+
+.progressIndicator {
+  position: fixed;
+  z-index: 50;
+  left: var(--preview-padding);
+  top: 16px;
+  padding: 0;
+  border-width: 0;
+  border-radius: 50%;
+  background-color: var(--bg-level-0);
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='56' height='56' viewBox='0 0 56 56' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M29.7142 16.75L20.3392 26.125H42.0625V29.875H20.3392L29.7142 39.25L27.0625 41.9017L13.1609 28L27.0625 14.0984L29.7142 16.75Z' fill='%23F5F5F5'/%3E%3C/svg%3E%0A");
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: opacity $progress-transition-duration ease,
+      transform $progress-transition-duration ease;
+  }
+
+  svg {
+    width: $button-size;
+    height: $button-size;
+    transform: rotate(-90deg) scale(calc(40 / 32));
+  }
+
+  &[data-complete="true"] {
+    &::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0px 0px 0px 4px var(--pink-bg);
+
+    &::after {
+      background-image: url("data:image/svg+xml,%3Csvg width='56' height='56' viewBox='0 0 56 56' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M29.7142 16.75L20.3392 26.125H42.0625V29.875H20.3392L29.7142 39.25L27.0625 41.9017L13.1609 28L27.0625 14.0984L29.7142 16.75Z' fill='%23f46ef6'/%3E%3C/svg%3E%0A");
+    }
+
+    .track,
+    .thumb {
+      stroke-opacity: 1;
+    }
+
+    .track {
+      stroke: var(--pink-bg);
+    }
+
+    .thumb {
+      stroke: var(--pink);
+    }
+  }
+}
+
+.track {
+  stroke: var(--text-contrast-8);
+  stroke-opacity: 0.2;
+}
+
+.thumb {
+  stroke: var(--text-contrast-8);
+  stroke-opacity: 0.8;
+}

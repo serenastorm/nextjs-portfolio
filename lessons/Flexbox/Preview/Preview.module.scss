@@ -1,0 +1,108 @@
+@import "~styles/lessons/placeholders";
+
+.alignItemsBaseline {
+  align-items: baseline;
+  justify-content: space-evenly;
+  box-shadow: none;
+  padding: 0;
+  margin-top: 4rem;
+
+  .alignItemsBaselineChild {
+    font-weight: var(--font-weight-medium);
+    padding: 0;
+    border-width: 0;
+
+    $i: 0;
+    $font-sizes: 0, 4.6rem, 2.4rem, 6.4rem, 3.2rem;
+
+    @for $i from 1 through length($font-sizes) {
+      &:nth-of-type(#{$i}) {
+        font-size: nth($font-sizes, $i);
+      }
+    }
+  }
+
+  .alignItemsBaselineAxis {
+    top: calc(50% + (4rem / 2) + 2px);
+  }
+}
+
+.gapDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  font-size: 1rem;
+}
+
+.gap {
+  --min-child-width: calc((100% - (32px * 2)) / 3);
+  width: 100%;
+  flex-wrap: wrap;
+
+  & > *:nth-child(n + 6) {
+    margin-top: 2.4rem;
+  }
+
+  .gapChild:nth-child(n + 6) {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "24px";
+      display: block;
+      bottom: calc(100%);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1rem;
+      line-height: 2.4rem;
+      color: var(--pink);
+    }
+  }
+}
+
+.pinkText {
+  @extend %pink-text;
+}
+
+.previewActions {
+  display: flex;
+  gap: 0.8rem;
+
+  button {
+    font-size: 1.6rem;
+    font-family: var(--font-tabs);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0.01em;
+    padding: 0.6rem 1.2rem;
+    border-width: 0;
+    border-radius: 0.4rem;
+    background-color: var(--text-contrast-10);
+    color: var(--bg-level-0);
+
+    &:focus-visible {
+      outline: none;
+      background-color: var(--pink);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
+}
+
+.order {
+  .orderChild:last-child {
+    background-image: url("http://placekitten.com/400/400");
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+.justifyContent {
+  --min-child-width: clamp(40px, 20%, 14rem);
+}

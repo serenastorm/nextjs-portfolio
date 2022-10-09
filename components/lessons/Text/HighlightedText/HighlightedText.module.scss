@@ -1,0 +1,8 @@
+@import "~styles/lessons/placeholders.scss";
+
+.highlightedText {
+  @extend %inline-text-block;
+
+  color: var(--pink);
+  background-color: var(--pink-bg);
+}

@@ -1,0 +1,19 @@
+@import "~styles/lessons/placeholders";
+
+.wrapper {
+  @extend %code-block-wrapper;
+}
+
+.codeBlock {
+  @extend %code-block;
+}
+
+.copyToClipboardButton {
+  position: absolute;
+
+  &:hover {
+    button {
+      opacity: 1;
+    }
+  }
+}

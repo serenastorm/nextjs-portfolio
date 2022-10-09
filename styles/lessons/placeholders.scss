@@ -1,0 +1,71 @@
+@import "~styles/modules/mixins.scss";
+
+%inline-text-block {
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+  border-radius: 0.2em;
+}
+
+%text-block {
+  padding: 1.2rem 1.6rem;
+  border-radius: 0.2rem 0.4rem 0.4rem 0.2rem;
+  border-left: 4px solid var(--text-block-highlighted);
+
+  h3 {
+    color: var(--text-block-highlighted);
+  }
+}
+
+%yellow-text {
+  color: var(--yellow);
+}
+
+%blue-text {
+  color: var(--blue);
+}
+
+%pink-text {
+  color: var(--pink);
+}
+
+%code-block-wrapper {
+  position: relative;
+
+  pre {
+    margin-top: 2.4rem;
+  }
+
+  @include breakpoint(0, desktop) {
+    max-width: calc(100vw - (#{var(--content-padding)} * 2));
+  }
+
+  @include breakpoint(desktop) {
+    max-width: calc(50vw - (#{var(--content-padding)} * 2));
+  }
+}
+
+%code-block {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  line-height: 1.5;
+  background-color: var(--bg-level-1);
+  border-radius: 0.4rem;
+  color: var(--text-contrast-10);
+
+  @include breakpoint(0, desktop) {
+    font-size: 1.6rem;
+  }
+
+  @include breakpoint(desktop) {
+    font-size: 1.8rem;
+  }
+}
+
+%text-small {
+  font-size: 1.6rem;
+}
+
+%text-smaller {
+  font-size: 1.4rem;
+}

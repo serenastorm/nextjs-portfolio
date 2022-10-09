@@ -1,0 +1,14 @@
+$code-blue: #8ae8fc;
+$code-pink: #ff79c6;
+$code-yellow: #f1fa8c;
+$code-green: #4ff67a;
+$code-purple: #b58dee;
+$code-orange: #ffb86c;
+$code-comment: #6272a4;
+
+$code-selector-color: #{var(--yellow)};
+$code-attribute-color: $code-blue;
+$code-comment-color: $code-comment;
+$code-keyword-color: $code-pink;
+$code-number-color: $code-purple;
+$code-selector-pseudo-color: $code-purple;
