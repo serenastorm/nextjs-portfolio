@@ -3,12 +3,16 @@ import Head from "next/head";
 import Router, { useRouter } from "next/router";
 import { Loader, NavButtons, SkipToContentLink } from "components/shared";
 import { routes } from "infrastructure/routes/constants";
-import { usePrefersReducedMotion } from "infrastructure/hooks";
+import {
+  usePrefersReducedMotion,
+  useWindowDimensions,
+} from "infrastructure/hooks";
 import type { AppProps } from "next/app";
 
 import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const { width: windowWidth } = useWindowDimensions();
   const { pathname } = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const userPrefersReducedMotion = usePrefersReducedMotion();
@@ -63,7 +67,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      {isLoading && <Loader />}
+      {(isLoading || !windowWidth) && <Loader />}
       <SkipToContentLink />
       <NavButtons />
       <Component {...pageProps} />

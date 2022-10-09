@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import type { ScrollSectionProps } from "../types";
+import type { ReactNode } from "react";
 
 import styles from "./ContentWrapper.module.scss";
 

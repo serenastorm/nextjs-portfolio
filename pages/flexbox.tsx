@@ -17,6 +17,11 @@ const FlexboxPage = () => {
           rel="stylesheet"
         />
         <meta name="theme-color" content="#181a1d" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
       </Head>
       <div className={styles.lessonPage}>
         <Flexbox />

@@ -102,6 +102,10 @@ $error-bg-dm: rgba($error-dm, 0.3);
     font-family: var(--font-code);
   }
 
+  body {
+    background-color: var(--bg-level-0);
+  }
+
   a,
   button {
     text-decoration-thickness: 0.05em;
