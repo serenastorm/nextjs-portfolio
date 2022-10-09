@@ -25,14 +25,8 @@ const LandingProjectLink = ({
             className={styles.landingProjectNewTabLink}
           />
         ) : (
-          <Link href={url} passHref>
-            <a
-              className={styles.landingProjectNewTabLink}
-              tabIndex={-1}
-              aria-hidden="true"
-            >
-              {label}
-            </a>
+          <Link href={url}>
+            <a className={styles.landingProjectNewTabLink}>{label}</a>
           </Link>
         )}
       </dt>
@@ -49,7 +43,7 @@ const LandingProjectLink = ({
         aria-hidden="true"
       />
     ) : (
-      <Link href={url} passHref>
+      <Link href={url}>
         <a
           className={styles.landingProjectLink}
           tabIndex={-1}
