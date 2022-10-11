@@ -58,6 +58,7 @@ const BlogArticlePage = ({
     tags,
     sandpackSettings,
     sandpackContent,
+    shortText,
   } = fields;
 
   return (
@@ -67,10 +68,11 @@ const BlogArticlePage = ({
         <meta name="theme-color" content="#ffffff" />
         <meta
           property="og:image"
-          content={`https://www.antonettiserena.com/api/og?title=${title}${
+          content={`https://nextjs-portfolio-beryl.vercel.app/api/og?title=${title}${
             subcategory ? `&category=${subcategory}` : ""
           }`}
         />
+        {shortText && <meta property="og:description" content={shortText} />}
       </Head>
 
       <Page
