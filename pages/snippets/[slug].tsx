@@ -65,6 +65,12 @@ const BlogArticlePage = ({
       <Head>
         <title>{title}</title>
         <meta name="theme-color" content="#ffffff" />
+        <meta
+          property="og:image"
+          content={`https://www.antonettiserena.com/api/og?title=${title}${
+            subcategory ? `&category=${subcategory}` : ""
+          }`}
+        />
       </Head>
 
       <Page
