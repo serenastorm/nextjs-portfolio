@@ -13,7 +13,7 @@ export const ChangeLogEntry = ({ fields, sys }: ChangeLog) => {
   const { date, content, title, tags } = fields;
 
   return (
-    <li className={blogStyles.blogPost}>
+    <article className={blogStyles.blogPost}>
       <h3 className={styles.blogPostTitle}>{title}</h3>
 
       {content && <SnippetMarkdown content={content} />}
@@ -28,7 +28,7 @@ export const ChangeLogEntry = ({ fields, sys }: ChangeLog) => {
           {tags && <SnippetPills types={tags} asLinks={false} />}
         </div>
       </div>
-    </li>
+    </article>
   );
 };
 
@@ -38,7 +38,7 @@ const ChangeLogEntries = ({
   entries: ChangeLogResponse[] | null;
 }) => {
   if (!entries) {
-    return <li className={blogStyles.blogPost}>No recent changes to show.</li>;
+    return <div className={blogStyles.blogPost}>No recent changes to show.</div>;
   }
   return (
     <>

@@ -1,7 +1,7 @@
 import { createElement } from "react";
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
-type PageContainerType = "div" | "article";
+type PageContainerType = "div" | "article" | "main";
 
 type PageProps = {
   as?: PageContainerType;

@@ -20,14 +20,12 @@ const Changelog = ({ entries }: { entries: ChangeLogResponse[] }) => {
       </Head>
       <Page
         className={`${blogStyles.blog} ${blogPageStyles.blogPage} ${styles.accessibilityPage}`}
+        as="main"
       >
         <h1 className={blogStyles.blogIndexTitle}>Changelog</h1>
-        <ul
-          className={blogIndexStyles.blogPosts} // list-style-type: "none" removes list semantics so this is needed
-          role="list"
-        >
+        <div className={blogIndexStyles.blogPosts}>
           <ChangeLogEntries entries={entries} />
-        </ul>
+        </div>
       </Page>
     </>
   );
