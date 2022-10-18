@@ -1,5 +1,3 @@
-export const apiUrl = process.env.API_URL || "http://localhost:3000/api";
-
 const baseUrl = "/";
 const codeSnippetsBaseUrl = `${baseUrl}snippets`;
 const codeSnippetUrl = (slug: string) => `${codeSnippetsBaseUrl}/${slug}`;

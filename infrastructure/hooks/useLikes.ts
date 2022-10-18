@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { apiUrl } from "infrastructure/routes/constants";
 
 type Likes = {
   totalLikes: number;
@@ -11,7 +10,7 @@ type Likes = {
 export default function useLikes(postId: string): Likes {
   const [totalLikes, setTotalLikes] = useState<number>(0);
   const [isLoading, setLoading] = useState<boolean>(true);
-  const apiEndpoint = `${apiUrl}/snippet/${postId}/likes`;
+  const apiEndpoint = `/api/snippet/${postId}/likes`;
 
   useEffect(() => {
     const getLikes = async () => {
