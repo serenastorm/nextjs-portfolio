@@ -10,8 +10,9 @@ import {
   LandingFootnotes,
 } from "components/landing";
 import { Page } from "components/shared/Page";
-import { routes, apiUrl } from "infrastructure/routes/constants";
+import { routes } from "infrastructure/routes/constants";
 import { SnippetLinks } from "components/entries/EntryCollection";
+import { fetchLastEntry } from "helpers/blog/api";
 
 import styles from "styles/Home.module.scss";
 import blogIndexStyles from "styles/blog/BlogIndex.module.scss";
@@ -85,9 +86,7 @@ const Home: NextPage = ({
             <SnippetLinks posts={[{ ...mostRecentPost }]} />
           </ul>
           <Link href={routes.blog.snippets.url} passHref>
-            <a
-              className={`${styles.landingBlogLink}`}
-            >
+            <a className={`${styles.landingBlogLink}`}>
               View all snippets{" "}
               <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
             </a>
@@ -101,8 +100,7 @@ const Home: NextPage = ({
 export default Home;
 
 export async function getStaticProps() {
-  const res = await fetch(`${apiUrl}/snippets/last`);
-  const mostRecentPost = await res.json();
+  const mostRecentPost = await fetchLastEntry();
 
   return {
     props: {

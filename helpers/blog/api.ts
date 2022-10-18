@@ -1,30 +1,69 @@
-import { BlogPostResponse } from "infrastructure/blog/types";
-import { apiUrl } from "infrastructure/routes/constants";
+import { contentfulClient, CONTENT_TYPE } from "lib/contentful/client";
+import type { BlogPost, BlogPostResponse } from "infrastructure/blog/types";
+import type { Entry, EntryCollection } from "contentful";
 
 export async function fetchEntry(slug: string): Promise<BlogPostResponse> {
-  const res = await fetch(`${apiUrl}/snippet/${slug}`);
-  const entry = await res.json();
+  const res = await contentfulClient.getEntries({
+    content_type: CONTENT_TYPE.BLOG_POST,
+    "fields.slug[in]": slug,
+  });
 
-  return entry;
+  return res.items[0] as BlogPostResponse;
 }
 
 export async function fetchRelatedEntries(slug: string): Promise<{
   previous: BlogPostResponse | null;
   next: BlogPostResponse | null;
 }> {
-  const previousEntryRes = await fetch(`${apiUrl}/prevsnippet/${slug}`);
-  const previousEntry = await previousEntryRes.json();
-  const nextEntryRes = await fetch(`${apiUrl}/nextsnippet/${slug}`);
-  const nextEntry = await nextEntryRes.json();
+  const currentItemRes = await contentfulClient.getEntries({
+    content_type: CONTENT_TYPE.BLOG_POST,
+    "fields.slug[in]": slug,
+  });
 
-  return { previous: previousEntry[0] || null, next: nextEntry[0] || null };
+  const { items } = currentItemRes as EntryCollection<BlogPost>;
+  const currentPostDate = items[0]?.fields?.date;
+
+  const previousPostRes = await contentfulClient.getEntries({
+    order: "-fields.date",
+    content_type: CONTENT_TYPE.BLOG_POST,
+    limit: 1,
+    "fields.date[lt]": currentPostDate,
+  });
+
+  const nextPostRes = await contentfulClient.getEntries({
+    order: "fields.date",
+    content_type: CONTENT_TYPE.BLOG_POST,
+    limit: 1,
+    "fields.date[gt]": currentPostDate,
+  });
+
+  return {
+    previous: previousPostRes.items.length
+      ? (previousPostRes.items[0] as BlogPostResponse)
+      : null,
+    next: nextPostRes.items.length
+      ? (nextPostRes.items[0] as BlogPostResponse)
+      : null,
+  };
 }
 
 export async function fetchEntries(
-  entryType?: "snippets" | "changelog"
+  entryType?: "blogPost" | "changelog"
 ): Promise<BlogPostResponse[]> {
-  const res = await fetch(`${apiUrl}/${entryType ?? "snippets"}/all`);
-  const entries = await res.json();
+  const res = await contentfulClient.getEntries({
+    order: "-fields.date",
+    content_type: entryType || CONTENT_TYPE.BLOG_POST,
+  });
 
-  return entries;
+  return res.items as BlogPostResponse[];
+}
+
+export async function fetchLastEntry(): Promise<BlogPostResponse> {
+  const res = await contentfulClient.getEntries({
+    order: "-fields.date",
+    content_type: CONTENT_TYPE.BLOG_POST,
+    limit: 2,
+  });
+
+  return res.items[0] as BlogPostResponse;
 }

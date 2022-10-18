@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { apiUrl } from "infrastructure/routes/constants";
+import { firebaseApiUrl } from "infrastructure/routes/constants";
 
 type Likes = {
   totalLikes: number;
@@ -13,7 +13,7 @@ export default function useLikes(postId: string): Likes {
   const [isLoading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch(`${apiUrl}/snippetDoc/${postId}/likes`)
+    fetch(`${firebaseApiUrl}/snippetDoc/${postId}/likes`)
       .then((res) => res.json())
       .then((doc: { likes: number }) => {
         setTotalLikes(doc.likes);
@@ -26,14 +26,14 @@ export default function useLikes(postId: string): Likes {
   }, [postId]);
 
   const addLike = () =>
-    fetch(`${apiUrl}/snippetDoc/${postId}/likes/add`, {
+    fetch(`${firebaseApiUrl}/snippetDoc/${postId}/likes/add`, {
       method: "POST",
     })
       .then((res) => res.json())
       .then((doc) => setTotalLikes(doc.likes));
 
   const removeLike = () =>
-    fetch(`${apiUrl}/snippetDoc/${postId}/likes/remove`, {
+    fetch(`${firebaseApiUrl}/snippetDoc/${postId}/likes/remove`, {
       method: "POST",
     })
       .then((res) => res.json())

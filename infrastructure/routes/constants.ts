@@ -3,7 +3,7 @@ const api = {
   prod: "https://antonettiserena-api.herokuapp.com/api",
 };
 
-export const apiUrl =
+export const firebaseApiUrl =
   process.env.NODE_ENV === "production" ? api.prod : api.dev;
 
 const baseUrl = "/";

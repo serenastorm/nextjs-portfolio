@@ -34,7 +34,8 @@ body {
 
 html,
 body,
-[data-reactroot] {
+[data-reactroot],
+#__next {
   height: 100%;
 }
 
