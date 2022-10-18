@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { firebaseApiUrl } from "infrastructure/routes/constants";
+import { apiUrl } from "infrastructure/routes/constants";
 
 type Likes = {
   totalLikes: number;
@@ -11,33 +11,52 @@ type Likes = {
 export default function useLikes(postId: string): Likes {
   const [totalLikes, setTotalLikes] = useState<number>(0);
   const [isLoading, setLoading] = useState<boolean>(true);
+  const apiEndpoint = `${apiUrl}/snippet/${postId}/likes`;
 
   useEffect(() => {
-    fetch(`${firebaseApiUrl}/snippetDoc/${postId}/likes`)
-      .then((res) => res.json())
-      .then((doc: { likes: number }) => {
-        setTotalLikes(doc.likes);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
+    const getLikes = async () => {
+      const likesRes = await fetch(apiEndpoint, {
+        method: "GET",
       });
+      const { likes } = await likesRes.json();
+      setTotalLikes(likes);
+      setLoading(false);
+    };
+
+    getLikes();
   }, [postId]);
 
-  const addLike = () =>
-    fetch(`${firebaseApiUrl}/snippetDoc/${postId}/likes/add`, {
+  const addLike = async () => {
+    const likesRes = await fetch(apiEndpoint, {
       method: "POST",
-    })
-      .then((res) => res.json())
-      .then((doc) => setTotalLikes(doc.likes));
+      body: JSON.stringify({
+        action: "add",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  const removeLike = () =>
-    fetch(`${firebaseApiUrl}/snippetDoc/${postId}/likes/remove`, {
+    const { likes } = await likesRes.json();
+    setTotalLikes(likes);
+    setLoading(false);
+  };
+
+  const removeLike = async () => {
+    const likesRes = await fetch(apiEndpoint, {
       method: "POST",
-    })
-      .then((res) => res.json())
-      .then((doc) => setTotalLikes(doc.likes));
+      body: JSON.stringify({
+        action: "remove",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const { likes } = await likesRes.json();
+    setTotalLikes(likes);
+    setLoading(false);
+  };
 
   return {
     totalLikes: totalLikes > 0 ? totalLikes : 0,

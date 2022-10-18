@@ -1,10 +1,4 @@
-const api = {
-  dev: "http://localhost:5001/api",
-  prod: "https://antonettiserena-api.herokuapp.com/api",
-};
-
-export const firebaseApiUrl =
-  process.env.NODE_ENV === "production" ? api.prod : api.dev;
+export const apiUrl = process.env.API_URL || "http://localhost:3000/api";
 
 const baseUrl = "/";
 const codeSnippetsBaseUrl = `${baseUrl}snippets`;

@@ -91,8 +91,6 @@ const Flexbox = () => {
 
         const lastRefInView = refsInView[refsInView.length - 1][0];
 
-        console.log(refsInView);
-
         if (scrollY < windowHeight * 0.5) {
           setCurrentScrollContainer("intro");
         } else {
