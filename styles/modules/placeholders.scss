@@ -44,10 +44,9 @@
     var(--nav-button-height) + (var(--nav-button-margin) * 2)
   );
 
-  // Also theme-color in document head
-  background-color: var(--light-gray);
   min-height: 100%;
-
+  // Also theme-color in document head
+  background-color: var(--homepage-bg);
   display: grid;
   grid-template-columns: 1fr var(--max-text-width) 1fr;
   grid-template-rows: max-content auto;

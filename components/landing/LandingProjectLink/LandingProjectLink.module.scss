@@ -28,18 +28,17 @@
 .landingProject {
   position: relative;
   display: flex;
-  gap: var(--project-padding);
-  padding: var(--project-padding);
   border-radius: var(--project-radius);
   transform: translateY(0);
   transition: transform 250ms ease;
 
   @include breakpoint(0, 399.98) {
-    --project-padding: 0;
+    gap: 8px;
   }
 
   @include breakpoint(400) {
-    --project-padding: 1.6rem;
+    gap: 1.6rem;
+    padding: 1.6rem;
   }
 
   @include breakpoint(0, 779.98) {
@@ -53,16 +52,21 @@
 
   @include onHoverAndFocus {
     transform: translateY(-2.5%) !important;
-    background: var(--white);
+    background-color: var(--homepage-project-bg);
     border-radius: var(--project-radius);
     box-shadow: 0px 1rem 1rem 0px rgba(176, 181, 244, 0.1);
+
+    @media (prefers-color-scheme: dark) {
+      box-shadow: none;
+    }
 
     a {
       color: var(--link);
 
       svg {
         path[data-layer="background"] {
-          fill: var(--arrow-bg-color-hover);
+          fill: var(--arrow-pointer-color-hover);
+          fill-opacity: 0.4;
         }
 
         g[data-layer="arrow"] {
@@ -119,7 +123,7 @@
     }
 
     a {
-      color: var(--text);
+      color: var(--text-contrast-10);
 
       @include onFocus {
         color: var(--link);
@@ -137,7 +141,7 @@
 
   dd {
     margin-top: 0.8rem;
-    color: var(--text-light);
+    color: var(--text-contrast-8);
 
     @include breakpoint(0, 859.98) {
       font-size: 1.6rem;
@@ -161,15 +165,14 @@
 a.landingProjectNewTabLink {
   white-space: normal;
 
-  --arrow-bg-color: #d5cdcf;
-  --arrow-pointer-color: var(--text);
-  --arrow-bg-color-hover: #f8c0d8;
+  --arrow-pointer-color: var(--text-contrast-10);
   --arrow-pointer-color-hover: var(--link);
 
   @include onHoverAndTouch {
     svg {
       path[data-layer="background"] {
-        fill: var(--arrow-bg-color-hover);
+        fill: var(--arrow-pointer-color-hover);
+        fill-opacity: 0.4;
       }
 
       g[data-layer="arrow"] {

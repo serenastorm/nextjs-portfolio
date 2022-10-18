@@ -3,12 +3,20 @@ import { PreviewCaption } from "components/lessons/Preview";
 import { breakpoint } from "components/lessons/Preview/constants";
 import { useWindowDimensions } from "infrastructure/hooks";
 import type { CSSProperties } from "react";
-import type { AlignSelfPossibleValuesProps } from "../types";
+import type {
+  AlignSelfPossibleValuesProps,
+  FlexPreviewId,
+  FlexPreviewFieldId,
+} from "../types";
 
 const AlignSelfPreview = ({
+  id,
   value,
+  options,
 }: {
+  id: FlexPreviewId;
   value: AlignSelfPossibleValuesProps;
+  options: AlignSelfPossibleValuesProps[];
 }) => {
   const { width: windowWidth } = useWindowDimensions();
 
@@ -16,8 +24,12 @@ const AlignSelfPreview = ({
     windowWidth && windowWidth >= breakpoint ? "40rem" : "25vh";
   const alignSelf = value;
 
+  const fieldIds = options.map(
+    (option) => `${id}-${option}` as FlexPreviewFieldId
+  );
+
   return (
-    <>
+    <output form={id} htmlFor={fieldIds.join(" ")}>
       <Div.Parent
         style={{ minHeight: parentMinHeight, alignItems: "flex-start" }}
       >
@@ -34,7 +46,7 @@ const AlignSelfPreview = ({
       </Div.Parent>
 
       <PreviewCaption copy={`align-self: ${alignSelf};`} />
-    </>
+    </output>
   );
 };
 

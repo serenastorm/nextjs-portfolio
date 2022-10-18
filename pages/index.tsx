@@ -50,6 +50,11 @@ const Home: NextPage = ({
       <Head>
         <title>Portfolio | Serena Antonetti</title>
         <meta name="theme-color" content="#f5f7fb" />
+        <meta
+          name="theme-color"
+          content="#181a1d"
+          media="(prefers-color-scheme: dark)"
+        />
       </Head>
       <Page className={styles.landingPage}>
         {/* ARIA role="text" prevents 'text splitting' in VoiceOver iOS https://axesslab.com/text-splitting/  */}

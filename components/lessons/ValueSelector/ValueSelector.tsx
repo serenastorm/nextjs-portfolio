@@ -3,13 +3,21 @@ import type { KeyboardEvent } from "react";
 import styles from "./ValueSelector.module.scss";
 
 type ValueSelectorProps = {
+  caption?: string;
+  id: string;
   options: string[];
   value: string;
   setValue: Dispatch<SetStateAction<any>>;
 };
 
-const ValueSelector = ({ options, value, setValue }: ValueSelectorProps) => {
-  const buttonsRefs = useRef<Array<HTMLButtonElement | null>>([]);
+const ValueSelector = ({
+  caption = "Update the flex direction",
+  id,
+  options,
+  value,
+  setValue,
+}: ValueSelectorProps) => {
+  const buttonsRefs = useRef<Array<HTMLInputElement | null>>([]);
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
   const activateTab = (newTabIndex: number) => {
@@ -21,7 +29,7 @@ const ValueSelector = ({ options, value, setValue }: ValueSelectorProps) => {
   };
 
   const onKeyPressed = (
-    event: KeyboardEvent<HTMLButtonElement>,
+    event: KeyboardEvent<HTMLInputElement>,
     tabIndex: number
   ) => {
     const shouldGoToNextTab = event.key === "ArrowRight";
@@ -59,25 +67,58 @@ const ValueSelector = ({ options, value, setValue }: ValueSelectorProps) => {
   };
 
   return (
-    <div className={styles.selector}>
-      {options.map((option, optionIndex) => (
-        <button
-          key={option}
-          onClick={() => activateTab(optionIndex)}
-          data-selected={value === option ? "true" : "false"}
-          className={styles.value}
-          ref={(el: HTMLButtonElement) =>
-            (buttonsRefs.current[optionIndex] = el)
-          }
-          onKeyDown={(event: KeyboardEvent<HTMLButtonElement>) =>
-            onKeyPressed(event, optionIndex)
-          }
-          tabIndex={optionIndex === activeTabIndex ? 0 : -1}
-        >
-          {option}
-        </button>
-      ))}
-    </div>
+    <form action="" id={id}>
+      <fieldset className={styles.selector}>
+        <legend className="screenReaderText">{caption}</legend>
+
+        {options.map((option, optionIndex) => (
+          <div className={styles.value} key={`${id}-${option}`}>
+            <input
+              type="radio"
+              name={id}
+              id={`${id}-${option}`}
+              value={option}
+              checked={option === value}
+              onChange={() => activateTab(optionIndex)}
+              ref={(el: HTMLInputElement) =>
+                (buttonsRefs.current[optionIndex] = el)
+              }
+              onKeyDown={(event: KeyboardEvent<HTMLInputElement>) =>
+                onKeyPressed(event, optionIndex)
+              }
+              tabIndex={option === value ? 0 : -1}
+            />
+            <label
+              className={styles.label}
+              key={`${id}-${option}`}
+              htmlFor={`${id}-${option}`}
+            >
+              {option}
+            </label>
+            <span className={styles.background} />
+          </div>
+        ))}
+      </fieldset>
+    </form>
+    // <div className={styles.selector}>
+    //   {options.map((option, optionIndex) => (
+    //     <button
+    //       key={option}
+    //       onClick={() => activateTab(optionIndex)}
+    //       data-selected={value === option ? "true" : "false"}
+    //       className={styles.value}
+    //       ref={(el: HTMLButtonElement) =>
+    //         (buttonsRefs.current[optionIndex] = el)
+    //       }
+    // onKeyDown={(event: KeyboardEvent<HTMLButtonElement>) =>
+    //   onKeyPressed(event, optionIndex)
+    // }
+    //       tabIndex={optionIndex === activeTabIndex ? 0 : -1}
+    //     >
+    //       {option}
+    //     </button>
+    //   ))}
+    // </div>
   );
 };
 

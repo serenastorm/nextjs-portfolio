@@ -1,11 +1,30 @@
+@import "~styles/modules/variables.scss";
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/functions.scss";
 
-$link: #ed5497;
-$link-rgb: hexToRGB($link);
-
 html {
   font-size: 62.5%;
+
+  ::-moz-selection {
+    /* Firefox */
+    background: #f0c9de;
+  }
+
+  ::selection {
+    background: #f0c9de;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    ::-moz-selection {
+      background: #222427;
+      color: var(--link);
+    }
+
+    ::selection {
+      background: #222427;
+      color: var(--link);
+    }
+  }
 }
 
 body {
@@ -22,23 +41,40 @@ body,
 :root {
   // Colors
   --white: #ffffff;
-  --light-gray: #f5f7fb;
-  --text: #5e5252;
-  --text-light: #856b6b;
   --link: #{$link};
   --link-rgb: #{$link-rgb};
-  --link-sm: #833deb;
-  --divider: #b6a4a4;
+  --link-sm: #{$link-sm-light};
+  --divider: #{$divider-light};
 
   --code-bg-color: #282a36;
   --code-color: #f8f8f2;
 
-  // --fun-gradient: linear-gradient(
-  //   96.3deg,
-  //   #5fd1ca 1.78%,
-  //   #86a8e7 47.82%,
-  //   #dabcec 100%
-  // );
+  --bg-level-0: #{$bg-level-0-light};
+  --bg-level-1: #{$bg-level-1-light};
+
+  --text-contrast-8: #{$text-contrast-8-light};
+  --text-contrast-10: #{$text-contrast-10-light};
+
+  --homepage-bg: #{$homepage-bg-light};
+  --homepage-project-bg: #{$homepage-project-bg-light};
+  --like-button-bg: #{$like-button-bg-light};
+
+  @media (prefers-color-scheme: dark) {
+    --divider: #{$divider-dark};
+
+    --bg-level-0: #{$bg-level-0-dark};
+    --bg-level-1: #{$bg-level-1-dark};
+
+    --text-contrast-8: #{$text-contrast-8-dark};
+    --text-contrast-10: #{$text-contrast-10-dark};
+
+    --homepage-bg: #{$homepage-bg-dark};
+    --homepage-project-bg: #{$homepage-project-bg-dark};
+
+    --like-button-bg: #{$like-button-bg-dark};
+    --link-sm: #{$link-sm-dark};
+  }
+
   --fun-gradient: linear-gradient(116.24deg, #fc6767 6.87%, #ec008c 98.94%);
 
   // Spacing
@@ -117,4 +153,45 @@ body,
   --amber: #ad5700;
   --orange-bg: #ffe8d7;
   --orange: #bd4b00;
+
+  @media (prefers-color-scheme: dark) {
+    --tomato-bg: #481a14;
+    --tomato: #f16a50;
+    --red-bg: #481a1d;
+    --red: #ff6369;
+    --crimson-bg: #481a2d;
+    --crimson: #f76190;
+    --pink-bg: #451a37;
+    --pink: #f65cb6;
+    --plum-bg: #3e1d40;
+    --plum: #d864d8;
+    --purple-bg: #3a1e48;
+    --purple: #bf7af0;
+    --violet-bg: #2c2250;
+    --violet: #9e8cfc;
+    --indigo-bg: #1c274f;
+    --indigo: #849dff;
+    --blue-bg: #102a4c;
+    --blue: #52a9ff;
+    --sky-bg: #082d41;
+    --sky: #2ec8ee;
+    --cyan-bg: #07303b;
+    --cyan: #00c2d7;
+    --teal-bg: #07312b;
+    --teal: #0ac5b3;
+    --mint-bg: #04312c;
+    --mint: #147d6f;
+    --green-bg: #25d0ab;
+    --green: #4cc38a;
+    --grass-bg: #16301d;
+    --grass: #63c174;
+    --lime-bg: #252e0f;
+    --lime: #87be22;
+    --yellow-bg: #352800;
+    --yellow: #f0c000;
+    --amber-bg: #3f2200;
+    --amber: #f1a10d;
+    --orange-bg: #441f04;
+    --orange: #ff8b3e;
+  }
 }

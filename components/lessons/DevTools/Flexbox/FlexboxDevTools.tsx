@@ -9,10 +9,10 @@ import {
 
 import { FlexboxIcon } from "assets/lessons/icons/Flexbox";
 import {
-  alignContentPossibleValues,
+  alignContentDevToolsPossibleValues,
   alignItemsPossibleValues,
-  flexDirectionPossibleValues,
-  flexWrapPossibleValues,
+  flexDirectionDevToolsPossibleValues,
+  flexWrapDevToolsPossibleValues,
   justifyContentPossibleValues,
   defaultDevToolsValues,
 } from "lessons/Flexbox/constants";
@@ -20,8 +20,8 @@ import type { KeyboardEvent } from "react";
 import type {
   AlignItemsPossibleValuesProps,
   AlignContentPossibleValuesProps,
-  FlexDirectionPossibleValuesProps,
-  FlexWrapPossibleValuesProps,
+  FlexDirectionDevToolsPossibleValuesProps,
+  FlexWrapDevToolsPossibleValuesProps,
   JustifyContentPossibleValuesProps,
 } from "lessons/Flexbox/types";
 import styles from "./FlexboxDevTools.module.scss";
@@ -34,8 +34,8 @@ type FlexboxDevToolsProps = {
 type FlexboxDevTools =
   | AlignItemsPossibleValuesProps
   | AlignContentPossibleValuesProps
-  | FlexDirectionPossibleValuesProps
-  | FlexWrapPossibleValuesProps
+  | FlexDirectionDevToolsPossibleValuesProps
+  | FlexWrapDevToolsPossibleValuesProps
   | JustifyContentPossibleValuesProps;
 
 type Attribute =
@@ -84,12 +84,13 @@ const FlexboxDevTools = ({ value, setValue }: FlexboxDevToolsProps) => {
       name: "flex-direction",
       attribute: "flexDirection",
       initialValue:
-        defaultDevToolsValues.flexDirection as FlexDirectionPossibleValuesProps,
-      currentValue: value.flexDirection as FlexDirectionPossibleValuesProps,
-      possibleValues: flexDirectionPossibleValues,
+        defaultDevToolsValues.flexDirection as FlexDirectionDevToolsPossibleValuesProps,
+      currentValue:
+        value.flexDirection as FlexDirectionDevToolsPossibleValuesProps,
+      possibleValues: flexDirectionDevToolsPossibleValues,
       renderIcon: (iconValue) => (
         <FlexboxIcon.FlexDirection
-          value={iconValue as FlexDirectionPossibleValuesProps}
+          value={iconValue as FlexDirectionDevToolsPossibleValuesProps}
           key={iconValue}
         />
       ),
@@ -98,12 +99,12 @@ const FlexboxDevTools = ({ value, setValue }: FlexboxDevToolsProps) => {
       name: "flex-wrap",
       attribute: "flexWrap",
       initialValue:
-        defaultDevToolsValues.flexWrap as FlexWrapPossibleValuesProps,
-      currentValue: value.flexWrap as FlexWrapPossibleValuesProps,
-      possibleValues: flexWrapPossibleValues,
+        defaultDevToolsValues.flexWrap as FlexWrapDevToolsPossibleValuesProps,
+      currentValue: value.flexWrap as FlexWrapDevToolsPossibleValuesProps,
+      possibleValues: flexWrapDevToolsPossibleValues,
       renderIcon: (iconValue) => (
         <FlexboxIcon.FlexWrap
-          value={iconValue as FlexWrapPossibleValuesProps}
+          value={iconValue as FlexWrapDevToolsPossibleValuesProps}
           key={iconValue}
         />
       ),
@@ -114,7 +115,7 @@ const FlexboxDevTools = ({ value, setValue }: FlexboxDevToolsProps) => {
       initialValue:
         defaultDevToolsValues.alignContent as AlignContentPossibleValuesProps,
       currentValue: value.alignContent as AlignContentPossibleValuesProps,
-      possibleValues: alignContentPossibleValues,
+      possibleValues: alignContentDevToolsPossibleValues,
       renderIcon: (iconValue) => (
         <FlexboxIcon.AlignContent
           value={iconValue as AlignContentPossibleValuesProps}
@@ -237,7 +238,7 @@ const FlexboxDevTools = ({ value, setValue }: FlexboxDevToolsProps) => {
   };
 
   return (
-    <div className={styles.devTools}>
+    <div className={styles.devTools} id="devTools">
       {attributes.map((devToolsAttribute) => {
         const { attribute, currentValue, name, possibleValues, renderIcon } =
           devToolsAttribute;

@@ -2,7 +2,7 @@
 @import "~styles/modules/placeholders.scss";
 
 .blog {
-  color: var(--text);
+  color: var(--text-contrast-10);
 
   ul {
     padding-left: 0;
@@ -50,14 +50,14 @@
 }
 
 .blogIndexTitle {
-  border-bottom: 2px solid var(--light-gray);
+  border-bottom: 2px solid var(--bg-level-1);
 
   @include breakpoint(400) {
     padding: 0 1.6rem;
   }
 
   span {
-    color: var(--text-light);
+    color: var(--text-contrast-8);
   }
 }
 
@@ -72,9 +72,7 @@
 }
 
 .newTabLink {
-  --arrow-bg-color: rgba(0, 106, 220, 0.3);
   --arrow-pointer-color: var(--blue);
-  --arrow-bg-color-hover: rgba(0, 106, 220, 0.3);
   --arrow-pointer-color-hover: var(--blue);
 }
 

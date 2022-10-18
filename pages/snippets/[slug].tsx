@@ -67,6 +67,11 @@ const BlogArticlePage = ({
         <title>{title}</title>
         <meta name="theme-color" content="#ffffff" />
         <meta
+          name="theme-color"
+          content="#181a1d"
+          media="(prefers-color-scheme: dark)"
+        />
+        <meta
           property="og:image"
           content={`https://nextjs-portfolio-beryl.vercel.app/api/og?title=${title}${
             subcategory ? `&category=${subcategory}` : ""

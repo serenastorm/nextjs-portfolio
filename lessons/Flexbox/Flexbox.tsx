@@ -17,6 +17,7 @@ import {
   alignItemsPossibleValues,
   alignSelfPossibleValues,
   justifyContentPossibleValues,
+  flexDirectionPossibleValues,
   flexWrapPossibleValues,
 } from "./constants";
 import {
@@ -115,30 +116,55 @@ const Flexbox = () => {
           <FlexboxPreview.FlexDirection
             value={flexDirection}
             key="flexDirection"
+            id="flexDirection"
+            options={flexDirectionPossibleValues}
           />
         );
       case "flexWrap":
-        return <FlexboxPreview.FlexWrap value={flexWrap} key="flexWrap" />;
+        return (
+          <FlexboxPreview.FlexWrap
+            value={flexWrap}
+            key="flexWrap"
+            id="flexWrap"
+            options={flexWrapPossibleValues}
+          />
+        );
       case "justifyContent":
         return (
           <FlexboxPreview.JustifyContent
             value={justifyContent}
             key="justifyContent"
+            id="justifyContent"
+            options={justifyContentPossibleValues}
           />
         );
       case "alignItems":
         return (
-          <FlexboxPreview.AlignItems value={alignItems} key="alignItems" />
+          <FlexboxPreview.AlignItems
+            value={alignItems}
+            key="alignItems"
+            id="alignItems"
+            options={alignItemsPossibleValues}
+          />
         );
       case "alignContent":
         return (
           <FlexboxPreview.AlignContent
             value={alignContent}
             key="alignContent"
+            id="alignContent"
+            options={alignContentPossibleValues}
           />
         );
       case "alignSelf":
-        return <FlexboxPreview.AlignSelf value={alignSelf} key="alignSelf" />;
+        return (
+          <FlexboxPreview.AlignSelf
+            value={alignSelf}
+            key="alignSelf"
+            id="alignSelf"
+            options={alignSelfPossibleValues}
+          />
+        );
       case "gap":
         return <FlexboxPreview.Gap key="gap" />;
       case "order":
@@ -154,6 +180,7 @@ const Flexbox = () => {
             items={flexItems}
             setItems={setFlexItems}
             key="devTools"
+            id="devTools"
           />
         );
 
@@ -234,9 +261,10 @@ const Flexbox = () => {
             flex items render in a row.
           </Paragraph>
           <ValueSelector
-            options={["row", "row-reverse", "column", "column-reverse"]}
+            options={flexDirectionPossibleValues}
             value={flexDirection}
             setValue={setFlexDirection}
+            id="flexDirection"
           />
           <Code.Block
             language="css"
@@ -247,7 +275,11 @@ const Flexbox = () => {
 }`}
           />
           <ModuleWrapper.InlinePreview>
-            <FlexboxPreview.FlexDirection value={flexDirection} />
+            <FlexboxPreview.FlexDirection
+              value={flexDirection}
+              id="flexDirection"
+              options={flexDirectionPossibleValues}
+            />
           </ModuleWrapper.InlinePreview>
         </ModuleWrapper.Section>
         <ModuleWrapper.Section
@@ -263,9 +295,10 @@ const Flexbox = () => {
             flex items render in a row.
           </Paragraph>
           <ValueSelector
-            options={[...flexWrapPossibleValues, "wrap-reverse"]}
+            options={flexWrapPossibleValues}
             value={flexWrap}
             setValue={setFlexWrap}
+            id="flexWrap"
           />
           <Code.Block
             language="css"
@@ -276,7 +309,11 @@ const Flexbox = () => {
 }`}
           />
           <ModuleWrapper.InlinePreview>
-            <FlexboxPreview.FlexWrap value={flexWrap} />
+            <FlexboxPreview.FlexWrap
+              value={flexWrap}
+              id="flexWrap"
+              options={flexWrapPossibleValues}
+            />
           </ModuleWrapper.InlinePreview>
         </ModuleWrapper.Section>
         <ModuleWrapper.Section title="Flex-flow">
@@ -307,6 +344,7 @@ const Flexbox = () => {
             options={justifyContentPossibleValues}
             value={justifyContent}
             setValue={setJustifyContent}
+            id="justifyContent"
           />
           <Code.Block
             language="css"
@@ -317,7 +355,11 @@ const Flexbox = () => {
 }`}
           />
           <ModuleWrapper.InlinePreview>
-            <FlexboxPreview.JustifyContent value={justifyContent} />
+            <FlexboxPreview.JustifyContent
+              value={justifyContent}
+              id="justifyContent"
+              options={justifyContentPossibleValues}
+            />
           </ModuleWrapper.InlinePreview>
         </ModuleWrapper.Section>
         <ModuleWrapper.Section
@@ -334,6 +376,7 @@ const Flexbox = () => {
             options={alignItemsPossibleValues}
             value={alignItems}
             setValue={setAlignItems}
+            id="alignItems"
           />
           <Code.Block
             language="css"
@@ -344,7 +387,11 @@ const Flexbox = () => {
 }`}
           />
           <ModuleWrapper.InlinePreview>
-            <FlexboxPreview.AlignItems value={alignItems} />
+            <FlexboxPreview.AlignItems
+              value={alignItems}
+              id="alignItems"
+              options={alignItemsPossibleValues}
+            />
           </ModuleWrapper.InlinePreview>
         </ModuleWrapper.Section>
         <Tips
@@ -377,9 +424,10 @@ const Flexbox = () => {
             <Code.Inline language="css" code="flex-wrap: nowrap;" />
           </Paragraph>
           <ValueSelector
-            options={[...alignContentPossibleValues, "normal"]}
+            options={alignContentPossibleValues}
             value={alignContent}
             setValue={setAlignContent}
+            id="alignContent"
           />
           <Code.Block
             language="css"
@@ -390,7 +438,11 @@ const Flexbox = () => {
 }`}
           />
           <ModuleWrapper.InlinePreview>
-            <FlexboxPreview.AlignContent value={alignContent} />
+            <FlexboxPreview.AlignContent
+              value={alignContent}
+              id="alignContent"
+              options={alignContentPossibleValues}
+            />
           </ModuleWrapper.InlinePreview>
         </ModuleWrapper.Section>
         <ModuleWrapper.Section
@@ -407,6 +459,7 @@ const Flexbox = () => {
           <ValueSelector
             options={alignSelfPossibleValues}
             value={alignSelf}
+            id="alignSelf"
             setValue={setAlignSelf}
           />
           <Code.Block
@@ -422,7 +475,11 @@ const Flexbox = () => {
 }`}
           />
           <ModuleWrapper.InlinePreview>
-            <FlexboxPreview.AlignSelf value={alignSelf} />
+            <FlexboxPreview.AlignSelf
+              value={alignSelf}
+              id="alignSelf"
+              options={alignSelfPossibleValues}
+            />
           </ModuleWrapper.InlinePreview>
         </ModuleWrapper.Section>
         <ModuleWrapper.Section
@@ -553,6 +610,7 @@ const Flexbox = () => {
               value={devToolsValues}
               items={flexItems}
               setItems={setFlexItems}
+              id="devTools"
             />
           </ModuleWrapper.InlinePreview>
         </ModuleWrapper.Section>

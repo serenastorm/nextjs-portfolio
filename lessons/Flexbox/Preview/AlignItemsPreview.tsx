@@ -1,17 +1,29 @@
 import { Div } from "components/lessons/Preview/Div";
 import { PreviewCaption } from "components/lessons/Preview";
 import type { CSSProperties } from "react";
-import type { AlignItemsPossibleValuesProps } from "../types";
+import type {
+  AlignItemsPossibleValuesProps,
+  FlexPreviewId,
+  FlexPreviewFieldId,
+} from "../types";
 
 const AlignItemsPreview = ({
+  id,
   value,
+  options,
 }: {
+  id: FlexPreviewId;
   value: AlignItemsPossibleValuesProps;
+  options: AlignItemsPossibleValuesProps[];
 }) => {
   const alignItems = value;
 
+  const fieldIds = options.map(
+    (option) => `${id}-${option}` as FlexPreviewFieldId
+  );
+
   return (
-    <>
+    <output form={id} htmlFor={fieldIds.join(" ")}>
       <Div.Parent style={{ alignItems } as CSSProperties}>
         <Div.Axis axis="y" />
         <Div.Child
@@ -32,7 +44,7 @@ const AlignItemsPreview = ({
       </Div.Parent>
 
       <PreviewCaption copy={`align-items: ${alignItems};`} />
-    </>
+    </output>
   );
 };
 

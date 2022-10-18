@@ -2,13 +2,21 @@ import { Div } from "components/lessons/Preview/Div";
 import { PreviewCaption } from "components/lessons/Preview";
 import { breakpoint } from "components/lessons/Preview/constants";
 import { useWindowDimensions } from "infrastructure/hooks";
-import type { AlignContentPossibleValuesProps } from "../types";
+import type {
+  AlignContentPossibleValuesProps,
+  FlexPreviewId,
+  FlexPreviewFieldId,
+} from "../types";
 import type { CSSProperties } from "react";
 
 const AlignContentPreview = ({
+  id,
   value,
+  options,
 }: {
+  id: FlexPreviewId;
   value: AlignContentPossibleValuesProps;
+  options: AlignContentPossibleValuesProps[];
 }) => {
   const { width: windowWidth } = useWindowDimensions();
 
@@ -17,8 +25,12 @@ const AlignContentPreview = ({
 
   const alignContent = value;
 
+  const fieldIds = options.map(
+    (option) => `${id}-${option}` as FlexPreviewFieldId
+  );
+
   return (
-    <>
+    <output form={id} htmlFor={fieldIds.join(" ")}>
       <Div.Parent
         style={
           {
@@ -47,7 +59,7 @@ const AlignContentPreview = ({
       </Div.Parent>
 
       <PreviewCaption copy={`align-content: ${alignContent};`} />
-    </>
+    </output>
   );
 };
 

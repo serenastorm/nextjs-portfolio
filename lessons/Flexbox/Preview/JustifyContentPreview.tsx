@@ -1,19 +1,31 @@
 import { Div } from "components/lessons/Preview/Div";
 import { PreviewCaption } from "components/lessons/Preview";
 import type { CSSProperties } from "react";
-import type { JustifyContentPossibleValuesProps } from "../types";
+import type {
+  JustifyContentPossibleValuesProps,
+  FlexPreviewId,
+  FlexPreviewFieldId,
+} from "../types";
 
 import styles from "./Preview.module.scss";
 
 const JustifyContentPreview = ({
+  id,
   value,
+  options,
 }: {
+  id: FlexPreviewId;
   value: JustifyContentPossibleValuesProps;
+  options: JustifyContentPossibleValuesProps[];
 }) => {
   const justifyContent = value;
 
+  const fieldIds = options.map(
+    (option) => `${id}-${option}` as FlexPreviewFieldId
+  );
+
   return (
-    <>
+    <output form={id} htmlFor={fieldIds.join(" ")}>
       <Div.Parent
         style={{ justifyContent, width: "100%" } as CSSProperties}
         className={styles.justifyContent}
@@ -63,7 +75,7 @@ const JustifyContentPreview = ({
         )}
       </Div.Parent>
       <PreviewCaption copy={`justify-content: ${justifyContent};`} />
-    </>
+    </output>
   );
 };
 

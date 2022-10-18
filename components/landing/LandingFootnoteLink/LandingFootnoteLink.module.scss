@@ -62,7 +62,7 @@ $link-hover-gradient: linear-gradient(125deg, var(--link), var(--link-sm));
 
 .footnote {
   font-family: var(--type-serif);
-  color: var(--text);
+  color: var(--text-contrast-10);
 
   a:not(.footnoteReturnLink) {
     @extend %footnote-link;

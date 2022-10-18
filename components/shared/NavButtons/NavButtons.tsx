@@ -101,12 +101,12 @@ const NavButtons = () => {
           ? styles.navButtonsHidden
           : styles.navButtonsVisible
       }`}
+      data-active-btn-index={`${activeBtnIndex}`}
       // list-style-type: "none" removes list semantics so this is needed
       role="list"
     >
       <div
         className={styles.navButtonIndicator}
-        data-active-btn-index={`${activeBtnIndex}`}
         style={{ animationDuration: getAnimationDuration() }}
       />
       {items.map((navItem, navItemIndex) => (

@@ -1,4 +1,5 @@
 @import "~styles/modules/mixins.scss";
+@import "~styles/modules/variables.scss";
 
 @font-face {
   font-family: "BN Chester";
@@ -31,11 +32,11 @@ $error-dm: #ff1313;
 $error-bg-dm: rgba($error-dm, 0.3);
 
 .lessonPage {
-  --bg-level-0: #181a1d;
-  --bg-level-1: #222427;
+  --bg-level-0: #{$bg-level-0-dark};
+  --bg-level-1: #{$bg-level-1-dark};
 
-  --text-contrast-8: #d7d7d7;
-  --text-contrast-10: #f5f5f5;
+  --text-contrast-8: #{$text-contrast-8-dark};
+  --text-contrast-10: #{$text-contrast-10-dark};
 
   --white: #ffffff;
   --pink: #{$pink-dm};

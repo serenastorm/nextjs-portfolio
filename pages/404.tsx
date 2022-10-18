@@ -13,6 +13,11 @@ const Custom404 = () => {
       <Head>
         <title>Not found</title>
         <meta name="theme-color" content="#ffffff" />
+        <meta
+          name="theme-color"
+          content="#181a1d"
+          media="(prefers-color-scheme: dark)"
+        />
       </Head>
       <Page className={styles.errorPage}>
         <h1>This page could not be found.</h1>

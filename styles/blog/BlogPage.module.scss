@@ -7,7 +7,7 @@
     calc(var(--nav-button-height) + (var(--nav-button-margin) * 2))
     var(--content-padding-inline);
   // Also theme-color in index.html
-  background-color: var(--white);
+  background-color: var(--bg-level-0);
   min-height: 100%;
   position: relative;
 

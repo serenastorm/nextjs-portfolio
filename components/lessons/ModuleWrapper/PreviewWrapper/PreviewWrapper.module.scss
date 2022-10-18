@@ -18,6 +18,15 @@
   width: var(--preview-width);
   height: var(--preview-height);
 
+  output {
+    width: 100%;
+    display: inherit;
+    flex-direction: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+    gap: inherit;
+  }
+
   @include breakpoint(0, desktop) {
     --preview-height: 40vh;
     --preview-width: 100vw;

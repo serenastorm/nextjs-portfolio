@@ -8,7 +8,8 @@
     margin-left: 0.2em;
 
     path[data-layer="background"] {
-      fill: var(--arrow-bg-color);
+      fill: var(--arrow-pointer-color);
+      fill-opacity: 0.2;
     }
 
     g[data-layer="arrow"] {
@@ -39,7 +40,8 @@
 
     svg {
       path[data-layer="background"] {
-        fill: var(--arrow-bg-color-hover);
+        fill: var(--arrow-pointer-color-hover);
+        fill-opacity: 0.4;
       }
 
       g[data-layer="arrow"] {

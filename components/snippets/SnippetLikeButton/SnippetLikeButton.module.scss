@@ -12,16 +12,7 @@
     --heart-size: 3.2rem;
     position: fixed;
     z-index: 50;
-    background-image: linear-gradient(
-        to bottom,
-        rgba(var(--link-rgb), 0.15),
-        rgba(var(--link-rgb), 0.15)
-      ),
-      linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.8),
-        rgba(255, 255, 255, 0.8)
-      );
+    background-image: var(--like-button-bg);
     padding: 0 0.8rem 0 0;
     backdrop-filter: blur(2px);
 
@@ -63,7 +54,7 @@
     .likeButtonFocusMarker {
       width: calc(var(--heart-size) * 2);
       height: calc(var(--heart-size) * 2);
-      background-color: rgba(var(--link-rgb), 0.15);
+      background-image: var(--like-button-bg);
       border-radius: 50%;
       transform: translateX(calc(var(--heart-size) * 0.1)) scale(0);
     }
@@ -109,6 +100,8 @@
 p.likeButtonLabel {
   margin: 0;
   font-size: 1.4rem !important;
+  position: relative;
+  z-index: 1;
 }
 
 .likeButtonInput {
@@ -296,4 +289,5 @@ p.likeButtonLabel {
   pointer-events: none;
   position: absolute;
   transition: all 100ms ease-in-out;
+  z-index: 0;
 }

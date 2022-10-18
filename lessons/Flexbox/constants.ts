@@ -4,7 +4,9 @@ import type {
   AlignItemsPossibleValuesProps,
   AlignSelfPossibleValuesProps,
   FlexDirectionPossibleValuesProps,
+  FlexDirectionDevToolsPossibleValuesProps,
   FlexWrapPossibleValuesProps,
+  FlexWrapDevToolsPossibleValuesProps,
   JustifyContentPossibleValuesProps,
 } from "./types";
 
@@ -17,7 +19,18 @@ export const alignContentPossibleValues: AlignContentPossibleValuesProps[] = [
   "space-around",
   "space-between",
   "stretch",
+  "normal",
 ];
+
+export const alignContentDevToolsPossibleValues: AlignContentPossibleValuesProps[] =
+  [
+    "center",
+    "flex-start",
+    "flex-end",
+    "space-around",
+    "space-between",
+    "stretch",
+  ];
 
 export const alignItemsPossibleValues: AlignItemsPossibleValuesProps[] = [
   "center",
@@ -36,15 +49,24 @@ export const alignSelfPossibleValues: AlignSelfPossibleValuesProps[] = [
   "stretch",
 ];
 
+export const flexDirectionDevToolsPossibleValues: FlexDirectionDevToolsPossibleValuesProps[] =
+  ["row", "column"];
+
 export const flexDirectionPossibleValues: FlexDirectionPossibleValuesProps[] = [
   "row",
   "column",
+  "row-reverse",
+  "column-reverse",
 ];
 
 export const flexWrapPossibleValues: FlexWrapPossibleValuesProps[] = [
   "nowrap",
   "wrap",
+  "wrap-reverse",
 ];
+
+export const flexWrapDevToolsPossibleValues: FlexWrapDevToolsPossibleValuesProps[] =
+  ["nowrap", "wrap"];
 
 export const justifyContentPossibleValues: JustifyContentPossibleValuesProps[] =
   [

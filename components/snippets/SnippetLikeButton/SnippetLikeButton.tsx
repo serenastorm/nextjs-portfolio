@@ -58,7 +58,6 @@ const SnippetLikeButton = ({
         {inputShouldBeChecked ? "Unlike" : "Like"} this article
       </p>
       <input
-        name="isGoing"
         type="checkbox"
         className={styles.likeButtonInput}
         aria-labelledby={`likeButtonLabel${articleId}`}

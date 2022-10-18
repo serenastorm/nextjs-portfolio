@@ -30,7 +30,13 @@ export type AlignSelfPossibleValuesProps = NonNullable<
   CSSProperties["alignSelf"]
 >;
 
-export type FlexDirectionPossibleValuesProps = "row" | "column";
+export type FlexDirectionDevToolsPossibleValuesProps = "row" | "column";
+
+export type FlexDirectionPossibleValuesProps = NonNullable<
+  CSSProperties["flexDirection"]
+>;
+
+export type FlexWrapDevToolsPossibleValuesProps = "nowrap" | "wrap";
 
 export type FlexWrapPossibleValuesProps = NonNullable<
   CSSProperties["flexWrap"]
@@ -39,3 +45,14 @@ export type FlexWrapPossibleValuesProps = NonNullable<
 export type JustifyContentPossibleValuesProps = NonNullable<
   CSSProperties["justifyContent"]
 >;
+
+export type FlexPreviewId =
+  | "alignSelf"
+  | "alignContent"
+  | "alignItems"
+  | "flexDirection"
+  | "flexWrap"
+  | "justifyContent"
+  | "devTools";
+
+export type FlexPreviewFieldId = `${FlexPreviewId}-${string}`;

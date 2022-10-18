@@ -39,6 +39,11 @@ const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
           {subtitle ? `${subtitle} | ` : ""}Snippets | Serena Antonetti
         </title>
         <meta name="theme-color" content="#ffffff" />
+        <meta
+          name="theme-color"
+          content="#181a1d"
+          media="(prefers-color-scheme: dark)"
+        />
       </Head>
       <Page
         className={`${blogStyles.blog} ${blogPageStyles.blogPage}`}

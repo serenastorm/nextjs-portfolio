@@ -3,7 +3,7 @@
 
 h1 {
   line-height: 140%;
-  color: var(--text);
+  color: var(--text-contrast-10);
 
   @include breakpoint(0, 1199.98) {
     font-size: 3.2rem;

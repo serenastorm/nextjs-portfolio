@@ -34,7 +34,7 @@
 
     thead tr,
     tbody tr:not(:last-of-type) {
-      border-bottom: 1px solid var(--light-gray);
+      border-bottom: 1px solid var(--bg-level-1);
     }
 
     th,
@@ -42,12 +42,12 @@
       padding: 0.8rem;
 
       &:not(:last-of-type) {
-        border-right: 1px solid var(--light-gray);
+        border-right: 1px solid var(--bg-level-1);
       }
     }
 
     tr:nth-of-type(even) {
-      background-color: var(--light-gray);
+      background-color: var(--bg-level-1);
     }
   }
 

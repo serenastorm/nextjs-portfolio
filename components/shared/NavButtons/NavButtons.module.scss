@@ -1,3 +1,4 @@
+@import "~styles/modules/variables.scss";
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/placeholders.scss";
 
@@ -25,11 +26,81 @@ $navButton-transition: all 200ms ease-in;
   bottom: var(--nav-button-margin);
   left: 50%;
   transform: translate(-50%, 0);
-  background-color: var(--light-gray);
+  background-color: var(--bg-level-1);
   padding: var(--nav-buttons-padding);
   border-radius: var(--nav-button-radius);
   box-shadow: 37px 64px 45px rgba(17, 62, 99, 0.02),
     4px 7px 18px rgba(17, 62, 99, 0.08), 0px 0px 0px rgba(17, 62, 99, 0.08);
+
+  &::before,
+  &::after {
+    position: absolute;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0),
+      rgba(255, 255, 255, 0.3) 25%,
+      rgba(255, 255, 255, 0.15) 75%,
+      rgba(0, 0, 0, 0)
+    );
+    opacity: 0.5;
+    height: 1.5px;
+    width: 100%;
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:not([data-active-btn-index="2"]) {
+      border: 1px solid var(--divider);
+
+      &::before,
+      &::after {
+        content: "";
+      }
+    }
+  }
+
+  &[data-active-btn-index="-1"] {
+    .navButtonIndicator {
+      opacity: 0;
+    }
+  }
+
+  &[data-active-btn-index="0"] {
+    .navButtonIndicator {
+      transform: translateX(0);
+    }
+  }
+
+  &[data-active-btn-index="2"] {
+    .navButtonIndicator {
+      background: var(--fun-gradient);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      --bg-level-1: #{$bg-level-1-light};
+      --text-contrast-10: #{$text-contrast-10-light};
+    }
+  }
+
+  @for $i from 1 through 4 {
+    &[data-active-btn-index="#{$i}"] {
+      .navButtonIndicator {
+        transform: translateX(
+          calc(
+            (#{var(--nav-button-width)} * #{$i}) +
+              (#{var(--nav-buttons-gap)} * #{$i})
+          )
+        );
+      }
+    }
+  }
 }
 
 .navButtonsHidden {
@@ -50,32 +121,9 @@ $navButton-transition: all 200ms ease-in;
   width: var(--nav-button-width);
   height: var(--nav-button-height);
   border-radius: var(--nav-button-radius);
-  background-color: var(--text);
+  background-color: var(--text-contrast-10);
   z-index: 0;
   transition: $navButton-transition;
-
-  &[data-active-btn-index="-1"] {
-    opacity: 0;
-  }
-
-  &[data-active-btn-index="0"] {
-    transform: translateX(0);
-  }
-
-  &[data-active-btn-index="2"] {
-    background: var(--fun-gradient);
-  }
-
-  @for $i from 1 through 4 {
-    &[data-active-btn-index="#{$i}"] {
-      transform: translateX(
-        calc(
-          (#{var(--nav-button-width)} * #{$i}) +
-            (#{var(--nav-buttons-gap)} * #{$i})
-        )
-      );
-    }
-  }
 }
 
 .navButton {
@@ -101,7 +149,8 @@ $navButton-transition: all 200ms ease-in;
     .navButtonLink {
       &[aria-current="page"] {
         &:focus-visible {
-          box-shadow: 0 0 0 1px var(--light-gray), 0 0 0 3px var(--text);
+          box-shadow: 0 0 0 1px var(--bg-level-1),
+            0 0 0 3px var(--text-contrast-10);
         }
       }
 
@@ -138,7 +187,7 @@ $navButton-transition: all 200ms ease-in;
   gap: 0.4rem;
   width: var(--nav-button-width);
   min-height: var(--nav-button-height);
-  color: var(--text);
+  color: var(--text-contrast-10);
   border-radius: var(--nav-button-radius);
   transition: all 100ms ease-in;
   padding: var(--nav-buttons-padding);
@@ -158,11 +207,11 @@ $navButton-transition: all 200ms ease-in;
   }
 
   &[aria-current="page"] {
-    color: var(--light-gray);
+    color: var(--bg-level-1);
     cursor: initial;
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 1px var(--light-gray), 0 0 0 3px var(--link);
+    box-shadow: 0 0 0 1px var(--bg-level-1), 0 0 0 3px var(--link);
   }
 }

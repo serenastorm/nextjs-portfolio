@@ -1,3 +1,4 @@
+@import "~styles/modules/variables.scss";
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/placeholders.scss";
 
@@ -6,7 +7,7 @@
   --card-border-color: rgba(94, 82, 82, 0.1);
   --card-border-radius: 2px;
 
-  color: var(--text);
+  color: $text-contrast-10-light;
   padding: var(--content-padding-top)
     calc((100vw - #{var(--max-text-width)}) / 2)
     calc(var(--nav-button-height) + (var(--nav-button-margin) * 2))
@@ -33,6 +34,15 @@
     --max-text-width: 120rem;
     --content-padding: 24px;
     --grid-gutter: 32px;
+  }
+
+  ::-moz-selection {
+    /* Firefox */
+    background: #F0C9DE;
+  }
+
+  ::selection {
+    background: #F0C9DE;
   }
 
   p {
@@ -85,7 +95,7 @@
 .diaryCredits {
   margin-top: 4rem;
   font-size: 1.4rem !important;
-  color: var(--text-light);
+  color: $text-contrast-8-light;
   text-align: right;
 
   @media (hover: none) {

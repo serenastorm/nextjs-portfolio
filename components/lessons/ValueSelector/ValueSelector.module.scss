@@ -10,22 +10,53 @@
   font-family: var(--font-code);
   border-width: 0;
   border-radius: 0.2rem;
-  cursor: pointer;
   padding: 4px 12px;
+  position: relative;
 
-  &[data-selected="false"] {
-    background-color: var(--bg-level-1);
-    color: var(--text-contrast-10);
-  }
+  input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
 
-  &[data-selected="true"] {
-    background-color: var(--pink-bg);
-    color: var(--pink);
-  }
+    &:checked {
+      & ~ .background {
+        background-color: var(--pink-bg);
+      }
 
-  &:focus-visible {
-    outline: none;
-    box-shadow: 0px 0px 0px 2px var(--pink);
-    color: var(--pink);
+      & ~ .label {
+        color: var(--pink);
+      }
+    }
+
+    &:not(:checked) {
+      & ~ .background {
+        background-color: var(--bg-level-1);
+      }
+
+      & ~ .label {
+        color: var(--text-contrast-10);
+      }
+    }
+
+    &:focus-visible {
+      outline: none;
+
+      & ~ .background {
+        box-shadow: 0px 0px 0px 2px var(--pink);
+        color: var(--pink);
+      }
+    }
   }
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.label {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
 }
