@@ -23,6 +23,11 @@ const FlexboxPage = () => {
           content="black-translucent"
         />
       </Head>
+      <style jsx global>{`
+        html {
+          background-color: #181a1d;
+        }
+      `}</style>
       <div className={styles.lessonPage}>
         <Flexbox />
       </div>

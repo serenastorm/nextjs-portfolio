@@ -57,6 +57,11 @@ const Home: NextPage = ({
           media="(prefers-color-scheme: dark)"
         />
       </Head>
+      <style jsx global>{`
+        html {
+          background-color: var(--homepage-bg);
+        }
+      `}</style>
       <Page className={styles.landingPage}>
         {/* ARIA role="text" prevents 'text splitting' in VoiceOver iOS https://axesslab.com/text-splitting/  */}
         <h1 role="text">

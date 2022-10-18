@@ -25,6 +25,10 @@ html {
       color: var(--link);
     }
   }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--bg-level-0);
+  }
 }
 
 body {

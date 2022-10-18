@@ -21,6 +21,11 @@ const Fun = () => {
         <title>Blog | Serena Antonetti</title>
         <meta name="theme-color" content="#F8F3F4" />
       </Head>
+      <style jsx global>{`
+        html {
+          background-color: #f8f3f4;
+        }
+      `}</style>
       <div className={styles.sparklesContainer}>
         <div id="sparkles-container" />
       </div>
