@@ -1,4 +1,4 @@
-import { createElement, useState, useRef, KeyboardEvent } from "react";
+import { createElement, useState, useRef, Fragment } from "react";
 import Link from "next/link";
 import { routes } from "infrastructure/routes/constants";
 import type { CategoryLabels, CategoryUrls } from "helpers/blog/types";
@@ -7,12 +7,14 @@ import type {
   SnippetPillProps,
   SnippetPillsProps,
 } from "./types";
+import type { KeyboardEvent } from "react";
 
 import styles from "./SnippetPills.module.scss";
 
 export const SnippetPill = ({
-  as = "div",
   className = "",
+  isLink,
+  inList,
   type,
   linkRef,
   onKeyDown,
@@ -47,11 +49,22 @@ export const SnippetPill = ({
 
   const { color, label, url } = getSnippetPillColor();
 
-  const shouldSnippetPillBeLink = as === "li";
   const pillClassName = `${styles.pill} ${styles[`pill${color}`]} ${className}`;
 
+  const wrapperElement = () => {
+    if (inList) {
+      return "li";
+    } else {
+      if (isLink) {
+        return Fragment;
+      } else {
+        return "div";
+      }
+    }
+  };
+
   const renderChildren = () =>
-    shouldSnippetPillBeLink
+    isLink
       ? createElement(
           Link,
           {
@@ -62,7 +75,7 @@ export const SnippetPill = ({
             passHref: true,
           },
           <a
-            title={`Snippets tagged ${label}`}
+            title={inList ? undefined : `Snippets tagged ${label}`}
             className={pillClassName}
             ref={linkRef}
             onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
@@ -75,7 +88,7 @@ export const SnippetPill = ({
         )
       : createElement("div", { className: pillClassName }, label);
 
-  return createElement(as, {}, renderChildren());
+  return createElement(wrapperElement(), {}, renderChildren());
 };
 
 const SnippetPills = ({ asLinks = true, types }: SnippetPillsProps) => {
@@ -88,6 +101,7 @@ const SnippetPills = ({ asLinks = true, types }: SnippetPillsProps) => {
   };
 
   const totalPills = types.length;
+  const asList = totalPills > 1;
 
   const onKeyPressed = (
     event: KeyboardEvent<HTMLAnchorElement>,
@@ -123,30 +137,27 @@ const SnippetPills = ({ asLinks = true, types }: SnippetPillsProps) => {
     }
   };
 
-  return (
-    <ul
-      className={styles.pills}
-      // list-style-type: "none" removes list semantics so this is needed
-      role="list"
-    >
-      {types.map((type, pillIndex) => (
-        <SnippetPill
-          type={type.toLowerCase()}
-          as={asLinks ? "li" : "div"}
-          key={type}
-          linkRef={(el: HTMLAnchorElement) =>
-            (pillsRefs.current[pillIndex] = el)
+  return createElement(
+    asList ? "ul" : Fragment,
+    asList
+      ? { role: "list", "aria-label": "Snippet tags", className: styles.pills }
+      : {},
+    types.map((type, pillIndex) => (
+      <SnippetPill
+        type={type.toLowerCase()}
+        isLink={asLinks || asList}
+        inList={asList}
+        key={type}
+        linkRef={(el: HTMLAnchorElement) => (pillsRefs.current[pillIndex] = el)}
+        onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) => {
+          if (!asLinks) {
+            return null;
           }
-          onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) => {
-            if (!asLinks) {
-              return null;
-            }
-            onKeyPressed(event, pillIndex);
-          }}
-          tabIndex={pillIndex === focusedPillIndex && asLinks ? 0 : -1}
-        />
-      ))}
-    </ul>
+          onKeyPressed(event, pillIndex);
+        }}
+        tabIndex={pillIndex === focusedPillIndex && asLinks ? 0 : -1}
+      />
+    ))
   );
 };
 

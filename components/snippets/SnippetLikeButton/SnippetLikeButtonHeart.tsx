@@ -11,6 +11,7 @@ const SnippetLikeButtonHeart = ({ filled }: SnippetLikeButtonHeartProps) => {
       fill="none"
       viewBox="0 0 40 40"
       preserveAspectRatio="xMidYMid meet"
+      aria-hidden="true"
     >
       <path
         fill={filled ? "currentColor" : "none"}

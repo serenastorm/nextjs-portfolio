@@ -40,7 +40,10 @@ const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
         </title>
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <Page className={`${blogStyles.blog} ${blogPageStyles.blogPage}`}>
+      <Page
+        className={`${blogStyles.blog} ${blogPageStyles.blogPage}`}
+        as="main"
+      >
         <h1 className={blogStyles.blogIndexTitle}>
           {tag || subcategory ? (
             <>
@@ -54,12 +57,9 @@ const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
             "All snippets"
           )}
         </h1>
-        <ul
-          className={blogIndexStyles.blogPosts} // list-style-type: "none" removes list semantics so this is needed
-          role="list"
-        >
+        <div className={blogIndexStyles.blogPosts}>
           <SnippetLinks posts={posts} />
-        </ul>
+        </div>
       </Page>
     </>
   );

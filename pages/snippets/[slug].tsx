@@ -77,33 +77,38 @@ const BlogArticlePage = ({
 
       <Page
         className={`${blogPageStyles.blogPage} ${blogStyles.blog} ${blogArticleStyles.blogArticle}`}
-        as="article"
+        as="main"
       >
         <header
           className={`${blogStyles.blogArticleMeta} ${blogArticleStyles.blogArticleMeta}`}
           key={`${subcategory}/${slug}/meta`}
         >
-          <p>
-            <Link href={`/${category}`}>Code Snippets</Link>
-            {subcategory && (
-              <>
-                {" "}
-                /{" "}
-                <Link
-                  href={{
-                    pathname: routes.blog.snippets.url,
-                    query: { cat: subcategory },
-                  }}
-                >
-                  {getCategory(subcategory).label}
-                </Link>
-              </>
-            )}
-          </p>
+          <nav aria-label="Breadcrumbs">
+            <ul
+              aria-label="Breadcrumbs"
+              className={blogArticleStyles.breadcrumbs}
+            >
+              <li>
+                <Link href={`/${category}`}>Code Snippets</Link>
+              </li>
+              {subcategory && (
+                <li>
+                  <Link
+                    href={{
+                      pathname: routes.blog.snippets.url,
+                      query: { cat: subcategory },
+                    }}
+                  >
+                    {getCategory(subcategory).label}
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </nav>
 
           {tags && <SnippetPills types={tags} />}
         </header>
-        <main id="mainContent" key={`${subcategory}/${slug}/mainContent`}>
+        <article id="mainContent" key={`${subcategory}/${slug}/mainContent`}>
           <h1>{title}</h1>
           <SnippetMarkdown content={content} />
           {sandpackContent && sandpackSettings && (
@@ -115,9 +120,9 @@ const BlogArticlePage = ({
               />
             </>
           )}
-        </main>
+        </article>
         {(nextPost || previousPost) && (
-          <footer className={blogArticleStyles.blogArticleNav}>
+          <aside className={blogArticleStyles.blogArticleNav}>
             <div
               className={blogArticleStyles.blogArticleNavLink}
               key={`${subcategory}/${slug}/prevLink`}
@@ -150,7 +155,7 @@ const BlogArticlePage = ({
                 </>
               )}
             </div>
-          </footer>
+          </aside>
         )}
         {!likesAreLoading && (
           <SnippetLikeButton

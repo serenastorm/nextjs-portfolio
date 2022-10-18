@@ -18,7 +18,7 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
   const { category, date, shortText, slug, subcategory, title } = fields;
 
   return (
-    <li className={blogStyles.blogPost}>
+    <article className={blogStyles.blogPost}>
       <Link
         href={`/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`}
         passHref
@@ -49,14 +49,14 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
         </div>
         <SnippetPills types={[subcategory]} />
       </div>
-    </li>
+    </article>
   );
 };
 
 const SnippetLinks = ({ posts }: { posts: BlogPostResponse[] | null }) => {
   if (!posts) {
     return (
-      <li className={blogStyles.blogPost}>
+      <div className={blogStyles.blogPost}>
         No posts to show.{" "}
         <Link href={routes.blog.snippets.url} passHref>
           <a className="semibold">
@@ -64,7 +64,7 @@ const SnippetLinks = ({ posts }: { posts: BlogPostResponse[] | null }) => {
             <GoToLinkIcon />
           </a>
         </Link>
-      </li>
+      </div>
     );
   }
   return (

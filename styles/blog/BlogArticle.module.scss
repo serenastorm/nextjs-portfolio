@@ -121,3 +121,46 @@
 //   right: 0.8rem;
 //   top: 0.8rem;
 // }
+
+$breadcrumb-gap: 4px;
+
+.breadcrumbs {
+  color: var(--text-light);
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $breadcrumb-gap;
+
+  li {
+    font-family: var(--type-serif);
+
+    &:not(:first-of-type) {
+      &::before {
+        content: "/";
+        margin-right: $breadcrumb-gap;
+      }
+    }
+  }
+
+  a {
+    --underline-color: currentColor;
+    @extend %link-with-underline;
+    border-bottom: 0.05em solid currentColor;
+    padding: 0.05em 0.1em 0.1em 0.1em;
+
+    &::after {
+      height: 0.05em;
+    }
+
+    @include onHoverAndFocus {
+      background-color: var(--blue-bg);
+      color: #006adc;
+      border-bottom-color: var(--blue);
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}

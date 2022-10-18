@@ -23,8 +23,9 @@ export type SnippetColor =
 
 export type SnippetPillProps = {
   animationDelay?: number;
-  as?: "div" | "li";
   className?: string;
+  isLink: boolean;
+  inList: boolean;
   type: string;
   linkRef: LegacyRef<HTMLAnchorElement>;
   onKeyDown: (event: KeyboardEvent<HTMLAnchorElement>) => void;

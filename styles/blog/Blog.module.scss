@@ -44,38 +44,8 @@
   justify-content: center;
   gap: 1.6rem;
 
-  & > p {
+  & > nav {
     flex: 1;
-  }
-
-  & > p {
-    font-family: var(--type-serif);
-  }
-
-  p {
-    color: var(--text-light);
-    margin: 0;
-
-    a {
-      --underline-color: currentColor;
-      @extend %link-with-underline;
-      border-bottom: 0.05em solid currentColor;
-      padding: 0.05em 0.1em 0.1em 0.1em;
-
-      &::after {
-        height: 0.05em;
-      }
-
-      @include onHoverAndFocus {
-        background-color: var(--blue-bg);
-        color: #006adc;
-        border-bottom-color: var(--blue);
-
-        &::after {
-          opacity: 1;
-        }
-      }
-    }
   }
 }
 

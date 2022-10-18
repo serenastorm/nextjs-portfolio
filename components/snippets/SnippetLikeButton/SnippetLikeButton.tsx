@@ -33,14 +33,29 @@ const SnippetLikeButton = ({
   const minLikesCount = inputShouldBeChecked ? 1 : 0;
   const likesCount = total > minLikesCount ? total : minLikesCount;
 
+  const updateLikes = () => {
+    if (inputShouldBeChecked) {
+      removeLike();
+      setUserHasLikedArticle("false");
+    } else {
+      addLike();
+      setUserHasLikedArticle("true");
+    }
+  };
+
   return (
     <div
       className={`${styles.likeButton}${
         fixed ? ` ${styles.likeButtonIsFixed}` : ""
       }`}
     >
-      <p id={`likeButtonLabel${articleId}`} className="screenReaderText">
-        Like this article
+      <p
+        id={`likeButtonLabel${articleId}`}
+        className="screenReaderText"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {inputShouldBeChecked ? "Unlike" : "Like"} this article
       </p>
       <input
         name="isGoing"
@@ -48,15 +63,8 @@ const SnippetLikeButton = ({
         className={styles.likeButtonInput}
         aria-labelledby={`likeButtonLabel${articleId}`}
         checked={inputShouldBeChecked}
-        onChange={() => {
-          if (inputShouldBeChecked) {
-            removeLike();
-            setUserHasLikedArticle("false");
-          } else {
-            addLike();
-            setUserHasLikedArticle("true");
-          }
-        }}
+        onChange={() => updateLikes()}
+        onKeyDown={() => updateLikes()}
       />
       <div className={styles.likeButtonFocusMarker} />
       <SnippetLikeButtonHeart filled={inputShouldBeChecked} />
