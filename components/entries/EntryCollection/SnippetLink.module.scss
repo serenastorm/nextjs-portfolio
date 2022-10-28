@@ -5,7 +5,8 @@
   @extend %link-with-icon;
 
   .blogPostTitle {
-    text-decoration: underline;
+    text-decoration: 0.06em underline;
+    text-underline-offset: 0.25em;
   }
 
   @include onHoverAndFocus {
