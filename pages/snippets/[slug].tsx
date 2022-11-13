@@ -73,8 +73,10 @@ const BlogArticlePage = ({
         />
         <meta
           property="og:image"
-          content={`https://nextjs-portfolio-beryl.vercel.app/api/og?title=${title}${
-            subcategory ? `&category=${subcategory}` : ""
+          content={`https://nextjs-portfolio-beryl.vercel.app/api/og?title=${encodeURIComponent(
+            title
+          )}${
+            subcategory ? `&category=${encodeURIComponent(subcategory)}` : ""
           }`}
         />
         {shortText && <meta property="og:description" content={shortText} />}

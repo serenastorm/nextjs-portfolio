@@ -14,9 +14,10 @@ export const projects: LinkProps[] = [
   //   isExternal: true,
   // },
   {
-    label: "2018 portfolio",
-    description: "UI/UX works from 2018",
-    url: "https://silly-ramanujan-4dd4c1.netlify.app/",
+    label: "Developer handoff",
+    description: "Figma widget",
+    url: "https://github.com/serenastorm/figma-developer-handoff",
+    // url: "https://www.figma.com/community/widget/1173343953294737171",
     isExternal: true,
   },
   {
