@@ -7,14 +7,8 @@ export const projects: LinkProps[] = [
     url: "https://zealous-visvesvaraya-033757.netlify.app",
     isExternal: true,
   },
-  // {
-  //   label: "cmts2a",
-  //   description: "custom wordpress theme",
-  //   url: "https://cmts2a.fr/",
-  //   isExternal: true,
-  // },
   {
-    label: "Developer handoff",
+    label: "developer handoff",
     description: "Figma widget",
     url: "https://github.com/serenastorm/figma-developer-handoff",
     // url: "https://www.figma.com/community/widget/1173343953294737171",
