@@ -35,6 +35,7 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
         className={`${blogStyles.blogArticleMeta} ${styles.blogArticleMeta}`}
       >
         <div className={styles.blogArticleTags}>
+          <span className="screenReaderText">Published </span>
           <time dateTime={new Date(date).toISOString()}>
             {formatRelativeTime(new Date(date))}
           </time>

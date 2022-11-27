@@ -21,7 +21,7 @@ const ContentWrapper = ({
         (scrollSection.refs.current[`${scrollSection.name}`] = el)
       }
     >
-      <h1>{title}</h1>
+      <h1 id="page-header">{title}</h1>
       {children}
     </div>
   );

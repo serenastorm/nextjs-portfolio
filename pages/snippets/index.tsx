@@ -48,6 +48,7 @@ const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
       <Page
         className={`${blogStyles.blog} ${blogPageStyles.blogPage}`}
         as="main"
+        id="mainContent"
       >
         <h1 className={blogStyles.blogIndexTitle}>
           {tag || subcategory ? (

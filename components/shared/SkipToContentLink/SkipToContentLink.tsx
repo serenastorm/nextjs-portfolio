@@ -5,7 +5,7 @@ import styles from "./SkipToContentLink.module.scss";
 const SkipToContentLink = () => {
   const { pathname } = useRouter();
 
-  const isSnippets = pathname.startsWith("/snippets/");
+  const isSnippets = pathname.startsWith("/snippets");
 
   return (
     <>

@@ -21,6 +21,7 @@ export const ChangeLogEntry = ({ fields, sys }: ChangeLog) => {
       <div
         className={`${blogStyles.blogArticleMeta} ${styles.blogArticleMeta}`}
       >
+        <span className="screenReaderText">Published </span>
         <time dateTime={new Date(date).toISOString()}>
           {formatRelativeTime(new Date(date))}
         </time>
@@ -38,7 +39,9 @@ const ChangeLogEntries = ({
   entries: ChangeLogResponse[] | null;
 }) => {
   if (!entries) {
-    return <div className={blogStyles.blogPost}>No recent changes to show.</div>;
+    return (
+      <div className={blogStyles.blogPost}>No recent changes to show.</div>
+    );
   }
   return (
     <>

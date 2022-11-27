@@ -7,6 +7,7 @@ type PageProps = {
   as?: PageContainerType;
   children: ReactNode;
   className?: string;
+  id?: string;
 };
 
 const Page = ({

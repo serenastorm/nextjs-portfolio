@@ -49,27 +49,21 @@ const SnippetLikeButton = ({
         fixed ? ` ${styles.likeButtonIsFixed}` : ""
       }`}
     >
-      <p
-        id={`likeButtonLabel${articleId}`}
-        className="screenReaderText"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        {inputShouldBeChecked ? "Unlike" : "Like"} this article
-      </p>
       <input
         type="checkbox"
         className={styles.likeButtonInput}
-        aria-labelledby={`likeButtonLabel${articleId}`}
+        aria-label="Like this article"
         checked={inputShouldBeChecked}
         onChange={() => updateLikes()}
         onKeyDown={() => updateLikes()}
       />
       <div className={styles.likeButtonFocusMarker} />
       <SnippetLikeButtonHeart filled={inputShouldBeChecked} />
-      <p className={styles.likeButtonLabel}>
-        {likesCount === 0 && fixed ? "No" : likesCount}
-        {fixed ? ` like${likesCount > 1 || likesCount === 0 ? "s" : ""}` : ""}
+      <p className={styles.likeButtonLabel} role="text">
+        {likesCount === 0 && fixed ? "No" : likesCount}{" "}
+        <span className={fixed ? undefined : "screenReaderText"}>
+          {likesCount > 1 || likesCount === 0 ? "likes" : "like"}
+        </span>
       </p>
     </div>
   );
