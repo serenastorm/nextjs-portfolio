@@ -10,8 +10,7 @@ export const projects: LinkProps[] = [
   {
     label: "developer handoff",
     description: "Figma widget",
-    url: "https://github.com/serenastorm/figma-developer-handoff",
-    // url: "https://www.figma.com/community/widget/1173343953294737171",
+    url: "https://www.figma.com/community/widget/1173343953294737171",
     isExternal: true,
   },
   {
