@@ -17,6 +17,12 @@ export default function useLikes(postId: string): Likes {
       const likesRes = await fetch(apiEndpoint, {
         method: "GET",
       });
+
+      if (!likesRes.ok) {
+        const message = `An error has occurred while fetching likes for post ${postId}: ${likesRes.status}`;
+        throw new Error(message);
+      }
+
       const { likes } = await likesRes.json();
       setTotalLikes(likes);
       setLoading(false);
@@ -36,6 +42,11 @@ export default function useLikes(postId: string): Likes {
       },
     });
 
+    if (!likesRes.ok) {
+      const message = `An error has occurred while adding a like to post ${postId}: ${likesRes.status}`;
+      throw new Error(message);
+    }
+
     const { likes } = await likesRes.json();
     setTotalLikes(likes);
     setLoading(false);
@@ -51,6 +62,11 @@ export default function useLikes(postId: string): Likes {
         "Content-Type": "application/json",
       },
     });
+
+    if (!likesRes.ok) {
+      const message = `An error has occurred while removing a like for post ${postId}: ${likesRes.status}`;
+      throw new Error(message);
+    }
 
     const { likes } = await likesRes.json();
     setTotalLikes(likes);

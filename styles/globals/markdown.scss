@@ -68,7 +68,7 @@ article {
     }
 
     &[filenames] {
-      @for $i from 1 through 3 {
+      @for $i from 1 through 6 {
         &[data-activetab="#{$i}"] {
           .codeTab:not(:nth-of-type(#{$i})) {
             display: none;
