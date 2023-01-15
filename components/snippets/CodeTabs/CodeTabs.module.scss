@@ -1,0 +1,41 @@
+@import "~components/snippets/variables.scss";
+@import "~styles/modules/mixins.scss";
+
+.codeBlockNav {
+  background-color: #21222c;
+  border-radius: 0.4rem 0.4rem 0 0;
+  display: flex;
+  margin-top: 2rem;
+  gap: 1px;
+
+  & > div,
+  button {
+    background-color: #343746;
+    border-radius: inherit;
+    padding: 0.4rem 1.6rem;
+    font-size: 1.4rem;
+    color: #f8f8f2;
+    border-width: 0;
+  }
+
+  & > li {
+    border-radius: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: var(--type-code);
+    line-height: 160%;
+    @include removeFocusOutline;
+
+    &[aria-selected="true"] {
+      border-bottom: 1px solid $code-blue;
+      color: $code-blue;
+    }
+
+    @include onKeyboardFocus {
+      background-color: var(--blue-bg);
+      color: var(--blue);
+    }
+  }
+}

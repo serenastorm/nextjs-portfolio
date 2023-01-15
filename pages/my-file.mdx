@@ -1,0 +1,198 @@
+import { ArticleWrapper } from "components/entries/ArticleWrapper";
+import { CodeTab, CodeTabs } from "components/snippets/CodeTabs";
+
+export const meta = {
+  title: "Something",
+  subcategory: "accessibility",
+  slug: "accessibility",
+};
+
+<ArticleWrapper {...meta}>
+
+## The basics
+
+First, we need to pair our input with a label. We can either wrap the label around the input, or use the `for` and `id` attributes.
+
+Option 1 (label wrapped around input):
+
+<CodeTabs tabs={["HTML", "React"]}>
+  {(activeTabIndex) => (
+    <>
+      <CodeTab isActive={activeTabIndex === 0}>
+
+        ```html
+        <label>
+          First name:
+          <input type="text" name="firstname" />
+        </label>
+        ```
+
+      </CodeTab>
+    </>
+
+)}
+
+</CodeTabs>
+
+<div class="codeTabs" filenames="HTML,React" label="For attribute examples">
+
+<div class="codeTab">
+
+```html filename="HTML"
+<label>
+  First name:
+  <input type="text" name="firstname" />
+</label>
+```
+
+</div>
+
+<div class="codeTab">
+
+```html filename="React"
+<label>
+  First name:
+  <input type="text" name="firstname" />
+</label>
+```
+
+</div>
+
+</div>
+
+Option 2 (the `for` attribute of the label matches the `id` of the form control):
+
+<div class="codeTabs" filenames="HTML,React" label="For attribute examples">
+
+<div class="codeTab">
+
+```html filename="HTML"
+<label for="firstname">First name:</label>
+<input type="text" name="firstname" id="firstname" />
+```
+
+</div>
+
+<div class="codeTab">
+
+```html filename="React"
+<label htmlFor="firstname">First name:</label>
+<input type="text" name="firstname" id="firstname" />
+```
+
+</div>
+
+</div>
+
+## The type attribute
+
+In the example above, the input is for the user's first name, so I set the `type` as `text`. The `type` attribute lets the browser know what input to render and how the user can interact with it. Just because the value of an input is a string, it doesn't necessarily mean that the `type` should be `text`: it could also be `email`, `password`, `url`, or even `color`. The same thing applies to numbers: if you need users to enter a phone number, you can use `tel` instead of `number`. You can read more about input types in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types).
+
+<div class="codeTabs" filenames="email,number,password,url, tel" label="Input types examples">
+
+<div class="codeTab">
+
+```html filename="email"
+<label>
+  Email address:
+  <input type="email" name="email" />
+</label>
+```
+
+</div>
+
+<div class="codeTab">
+
+```html filename="number"
+<label>
+  Quantity
+  <input type="number" name="quantity" />
+</label>
+```
+
+</div>
+  
+<div class="codeTab">
+
+```html filename="password"
+<label>
+  Password
+  <input type="password" name="password" />
+</label>
+```
+
+</div>
+  
+<div class="codeTab">
+
+```html filename="url"
+<label>
+  Website URL
+  <input type="url" name="websiteUrl" />
+</label>
+```
+
+</div>
+  
+<div class="codeTab">
+
+```html filename="tel"
+<label>
+  Phone number
+  <input type="tel" name="phoneNumber" />
+</label>
+```
+
+</div>
+
+</div>
+
+## The inputmode attribute
+
+If you set the `type` of an input, user agents might adapt the keyboard to the expected format; for example, the iOS keyboard for `email` inputs will typically include the "@" character. But that's not true for all input types; iOS just renders a regular keyboard for `number` inputs. In this case, we can use the `inputmode` attribute. We can set it to `numeric` to show the numeric keyboard with the digits 0-9, or we can set it to `decimal` to allow fractional numbers.
+
+## The autocomplete attribute
+
+The last thing we can do to help our users fill our forms more quickly is adding autocomplete support. The `autocomplete` attribute allows user agents to idenfity the format of the expected value for an input, and pre-fill the values accordingly. And `autocomplete` allows us to get a lot more specific than by just using `type`: a name field might have an autocomplete value of `name`, `given-name`, `additional-name`, `family-name`, or even `nickname`. But all of these would use a regular `text` input.
+
+A `password` field can also have multiple `autocomplete` values: `new-password` will let user agents and password managers know to generate a new password for your website, while `current-password` will fill the field with an existing password.
+
+Ever wondered how your phone can pre-fill a one-time-code that was texted to you? This requires just one line of HTML: `autocomplete="one-time-code"`!
+
+<div class="codeTabs" filenames="new-password,one-time-code" label="Input types examples">
+
+<div class="codeTab">
+
+```html filename="new-password"
+<label>
+  Password:
+  <input type="password" name="password" autocomplete="new-password" />
+</label>
+```
+
+</div>
+
+<div class="codeTab">
+
+```html filename="one-time-code"
+<label>
+  Code:
+  <input
+    type="text"
+    name="authToken"
+    inputmode="numeric"
+    pattern="[0-9]*"
+    autocomplete="one-time-code"
+  />
+</label>
+```
+
+</div>
+
+</div>
+
+You can read more about the `autocomplete` attribute in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete).
+
+⚠️ A quick note about internationalisation: the concept of "first name" and "last name" is not international. So if you can, avoid breaking the name down into components, and just use `name` (or `username`).
+
+</ArticleWrapper>
