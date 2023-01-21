@@ -119,25 +119,24 @@ const NavButtons = () => {
             navItem.label === "Blog" ? activeCursorIndex + 1 : null
           }
         >
-          <Link href={navItem.url} passHref>
-            <a
-              className={styles.navButtonLink}
-              aria-label={navItem.label}
-              aria-current={navItem.isCurrent ? "page" : "false"}
-              tabIndex={navItemIndex === activeTabIndex ? 0 : -1}
-              ref={(el: HTMLAnchorElement) =>
-                (tabsRefs.current[navItemIndex] = el)
-              }
-              onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
-                onKeyPressed(event, navItemIndex)
-              }
-              onClick={() => activateTab(navItemIndex)}
-            >
-              {navItem.icon()}
-              <p aria-hidden="true" className={styles.navButtonLabel}>
-                {navItem.label}
-              </p>
-            </a>
+          <Link
+            href={navItem.url}
+            className={styles.navButtonLink}
+            aria-label={navItem.label}
+            aria-current={navItem.isCurrent ? "page" : "false"}
+            tabIndex={navItemIndex === activeTabIndex ? 0 : -1}
+            ref={(el: HTMLAnchorElement) =>
+              (tabsRefs.current[navItemIndex] = el)
+            }
+            onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
+              onKeyPressed(event, navItemIndex)
+            }
+            onClick={() => activateTab(navItemIndex)}
+          >
+            {navItem.icon()}
+            <p aria-hidden="true" className={styles.navButtonLabel}>
+              {navItem.label}
+            </p>
           </Link>
         </li>
       ))}

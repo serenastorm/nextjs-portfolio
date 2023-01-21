@@ -14,12 +14,13 @@
     "contentful": "^9.2.5",
     "firebase-admin": "^11.2.0",
     "framer-motion": "^6.2.1",
-    "next": "^12.3.1",
+    "next": "^13.1.4",
     "next-mdx-remote": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.0",
     "react-syntax-highlighter": "^15.5.0",
+    "react-wrap-balancer": "^0.3.0",
     "rehype-highlight": "^5.0.2",
     "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
@@ -32,7 +33,7 @@
     "@types/react": "17.0.38",
     "@types/react-syntax-highlighter": "^15.5.5",
     "eslint": "8.7.0",
-    "eslint-config-next": "12.0.8",
+    "eslint-config-next": "^13.1.4",
     "typescript": "4.5.5"
   },
   "browser": {

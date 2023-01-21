@@ -60,7 +60,7 @@ const Fun = () => {
                 src="/diary/images/alba-river.gif"
                 alt="Alba, a small black puppy, sleeps peacefully on a rock while a river flows behind her"
                 width="400"
-                height="533.33"
+                height="533"
               />
               <figcaption>Alba at the river 🐾</figcaption>
             </figure>
@@ -70,7 +70,7 @@ const Fun = () => {
               <Image
                 src="/diary/images/home.jpg"
                 alt="A landscape at sundown with the sun light creating a gradient of greens accross the different layers. There is snow on one of the most distant peaks."
-                width="750.98"
+                width="750"
                 height="500"
               />
               <figcaption>The mountains near my village</figcaption>
@@ -89,7 +89,7 @@ const Fun = () => {
                 src="/diary/images/alba-scirocco.jpg"
                 alt="Alba, a small black puppy, is booping her nose against a foal's. They're surrounded by flowers."
                 width="400"
-                height="533.33"
+                height="533"
               />
               <figcaption>Starting to feel like Snow White</figcaption>
             </figure>

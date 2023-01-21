@@ -25,7 +25,7 @@ const Browsers = ({ browsers, feature }: BrowsersProps) => {
               className={styles.logo}
               data-supported={supportedBrowserVersion ? "true" : "false"}
             >
-              <Image src={browser.logo} alt="" />
+              <Image src={browser.logo} alt="" width="40" height="40" />
             </span>
             <p className={styles.browserName}>{browser.label}</p>
             <p className={styles.marketShare}>

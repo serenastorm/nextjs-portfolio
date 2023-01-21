@@ -1,4 +1,4 @@
-import { LegacyRef, KeyboardEvent } from "react";
+import { KeyboardEvent, Ref } from "react";
 
 export type SnippetColor =
   | "tomato"
@@ -27,7 +27,7 @@ export type SnippetPillProps = {
   isLink: boolean;
   inList: boolean;
   type: string;
-  linkRef: LegacyRef<HTMLAnchorElement>;
+  linkRef: Ref<HTMLAnchorElement>;
   onKeyDown: (event: KeyboardEvent<HTMLAnchorElement>) => void;
   tabIndex: 0 | -1;
 };

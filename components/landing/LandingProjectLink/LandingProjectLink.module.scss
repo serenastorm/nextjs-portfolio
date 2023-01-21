@@ -163,7 +163,9 @@
 }
 
 a.landingProjectNewTabLink {
-  white-space: normal;
+  span {
+    white-space: normal !important;
+  }
 
   --arrow-pointer-color: var(--text-contrast-10);
   --arrow-pointer-color-hover: var(--link);

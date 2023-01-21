@@ -21,13 +21,11 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
     <article className={blogStyles.blogPost}>
       <Link
         href={`/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`}
-        passHref
+        className={`${styles.blogPostLink}`}
       >
-        <a className={`${styles.blogPostLink}`}>
-          <h3 className={styles.blogPostTitle}>
-            {title} <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
-          </h3>
-        </a>
+        <h3 className={styles.blogPostTitle}>
+          {title} <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
+        </h3>
       </Link>
       {shortText && <p>{shortText}</p>}
 
@@ -58,11 +56,9 @@ const SnippetLinks = ({ posts }: { posts: BlogPostResponse[] | null }) => {
     return (
       <div className={blogStyles.blogPost}>
         No posts to show.{" "}
-        <Link href={routes.blog.snippets.url} passHref>
-          <a className="semibold">
-            All snippets
-            <GoToLinkIcon />
-          </a>
+        <Link href={routes.blog.snippets.url} className="semibold">
+          All snippets
+          <GoToLinkIcon />
         </Link>
       </div>
     );

@@ -1,13 +1,19 @@
-import { createElement, useState, useRef, Fragment } from "react";
+import {
+  createElement,
+  useState,
+  useRef,
+  Fragment,
+  type KeyboardEvent,
+} from "react";
 import Link from "next/link";
 import { routes } from "infrastructure/routes/constants";
+
 import type { CategoryLabels, CategoryUrls } from "helpers/blog/types";
 import type {
   SnippetColor,
   SnippetPillProps,
   SnippetPillsProps,
 } from "./types";
-import type { KeyboardEvent } from "react";
 
 import styles from "./SnippetPills.module.scss";
 
@@ -63,30 +69,27 @@ export const SnippetPill = ({
     }
   };
 
-  const renderChildren = () =>
-    isLink
-      ? createElement(
-          Link,
-          {
-            href: {
-              pathname: routes.blog.snippets.url,
-              query: { tag: url },
-            },
-            passHref: true,
-          },
-          <a
-            title={inList ? undefined : `Snippets tagged ${label}`}
-            className={pillClassName}
-            ref={linkRef}
-            onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
-              onKeyDown(event)
-            }
-            tabIndex={tabIndex}
-          >
-            {label}
-          </a>
-        )
-      : createElement("div", { className: pillClassName }, label);
+  const renderChildren = () => {
+    return isLink ? (
+      <Link
+        className={pillClassName}
+        href={{
+          pathname: routes.blog.snippets.url,
+          query: { tag: url },
+        }}
+        title={inList ? undefined : `Snippets tagged ${label}`}
+        ref={linkRef}
+        tabIndex={tabIndex}
+        onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
+          onKeyDown(event)
+        }
+      >
+        {label}
+      </Link>
+    ) : (
+      <div className={pillClassName}>{label}</div>
+    );
+  };
 
   return createElement(wrapperElement(), {}, renderChildren());
 };

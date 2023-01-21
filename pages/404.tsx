@@ -23,8 +23,8 @@ const Custom404 = () => {
         <h1>This page could not be found.</h1>
         <p>
           Browse code snippets below, or{" "}
-          <Link href="/" passHref>
-            <a className="underline-link">go back to the homepage.</a>
+          <Link href="/" className="underline-link">
+            go back to the homepage.
           </Link>
         </p>
         <SnippetPills types={tags} />
