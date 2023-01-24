@@ -1,8 +1,6 @@
 import Head from "next/head";
-
 import { Page } from "components/shared/Page";
-
-import { NewTabLink } from "components/shared";
+import { Link } from "components/shared";
 
 import styles from "styles/Accessibility.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
@@ -28,7 +26,7 @@ const Accessibility = () => {
           <p>
             The web should be accessible to everyone. If your accessibility
             requirements are not met, please{" "}
-            <NewTabLink
+            <Link
               label="open an issue on Github."
               href="https://github.com/serenastorm/nextjs-portfolio/issues"
               underline={false}

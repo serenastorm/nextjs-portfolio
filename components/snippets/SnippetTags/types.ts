@@ -32,7 +32,7 @@ export type SnippetPillProps = {
   tabIndex: 0 | -1;
 };
 
-export type SnippetPillsProps = {
+export type SnippetTagsProps = {
   asLinks?: boolean;
   types: string[];
 };

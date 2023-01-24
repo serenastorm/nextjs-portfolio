@@ -12,10 +12,10 @@ import type { CategoryLabels, CategoryUrls } from "helpers/blog/types";
 import type {
   SnippetColor,
   SnippetPillProps,
-  SnippetPillsProps,
+  SnippetTagsProps,
 } from "./types";
 
-import styles from "./SnippetPills.module.scss";
+import styles from "./SnippetTags.module.scss";
 
 export const SnippetPill = ({
   className = "",
@@ -94,7 +94,7 @@ export const SnippetPill = ({
   return createElement(wrapperElement(), {}, renderChildren());
 };
 
-const SnippetPills = ({ asLinks = true, types }: SnippetPillsProps) => {
+const SnippetTags = ({ asLinks = true, types }: SnippetTagsProps) => {
   const [focusedPillIndex, setFocusedPillIndex] = useState<number>(0);
   const pillsRefs = useRef<Array<HTMLAnchorElement | null>>([]);
 
@@ -164,4 +164,4 @@ const SnippetPills = ({ asLinks = true, types }: SnippetPillsProps) => {
   );
 };
 
-export default SnippetPills;
+export default SnippetTags;

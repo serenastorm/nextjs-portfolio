@@ -6,7 +6,7 @@ import { Page } from "components/shared/Page";
 import {
   SnippetLikeButton,
   SnippetMarkdown,
-  SnippetPills,
+  SnippetTags,
   SnippetSandpack,
 } from "components/snippets";
 import { routes } from "infrastructure/routes/constants";
@@ -130,7 +130,7 @@ const BlogArticlePage = ({
           {tags && (
             <div className={blogArticleStyles.tags}>
               <p id="tagsLabel">Tagged: </p>
-              <SnippetPills types={tags} />
+              <SnippetTags types={tags} />
             </div>
           )}
         </header>
