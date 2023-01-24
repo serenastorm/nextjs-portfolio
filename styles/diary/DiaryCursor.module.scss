@@ -21,7 +21,7 @@
   &[data-cursor-index="#{$secondIndex}"] {
     @if $type == "links" {
       a {
-        cursor: url("../../assets/diary/images/#{$cursorUrl}.png"), auto;
+        cursor: url("../../assets/diary/images/#{$cursorUrl}.png"), pointer;
       }
     } @else if $type == "albaPhotos" {
       img[alt*="Alba"] {

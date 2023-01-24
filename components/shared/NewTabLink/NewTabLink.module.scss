@@ -1,6 +1,10 @@
 @import "~styles/modules/mixins.scss";
+@import "~styles/modules/placeholders.scss";
 
 .newTabLink {
+  --arrow-pointer-color: var(--blue);
+  --arrow-pointer-color-hover: var(--blue);
+
   svg {
     width: 0.8em;
     height: auto;
@@ -51,6 +55,20 @@
           fill: var(--arrow-pointer-color-hover);
         }
       }
+    }
+  }
+}
+
+.withUnderline {
+  --underline-color: currentColor;
+  border-bottom: 0.08em solid currentColor;
+  text-decoration: underline;
+  text-underline-offset: var(--link-underline-offset);
+  text-decoration-thickness: var(--link-underline-width);
+
+  @include onHoverAndFocus {
+    &::after {
+      opacity: 1;
     }
   }
 }

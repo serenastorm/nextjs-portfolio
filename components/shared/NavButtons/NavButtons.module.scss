@@ -1,10 +1,9 @@
 @import "~styles/modules/variables.scss";
 @import "~styles/modules/mixins.scss";
-@import "~styles/modules/placeholders.scss";
 
 $navButton-transition: all 200ms ease-in;
 
-.navButtons {
+.buttonsContainer {
   --nav-buttons-width: calc(100vw - (24px * 2));
   --nav-buttons-gap: 0.8rem;
   --nav-buttons-padding: 8px;
@@ -18,23 +17,29 @@ $navButton-transition: all 200ms ease-in;
   position: fixed;
   z-index: 50;
   margin: 0;
-  display: flex;
-  list-style-type: none;
-  padding-left: 0;
-  gap: var(--nav-buttons-gap);
-  transition: all 250ms ease;
-  bottom: var(--nav-button-margin);
   left: 50%;
+  bottom: var(--nav-button-margin);
   transform: translate(-50%, 0);
+  padding-left: 0;
+
+  display: flex;
+  gap: var(--nav-buttons-gap);
+  list-style-type: none;
+
   background-color: var(--bg-level-1);
   padding: var(--nav-buttons-padding);
   border-radius: var(--nav-button-radius);
   box-shadow: 37px 64px 45px rgba(17, 62, 99, 0.02),
     4px 7px 18px rgba(17, 62, 99, 0.08), 0px 0px 0px rgba(17, 62, 99, 0.08);
 
+  transition: all 250ms ease;
+
+  // Top and bottom borders
   &::before,
   &::after {
     position: absolute;
+    height: 1.5px;
+    width: 100%;
     background: linear-gradient(
       90deg,
       rgba(0, 0, 0, 0),
@@ -43,8 +48,6 @@ $navButton-transition: all 200ms ease-in;
       rgba(0, 0, 0, 0)
     );
     opacity: 0.5;
-    height: 1.5px;
-    width: 100%;
   }
 
   &::before {
@@ -56,6 +59,7 @@ $navButton-transition: all 200ms ease-in;
   }
 
   @media (prefers-color-scheme: dark) {
+    // "Blog" page doesn't have a dark theme
     &:not([data-active-btn-index="2"]) {
       border: 1px solid var(--divider);
 
@@ -66,32 +70,37 @@ $navButton-transition: all 200ms ease-in;
     }
   }
 
+  // Hide the indicator if no item is selected
   &[data-active-btn-index="-1"] {
-    .navButtonIndicator {
+    .activeButtonIndicator {
       opacity: 0;
     }
   }
 
-  &[data-active-btn-index="0"] {
-    .navButtonIndicator {
-      transform: translateX(0);
-    }
-  }
-
+  // "Blog" page has special hover effects
   &[data-active-btn-index="2"] {
-    .navButtonIndicator {
+    .activeButtonIndicator {
       background: var(--fun-gradient);
     }
 
     @media (prefers-color-scheme: dark) {
+      --link: #{$link-light};
       --bg-level-1: #{$bg-level-1-light};
       --text-contrast-10: #{$text-contrast-10-light};
     }
   }
 
+  // If the first link is active, move the indicator to the start
+  &[data-active-btn-index="0"] {
+    .activeButtonIndicator {
+      transform: translateX(0);
+    }
+  }
+
+  // For other links, get the indicator position based on index and spacing
   @for $i from 1 through 4 {
     &[data-active-btn-index="#{$i}"] {
-      .navButtonIndicator {
+      .activeButtonIndicator {
         transform: translateX(
           calc(
             (#{var(--nav-button-width)} * #{$i}) +
@@ -103,7 +112,8 @@ $navButton-transition: all 200ms ease-in;
   }
 }
 
-.navButtonsHidden {
+// Hide the navigation on scroll, unless focus is active
+.hidden {
   opacity: 0;
   transform: translate(-50%, 100%);
   transition-duration: 600ms;
@@ -114,25 +124,38 @@ $navButton-transition: all 200ms ease-in;
   }
 }
 
-.navButtonIndicator {
+// Style the indicator
+.activeButtonIndicator {
   content: "";
   display: block;
   position: absolute;
+  z-index: 0;
   width: var(--nav-button-width);
   height: var(--nav-button-height);
   border-radius: var(--nav-button-radius);
   background-color: var(--text-contrast-10);
-  z-index: 0;
   transition: $navButton-transition;
 }
 
-.navButton {
+.listItem {
   position: relative;
   z-index: 1;
   flex: 1;
 
-  &:nth-of-type(3) {
-    .navButtonLink {
+  // Focus styles
+  &:not(.blogListItem) {
+    .link[aria-current="page"] {
+      &:focus-visible {
+        box-shadow: 0 0 0 1px var(--bg-level-1),
+          0 0 0 3px var(--text-contrast-10);
+      }
+    }
+  }
+
+  // Focus and hover styles for "Blog" page
+  &.blogListItem {
+    .link {
+      // If the user is on the Blog page, we don't need to show the cute cursor on hover
       &[aria-current="page"] {
         cursor: initial !important;
       }
@@ -144,31 +167,13 @@ $navButton-transition: all 200ms ease-in;
       }
     }
   }
-
-  &:not(:nth-of-type(3)) {
-    .navButtonLink {
-      &[aria-current="page"] {
-        &:focus-visible {
-          box-shadow: 0 0 0 1px var(--bg-level-1),
-            0 0 0 3px var(--text-contrast-10);
-        }
-      }
-
-      &[aria-current="false"] {
-        @include onHoverAndFocus {
-          color: var(--link);
-        }
-      }
-    }
-  }
 }
 
-.navButtonLabel {
-  color: inherit;
-  transition: inherit;
-  font-family: var(--type-paragraph);
-  font-weight: var(--font-weight-medium);
+.label {
   margin: 0;
+  color: inherit;
+  font-weight: var(--font-weight-medium);
+  transition: inherit;
 
   @include breakpoint(0, 499.99) {
     font-size: 2.6vw;
@@ -179,18 +184,39 @@ $navButton-transition: all 200ms ease-in;
   }
 }
 
-.navButtonLink {
+.link {
+  width: var(--nav-button-width);
+  min-height: var(--nav-button-height);
+  padding: var(--nav-buttons-padding);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.4rem;
-  width: var(--nav-button-width);
-  min-height: var(--nav-button-height);
+  gap: 4px;
+
   color: var(--text-contrast-10);
   border-radius: var(--nav-button-radius);
   transition: all 100ms ease-in;
-  padding: var(--nav-buttons-padding);
+
+  &[aria-current="page"] {
+    color: var(--bg-level-1);
+    cursor: initial;
+  }
+
+  &[aria-current="false"] {
+    @include onHoverAndFocus {
+      color: var(--link);
+    }
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 1px var(--bg-level-1), 0 0 0 3px var(--link);
+  }
+
+  p {
+    transition: inherit;
+  }
 
   svg {
     transition: inherit;
@@ -200,18 +226,5 @@ $navButton-transition: all 200ms ease-in;
     path {
       fill: unset;
     }
-  }
-
-  p {
-    transition: inherit;
-  }
-
-  &[aria-current="page"] {
-    color: var(--bg-level-1);
-    cursor: initial;
-  }
-
-  &:focus-visible {
-    box-shadow: 0 0 0 1px var(--bg-level-1), 0 0 0 3px var(--link);
   }
 }

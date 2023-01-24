@@ -4,6 +4,7 @@ import { SnippetPills } from "components/snippets";
 import { Page } from "components/shared/Page";
 
 import styles from "styles/Error.module.scss";
+import { NewTabLink } from "components/shared";
 
 const Custom404 = () => {
   const tags = ["accessibility", "tsx", "jsx", "react", "html", "css", "scss"];
@@ -23,9 +24,7 @@ const Custom404 = () => {
         <h1>This page could not be found.</h1>
         <p>
           Browse code snippets below, or{" "}
-          <Link href="/" className="underline-link">
-            go back to the homepage.
-          </Link>
+          <NewTabLink href="/" label="go back to the homepage." />
         </p>
         <SnippetPills types={tags} />
       </Page>

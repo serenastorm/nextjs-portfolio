@@ -4,7 +4,7 @@
 p.loading {
   font-style: italic;
   font-family: var(--type-italic);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   font-size: 2.4rem;
 
   @include breakpoint(400) {

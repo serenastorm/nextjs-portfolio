@@ -10,7 +10,7 @@
 
   h1,
   h2 {
-    font-family: var(--type-serif);
+    font-family: var(--type-header);
   }
 
   h1 {
@@ -26,26 +26,6 @@
     a {
       border-bottom: 0.08em solid currentColor;
     }
-  }
-
-  p,
-  li {
-    font-family: var(--type-paragraph);
-    font-weight: var(--font-weight-regular);
-    font-size: 1.8rem;
-    line-height: 160%;
-  }
-}
-
-.blogArticleMeta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 1.6rem;
-
-  & > nav {
-    flex: 1;
   }
 }
 
@@ -69,11 +49,6 @@
   @include breakpoint(400) {
     padding: 3.2rem 1.6rem;
   }
-}
-
-.newTabLink {
-  --arrow-pointer-color: var(--blue);
-  --arrow-pointer-color-hover: var(--blue);
 }
 
 .blogGoToLinkIcon {

@@ -68,11 +68,11 @@
 }
 
 .albumCover {
-  --diary-overlay-img: url("../../../assets/diary/images/celine-dion-deux.jpeg");
   border-radius: var(--card-border-radius);
   width: var(--album-cover-size);
   min-width: var(--album-cover-size);
   height: var(--album-cover-size);
+  border-radius: 4px;
 
   @include breakpoint(0, 999.99) {
     --album-cover-size: 64px;

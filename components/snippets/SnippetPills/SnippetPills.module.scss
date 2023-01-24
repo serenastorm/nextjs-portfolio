@@ -1,60 +1,25 @@
 @import "~styles/modules/mixins.scss";
-@import "~styles/modules/placeholders.scss";
 
-$colors: tomato, red, crimson, pink, plum, purple, violet, indigo, blue, sky,
-  cyan, teal, mint, green, grass, lime, yellow, amber, orange;
+.pills li {
+  display: inline;
 
-$textColors: var(--tomato), var(--red), var(--crimson), var(--pink), var(--plum),
-  var(--purple), var(--violet), var(--indigo), var(--blue), var(--sky),
-  var(--cyan), var(--teal), var(--mint), var(--green), var(--grass), var(--lime),
-  var(--yellow), var(--amber), var(--orange);
-
-$backgroundColors: var(--tomato-bg), var(--red-bg), var(--crimson-bg),
-  var(--pink-bg), var(--plum-bg), var(--purple-bg), var(--violet-bg),
-  var(--indigo-bg), var(--blue-bg), var(--sky-bg), var(--cyan-bg),
-  var(--teal-bg), var(--mint-bg), var(--green-bg), var(--grass-bg),
-  var(--lime-bg), var(--yellow-bg), var(--amber-bg), var(--orange-bg);
-
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  padding: 0;
-  margin-bottom: 0;
-
-  @include breakpoint(0, 399.98) {
-    gap: 0.4rem;
-  }
-
-  @include breakpoint(400) {
-    gap: 0.8rem;
-  }
-}
-
-.pill {
-  font-family: var(--type-paragraph);
-  font-weight: var(--font-weight-medium);
-  font-size: 1.2rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.4rem;
-  max-width: max-content;
-  line-height: normal;
-}
-
-@for $i from 1 through length($colors) {
-  $color: nth($colors, $i);
-  $textColor: nth($textColors, $i);
-  $background-color: nth($backgroundColors, $i);
-
-  .pill#{"" + $color} {
-    background-color: $background-color;
-    color: $textColor;
-  }
-
-  a.pill#{"" + $color} {
-    @include onHoverAndFocus {
-      background-color: $textColor;
-      color: $background-color;
+  &:not(:first-of-type) {
+    &::before {
+      content: ", ";
+      margin-right: 0.05em;
     }
+  }
+}
+
+a.pill {
+  text-decoration: underline;
+  text-underline-offset: var(--link-underline-offset);
+  text-decoration-thickness: 0.07em;
+  text-decoration-color: rgba(var(--text-contrast-8-rgb), 0.4);
+  color: var(--text-contrast-10);
+
+  @include onHoverAndFocus {
+    color: var(--link);
+    text-decoration-color: var(--link);
   }
 }

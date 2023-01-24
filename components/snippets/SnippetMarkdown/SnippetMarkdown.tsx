@@ -148,20 +148,15 @@ const SnippetMarkdown = ({ content }: { content: CoreOptions["children"] }) => {
               (child) => child.type === "text"
             );
 
-            const isExternalLink = href?.startsWith("http") || href?.startsWith("https");
+            const isExternalLink =
+              href?.startsWith("http") || href?.startsWith("https");
 
             const nodeChildren: Array<ElementContent & { value?: string }> =
               node.children;
             const linkCopy = nodeChildren[indexOfLink]?.value;
 
             return isExternalLink && href && !!linkCopy ? (
-              <NewTabLink
-                copy={linkCopy}
-                to={href}
-                shouldOpenInNewTab
-                className={`medium ${blogStyles.newTabLink}`}
-                withUnderline={false}
-              />
+              <NewTabLink label={linkCopy} href={href} underline={false} />
             ) : (
               <a href={href} {...props}>
                 {children}

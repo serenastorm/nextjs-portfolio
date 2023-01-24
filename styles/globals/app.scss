@@ -46,8 +46,9 @@ body,
 :root {
   // Colors
   --white: #ffffff;
-  --link: #{$link};
-  --link-rgb: #{$link-rgb};
+  --link: #{$link-light};
+  --link-rgb: #{$link-light-rgb};
+
   --link-sm: #{$link-sm-light};
   --divider: #{$divider-light};
 
@@ -59,12 +60,16 @@ body,
 
   --text-contrast-8: #{$text-contrast-8-light};
   --text-contrast-10: #{$text-contrast-10-light};
+  --text-contrast-8-rgb: #{$text-contrast-8-light-rgb};
 
   --homepage-bg: #{$homepage-bg-light};
   --homepage-project-bg: #{$homepage-project-bg-light};
   --like-button-bg: #{$like-button-bg-light};
 
   @media (prefers-color-scheme: dark) {
+    --link: #{$link-dark};
+    --link-rgb: #{$link-dark-rgb};
+
     --divider: #{$divider-dark};
 
     --bg-level-0: #{$bg-level-0-dark};
@@ -72,6 +77,7 @@ body,
 
     --text-contrast-8: #{$text-contrast-8-dark};
     --text-contrast-10: #{$text-contrast-10-dark};
+    --text-contrast-8-rgb: #{$text-contrast-8-dark-rgb};
 
     --homepage-bg: #{$homepage-bg-dark};
     --homepage-project-bg: #{$homepage-project-bg-dark};
@@ -115,10 +121,14 @@ body,
   --font-weight-bold: 700;
 
   // TODO: Add fallback fonts
-  --type-paragraph: "IBM Plex Sans", sans-serif;
-  --type-serif: "EB Garamond", serif;
+  --type-paragraph: "Be Vietnam Pro", sans-serif;
+  // --type-header: "EB Garamond", serif;
+  --type-header: "Space Grotesk", sans-serif;
   --type-code: "Inconsolata", monospace;
-  --type-italic: "Cormorant Garamond", serif;
+  --type-italic: "DM Serif Display", serif;
+
+  --link-underline-offset: 0.25em;
+  --link-underline-width: 0.1em;
 
   --tomato-bg: #ffe6e2;
   --tomato: #ca3214;

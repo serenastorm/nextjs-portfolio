@@ -1,17 +1,22 @@
 @import "~styles/modules/mixins.scss";
+@import "~styles/modules/variables.scss";
 @import "~styles/modules/placeholders.scss";
 
 .blogPostLink {
   @extend %link-with-icon;
 
   .blogPostTitle {
-    text-decoration: 0.06em underline;
+    text-decoration: underline;
+    text-decoration-thickness: 0.06em;
     text-underline-offset: 0.25em;
   }
 
   @include onHoverAndFocus {
     .blogPostTitle {
       color: var(--link);
+      background: $link-hover-gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 }
@@ -31,9 +36,9 @@
     text-transform: uppercase;
     font-size: 1.2rem;
     letter-spacing: 0.15em;
-    font-weight: var(--font-weight-medium);
-    font-family: var(--type-paragraph);
     color: var(--text-contrast-8);
+    font-family: var(--type-header);
+    font-weight: var(--font-weight-semibold);
   }
 }
 

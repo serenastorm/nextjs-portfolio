@@ -1,16 +1,15 @@
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/placeholders.scss";
 
-$link-hover-gradient: linear-gradient(125deg, var(--link), var(--link-sm));
-
 .landingPage {
   @extend %grid-page;
 
   h1 {
-    @extend %landing-paragraph;
+    text-indent: 2em;
+    font-weight: var(--font-weight-regular);
 
     @include breakpoint(860) {
-      font-size: 3.2rem;
+      font-size: 2.8rem;
     }
   }
 
@@ -25,9 +24,8 @@ $link-hover-gradient: linear-gradient(125deg, var(--link), var(--link-sm));
   dt {
     @include breakpoint(0, 859.98) {
       /* Don't go lower for h1, otherwise the links wouldn't pass contrast requirements
-      (Large text = 18.66px bold, 24px regular)
-      Tbh this font could be considered bold but best to be safe */
-      font-size: 2.4rem;
+      (Large text = 18.66px bold, 24px regular) */
+      font-size: 2rem;
     }
   }
 

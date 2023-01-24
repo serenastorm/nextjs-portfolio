@@ -7,7 +7,7 @@ import {
   SnippetsIcon,
 } from "assets/icons";
 
-export const navItems = [
+export const NAV_ITEMS = [
   {
     url: routes.home,
     label: "Home",

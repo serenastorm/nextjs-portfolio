@@ -1,47 +1,54 @@
+import Link from "next/link";
 import { SendEmailIcon, OpenInNewTabIcon } from "assets/icons";
+
+import type { LinkProps } from "./types";
+
 import styles from "./NewTabLink.module.scss";
 
-type NewTabLinkProps = {
-  className?: string;
-  copy: string;
-  to: string;
-  type?: "email" | "link";
-  shouldOpenInNewTab?: boolean;
-  withUnderline?: boolean;
-};
-
-const NewTabLink = ({
+export const NewTabLink = ({
   className = "",
-  copy,
-  to,
+  label,
+  href,
   type = "link",
   shouldOpenInNewTab,
-  withUnderline = true,
-}: NewTabLinkProps) => {
+  underline = true,
+  ...props
+}: LinkProps) => {
   // We need to split the content in two so the
   // last word can always be on the same line
   // as the icon using white-space: nowrap;
-  const destinationUrl = `${type === "email" ? "mailto:" : ""}${to}`;
-  const linkLabelWords = copy.split(" ");
-  const lastWord = linkLabelWords.pop();
-  const wordsTotal = linkLabelWords.length;
+  const destinationUrl = `${type === "email" ? "mailto:" : ""}${href}`;
+  const isExternal =
+    shouldOpenInNewTab ||
+    (typeof href === "string" &&
+      (href?.startsWith("http") || href?.startsWith("https")));
+  const labelWords = label.split(" ");
+  const lastWord = labelWords.pop();
+  const wordsTotal = labelWords.length;
 
   return (
-    <a
+    <Link
       href={destinationUrl}
       className={`${styles.newTabLink} ${className}${
-        withUnderline ? " underline-link" : ""
+        underline ? styles.withUnderline : ""
       }`}
-      target={shouldOpenInNewTab ? "blank" : undefined}
-      rel={shouldOpenInNewTab ? "noopener noreferrer" : undefined}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      {...props}
     >
-      {wordsTotal > 0 && <span>{linkLabelWords.join(" ")} </span>}
-      <span>
-        {lastWord}
-        {type === "email" ? <SendEmailIcon /> : <OpenInNewTabIcon />}
-      </span>
-    </a>
+      {label && (
+        <>
+          {wordsTotal > 0 && <span>{labelWords.join(" ")} </span>}
+          <span>
+            {lastWord}
+            {type === "email" ? (
+              <SendEmailIcon />
+            ) : (
+              <>{isExternal && <OpenInNewTabIcon />}</>
+            )}
+          </span>
+        </>
+      )}
+    </Link>
   );
 };
-
-export default NewTabLink;

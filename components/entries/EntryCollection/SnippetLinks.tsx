@@ -29,9 +29,7 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
       </Link>
       {shortText && <p>{shortText}</p>}
 
-      <div
-        className={`${blogStyles.blogArticleMeta} ${styles.blogArticleMeta}`}
-      >
+      <div className={styles.blogArticleMeta}>
         <div className={styles.blogArticleTags}>
           <time dateTime={new Date(date).toISOString()}>
             {formatRelativeTime(new Date(date))}
@@ -45,7 +43,6 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
             />
           )}
         </div>
-        <SnippetPills types={[subcategory]} />
       </div>
     </article>
   );

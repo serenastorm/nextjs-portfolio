@@ -35,11 +35,7 @@ const Fun = () => {
       >
         <DiaryAside />
         <main className={styles.main}>
-          <DiaryMusic
-            author="Céline Dion"
-            song="J'irai où tu iras (en duo avec Jean-Jacques Goldman)"
-            youtubeUrl="https://www.youtube.com/watch?v=0J3wIDAaLSU"
-          />
+          <DiaryMusic />
           <DiaryEntry type="Quote" date={new Date("2022-08-13")}>
             <blockquote>
               For some, who are travelers, the stars are guides.

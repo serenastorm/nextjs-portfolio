@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 import { useRouter } from "next/router";
 import { routes } from "infrastructure/routes/constants";
 import {
@@ -8,7 +8,6 @@ import {
   ChangelogIcon,
   SnippetsIcon,
 } from "assets/icons";
-import type { ReactNode } from "react";
 
 type NavButtonsWrapperProps = {
   children: (

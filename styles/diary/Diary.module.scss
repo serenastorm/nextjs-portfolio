@@ -6,6 +6,9 @@
   --card-bg-color: var(--white);
   --card-border-color: rgba(94, 82, 82, 0.1);
   --card-border-radius: 2px;
+  --text-contrast-10: $text-contrast-10-light;
+  --type-paragraph: var(--type-code);
+  --link: #{$link-light};
 
   color: $text-contrast-10-light;
   padding: var(--content-padding-top)

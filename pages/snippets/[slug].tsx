@@ -88,13 +88,14 @@ const BlogArticlePage = ({
         as="main"
       >
         <header
-          className={`${blogStyles.blogArticleMeta} ${blogArticleStyles.blogArticleMeta}`}
+          className={`${blogArticleStyles.header}`}
           key={`${subcategory}/${slug}/meta`}
         >
           <nav aria-label="Breadcrumbs">
             <ul
               aria-label="Breadcrumbs"
               className={blogArticleStyles.breadcrumbs}
+              role="list"
             >
               <li>
                 <Link href={`/${category}`}>Code Snippets</Link>
@@ -113,13 +114,27 @@ const BlogArticlePage = ({
               )}
             </ul>
           </nav>
+          <h1>
+            <Balancer>
+              {/* This can't be a pseudo element bc it breaks the balancer */}
+              <span
+                aria-hidden="true"
+                className={blogArticleStyles.titleOrnament}
+              >
+                &#9830;&#xFE0E;
+              </span>
+              {title}
+            </Balancer>
+          </h1>
 
-          {tags && <SnippetPills types={tags} />}
+          {tags && (
+            <div className={blogArticleStyles.tags}>
+              <p id="tagsLabel">Tagged: </p>
+              <SnippetPills types={tags} />
+            </div>
+          )}
         </header>
         <article id="mainContent" key={`${subcategory}/${slug}/mainContent`}>
-          <h1>
-            <Balancer>{title}</Balancer>
-          </h1>
           <SnippetMarkdown content={content} />
           {sandpackContent && sandpackSettings && (
             <>

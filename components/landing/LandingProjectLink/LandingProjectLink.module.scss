@@ -1,4 +1,5 @@
 @import "~styles/modules/mixins.scss";
+@import "~styles/modules/variables.scss";
 @import "~styles/modules/placeholders.scss";
 
 .landingProjects {
@@ -123,14 +124,13 @@
     }
 
     a {
+      --arrow-pointer-color: var(--text-contrast-10);
+      --arrow-pointer-color-hover: var(--link);
+
       color: var(--text-contrast-10);
 
-      @include onFocus {
-        color: var(--link);
-      }
-
-      @include onHoverAndTouch {
-        color: var(--link);
+      span {
+        white-space: normal !important;
       }
     }
 
@@ -149,39 +149,6 @@
 
     @include breakpoint(860) {
       font-size: 1.8rem;
-    }
-  }
-
-  dt {
-    font-family: var(--type-paragraph);
-    font-weight: var(--font-weight-medium);
-  }
-
-  dd {
-    @extend %landing-paragraph;
-  }
-}
-
-a.landingProjectNewTabLink {
-  span {
-    white-space: normal !important;
-  }
-
-  --arrow-pointer-color: var(--text-contrast-10);
-  --arrow-pointer-color-hover: var(--link);
-
-  @include onHoverAndTouch {
-    svg {
-      path[data-layer="background"] {
-        fill: var(--arrow-pointer-color-hover);
-        fill-opacity: 0.4;
-      }
-
-      g[data-layer="arrow"] {
-        path {
-          fill: var(--arrow-pointer-color-hover);
-        }
-      }
     }
   }
 }
