@@ -29,19 +29,12 @@ export const SONGS = [
     image: "joe-hisaishi-robot-carnival.jpg",
     youtubeUrl: "https://www.youtube.com/watch?v=Cj-AL-J98U0",
   },
-  {
-    author: "Christophe Willem",
-    song: "Double Je",
-    image: "christophe-willem-inventaire.jpg",
-    youtubeUrl: "https://www.youtube.com/watch?v=AQgXByUHhRw",
-  },
-  {
-    author: "Diam's",
-    song: "La Boulette",
-    image: "diams-dans-ma-bulle.jpg",
-    youtubeUrl: "https://www.youtube.com/watch?v=Ed9GVVT1zz0",
-  },
-
+  // {
+  //   author: "Christophe Willem",
+  //   song: "Double Je",
+  //   image: "christophe-willem-inventaire.jpg",
+  //   youtubeUrl: "https://www.youtube.com/watch?v=AQgXByUHhRw",
+  // },
   {
     author: "Lenny Kravitz",
     song: "Low",
