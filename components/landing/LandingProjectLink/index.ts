@@ -1,1 +1,1 @@
-export { default as LandingProjectLinks } from "./LandingProjectLink";
+export { LandingProjectLinks } from "./LandingProjectLink";

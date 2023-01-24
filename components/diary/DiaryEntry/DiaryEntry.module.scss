@@ -4,22 +4,29 @@
 // Entries
 
 .entryWrapper {
-  display: flex;
+  display: grid;
   gap: var(--content-padding);
+  grid-template-columns: var(--profile-picture-size) 1fr;
   margin-top: var(--grid-gutter);
   padding-left: var(--content-padding);
-}
 
-.entryProfilePicture {
+  &:has(img) {
+    grid-template-columns: var(--profile-picture-size) fit-content(100%);
+  }
+
   @include breakpoint(0, 999.99) {
-    width: 32px;
-    height: 32px;
+    --profile-picture-size: 32px;
   }
 
   @include breakpoint(1000) {
-    width: 64px;
-    height: 64px;
+    --profile-picture-size: 64px;
   }
+}
+
+.entryProfilePicture {
+  width: var(--profile-picture-size);
+  min-width: var(--profile-picture-size);
+  height: var(--profile-picture-size);
 }
 
 .entry {
@@ -31,6 +38,8 @@
 
   img {
     border-radius: 4px;
+    max-width: 100%;
+    height: auto;
   }
 
   figcaption {
@@ -68,7 +77,7 @@
     &::after {
       font-family: "EB Garamond", serif;
       font-weight: 600;
-      color: var(--link);
+      color: var(--primary);
       font-size: 4rem;
       position: absolute;
       opacity: 0.25;

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Head from "next/head";
-import type { ParsedUrlQuery } from "querystring";
-import type { GetStaticProps } from "next/types";
+import Balancer from "react-wrap-balancer";
 import { useRouter } from "next/router";
 import { Page } from "components/shared/Page";
 import {
@@ -20,6 +19,8 @@ import {
 } from "helpers/blog/api";
 
 import type { BlogPostResponse } from "infrastructure/blog/types";
+import type { ParsedUrlQuery } from "querystring";
+import type { GetStaticProps } from "next/types";
 
 import blogStyles from "styles/blog/Blog.module.scss";
 import blogArticleStyles from "styles/blog/BlogArticle.module.scss";
@@ -87,13 +88,14 @@ const BlogArticlePage = ({
         as="main"
       >
         <header
-          className={`${blogStyles.blogArticleMeta} ${blogArticleStyles.blogArticleMeta}`}
+          className={`${blogArticleStyles.header}`}
           key={`${subcategory}/${slug}/meta`}
         >
           <nav aria-label="Breadcrumbs">
             <ul
               aria-label="Breadcrumbs"
               className={blogArticleStyles.breadcrumbs}
+              role="list"
             >
               <li>
                 <Link href={`/${category}`}>Code Snippets</Link>
@@ -112,11 +114,27 @@ const BlogArticlePage = ({
               )}
             </ul>
           </nav>
+          <h1>
+            <Balancer>
+              {/* This can't be a pseudo element bc it breaks the balancer */}
+              <span
+                aria-hidden="true"
+                className={blogArticleStyles.titleOrnament}
+              >
+                &#9830;&#xFE0E;
+              </span>
+              {title}
+            </Balancer>
+          </h1>
 
-          {tags && <SnippetPills types={tags} />}
+          {tags && (
+            <div className={blogArticleStyles.tags}>
+              <p id="tagsLabel">Tagged: </p>
+              <SnippetPills types={tags} />
+            </div>
+          )}
         </header>
         <article id="mainContent" key={`${subcategory}/${slug}/mainContent`}>
-          <h1>{title}</h1>
           <SnippetMarkdown content={content} />
           {sandpackContent && sandpackSettings && (
             <>
@@ -139,9 +157,8 @@ const BlogArticlePage = ({
                   <p>Previous post</p>
                   <Link
                     href={`/${previousPost.fields.category}/${previousPost.fields.slug}`}
-                    passHref
                   >
-                    <a>{previousPost.fields.title}</a>
+                    {previousPost.fields.title}
                   </Link>
                 </>
               )}
@@ -155,9 +172,8 @@ const BlogArticlePage = ({
                   <p>Next post</p>
                   <Link
                     href={`/${nextPost.fields.category}/${nextPost.fields.slug}`}
-                    passHref
                   >
-                    <a>{nextPost.fields.title}</a>
+                    {nextPost.fields.title}
                   </Link>
                 </>
               )}

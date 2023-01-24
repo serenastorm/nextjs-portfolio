@@ -1,6 +1,6 @@
 import { LinkProps } from "helpers/main/types";
 
-export const projects: LinkProps[] = [
+export const PROJECTS: LinkProps[] = [
   {
     label: "myqr.studio",
     description: "case study",

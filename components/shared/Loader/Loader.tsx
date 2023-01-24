@@ -1,13 +1,12 @@
 import styles from "./Loader.module.scss";
 
-const Loader = () => {
+export const Loader = () => {
   return (
-    <div className={styles.loader}>
-      <p role="alert" aria-busy="true" className="screenReaderText">
+    <div className={styles.container}>
+      <div className={styles.loader} />
+      <p aria-live="polite" aria-busy="true">
         Loading...
       </p>
     </div>
   );
 };
-
-export default Loader;

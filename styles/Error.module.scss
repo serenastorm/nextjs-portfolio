@@ -10,23 +10,14 @@
   padding-right: calc((100vw - var(--max-text-width)) / 2);
 
   h1 {
-    font-family: var(--type-serif);
+    font-family: var(--type-header);
     font-weight: var(--font-weight-medium);
     margin-bottom: 0.8rem;
     margin-top: 0;
   }
 
   p {
-    font-family: var(--type-paragraph);
-    font-weight: var(--font-weight-regular);
-    color: var(--text-contrast-10);
-    font-size: 1.8rem;
-    line-height: 160%;
     margin-bottom: 4rem;
-
-    a {
-      color: var(--link);
-    }
   }
 
   h1,

@@ -1,15 +1,37 @@
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/placeholders.scss";
 
-.blogArticleMeta {
+.header {
+  padding-bottom: var(--content-padding-top);
   margin-bottom: var(--content-padding-top);
+  position: relative;
+
+  h1 {
+    padding-top: var(--content-padding-top);
+    padding-bottom: calc(var(--content-padding-top) * 0.3);
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100vw;
+    height: 2px;
+    background-color: var(--bg-level-1);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.titleOrnament {
+  color: var(--primary);
+  font-size: 0.6em;
+  // line-height: 1.8em;
+  margin-right: 0.5em;
 }
 
 .blogArticle {
-  h1 {
-    text-align: center;
-  }
-
   pre {
     position: relative;
     width: 100%;
@@ -87,14 +109,14 @@
 
   a {
     margin: 0.8rem 0;
-    font-family: var(--type-serif);
+    font-family: var(--type-header);
     font-weight: var(--font-weight-medium);
-    color: var(--link);
+    color: var(--primary);
 
     background-image: linear-gradient(
       to right,
-      var(--link) 50%,
-      rgba(237, 84, 151, 0.15) 50%
+      var(--primary) 50%,
+      rgba(var(--primary-rgb), 0.15) 50%
     );
     background-size: 200% 0.1em;
     background-position: 100% bottom;
@@ -103,7 +125,7 @@
 
     @include onHoverAndFocus {
       background-position: 0% bottom;
-      color: var(--link);
+      color: var(--primary);
     }
 
     @include breakpoint(0, 859.98) {
@@ -116,16 +138,16 @@
   }
 }
 
-// .codeSnippetPill {
-//   position: absolute;
-//   right: 0.8rem;
-//   top: 0.8rem;
-// }
+.tags {
+  p,
+  ul {
+    display: inline;
+  }
+}
 
 $breadcrumb-gap: 4px;
 
 .breadcrumbs {
-  color: var(--text-contrast-8);
   margin: 0;
   list-style-type: none;
   display: flex;
@@ -133,7 +155,7 @@ $breadcrumb-gap: 4px;
   gap: $breadcrumb-gap;
 
   li {
-    font-family: var(--type-serif);
+    font-size: 1.6rem;
 
     &:not(:first-of-type) {
       &::before {
@@ -144,23 +166,16 @@ $breadcrumb-gap: 4px;
   }
 
   a {
-    --underline-color: currentColor;
-    @extend %link-with-underline;
-    border-bottom: 0.05em solid currentColor;
-    padding: 0.05em 0.1em 0.1em 0.1em;
-
-    &::after {
-      height: 0.05em;
-    }
+    font-weight: var(--font-weight-regular);
+    color: var(--text-contrast-8);
+    text-decoration: underline;
+    text-underline-offset: var(--primary-underline-offset);
+    text-decoration-color: rgba(var(--text-contrast-8-rgb), 0.4);
+    text-decoration-thickness: 0.08em;
 
     @include onHoverAndFocus {
-      background-color: var(--blue-bg);
-      color: var(--blue);
-      border-bottom-color: var(--blue);
-
-      &::after {
-        opacity: 1;
-      }
+      color: var(--primary);
+      text-decoration-color: var(--primary);
     }
   }
 }

@@ -16,7 +16,7 @@ const DiaryAside = () => {
           <p>
             Like many others, I started my design + code journey by customising
             Tumblr themes. I miss social media that allowed us to show to show
-            our personnality, so this my own experiment.
+            our personality, so this my own experiment.
           </p>
         </div>
         <div className={styles.asideStatus}>

@@ -1,4 +1,4 @@
-import { SnippetMarkdown, SnippetPills } from "components/snippets";
+import { SnippetMarkdown } from "components/snippets";
 import { formatRelativeTime } from "helpers/blog";
 import type { ChangeLogResponse } from "infrastructure/blog/types";
 
@@ -19,14 +19,11 @@ export const ChangeLogEntry = ({ fields, sys }: ChangeLog) => {
       {content && <SnippetMarkdown content={content} />}
 
       <div
-        className={`${blogStyles.blogArticleMeta} ${styles.blogArticleMeta}`}
+        className={styles.blogArticleMeta}
       >
         <time dateTime={new Date(date).toISOString()}>
           {formatRelativeTime(new Date(date))}
         </time>
-        <div className={styles.blogArticleTags}>
-          {tags && <SnippetPills types={tags} asLinks={false} />}
-        </div>
       </div>
     </article>
   );
@@ -38,7 +35,9 @@ const ChangeLogEntries = ({
   entries: ChangeLogResponse[] | null;
 }) => {
   if (!entries) {
-    return <div className={blogStyles.blogPost}>No recent changes to show.</div>;
+    return (
+      <div className={blogStyles.blogPost}>No recent changes to show.</div>
+    );
   }
   return (
     <>

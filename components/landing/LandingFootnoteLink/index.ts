@@ -1,1 +1,1 @@
-export { LandingFootnotes, LandingFootnote, default as LandingFootnoteLink } from "./LandingFootnoteLink";
+export { LandingFootnotes, LandingFootnote, LandingFootnoteLink } from "./LandingFootnoteLink";

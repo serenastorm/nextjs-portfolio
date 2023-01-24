@@ -68,31 +68,30 @@ const ScrollProgress = ({
         {progressCopy}
       </div>
 
-      <Link href="/">
-        <a
-          className={`${styles.progressIndicator} ${className}`}
-          data-complete={progress >= 100 ? "true" : "false"}
-          title="Back to homepage"
+      <Link
+        href="/"
+        className={`${styles.progressIndicator} ${className}`}
+        data-complete={progress >= 100 ? "true" : "false"}
+        title="Back to homepage"
+      >
+        <svg
+          height={radius * 2}
+          width={radius * 2}
+          preserveAspectRatio="xMidYMid meet"
+          role="presentation"
         >
-          <svg
-            height={radius * 2}
-            width={radius * 2}
-            preserveAspectRatio="xMidYMid meet"
-            role="presentation"
-          >
-            <circle
-              className={styles.track}
-              fill="transparent"
-              {...progressCircleProps}
-            />
-            <circle
-              className={styles.thumb}
-              fill="transparent"
-              strokeDasharray={circumference + " " + circumference}
-              {...progressCircleProps}
-            />
-          </svg>
-        </a>
+          <circle
+            className={styles.track}
+            fill="transparent"
+            {...progressCircleProps}
+          />
+          <circle
+            className={styles.thumb}
+            fill="transparent"
+            strokeDasharray={circumference + " " + circumference}
+            {...progressCircleProps}
+          />
+        </svg>
       </Link>
     </>
   );

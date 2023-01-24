@@ -1,8 +1,7 @@
-import Link from "next/link";
 import { NewTabLink } from "components/shared";
 import type { LinkProps } from "helpers/main/types";
 
-import { projects } from "./constants";
+import { PROJECTS } from "./constants";
 
 import styles from "./LandingProjectLink.module.scss";
 
@@ -16,52 +15,27 @@ const LandingProjectLink = ({
     <div className={styles.landingProjectImg} />
     <dl>
       <dt>
-        {isExternal ? (
-          <NewTabLink
-            copy={label}
-            to={url}
-            shouldOpenInNewTab
-            withUnderline={false}
-            className={styles.landingProjectNewTabLink}
-          />
-        ) : (
-          <Link href={url}>
-            <a className={styles.landingProjectNewTabLink}>{label}</a>
-          </Link>
-        )}
+        <NewTabLink label={label} href={url} underline={false} />
       </dt>
       <dd>{description}</dd>
     </dl>
-    {isExternal ? (
-      // eslint-disable-next-line jsx-a11y/anchor-has-content
-      <a
-        href={url}
-        target="blank"
-        rel="noopener noreferrer"
-        className={styles.landingProjectLink}
-        tabIndex={-1}
-        aria-hidden="true"
-      />
-    ) : (
-      <Link href={url}>
-        <a
-          className={styles.landingProjectLink}
-          tabIndex={-1}
-          aria-hidden="true"
-        />
-      </Link>
-    )}
+    <NewTabLink
+      className={styles.landingProjectLink}
+      label=""
+      href={url}
+      underline={false}
+      tabIndex={-1}
+      aria-hidden="true"
+    />
   </div>
 );
 
-const LandingProjectLinks = () => {
+export const LandingProjectLinks = () => {
   return (
     <dl className={styles.landingProjects}>
-      {projects.map((project: LinkProps, projectIndex: number) => (
+      {PROJECTS.map((project: LinkProps, projectIndex: number) => (
         <LandingProjectLink {...project} key={project.label} />
       ))}
     </dl>
   );
 };
-
-export default LandingProjectLinks;

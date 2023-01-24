@@ -29,11 +29,9 @@ const Accessibility = () => {
             The web should be accessible to everyone. If your accessibility
             requirements are not met, please{" "}
             <NewTabLink
-              copy="open an issue on Github."
-              to="https://github.com/serenastorm/nextjs-portfolio/issues"
-              shouldOpenInNewTab
-              className={`medium ${blogStyles.newTabLink}`}
-              withUnderline={false}
+              label="open an issue on Github."
+              href="https://github.com/serenastorm/nextjs-portfolio/issues"
+              underline={false}
             />
           </p>
         </div>

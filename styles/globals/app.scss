@@ -17,12 +17,12 @@ html {
   @media (prefers-color-scheme: dark) {
     ::-moz-selection {
       background: #222427;
-      color: var(--link);
+      color: var(--primary);
     }
 
     ::selection {
       background: #222427;
-      color: var(--link);
+      color: var(--primary);
     }
   }
 
@@ -46,9 +46,14 @@ body,
 :root {
   // Colors
   --white: #ffffff;
-  --link: #{$link};
-  --link-rgb: #{$link-rgb};
-  --link-sm: #{$link-sm-light};
+  --primary: #{$primary-light};
+  --primary-rgb: #{$primary-light-rgb};
+
+  --link: #{$link-light};
+
+  --inline-link: #{$inline-link-light};
+  --inline-link-rgb: #{$inline-link-light-rgb};
+
   --divider: #{$divider-light};
 
   --code-bg-color: #282a36;
@@ -59,12 +64,19 @@ body,
 
   --text-contrast-8: #{$text-contrast-8-light};
   --text-contrast-10: #{$text-contrast-10-light};
+  --text-contrast-8-rgb: #{$text-contrast-8-light-rgb};
 
   --homepage-bg: #{$homepage-bg-light};
   --homepage-project-bg: #{$homepage-project-bg-light};
   --like-button-bg: #{$like-button-bg-light};
 
   @media (prefers-color-scheme: dark) {
+    --primary: #{$primary-dark};
+    --primary-rgb: #{$primary-dark-rgb};
+
+    --inline-link: #{$inline-link-dark};
+    --inline-link-rgb: #{$inline-link-dark-rgb};
+
     --divider: #{$divider-dark};
 
     --bg-level-0: #{$bg-level-0-dark};
@@ -72,12 +84,13 @@ body,
 
     --text-contrast-8: #{$text-contrast-8-dark};
     --text-contrast-10: #{$text-contrast-10-dark};
+    --text-contrast-8-rgb: #{$text-contrast-8-dark-rgb};
 
     --homepage-bg: #{$homepage-bg-dark};
     --homepage-project-bg: #{$homepage-project-bg-dark};
 
     --like-button-bg: #{$like-button-bg-dark};
-    --link-sm: #{$link-sm-dark};
+    --link: #{$link-dark};
   }
 
   --fun-gradient: linear-gradient(116.24deg, #fc6767 6.87%, #ec008c 98.94%);
@@ -115,10 +128,14 @@ body,
   --font-weight-bold: 700;
 
   // TODO: Add fallback fonts
-  --type-paragraph: "IBM Plex Sans", sans-serif;
-  --type-serif: "EB Garamond", serif;
+  --type-paragraph: "Be Vietnam Pro", sans-serif;
+  // --type-header: "EB Garamond", serif;
+  --type-header: "Space Grotesk", sans-serif;
   --type-code: "Inconsolata", monospace;
-  --type-italic: "Cormorant Garamond", serif;
+  --type-italic: "DM Serif Display", serif;
+
+  --primary-underline-offset: 0.25em;
+  --primary-underline-width: 0.1em;
 
   --tomato-bg: #ffe6e2;
   --tomato: #ca3214;

@@ -4,6 +4,7 @@
 h1 {
   line-height: 140%;
   color: var(--text-contrast-10);
+  font-family: var(--type-paragraph);
 
   @include breakpoint(0, 1199.98) {
     font-size: 3.2rem;
@@ -12,6 +13,10 @@ h1 {
   @include breakpoint(1200) {
     font-size: 4rem;
   }
+}
+
+h3 {
+  font-weight: var(--font-weight-medium);
 }
 
 a {
@@ -28,19 +33,6 @@ a {
 
 .smaller {
   font-size: 0.8em;
-}
-
-.underline-link {
-  --underline-color: currentColor;
-  border-bottom: 0.08em solid currentColor;
-
-  @extend %link-with-underline;
-
-  @include onHoverAndFocus {
-    &::after {
-      opacity: 1;
-    }
-  }
 }
 
 abbr[title] {
@@ -68,12 +60,13 @@ abbr[title] {
 .italic {
   font-style: italic;
   font-family: var(--type-italic);
+  font-weight: var(--font-weight-regular);
 }
 
 i {
   font-style: italic;
   font-family: var(--type-italic);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   font-size: 1.2em;
 }
 
@@ -91,4 +84,36 @@ i {
 
 .bold {
   font-weight: var(--font-weight-bold);
+}
+
+p,
+li {
+  font-family: var(--type-paragraph);
+  font-weight: var(--font-weight-regular);
+  font-size: 1.8rem;
+  line-height: 160%;
+  color: var(--text-contrast-10);
+
+  a {
+    color: var(--primary);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+a {
+  font-family: var(--type-paragraph);
+  font-weight: var(--font-weight-regular);
+}
+
+dt,
+dd {
+  font-family: var(--type-paragraph);
+}
+
+dt {
+  font-weight: var(--font-weight-medium);
+}
+
+dd {
+  font-weight: var(--font-weight-regular);
 }

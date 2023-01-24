@@ -17,23 +17,27 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
   const { totalLikes, likesAreLoading, addLike, removeLike } = useLikes(sys.id);
   const { category, date, shortText, slug, subcategory, title } = fields;
 
+  const titleWords = title.split(" ");
+  const titleLastWord = titleWords.pop();
+  const titleWordsTotal = titleWords.length;
+
   return (
     <article className={blogStyles.blogPost}>
       <Link
         href={`/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`}
-        passHref
+        className={`${styles.blogPostLink}`}
       >
-        <a className={`${styles.blogPostLink}`}>
-          <h3 className={styles.blogPostTitle}>
-            {title} <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
-          </h3>
-        </a>
+        <h3 className={styles.blogPostTitle}>
+          {titleWordsTotal > 0 && <span>{titleWords.join(" ")} </span>}
+          <span>
+            {titleLastWord}
+            <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
+          </span>
+        </h3>
       </Link>
       {shortText && <p>{shortText}</p>}
 
-      <div
-        className={`${blogStyles.blogArticleMeta} ${styles.blogArticleMeta}`}
-      >
+      <div className={styles.blogArticleMeta}>
         <div className={styles.blogArticleTags}>
           <time dateTime={new Date(date).toISOString()}>
             {formatRelativeTime(new Date(date))}
@@ -47,7 +51,6 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
             />
           )}
         </div>
-        <SnippetPills types={[subcategory]} />
       </div>
     </article>
   );
@@ -58,11 +61,9 @@ const SnippetLinks = ({ posts }: { posts: BlogPostResponse[] | null }) => {
     return (
       <div className={blogStyles.blogPost}>
         No posts to show.{" "}
-        <Link href={routes.blog.snippets.url} passHref>
-          <a className="semibold">
-            All snippets
-            <GoToLinkIcon />
-          </a>
+        <Link href={routes.blog.snippets.url} className="semibold">
+          All snippets
+          <GoToLinkIcon />
         </Link>
       </div>
     );

@@ -21,6 +21,7 @@
     @extend %text-small;
 
     a {
+      color: currentColor;
       text-decoration: underline;
       text-decoration-color: var(--pink);
 

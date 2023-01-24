@@ -1,15 +1,33 @@
-.loader {
+@import "~styles/modules/mixins.scss";
+
+.container {
   position: fixed;
   z-index: 50;
+  top: 16px;
+  right: 16px;
+
+  @media (prefers-reduced-motion: no-preference) {
+    // If the user doesn't have motion preferences,
+    // show the loader and only make the "Loading" text available to screen readers
+    p {
+      @include screenReaderText;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    // If the user prefers reduced motion, show the "Loading" text and hide the loader
+    .loader {
+      display: none;
+    }
+  }
+}
+
+.loader {
   height: 3.2rem;
   width: 3.2rem;
-  top: 1.6rem;
-  right: 1.6rem;
   border-radius: 50%;
-  border: 0.2rem solid transparent;
-  border-top-color: var(--text-contrast-10);
-  border-right-color: var(--text-contrast-10);
-  border-bottom-color: var(--text-contrast-10);
+  border: 0.2rem solid var(--text-contrast-10);
+  border-left-color: transparent;
   transform: translateZ(0);
   animation: loader 1.1s infinite linear;
   transition: opacity 300ms ease-in;

@@ -1,5 +1,9 @@
-import { createElement } from "react";
-import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
+import {
+  createElement,
+  type DetailedHTMLProps,
+  type HTMLAttributes,
+  type ReactNode,
+} from "react";
 
 type PageContainerType = "div" | "article" | "main";
 
@@ -9,7 +13,7 @@ type PageProps = {
   className?: string;
 };
 
-const Page = ({
+export const Page = ({
   as = "div",
   children,
   className = "",
@@ -24,5 +28,3 @@ const Page = ({
     children
   );
 };
-
-export default Page;

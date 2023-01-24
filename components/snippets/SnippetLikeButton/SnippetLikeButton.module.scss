@@ -18,7 +18,7 @@
 
     @include breakpoint(0, 1199.98) {
       top: 16px;
-      left: 16px;
+      right: 16px;
     }
 
     @include breakpoint(1200) {
@@ -30,7 +30,7 @@
 
     .likeButtonFocusMarker {
       inset: 0;
-      box-shadow: 0 0 0 2px var(--link);
+      box-shadow: 0 0 0 2px var(--primary);
       border-radius: inherit;
       transform: scale(0);
       opacity: 0;

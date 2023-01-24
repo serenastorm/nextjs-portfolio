@@ -1,6 +1,6 @@
 import { contentfulClient, CONTENT_TYPE } from "lib/contentful/client";
 import type { BlogPost, BlogPostResponse } from "infrastructure/blog/types";
-import type { Entry, EntryCollection } from "contentful";
+import type { EntryCollection } from "contentful";
 
 export async function fetchEntry(slug: string): Promise<BlogPostResponse> {
   const res = await contentfulClient.getEntries({

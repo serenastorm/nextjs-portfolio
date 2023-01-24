@@ -1,15 +1,14 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { routes } from "infrastructure/routes/constants";
 import { useAnimatedCursor, useScrollDirection } from "infrastructure/hooks";
-import { navItems } from "./constants";
-import type { KeyboardEvent } from "react";
+import { NAV_ITEMS } from "./constants";
 
 import styles from "./NavButtons.module.scss";
 import cursorStyles from "styles/diary/DiaryCursor.module.scss";
 
-const NavButtons = () => {
+export const NavButtons = () => {
   const [previousTabIndex, setPreviousTabIndex] = useState<number>(0);
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
   const tabsRefs = useRef<Array<HTMLAnchorElement | null>>([]);
@@ -20,7 +19,7 @@ const NavButtons = () => {
 
   const isLessonPage = pathname.startsWith("/flexbox");
 
-  const items = navItems.map((navItem) => {
+  const items = NAV_ITEMS.map((navItem) => {
     return {
       ...navItem,
       isCurrent:
@@ -40,6 +39,7 @@ const NavButtons = () => {
   };
 
   const getAnimationDuration = () => {
+    // Change the animation duration based on the distance between the two items
     const initialDiff = activeTabIndex - previousTabIndex;
     const diffIsNegative = initialDiff < 0;
     const diff = diffIsNegative ? initialDiff * -1 : initialDiff;
@@ -96,53 +96,47 @@ const NavButtons = () => {
 
   return (
     <ul
-      className={`${styles.navButtons} ${
-        scrollDirection === "down"
-          ? styles.navButtonsHidden
-          : styles.navButtonsVisible
+      className={`${styles.buttonsContainer} ${
+        scrollDirection === "down" ? styles.hidden : ""
       }`}
       data-active-btn-index={`${activeBtnIndex}`}
       // list-style-type: "none" removes list semantics so this is needed
       role="list"
     >
       <div
-        className={styles.navButtonIndicator}
+        className={styles.activeButtonIndicator}
         style={{ animationDuration: getAnimationDuration() }}
       />
       {items.map((navItem, navItemIndex) => (
         <li
           key={navItem.label}
-          className={`${styles.navButton} ${
-            navItem.label === "Blog" ? cursorStyles.cursorContainer : ""
+          className={`${styles.listItem} ${
+            navItem.label === "Blog"
+              ? `${styles.blogListItem} ${cursorStyles.cursorContainer}`
+              : ""
           }`}
           data-cursor-index={
             navItem.label === "Blog" ? activeCursorIndex + 1 : null
           }
         >
-          <Link href={navItem.url} passHref>
-            <a
-              className={styles.navButtonLink}
-              aria-label={navItem.label}
-              aria-current={navItem.isCurrent ? "page" : "false"}
-              tabIndex={navItemIndex === activeTabIndex ? 0 : -1}
-              ref={(el: HTMLAnchorElement) =>
-                (tabsRefs.current[navItemIndex] = el)
-              }
-              onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
-                onKeyPressed(event, navItemIndex)
-              }
-              onClick={() => activateTab(navItemIndex)}
-            >
-              {navItem.icon()}
-              <p aria-hidden="true" className={styles.navButtonLabel}>
-                {navItem.label}
-              </p>
-            </a>
+          <Link
+            href={navItem.url}
+            className={styles.link}
+            aria-current={navItem.isCurrent ? "page" : "false"}
+            tabIndex={navItemIndex === activeTabIndex ? 0 : -1}
+            ref={(el: HTMLAnchorElement) =>
+              (tabsRefs.current[navItemIndex] = el)
+            }
+            onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
+              onKeyPressed(event, navItemIndex)
+            }
+            onClick={() => activateTab(navItemIndex)}
+          >
+            {navItem.icon()}
+            <p className={styles.label}>{navItem.label}</p>
           </Link>
         </li>
       ))}
     </ul>
   );
 };
-
-export default NavButtons;

@@ -1,10 +1,10 @@
 @import "~styles/modules/mixins.scss";
+@import "~styles/modules/variables.scss";
 @import "~styles/modules/placeholders.scss";
-
-$link-hover-gradient: linear-gradient(125deg, var(--link), var(--link-sm));
 
 %footnote-link {
   position: relative;
+  font-size: 1.6rem;
 
   &::after {
     content: "";
@@ -13,7 +13,7 @@ $link-hover-gradient: linear-gradient(125deg, var(--link), var(--link-sm));
     top: 100%;
     left: 0;
     width: 100%;
-    height: 0.05em;
+    height: 0.07em;
     background-image: linear-gradient(
       to right,
       currentColor 0%,
@@ -22,24 +22,24 @@ $link-hover-gradient: linear-gradient(125deg, var(--link), var(--link-sm));
   }
 
   @include onHoverAndFocus {
-    color: $link-hover-gradient;
-    background: $link-hover-gradient;
+    color: $primary-hover-gradient;
+    background: $primary-hover-gradient;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
     &::after {
-      opacity: 1;
-      background-image: $link-hover-gradient;
+      opacity: 1 !important;
+      background-image: $primary-hover-gradient;
     }
   }
 
   @include onKeyboardFocus {
-    outline: 3px solid var(--link) !important;
+    outline: 3px solid var(--primary) !important;
   }
 }
 
 .footnoteRef {
-  color: var(--link);
+  color: var(--primary);
   font-family: var(--type-paragraph);
   font-style: initial;
   font-size: 0.4em;
@@ -47,7 +47,7 @@ $link-hover-gradient: linear-gradient(125deg, var(--link), var(--link-sm));
 }
 
 .footnoteReturnLink {
-  color: var(--link);
+  color: var(--primary);
   font-size: 0.8em;
 
   &::after {
@@ -61,14 +61,23 @@ $link-hover-gradient: linear-gradient(125deg, var(--link), var(--link-sm));
 }
 
 .footnote {
-  font-family: var(--type-serif);
+  font-family: var(--type-header);
   color: var(--text-contrast-10);
+  line-height: 140%;
+
+  &::marker {
+    font-size: 0.8em;
+    font-weight: var(--font-weight-medium);
+    color: var(--text-contrast-8);
+  }
 
   a:not(.footnoteReturnLink) {
+    color: var(--text-contrast-8);
+
     @extend %footnote-link;
 
     &::after {
-      opacity: 1;
+      opacity: 0.4;
     }
   }
 }

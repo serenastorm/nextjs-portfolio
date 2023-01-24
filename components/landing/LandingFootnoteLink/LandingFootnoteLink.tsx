@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import styles from "./LandingFootnoteLink.module.scss";
 
@@ -13,7 +13,7 @@ type LandingFootnoteProps = {
   description: string;
 };
 
-const LandingFootnoteLink = ({ text, linkIndex }: LandingFootnoteLinkProps) => {
+export const LandingFootnoteLink = ({ text, linkIndex }: LandingFootnoteLinkProps) => {
   const lastCharacterOfLink = text.charAt(text.length - 1);
   const linkHasPunctuation =
     lastCharacterOfLink === "," || lastCharacterOfLink === ".";
@@ -63,5 +63,3 @@ export const LandingFootnotes = ({ children }: { children: ReactNode }) => (
     {children}
   </ol>
 );
-
-export default LandingFootnoteLink;

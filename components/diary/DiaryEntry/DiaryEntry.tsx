@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
-
 import { formatRelativeTime } from "helpers/blog";
 import { StatHeartIcon } from "assets/diary/icons";
+
+import type { ReactNode } from "react";
 
 import styles from "./DiaryEntry.module.scss";
 import diaryImageStyles from "styles/diary/DiaryImage.module.scss";
@@ -17,7 +17,9 @@ export const DiaryEntryStat = ({
     let iconsToRender = [];
 
     for (var i = 0; i < 5; i++) {
-      iconsToRender.push(<StatHeartIcon filled={i <= score - 1} key={`icon${i}`} />);
+      iconsToRender.push(
+        <StatHeartIcon filled={i <= score - 1} key={`icon${i}`} />
+      );
     }
 
     return <>{iconsToRender}</>;

@@ -90,11 +90,12 @@ const Home: NextPage = ({
           >
             <SnippetLinks posts={[{ ...mostRecentPost }]} />
           </ul>
-          <Link href={routes.blog.snippets.url} passHref>
-            <a className={`${styles.landingBlogLink}`}>
-              View all snippets{" "}
-              <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
-            </a>
+          <Link
+            href={routes.blog.snippets.url}
+            className={`${styles.landingBlogLink}`}
+          >
+            View all snippets{" "}
+            <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
           </Link>
         </div>
       </Page>

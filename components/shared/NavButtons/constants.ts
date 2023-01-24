@@ -3,11 +3,10 @@ import {
   AccessibilityIcon,
   DiaryIcon,
   HomeIcon,
-  ChangelogIcon,
   SnippetsIcon,
 } from "assets/icons";
 
-export const navItems = [
+export const NAV_ITEMS = [
   {
     url: routes.home,
     label: "Home",
@@ -27,10 +26,5 @@ export const navItems = [
     url: routes.accessibility,
     label: "Accessibility",
     icon: AccessibilityIcon,
-  },
-  {
-    url: routes.changelog,
-    label: "Changelog",
-    icon: ChangelogIcon,
   },
 ];

@@ -1,1 +1,1 @@
-export { default as SkipToContentLink } from "./SkipToContentLink";
+export { SkipToContentLink } from "./SkipToContentLink";
