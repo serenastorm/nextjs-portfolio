@@ -2,8 +2,8 @@
 @import "~styles/modules/placeholders.scss";
 
 .newTabLink {
-  --arrow-pointer-color: var(--blue);
-  --arrow-pointer-color-hover: var(--blue);
+  --arrow-pointer-color: var(--inline-link);
+  --arrow-pointer-color-hover: var(--inline-link);
 
   svg {
     width: 0.8em;
@@ -27,7 +27,8 @@
     }
   }
 
-  span:last-of-type {
+  // We always want the last word to be on the same line as the icon, unless there's only one word
+  span:last-of-type:not(:first-of-type) {
     white-space: nowrap;
   }
 
@@ -63,8 +64,8 @@
   --underline-color: currentColor;
   border-bottom: 0.08em solid currentColor;
   text-decoration: underline;
-  text-underline-offset: var(--link-underline-offset);
-  text-decoration-thickness: var(--link-underline-width);
+  text-underline-offset: var(--primary-underline-offset);
+  text-decoration-thickness: var(--primary-underline-width);
 
   @include onHoverAndFocus {
     &::after {

@@ -17,6 +17,10 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
   const { totalLikes, likesAreLoading, addLike, removeLike } = useLikes(sys.id);
   const { category, date, shortText, slug, subcategory, title } = fields;
 
+  const titleWords = title.split(" ");
+  const titleLastWord = titleWords.pop();
+  const titleWordsTotal = titleWords.length;
+
   return (
     <article className={blogStyles.blogPost}>
       <Link
@@ -24,7 +28,11 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
         className={`${styles.blogPostLink}`}
       >
         <h3 className={styles.blogPostTitle}>
-          {title} <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
+          {titleWordsTotal > 0 && <span>{titleWords.join(" ")} </span>}
+          <span>
+            {titleLastWord}
+            <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
+          </span>
         </h3>
       </Link>
       {shortText && <p>{shortText}</p>}

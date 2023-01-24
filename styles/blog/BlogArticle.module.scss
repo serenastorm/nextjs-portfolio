@@ -25,7 +25,7 @@
 }
 
 .titleOrnament {
-  color: var(--link);
+  color: var(--primary);
   font-size: 0.6em;
   // line-height: 1.8em;
   margin-right: 0.5em;
@@ -111,12 +111,12 @@
     margin: 0.8rem 0;
     font-family: var(--type-header);
     font-weight: var(--font-weight-medium);
-    color: var(--link);
+    color: var(--primary);
 
     background-image: linear-gradient(
       to right,
-      var(--link) 50%,
-      rgba(var(--link-rgb), 0.15) 50%
+      var(--primary) 50%,
+      rgba(var(--primary-rgb), 0.15) 50%
     );
     background-size: 200% 0.1em;
     background-position: 100% bottom;
@@ -125,7 +125,7 @@
 
     @include onHoverAndFocus {
       background-position: 0% bottom;
-      color: var(--link);
+      color: var(--primary);
     }
 
     @include breakpoint(0, 859.98) {
@@ -169,13 +169,13 @@ $breadcrumb-gap: 4px;
     font-weight: var(--font-weight-regular);
     color: var(--text-contrast-8);
     text-decoration: underline;
-    text-underline-offset: var(--link-underline-offset);
+    text-underline-offset: var(--primary-underline-offset);
     text-decoration-color: rgba(var(--text-contrast-8-rgb), 0.4);
     text-decoration-thickness: 0.08em;
 
     @include onHoverAndFocus {
-      color: var(--link);
-      text-decoration-color: var(--link);
+      color: var(--primary);
+      text-decoration-color: var(--primary);
     }
   }
 }

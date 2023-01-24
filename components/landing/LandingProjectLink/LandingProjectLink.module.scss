@@ -62,7 +62,7 @@
     }
 
     a {
-      color: var(--link);
+      color: var(--primary);
 
       svg {
         path[data-layer="background"] {
@@ -125,13 +125,9 @@
 
     a {
       --arrow-pointer-color: var(--text-contrast-10);
-      --arrow-pointer-color-hover: var(--link);
+      --arrow-pointer-color-hover: var(--primary);
 
       color: var(--text-contrast-10);
-
-      span {
-        white-space: normal !important;
-      }
     }
 
     @include breakpoint(1630) {

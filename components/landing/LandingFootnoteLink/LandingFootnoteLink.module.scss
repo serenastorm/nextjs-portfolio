@@ -22,24 +22,24 @@
   }
 
   @include onHoverAndFocus {
-    color: $link-hover-gradient;
-    background: $link-hover-gradient;
+    color: $primary-hover-gradient;
+    background: $primary-hover-gradient;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
     &::after {
       opacity: 1 !important;
-      background-image: $link-hover-gradient;
+      background-image: $primary-hover-gradient;
     }
   }
 
   @include onKeyboardFocus {
-    outline: 3px solid var(--link) !important;
+    outline: 3px solid var(--primary) !important;
   }
 }
 
 .footnoteRef {
-  color: var(--link);
+  color: var(--primary);
   font-family: var(--type-paragraph);
   font-style: initial;
   font-size: 0.4em;
@@ -47,7 +47,7 @@
 }
 
 .footnoteReturnLink {
-  color: var(--link);
+  color: var(--primary);
   font-size: 0.8em;
 
   &::after {

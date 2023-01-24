@@ -84,7 +84,7 @@ $navButton-transition: all 200ms ease-in;
     }
 
     @media (prefers-color-scheme: dark) {
-      --link: #{$link-light};
+      --primary: #{$primary-light};
       --bg-level-1: #{$bg-level-1-light};
       --text-contrast-10: #{$text-contrast-10-light};
     }
@@ -162,7 +162,7 @@ $navButton-transition: all 200ms ease-in;
 
       &[aria-current="false"] {
         @include onHoverAndFocus {
-          color: var(--link);
+          color: var(--primary);
         }
       }
     }
@@ -206,12 +206,12 @@ $navButton-transition: all 200ms ease-in;
 
   &[aria-current="false"] {
     @include onHoverAndFocus {
-      color: var(--link);
+      color: var(--primary);
     }
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 1px var(--bg-level-1), 0 0 0 3px var(--link);
+    box-shadow: 0 0 0 1px var(--bg-level-1), 0 0 0 3px var(--primary);
   }
 
   p {

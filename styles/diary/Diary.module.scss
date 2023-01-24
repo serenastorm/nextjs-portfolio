@@ -8,7 +8,7 @@
   --card-border-radius: 2px;
   --text-contrast-10: $text-contrast-10-light;
   --type-paragraph: var(--type-code);
-  --link: #{$link-light};
+  --primary: #{$primary-light};
 
   color: $text-contrast-10-light;
   padding: var(--content-padding-top)
@@ -56,13 +56,13 @@
   p,
   dd {
     a {
-      color: var(--link);
+      color: var(--primary);
       text-decoration: underline;
     }
   }
 
   h1 {
-    color: var(--link);
+    color: var(--primary);
   }
 
   h1,
