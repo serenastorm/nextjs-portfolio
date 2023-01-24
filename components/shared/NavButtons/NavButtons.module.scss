@@ -8,8 +8,8 @@ $navButton-transition: all 200ms ease-in;
   --nav-buttons-gap: 0.8rem;
   --nav-buttons-padding: 8px;
   --nav-button-width: clamp(
-    ((320px - (16px * 2)) - (var(--nav-buttons-gap) * 4)) / 5,
-    ((100vw - (24px * 2)) - (var(--nav-buttons-gap) * 4)) / 5,
+    ((320px - (16px * 2)) - (var(--nav-buttons-gap) * 3)) / 4,
+    ((100vw - (24px * 2)) - (var(--nav-buttons-gap) * 3)) / 4,
     12rem
   );
   --nav-button-radius: 4px;
