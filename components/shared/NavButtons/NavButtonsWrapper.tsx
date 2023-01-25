@@ -5,7 +5,6 @@ import {
   AccessibilityIcon,
   DiaryIcon,
   HomeIcon,
-  ChangelogIcon,
   SnippetsIcon,
 } from "assets/icons";
 
@@ -50,12 +49,6 @@ const NavButtonsWrapper = ({ children }: NavButtonsWrapperProps) => {
       label: "Accessibility",
       icon: <AccessibilityIcon />,
       isCurrent: pathname === routes.accessibility,
-    },
-    {
-      url: routes.changelog,
-      label: "Changelog",
-      icon: <ChangelogIcon />,
-      isCurrent: pathname === routes.changelog,
     },
   ];
 

@@ -7,7 +7,7 @@ import rehypeRaw from "rehype-raw";
 import { SnippetCodeTabs } from "./SnippetCodeTabs";
 import { rehypeMetaAsAttributes, reactNodeToString } from "helpers/blog";
 import { SnippetCopyToClipboardButton } from "components/snippets";
-import { NewTabLink } from "components/shared";
+import { Link } from "components/shared";
 import { ElementContent } from "react-markdown/lib/ast-to-react";
 
 import styles from "./SnippetMarkdown.module.scss";
@@ -156,7 +156,7 @@ const SnippetMarkdown = ({ content }: { content: CoreOptions["children"] }) => {
             const linkCopy = nodeChildren[indexOfLink]?.value;
 
             return isExternalLink && href && !!linkCopy ? (
-              <NewTabLink label={linkCopy} href={href} underline={false} />
+              <Link label={linkCopy} href={href} underline={false} />
             ) : (
               <a href={href} {...props}>
                 {children}

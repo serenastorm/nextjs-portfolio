@@ -1,11 +1,11 @@
-import Link from "next/link";
+import { default as NextLink } from "next/link";
 import { SendEmailIcon, OpenInNewTabIcon } from "assets/icons";
 
 import type { LinkProps } from "./types";
 
-import styles from "./NewTabLink.module.scss";
+import styles from "./Link.module.scss";
 
-export const NewTabLink = ({
+export const Link = ({
   className = "",
   label,
   href,
@@ -27,9 +27,9 @@ export const NewTabLink = ({
   const wordsTotal = labelWords.length;
 
   return (
-    <Link
+    <NextLink
       href={destinationUrl}
-      className={`${styles.newTabLink} ${className}${
+      className={`${styles.Link} ${className}${
         underline ? styles.withUnderline : ""
       }`}
       target={isExternal ? "_blank" : undefined}
@@ -49,6 +49,6 @@ export const NewTabLink = ({
           </span>
         </>
       )}
-    </Link>
+    </NextLink>
   );
 };

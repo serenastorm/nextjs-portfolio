@@ -30,19 +30,4 @@
       text-align: center;
     }
   }
-
-  ul {
-    @include breakpoint(0, 519.98) {
-      min-width: 100%;
-    }
-
-    @include breakpoint(520) {
-      align-items: center;
-      justify-content: center;
-    }
-
-    li a {
-      display: block;
-    }
-  }
 }

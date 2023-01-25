@@ -1,4 +1,4 @@
-import { NewTabLink } from "components/shared";
+import { Link } from "components/shared";
 import type { LinkProps } from "helpers/main/types";
 
 import { PROJECTS } from "./constants";
@@ -15,11 +15,11 @@ const LandingProjectLink = ({
     <div className={styles.landingProjectImg} />
     <dl>
       <dt>
-        <NewTabLink label={label} href={url} underline={false} />
+        <Link label={label} href={url} underline={false} />
       </dt>
       <dd>{description}</dd>
     </dl>
-    <NewTabLink
+    <Link
       className={styles.landingProjectLink}
       label=""
       href={url}

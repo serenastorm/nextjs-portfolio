@@ -1,12 +1,17 @@
 @import "~styles/modules/mixins.scss";
 
+ul.pills {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .pills li {
   display: inline;
 
-  &:not(:first-of-type) {
-    &::before {
+  &:not(:last-of-type) {
+    &::after {
       content: ", ";
-      margin-right: 0.05em;
     }
   }
 }

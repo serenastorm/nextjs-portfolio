@@ -1,4 +1,4 @@
 export { Loader } from "./Loader";
 export { NavButtons } from "./NavButtons";
-export { NewTabLink } from "./NewTabLink";
+export { Link } from "./Link";
 export { SkipToContentLink } from "./SkipToContentLink";

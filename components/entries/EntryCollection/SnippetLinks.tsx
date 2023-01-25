@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SnippetLikeButton, SnippetPills } from "components/snippets";
+import { SnippetLikeButton } from "components/snippets";
 import { GoToLinkIcon } from "assets/icons";
 import { BlogPostResponse } from "infrastructure/blog/types";
 import { formatRelativeTime } from "helpers/blog";
