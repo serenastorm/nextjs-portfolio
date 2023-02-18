@@ -18,6 +18,26 @@
     }
   }
 
+  kbd {
+    border-radius: 4px;
+    border: 1px solid rgba(var(--text-contrast-8-rgb), 0.1);
+    background: linear-gradient(
+        180deg,
+        rgba(var(--text-contrast-8-rgb), 0.044) 6.34%,
+        rgba(var(--text-contrast-8-rgb), 0) 30.14%,
+        rgba(var(--text-contrast-8-rgb), 0) 59.23%,
+        rgba(var(--text-contrast-8-rgb), 0.049) 100%
+      ),
+      var(--bg-contrast-8);
+    color: var(--text-contrast-10);
+    font-family: var(--type-code);
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+  }
+
   table {
     width: 100%;
     max-width: max-content;
