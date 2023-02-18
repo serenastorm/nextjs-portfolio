@@ -1,6 +1,7 @@
 @import "~styles/modules/mixins.scss";
 
 %link-with-background {
+  text-decoration: none;
   color: var(--inline-link);
 
   background: linear-gradient(
@@ -14,12 +15,12 @@
       rgba(var(--inline-link-rgb), 0.1) 25%
     );
   background-repeat: no-repeat, no-repeat;
-  background-size: 100% 0.075em, 0% 100%;
+  background-size: 100% 0.1em, 0% 100%;
   background-position: 0% 100%, 0% 0%;
   transition: all 350ms ease;
 
   @include onHoverAndFocus {
-    background-size: 100% 0.075em, 100% 100%;
+    background-size: 100% 0.1em, 100% 100%;
   }
 }
 

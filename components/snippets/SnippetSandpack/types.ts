@@ -1,8 +1,8 @@
 export type CodeSnippetProps = {
   language: string;
-  metastring: string;
+  metastring?: string;
   hidden: boolean;
-  active: boolean;
+  active?: boolean;
   filePath: string;
   code: string;
 };

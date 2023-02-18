@@ -1,13 +1,10 @@
+import { MDXProvider } from "@mdx-js/react";
 import Link from "next/link";
+import { Link as MarkdownLink } from "components/shared";
 import Head from "next/head";
 import Balancer from "react-wrap-balancer";
 import { Page } from "components/shared/Page";
-import {
-  SnippetLikeButton,
-  SnippetTags,
-  SnippetSandpack,
-} from "components/snippets";
-// TODO bring back sandpack component
+import { SnippetLikeButton, SnippetTags } from "components/snippets";
 import { routes } from "infrastructure/routes/constants";
 import { useLikes } from "infrastructure/hooks";
 import { getCategory } from "helpers/blog";
@@ -25,6 +22,10 @@ const category = "snippets";
 type ArticleWrapperProps = {
   children: JSX.Element;
 } & ArticleMetaData;
+
+export const markdownComponents = {
+  a: MarkdownLink,
+};
 
 export const ArticleWrapper = ({
   children,
@@ -115,7 +116,7 @@ export const ArticleWrapper = ({
           key={`${subcategory}/${slug}/mainContent`}
           className={markdownStyles.markdown}
         >
-          {children}
+          <MDXProvider components={markdownComponents}>{children}</MDXProvider>
         </article>
         {/* {(nextPost || previousPost) && (
           <aside className={blogArticleStyles.blogArticleNav}>

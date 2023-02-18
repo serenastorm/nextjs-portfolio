@@ -1,5 +1,5 @@
 import Head from "next/head";
-
+// TODO stop using Contentful
 import { Page } from "components/shared/Page";
 import { fetchEntries } from "helpers/blog/api";
 import { ChangeLogEntries } from "components/entries/EntryCollection";

@@ -1,19 +1,17 @@
 import { ArticleWrapper } from "components/entries/ArticleWrapper";
-import { Link } from "components/shared";
 import {
   CodeTab,
   CodeTabs,
-  SnippetCallout,
   SnippetCodeBlock as Code,
 } from "components/snippets";
 
 export const meta = {
   id: 4,
   title: "Accessible form inputs in HTML",
-  date: new Date("2022-10-25"),
+  date: new Date("2023-01-15"),
   subcategory: "accessibility",
   slug: "html-form-inputs",
-  tags: ["accessibility", "tsx", "react", "html", "css", "scss"],
+  tags: ["accessibility", "html"],
   shortText: "A step by step guide for HTML beginners.",
   isPublished: true,
 };
@@ -64,9 +62,9 @@ Associating inputs with labels is important for screen reader users (so they kno
 
 ## The type attribute
 
-In the example above, the input is for the user's first name, so we set the `type` as `text`. The `type` attribute lets the browser know what input to render and how the user can interact with it. Just because the value of an input is a string, it doesn't necessarily mean that the `type` should be `text`: it could also be `email`, `password`, `url`, or even `color`. The same thing applies to numbers: if we needed users to enter a phone number, we'd use `tel` instead of `number`. You can read more about input types in the <Link label="MDN docs" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types" />.
+In the example above, the input is for the user's first name, so we set the `type` as `text`. The `type` attribute lets the browser know what input to render and how the user can interact with it. Just because the value of an input is a string, it doesn't necessarily mean that the `type` should be `text`: it could also be `email`, `password`, `url`, or even `color`. The same thing applies to numbers: if we needed users to enter a phone number, we'd use `tel` instead of `number`. You can read more about input types in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types).
 
-<CodeTabs label="Input types examples" tabs={["email","number","password","url", "tel"]}>
+<CodeTabs label="Input types examples" tabs={["email","number", "password", "url", "tel"]}>
 
 <CodeTab label="email">
 
@@ -147,11 +145,7 @@ Your form validation logic should also add the `aria-invalid` attribute to inval
 ## The inputmode attribute
 
 If we set the `type` of an input, user agents might adapt the keyboard to the expected format; for example, the iOS keyboard for `email` inputs will typically include the "@" character. But that's not true for all input types; iOS just renders a regular keyboard for `number` inputs. In this case, we can use the `inputmode` attribute. We can set it to `numeric` to show the numeric keyboard with the digits 0-9, or we can set it to `decimal` to allow fractional numbers.
-
-<Link
-  label="Here's a good resource with screenshots of the different keyboards"
-  href="https://css-tricks.com/everything-you-ever-wanted-to-know-about-inputmode/"
-/>
+[Here's a good resource with screenshots of the different keyboards](https://css-tricks.com/everything-you-ever-wanted-to-know-about-inputmode/)
 
 <Code>
 
@@ -178,7 +172,7 @@ A `password` field can also have multiple `autocomplete` values: `new-password` 
 
 Ever wondered how your phone can pre-fill a one-time-code that was texted to you? This requires just one line of HTML: `autocomplete="one-time-code"`!
 
-<CodeTabs label="Autocomplete examples" tabs={["new-password","one-time-code"]}>
+<CodeTabs label="Autocomplete values examples" tabs={["new-password","one-time-code"]}>
 
 <CodeTab label="new-password">
 
@@ -206,11 +200,7 @@ Ever wondered how your phone can pre-fill a one-time-code that was texted to you
 
 The `autocomplete` attribute doesn't affect validation. You can read more about `autocomplete` in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete).
 
-<SnippetCallout title="A quick note about internationalisation">
-  The concept of "first name" and "last name" is not international. So if you
-  can, avoid breaking the name down into components, and just use `name` (or
-  `username`).
-</SnippetCallout>
+⚠️ A quick note about internationalisation: the concept of "first name" and "last name" is not international. So if you can, avoid breaking the name down into components, and just use `name` (or `username`).
 
 ## Additional attributes
 
@@ -224,7 +214,7 @@ Depending on the `type` of an input, there might be some additional attributes t
 
 <CodeTab label="image">
 
-```html
+```html filename="image"
 <label>
   Profile picture
   <input type="file" accept="image/png, image/jpeg" />

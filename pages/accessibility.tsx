@@ -27,10 +27,11 @@ const Accessibility = () => {
             The web should be accessible to everyone. If your accessibility
             requirements are not met, please{" "}
             <Link
-              label="open an issue on Github."
               href="https://github.com/serenastorm/nextjs-portfolio/issues"
               underline={false}
-            />
+            >
+              open an issue on Github.
+            </Link>
           </p>
         </div>
       </Page>

@@ -120,13 +120,13 @@ const SandPackNavigation = () => {
 type SandpackWrapperProps = {
   setup?: SandpackSetup;
   template?: "react-ts" | "react";
-  codeSnippets: CodeSnippetProps[];
+  files: Record<string, SandpackFile>;
 };
 
 const SandpackWrapper = ({
   setup,
   template = "react-ts",
-  codeSnippets,
+  files,
 }: SandpackWrapperProps) => {
   const [codeEditorHeight, setCodeEditorHeight] = useState<string>(
     "var(--sp-layout-height)"
@@ -135,18 +135,18 @@ const SandpackWrapper = ({
   const codeEditorRef = useRef<HTMLDivElement | null>(null);
   const buttonContainerHeight = 42;
 
-  const files = codeSnippets.reduce(
-    (result: Record<string, SandpackFile>, codeSnippet: CodeSnippetProps) => {
-      result[codeSnippet.filePath] = {
-        code: codeSnippet.code as string,
-        hidden: codeSnippet.hidden,
-        active: codeSnippet.active,
-      };
+  // const files = codeSnippets.reduce(
+  //   (result: Record<string, SandpackFile>, codeSnippet: CodeSnippetProps) => {
+  //     result[codeSnippet.filePath] = {
+  //       code: codeSnippet.code as string,
+  //       hidden: codeSnippet.hidden,
+  //       active: codeSnippet.active,
+  //     };
 
-      return result;
-    },
-    {}
-  );
+  //     return result;
+  //   },
+  //   {}
+  // );
 
   const scrollContainerInView = () => {
     if (containerRef?.current) {

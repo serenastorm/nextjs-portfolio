@@ -23,7 +23,7 @@ const Custom404 = () => {
         <h1>This page could not be found.</h1>
         <p>
           Browse code snippets below, or{" "}
-          <Link href="/" label="go back to the homepage." />
+          <Link href="/">go back to the homepage.</Link>
         </p>
         <SnippetTags types={tags} />
       </Page>

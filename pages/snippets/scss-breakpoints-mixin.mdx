@@ -1,5 +1,4 @@
 import { ArticleWrapper } from "components/entries/ArticleWrapper";
-import { Link } from "components/shared";
 import {
   CodeTab,
   CodeTabs,
@@ -10,13 +9,212 @@ import {
 export const meta = {
   id: 3,
   title: "My breakpoint SCSS mixin",
-  date: new Date("2022-10-25"),
-  subcategory: "accessibility",
+  date: new Date("2022-01-13"),
+  subcategory: "scss",
   slug: "scss-breakpoints-mixin",
-  tags: ["accessibility", "tsx", "react", "html", "css", "scss"],
-  shortText: "A step by step guide for HTML beginners.",
-  isPublished: false,
+  tags: ["css", "scss"],
+  shortText:
+    "The SCSS mixin I use for handling breakpoints in most of my projects.",
+  isPublished: true,
 };
+
+Mixins are easier to memorise than media queries and they can be a great way to manage your breakpoints. Here's a breakdown of the mixin I use in most of my projects.
+
+## The mixin
+
+First, let's create our mixin. We want to accept numbers for our min and max values, since media queries use pixel values. For example, a `min` value of `800` would compile to `@media (min-width: 800px)`. We also need to set the default values to 0, so we know not to compile parts of the media query we don't need.
+
+<Code filename="mixins.scss">
+
+```scss
+@mixin breakpoint($min: 0, $max: 0) {
+  $query: "all";
+  $minValue: #{$min}px;
+  $maxValue: #{$max}px;
+
+  @if $max == 0 {
+    $query: "(min-width: #{$minValue})";
+  } @else if $min == 0 {
+    $query: "(max-width: #{$maxValue})";
+  } @else {
+    $query: "(min-width: #{$minValue}) and (max-width: #{$maxValue})";
+  }
+
+  @media #{$query} {
+    @content;
+  }
+}
+```
+
+</Code>
+
+## Usage
+
+<CodeTabs label="Breakpoint mixin compiled code" tabs={["styles.scss","compiled.css"]}>
+
+<CodeTab label="styles.scss">
+
+```scss
+@include breakpoint(0, 399.98) {
+  /* Your styles here */
+}
+
+@include breakpoint(400, 799.98) {
+  /* Your styles here */
+}
+
+@include breakpoint(800) {
+  /* Your styles here */
+}
+```
+
+</CodeTab>
+
+<CodeTab label="compiled.scss">
+
+```css
+@media (max-width: 399.98px) {
+  /* Your styles here */
+}
+
+@media (min-width: 400px) and (max-width: 799.98px) {
+  /* Your styles here */
+}
+
+@media (min-width: 800px) {
+  /* Your styles here */
+}
+```
+
+</CodeTab>
+
+</CodeTabs>
+
+You'll notice that I write generic first CSS, rather than mobile first (the industry standard). The main reason behind that decision is that it makes debugging easier (since there are less overrides), and the performance is either the same as mobile first, or slightly faster. So better DX AND better UX! [Read more about generic first code perfomance](https://www.smashingmagazine.com/2018/12/generic-css-mobile-first/#performance-implications)
+
+## Setting pre-defined breakpoints
+
+If you always use the same breakpoints, or if you use a library like Bootstrap, it can be helpful to set some pre-defined values. First, let's save our breakpoints using a [SASS map](https://sass-lang.com/documentation/values/maps). For example, if using Bootstrap, we can accept string values that match the 5 Bootstrap breakpoints: `xs`, `sm`, `md`, `lg`, and `xl`.
+
+<Code filename="mixins.scss">
+
+```scss 
+@mixin breakpoint($min: 0, $max: 0) {
+  /* List all accepted values */
+  $known-breakpoints: xs, sm, md, lg, xl;
+
+  /* We need to add some errors if one of the values is unknown, 
+  for example if you tried to use "small" instead of "sm". */
+  @if not index($known-breakpoints, $min) and type-of($min) != number {
+    @error "Unknown breakpoint #{$min}.";
+  }
+
+  @if not index($known-breakpoints, $max) and type-of($max) != number {
+    @error "Unknown breakpoint #{$max}.";
+  }
+
+  $query: "all";
+  $minValue: 0;
+  $maxValue: 0;
+
+  /* Set our breakpoints using SASS Maps
+  https://getbootstrap.com/docs/5.0/layout/breakpoints/
+  https://sass-lang.com/documentation/values/maps */
+  $minBreakpoints: (
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+  );
+
+  $maxBreakpoints: (
+    xs: 575.98px,
+    sm: 767.98px,
+    md: 991.98px,
+    lg: 1199.98px,
+  );
+
+  /* If the provided value is a string, get the
+  corresponding pixel value from the maps above */
+  @if type-of($min) == string {
+    $minValue: map-get($minBreakpoints, $min);
+  } @else if type-of($min) == number {
+    $minValue: #{$min}px;
+  }
+
+  @if type-of($max) == string {
+    $maxValue: map-get($maxBreakpoints, $max);
+  } @else if type-of($max) == number {
+    $maxValue: #{$max}px;
+  }
+
+  @if $max == 0 {
+    $query: "(min-width: #{$minValue})";
+  } @else if $min == 0 {
+    $query: "(max-width: #{$maxValue})";
+  } @else {
+    $query: "(min-width: #{$minValue}) and (max-width: #{$maxValue})";
+  }
+
+  @media #{$query} {
+    @content;
+  }
+}
+```
+
+</Code>
+
+## Usage with pre-defined breakpoints
+
+<CodeTabs label="Breakpoint mixin with pre-defined values compiled code" tabs={["styles.scss","compiled.css"]}>
+
+<CodeTab label="styles.scss">
+
+```scss
+@include breakpoint(0, xs) {
+  /* Your styles here */
+}
+
+@include breakpoint(sm, md) {
+  /* Your styles here */
+}
+
+@include breakpoint(lg) {
+  /* Your styles here */
+}
+
+/* You can still use numbers: */
+@include breakpoint(sm, 799.98) {
+  /* Your styles here */
+}
+```
+
+</CodeTab>
+
+<CodeTab label="compiled.scss">
+
+```css
+@media (max-width: 575.98px) {
+  /* Your styles here */
+}
+
+@include breakpoint(576px, 991.98px) {
+  /* Your styles here */
+}
+
+@include breakpoint(992px) {
+  /* Your styles here */
+}
+
+/* You can still use numbers: */
+@include breakpoint(576px, 799.98) {
+  /* Your styles here */
+}
+```
+
+</CodeTab>
+
+</CodeTabs>
 
 export default ({ children }) => (
   <ArticleWrapper {...meta}>{children}</ArticleWrapper>

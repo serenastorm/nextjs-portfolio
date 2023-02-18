@@ -5,10 +5,13 @@ import {
   SnippetCodeBlock as Code,
 } from "components/snippets";
 
+import { SnippetSandpackWrapper } from "components/snippets/SnippetSandpack/SnippetSandpackWrapper";
+import sandpackFiles from "snippets/demos/sass-maps-variables";
+
 export const meta = {
   id: 5,
   title: "Clean CSS variables using SASS maps",
-  date: new Date("2022-10-25"),
+  date: new Date("2022-07-02"),
   subcategory: "scss",
   slug: "sass-maps-variables",
   tags: ["css", "scss"],
@@ -123,6 +126,25 @@ $font-weights: (
 </CodeTabs>
 
 To see an example with nested maps, have a look a the colour palette demo below.
+
+## Demo
+
+<SnippetSandpackWrapper
+  files={sandpackFiles}
+  setup={{
+    dependencies: {
+      react: "17.0.2",
+      "react-dom": "17.0.2",
+      "react-scripts": "4.0.3",
+      "parcel-bundler": "1.12.5",
+    },
+    devDependencies: {
+      typescript: "4.4.2",
+      "@types/react": "17.0.20",
+      "@types/react-dom": "17.0.9",
+    },
+  }}
+/>
 
 export default ({ children }) => (
   <ArticleWrapper {...meta}>{children}</ArticleWrapper>

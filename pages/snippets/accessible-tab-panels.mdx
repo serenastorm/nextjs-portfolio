@@ -1,22 +1,180 @@
 import { ArticleWrapper } from "components/entries/ArticleWrapper";
-import { Link } from "components/shared";
 import {
   CodeTab,
   CodeTabs,
-  SnippetCallout,
   SnippetCodeBlock as Code,
 } from "components/snippets";
+
+import { SnippetSandpackWrapper } from "components/snippets/SnippetSandpack/SnippetSandpackWrapper";
+import sandpackFiles from "snippets/demos/accessible-tab-panels";
 
 export const meta = {
   id: 6,
   title: "Accessible tab panels in React",
-  date: new Date("2022-10-25"),
+  date: new Date("2022-02-26"),
   subcategory: "accessibility",
   slug: "accessible-tab-panels",
-  tags: ["accessibility", "tsx", "react", "html", "css", "scss"],
-  shortText: "A step by step guide for HTML beginners.",
-  isPublished: false,
+  tags: ["accessibility", "jsx", "tsx", "react", "css", "scss"],
+  shortText:
+    "Add keyboard navigation support for tab components in React & Typescript.",
+  isPublished: true,
 };
+
+Tabs are used to display a set of sections of content one at a time. Each panel of content ("tab panel") has an associated button, that when activated, displays the panel. The [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel) include guidance on creating accessible tab components. We'll need to use the appropriate tags and WAI-ARIA roles, as well as giving users the ability to navigate between tabs with their keyboard arrows, the `Home` key, and the `End` key.
+
+## Adding refs to the buttons
+
+In order to move focus between the buttons, we need to add refs.
+
+<Code filename="Tabs.tsx">
+
+```tsx
+const tabsRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+return (
+  <ul role="tablist">
+    {tabs.map((tab, tabIndex) => (
+      <li key={`${tab.label}-tab`}>
+        <button
+          ref={(el: HTMLButtonElement) => (tabsRefs.current[tabIndex] = el)}
+        >
+          {tab.label}
+        </button>
+      </li>
+    ))}
+  </ul>
+);
+```
+
+</Code>
+
+## Updating the active tab
+
+When updating the active tab, we use the refs to move focus to the corresponding button. We'll also need to change some of the buttons props depending on their current state so we'll store the active tab index with `useState`.
+
+<Code filename="Tabs.tsx">
+
+```tsx
+const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
+
+const activateTab = (newTabIndex: number) => {
+  /* Focus new tab button */
+  tabsRefs?.current[newTabIndex]?.focus();
+  /* Set new tab as active */
+  setActiveTabIndex(newTabIndex);
+};
+```
+
+</Code>
+
+## Handle key press
+
+First, we add an `onKeyDown` event listener to our buttons.
+
+<Code filename="Tabs.tsx">
+
+```tsx
+<button
+  onKeyDown={(event: KeyboardEvent<HTMLButtonElement>) =>
+    onKeyPressed(event, tabIndex)
+  }
+>
+  {tab.label}
+</button>
+```
+
+</Code>
+
+\
+Here's our `onKeyPress` function. If the tab list has its `aria-orientation` set to vertical, replace `ArrowRight` and `ArrowLeft` with `ArrowDown` and `ArrowUp`:
+
+<Code filename="Tabs.tsx">
+
+```tsx
+const onKeyPressed = (
+  event: KeyboardEvent<HTMLButtonElement>,
+  tabIndex: number
+) => {
+  const shouldGoToNextTab = event.key === "ArrowRight";
+  const shouldGoToPreviousTab = event.key === "ArrowLeft";
+  const shouldGoToFirstTab = event.key === "Home";
+  const shouldGoToLastTab = event.key === "End";
+
+  const prevTab = tabIndex - 1;
+  const nextTab = tabIndex + 1;
+  const lastTab = totalTabs - 1;
+
+  if (shouldGoToNextTab) {
+    /* If the current active tab is the last, go the the first tab */
+    if (tabIndex >= totalTabs - 1) {
+      activateTab(0);
+    } else {
+      activateTab(nextTab);
+    }
+  } else if (shouldGoToPreviousTab) {
+    /* If the current active tab is the first, go the the last tab */
+    if (tabIndex <= 0) {
+      activateTab(lastTab);
+    } else {
+      activateTab(prevTab);
+    }
+  } else if (shouldGoToFirstTab) {
+    activateTab(0);
+  } else if (shouldGoToLastTab) {
+    activateTab(lastTab);
+  } else {
+    return null;
+  }
+};
+```
+
+</Code>
+
+## Tags and WAI-ARIA Roles
+
+| Tag               | Element | Description                                                                                              |
+| ----------------- | ------- | -------------------------------------------------------------------------------------------------------- |
+| `role="tablist"`  | Parent  | Indicates a list of tab elements, which are references to tabpanel elements                              |
+| `aria-label`      | Parent  | Tabs label                                                                                               |
+| `role="tab"`      | Button  | Indicates an interactive element inside a tablist that, when activated, displays its associated tabpanel |
+| `aria-selected`   | Button  | Set as `"true"` or `"false"` to indicate the current active tab                                          |
+| `aria-controls`   | Button  | Set to the corresponding panel `id` to indicate the relationship between the two                         |
+| `id`              | Button  | Set a unique ID for each button and panel                                                                |
+| `tabIndex`        | Button  | Set as `0` or `-1` depending on the active tab                                                           |
+| `tabIndex`        | Panel   | Set as `0` or `-1` depending on the active tab                                                           |
+| `role="tabpanel"` | Panel   | Indicates an element that contains the content associated with a tab                                     |
+| `id`              | Panel   | Set a unique ID for each button and panel                                                                |
+| `aria-labelledby` | Panel   | Set to the corresponding button `id` to indicate the relationship between the two                        |
+
+## WAI-ARIA Guidelines
+
+- [x] When focus moves into the tab list, pressing the `Tab` key places focus on the active tab element.
+- [x] When the tab list contains the focus, pressing the `Tab` key moves focus to the next element in the tab sequence, which is the tabpanel element.
+- [x] Pressing the right arrow while a link is focused moves focus to the next tab. If focus is on the last tab, moves focus to the first tab. The newly focused tab is active.
+- [x] Pressing the left arrow while a link is focused moves focus to the previous tab. If focus is on the first tab, moves focus to the last tab. The newly focused tab is active.
+- [x] Pressing the `Home` key when a tab has focus moves focus to the first tab.
+- [x] Pressing the `End` key when a tab has focus moves focus to the last tab.
+
+[View design pattern](https://www.w3.org/TR/wai-aria-practices/#tabpanel)
+
+## Demo
+
+<SnippetSandpackWrapper
+  files={sandpackFiles}
+  setup={{
+    dependencies: {
+      react: "17.0.2",
+      "react-dom": "17.0.2",
+      "react-scripts": "4.0.3",
+      "parcel-bundler": "1.12.5",
+    },
+    devDependencies: {
+      typescript: "4.4.2",
+      "@types/react": "17.0.20",
+      "@types/react-dom": "17.0.9",
+    },
+  }}
+/>
 
 export default ({ children }) => (
   <ArticleWrapper {...meta}>{children}</ArticleWrapper>

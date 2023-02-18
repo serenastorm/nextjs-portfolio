@@ -2,6 +2,7 @@
 @import "~styles/modules/mixins";
 
 .sp-wrapper {
+  --sp-colors-surface3: rgba(0, 0, 0, 0.4) !important;
   --sp-layout-height: clamp(300px, 70vh, 700px) !important;
   --sp-colors-bg-default: var(--sp-colors-surface1);
   --sp-colors-fg-inactive: var(--sp-colors-surface2);

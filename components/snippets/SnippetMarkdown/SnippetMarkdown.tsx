@@ -156,7 +156,9 @@ const SnippetMarkdown = ({ content }: { content: CoreOptions["children"] }) => {
             const linkCopy = nodeChildren[indexOfLink]?.value;
 
             return isExternalLink && href && !!linkCopy ? (
-              <Link label={linkCopy} href={href} underline={false} />
+              <Link href={href} underline={false}>
+                {linkCopy}
+              </Link>
             ) : (
               <a href={href} {...props}>
                 {children}

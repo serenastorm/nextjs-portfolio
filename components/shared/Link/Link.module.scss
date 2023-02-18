@@ -62,7 +62,6 @@
 
 .withUnderline {
   --underline-color: currentColor;
-  border-bottom: 0.08em solid currentColor;
   text-decoration: underline;
   text-underline-offset: var(--primary-underline-offset);
   text-decoration-thickness: var(--primary-underline-width);

@@ -5,10 +5,13 @@ import {
   SnippetCodeBlock as Code,
 } from "components/snippets";
 
+import { SnippetSandpackWrapper } from "components/snippets/SnippetSandpack/SnippetSandpackWrapper";
+import sandpackFiles from "snippets/demos/accessible-checkboxes";
+
 export const meta = {
   id: 1,
   title: "Accessible custom checkboxes",
-  date: new Date("2022-10-25"),
+  date: new Date("2022-10-28"),
   subcategory: "accessibility",
   slug: "accessible-checkboxes",
   tags: ["accessibility", "tsx", "react", "html", "css", "scss"],
@@ -374,6 +377,26 @@ const onFieldChange = async (checkboxIndex: number) => {
 ```
 
 </Code>
+
+## Demo
+
+<SnippetSandpackWrapper
+  files={sandpackFiles}
+  setup={{
+    dependencies: {
+      yup: "0.32.11",
+      react: "17.0.2",
+      "react-dom": "17.0.2",
+      "react-scripts": "4.0.3",
+      "parcel-bundler": "1.12.5",
+    },
+    devDependencies: {
+      typescript: "4.4.2",
+      "@types/react": "17.0.20",
+      "@types/react-dom": "17.0.9",
+    },
+  }}
+/>
 
 export default ({ children }) => (
   <ArticleWrapper {...meta}>{children}</ArticleWrapper>

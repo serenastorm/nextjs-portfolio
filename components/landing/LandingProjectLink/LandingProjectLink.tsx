@@ -15,18 +15,19 @@ const LandingProjectLink = ({
     <div className={styles.landingProjectImg} />
     <dl>
       <dt>
-        <Link label={label} href={url} underline={false} />
+        <Link href={url} underline={false}>
+          {label}
+        </Link>
       </dt>
       <dd>{description}</dd>
     </dl>
     <Link
       className={styles.landingProjectLink}
-      label=""
       href={url}
       underline={false}
       tabIndex={-1}
       aria-hidden="true"
-    />
+    ></Link>
   </div>
 );
 

@@ -2,7 +2,13 @@
 
 $task-list-checkmark-size: 2rem;
 
+.contains-task-list {
+  list-style-type: none;
+}
+
 .task-list-item {
+  line-height: 180%;
+  
   input {
     position: relative;
     width: $task-list-checkmark-size;

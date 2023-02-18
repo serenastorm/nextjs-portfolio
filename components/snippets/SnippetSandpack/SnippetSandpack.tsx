@@ -6,7 +6,7 @@ const SnippetSandpack = ({
   markdown,
   setup,
 }: {
-  markdown: string;
+  markdown: CodeSnippetProps[];
   setup: SandpackSetup;
 }) => {
   /* This is definitely not the best code I've written 
@@ -18,42 +18,42 @@ const SnippetSandpack = ({
   files are all for NextJS so migrating would be a more
   elegant solution but a bit overkill for now */
 
-  const preTags = markdown
-    .split("```")
-    ?.filter((tag) => !!tag && tag !== "\n\n" && tag !== "\n");
+  // const preTags = markdown
+  //   .split("```")
+  //   ?.filter((tag) => !!tag && tag !== "\n\n" && tag !== "\n");
 
-  const preTagsObjectArray = (): CodeSnippetProps[] => {
-    let result: CodeSnippetProps[] = [];
+  // const preTagsObjectArray = (): CodeSnippetProps[] => {
+  //   let result: CodeSnippetProps[] = [];
 
-    for (let i = 0; i < preTags.length; i++) {
-      const preTag = preTags[i];
-      const firstLine: string[] = preTag.match(/^.*$/m) || [];
-      const metastring = firstLine[0]?.match(/meta:/)
-        ? firstLine[0].slice("meta:".length)
-        : null;
+  //   for (let i = 0; i < preTags.length; i++) {
+  //     const preTag = preTags[i];
+  //     const firstLine: string[] = preTag.match(/^.*$/m) || [];
+  //     const metastring = firstLine[0]?.match(/meta:/)
+  //       ? firstLine[0].slice("meta:".length)
+  //       : null;
 
-      if (metastring) {
-        const [language, name, ...params] = metastring.split(" ");
-        const hidden = metastring.includes("hidden");
-        const active = metastring.includes("active");
-        const filePath = "/" + name;
+  //     if (metastring) {
+  //       const [language, name, ...params] = metastring.split(" ");
+  //       const hidden = metastring.includes("hidden");
+  //       const active = metastring.includes("active");
+  //       const filePath = "/" + name;
 
-        result.push({
-          language,
-          metastring,
-          hidden,
-          active,
-          filePath,
-          code: preTag.substring(preTag.indexOf("\n") + 1),
-        });
-      } else {
-        console.log(`metastring not found for code block ${preTag}`);
-      }
-    }
-    return result;
-  };
+  //       result.push({
+  //         language,
+  //         metastring,
+  //         hidden,
+  //         active,
+  //         filePath,
+  //         code: preTag.substring(preTag.indexOf("\n") + 1),
+  //       });
+  //     } else {
+  //       console.log(`metastring not found for code block ${preTag}`);
+  //     }
+  //   }
+  //   return result;
+  // };
 
-  return <SnippetSandpackWrapper setup={setup} codeSnippets={preTagsObjectArray()} />;
+  return <SnippetSandpackWrapper setup={setup} codeSnippets={markdown} />;
 };
 
 export default SnippetSandpack;

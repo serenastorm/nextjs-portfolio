@@ -5,13 +5,14 @@ import {
   CodeTabs,
   SnippetCallout,
   SnippetCodeBlock as Code,
-  SnippetTaskList,
 } from "components/snippets";
+import { SnippetSandpackWrapper } from "components/snippets/SnippetSandpack/SnippetSandpackWrapper";
+import sandpackFiles from "snippets/demos/skip-to-content-link";
 
 export const meta = {
   id: 2,
   title: "Add a ‘skip to content’ link to your website",
-  date: new Date("2022-10-25"),
+  date: new Date("2022-01-11"),
   subcategory: "accessibility",
   slug: "skip-to-content-link",
   tags: ["accessibility", "jsx", "react", "html", "css", "scss"],
@@ -73,15 +74,11 @@ Now we can style the link and animate in on focus. Here it's fading in from the 
 
 ## WCAG Success Criteria
 
-<SnippetTaskList
-  items={[
-    "A link is the first focusable control on the Web page.",
-    "The description of the link communicates that it links to the main content.",
-    "The link is either always visible or visible when it has keyboard focus.",
-    "Activating the link moves the focus to the main content.",
-    "After activating the link, the keyboard focus has moved to the main content.",
-  ]}
-/>
+- [x] A link is the first focusable control on the Web page.
+- [x] The description of the link communicates that it links to the main content.
+- [x] The link is either always visible or visible when it has keyboard focus.
+- [x] Activating the link moves the focus to the main content.
+- [x] After activating the link, the keyboard focus has moved to the main content.
 
 [View full criteria](https://www.w3.org/TR/WCAG20-TECHS/G1.html)
 
@@ -128,6 +125,26 @@ You can also disable every animation on your website like so:
 ```
 
 </Code>
+
+## Demo
+
+<SnippetSandpackWrapper
+  files={sandpackFiles}
+  setup={{
+    dependencies: {
+      react: "17.0.2",
+      "react-dom": "17.0.2",
+      "react-scripts": "4.0.3",
+      "parcel-bundler": "1.12.5",
+      "react-hot-toast": "2.2.0",
+    },
+    devDependencies: {
+      typescript: "4.4.2",
+      "@types/react": "17.0.20",
+      "@types/react-dom": "17.0.9",
+    },
+  }}
+/>
 
 export default ({ children }) => (
   <ArticleWrapper {...meta}>{children}</ArticleWrapper>

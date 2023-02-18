@@ -1,3 +1,4 @@
+import { Children, type ReactNode } from "react";
 import { default as NextLink } from "next/link";
 import { SendEmailIcon, OpenInNewTabIcon } from "assets/icons";
 
@@ -5,9 +6,26 @@ import type { LinkProps } from "./types";
 
 import styles from "./Link.module.scss";
 
+/**
+ * The `Link` component accepts any number of children,
+ * to mirror the behaviour of a tags
+ */
+
+const getLabelFromChildren = (children: ReactNode) => {
+  let label = "";
+
+  Children.map(children, (child) => {
+    if (typeof child === "string") {
+      label += child;
+    }
+  });
+
+  return label;
+};
+
 export const Link = ({
   className = "",
-  label,
+  children,
   href,
   type = "link",
   shouldOpenInNewTab,
@@ -22,7 +40,7 @@ export const Link = ({
     shouldOpenInNewTab ||
     (typeof href === "string" &&
       (href?.startsWith("http") || href?.startsWith("https")));
-  const labelWords = label.split(" ");
+  const labelWords = getLabelFromChildren(children).split(" ");
   const lastWord = labelWords.pop();
   const wordsTotal = labelWords.length;
 
@@ -36,19 +54,17 @@ export const Link = ({
       rel={isExternal ? "noopener noreferrer" : undefined}
       {...props}
     >
-      {label && (
-        <>
-          {wordsTotal > 0 && <span>{labelWords.join(" ")} </span>}
-          <span>
-            {lastWord}
-            {type === "email" ? (
-              <SendEmailIcon />
-            ) : (
-              <>{isExternal && <OpenInNewTabIcon />}</>
-            )}
-          </span>
-        </>
-      )}
+      <>
+        {wordsTotal > 0 && <span>{labelWords.join(" ")} </span>}
+        <span>
+          {lastWord}
+          {type === "email" ? (
+            <SendEmailIcon />
+          ) : (
+            <>{isExternal && <OpenInNewTabIcon />}</>
+          )}
+        </span>
+      </>
     </NextLink>
   );
 };
