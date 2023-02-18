@@ -1,0 +1,94 @@
+import { ArticleWrapper } from "components/entries/ArticleWrapper";
+import {
+  CodeTab,
+  CodeTabs,
+  SnippetCodeBlock as Code,
+  SnippetSandpack,
+} from "components/snippets";
+import sandpackFiles from "snippets/demos/html-search-form";
+
+export const meta = {
+  id: 7,
+  title: "HTML search form",
+  date: new Date("2023-02-18"),
+  subcategory: "html",
+  slug: "html-search-form",
+  tags: ["react", "html"],
+  shortText: "Create a fully-functioning form with just 4 lines of HTML.",
+  isPublished: true,
+};
+
+If you are frequently using React for front-end development, you might end up having to use JavaScript for a lof of your forms. However, in some cases, a HTML form might be enough! Let's take a look at a very basic search form.
+
+## Creating the form
+
+First, let's create our `SearchForm` component. We only need four lines of code:
+
+<Code filename="SearchForm.tsx">
+
+```tsx
+<form role="search" action="/search">
+  <input aria-label="Search articles" type="search" name="q" required />
+  <input type="submit" value="Search" />
+</form>
+```
+
+</Code>
+
+That's it! Nothing more. To understand how this works, let's take a look at what happens when we submit a HTML form. If you've ever made a form in React, you probably had to add `event.preventDefault()` to prevent the page from reloading on form submit. That's because when we submit a HTML form, the following happens:
+
+1. We get redirected to the URL specified in the form's `action` attribute
+2. The form values get appended to this URL, following this format: `?fieldName=fieldValue`
+
+So if we enter "pizza" in the search input, submitting the form will take us to the following URL: `/search?q=pizza`. If the form doesn't have an `action` specified, we get redirected to the current page, which is the behaviour we usually avoid with `event.preventDefault()`.
+
+We don't even need to press the "Search" button to submit the form, as HTML forms can also be submitted with the <kbd>Enter</kbd> key!
+
+## Getting the query from the route params
+
+Now that we've been redirected to the search page, we just need to grab the query from the URL. How you achieve this will depend on the routing system you're using, but it will look something like this:
+
+<CodeTabs label="Getting route params with React router and Next.js" tabs={["React router","Next.js"]}>
+
+<CodeTab label="React router">
+
+```tsx
+let [searchParams] = useSearchParams();
+const query = searchParams.get("q");
+```
+
+</CodeTab>
+
+<CodeTab label="Next.js">
+
+```tsx
+const router = useRouter();
+const { q: query } = router.query;
+```
+
+</CodeTab>
+
+</CodeTabs>
+
+## Demo
+
+<SnippetSandpack
+  files={sandpackFiles}
+  setup={{
+    dependencies: {
+      react: "18.0.0",
+      "react-dom": "18.0.0",
+      "react-router-dom": "6.8.1",
+      "react-scripts": "4.0.3",
+    },
+    devDependencies: {
+      "@types/react": "18.0.25",
+      "@types/react-dom": "18.0.9",
+      typescript: "4.4.2",
+    },
+  }}
+/>
+
+export default ({ children }) => (
+  <ArticleWrapper {...meta}>{children}</ArticleWrapper>
+);
