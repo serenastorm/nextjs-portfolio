@@ -5,6 +5,7 @@ export { default as DiaryIcon } from "./DiaryIcon";
 export { default as ExpandIcon } from "./ExpandIcon";
 export { default as GoToLinkIcon } from "./GoToLinkIcon";
 export { default as HomeIcon } from "./HomeIcon";
+export { default as InfoIcon } from "./InfoIcon";
 export { default as SnippetsIcon } from "./SnippetsIcon";
 export { default as OpenInCodeSandboxIcon } from "./OpenInCodeSandboxIcon";
 export { default as OpenInNewTabIcon } from "./OpenInNewTabIcon";

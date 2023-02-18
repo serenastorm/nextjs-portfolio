@@ -2,6 +2,7 @@ import { ArticleWrapper } from "components/entries/ArticleWrapper";
 import {
   CodeTab,
   CodeTabs,
+  SnippetCallout,
   SnippetCodeBlock as Code,
 } from "components/snippets";
 
@@ -200,7 +201,11 @@ Ever wondered how your phone can pre-fill a one-time-code that was texted to you
 
 The `autocomplete` attribute doesn't affect validation. You can read more about `autocomplete` in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete).
 
-⚠️ A quick note about internationalisation: the concept of "first name" and "last name" is not international. So if you can, avoid breaking the name down into components, and just use `name` (or `username`).
+<SnippetCallout title="A quick note about internationalisation">
+  The concept of "first name" and "last name" is not international. So if you
+  can, avoid breaking the name down into components, and just use `name` (or
+  `username`).
+</SnippetCallout>
 
 ## Additional attributes
 

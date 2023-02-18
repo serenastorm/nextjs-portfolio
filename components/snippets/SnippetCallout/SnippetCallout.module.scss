@@ -2,9 +2,31 @@
 @import "~styles/modules/placeholders.scss";
 
 .callout {
+  --border-width: 2px;
+  position: relative;
   padding: 16px 24px;
   background-color: var(--bg-contrast-8);
   border-radius: 0 8px 8px 0;
-  margin-top: 1.6rem;
-  border-left: 4px solid var(--primary);
+  margin-top: 2.4rem;
+  border-left: var(--border-width) solid var(--inline-link);
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 4px;
+  background-color: var(--bg-level-0);
+  border-radius: 50%;
+  color: var(--inline-link);
+  transform: translate(calc(-50% - (var(--border-width) * 0.5)), -25%);
+
+  svg {
+    width: 24px;
+    height: auto;
+
+    path {
+      stroke-width: var(--border-width);
+    }
+  }
 }
