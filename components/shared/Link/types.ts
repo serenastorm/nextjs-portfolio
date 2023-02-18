@@ -1,7 +1,8 @@
+import type { AnchorHTMLAttributes } from "react";
 import type { LinkProps as NextLinkProps } from "next/link";
 
 type HTMLAnchorProps = Omit<
-  React.AnchorHTMLAttributes<HTMLAnchorElement>,
+  AnchorHTMLAttributes<HTMLAnchorElement>,
   keyof NextLinkProps
 >;
 

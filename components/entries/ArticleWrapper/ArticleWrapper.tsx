@@ -11,6 +11,7 @@ import { getCategory } from "helpers/blog";
 // import { fetchRelatedEntries } from "helpers/blog/api";
 
 import type { ArticleMetaData } from "./types";
+import type { AnchorHTMLAttributes } from "react";
 
 import blogStyles from "styles/blog/Blog.module.scss";
 import blogArticleStyles from "styles/blog/BlogArticle.module.scss";
@@ -24,7 +25,12 @@ type ArticleWrapperProps = {
 } & ArticleMetaData;
 
 export const markdownComponents = {
-  a: MarkdownLink,
+  a: (props: AnchorHTMLAttributes<HTMLAnchorElement>) =>
+    props.href ? (
+      <MarkdownLink href={props.href}>{props.children}</MarkdownLink>
+    ) : (
+      <></>
+    ),
 };
 
 export const ArticleWrapper = ({

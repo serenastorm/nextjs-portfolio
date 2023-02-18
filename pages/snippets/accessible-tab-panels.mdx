@@ -3,9 +3,8 @@ import {
   CodeTab,
   CodeTabs,
   SnippetCodeBlock as Code,
+  SnippetSandpack,
 } from "components/snippets";
-
-import { SnippetSandpackWrapper } from "components/snippets/SnippetSandpack/SnippetSandpackWrapper";
 import sandpackFiles from "snippets/demos/accessible-tab-panels";
 
 export const meta = {
@@ -159,7 +158,7 @@ const onKeyPressed = (
 
 ## Demo
 
-<SnippetSandpackWrapper
+<SnippetSandpack
   files={sandpackFiles}
   setup={{
     dependencies: {

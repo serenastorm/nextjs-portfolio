@@ -1,4 +1,6 @@
 // TODO error handling
+import fs from "fs";
+import { join } from "path";
 import type { BlogPostResponse } from "infrastructure/blog/types";
 import type { ArticleMetaData } from "components/entries/ArticleWrapper/types";
 
@@ -23,19 +25,29 @@ export async function fetchRelatedEntries(id: string): Promise<{
 export async function fetchMarkdownEntries(
   limit?: number
 ): Promise<ArticleMetaData[]> {
-  const res = await fetch(
-    `${process.env.APP_URL}/api/snippets${limit ? `?limit=${limit}` : ""}`,
-    {
-      method: "GET",
-    }
+  const fileNames = fs
+    .readdirSync(join(process.cwd(), "pages", "snippets"), {
+      withFileTypes: true,
+    })
+    .map((file) => file.name);
+
+  const allPosts: ArticleMetaData[] = await Promise.all(
+    fileNames.map(async (fileName) => {
+      if (!fileName.endsWith(".mdx")) return;
+
+      const slug = fileName.replace(/.mdx$/, "");
+      const { meta } = await import(`pages/snippets/${slug}.mdx`);
+
+      return { ...meta, slug, category: "snippets" };
+    })
   );
 
-  if (!res.ok) {
-    // const message = `An error has occurred while fetching likes for post ${postId}: ${likesRes.status}`;
-    // throw new Error(message);
-  }
+  const publishedPosts = allPosts.filter((post) => post?.isPublished);
 
-  const { posts } = await res.json();
+  const orderedPosts = publishedPosts.sort((a, b) => {
+    return b.date.valueOf() - a.date.valueOf();
+  });
 
-  return posts;
+  const posts = limit ? orderedPosts.slice(0, limit) : orderedPosts;
+  return JSON.parse(JSON.stringify(posts));
 }

@@ -20,7 +20,7 @@ export const fetchRelatedPosts = createAsyncThunk(
     });
 
     if (!relatedPostsRes.ok) {
-      const message = `An error has occurred while fetching likes for post ${postId}: ${likesRes.status}`;
+      const message = `An error has occurred while fetching related posts for post ${postId}: ${relatedPostsRes.status}`;
       throw new Error(message);
     }
 

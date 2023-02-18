@@ -1,1 +1,1 @@
-export { default as SnippetSandpack } from "./SnippetSandpack";
+export { SnippetSandpack } from "./SnippetSandpack";

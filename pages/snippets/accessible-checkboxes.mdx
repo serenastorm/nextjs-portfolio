@@ -3,9 +3,8 @@ import {
   CodeTab,
   CodeTabs,
   SnippetCodeBlock as Code,
+  SnippetSandpack,
 } from "components/snippets";
-
-import { SnippetSandpackWrapper } from "components/snippets/SnippetSandpack/SnippetSandpackWrapper";
 import sandpackFiles from "snippets/demos/accessible-checkboxes";
 
 export const meta = {
@@ -380,7 +379,7 @@ const onFieldChange = async (checkboxIndex: number) => {
 
 ## Demo
 
-<SnippetSandpackWrapper
+<SnippetSandpack
   files={sandpackFiles}
   setup={{
     dependencies: {
