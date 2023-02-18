@@ -5,7 +5,8 @@
   --border-width: 2px;
   position: relative;
   padding: 16px 24px;
-  background-color: var(--bg-contrast-8);
+  // background-color: var(--bg-level-1);
+  background-color: rgba(var(--inline-link-rgb), 0.05);
   border-radius: 0 8px 8px 0;
   margin-top: 2.4rem;
   border-left: var(--border-width) solid var(--inline-link);

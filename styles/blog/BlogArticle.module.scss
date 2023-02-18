@@ -44,13 +44,6 @@
     }
   }
 
-  p {
-    & + pre,
-    & + .codeTabs {
-      margin-top: 2rem;
-    }
-  }
-
   .codeTab {
     p {
       & + pre {

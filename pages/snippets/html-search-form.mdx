@@ -38,11 +38,9 @@ First, let's create our `SearchForm` component. We only need four lines of code:
 That's it! Nothing more. To understand how this works, let's take a look at what happens when we submit a HTML form. If you've ever made a form in React, you probably had to add `event.preventDefault()` to prevent the page from reloading on form submit. That's because when we submit a HTML form, the following happens:
 
 1. We get redirected to the URL specified in the form's `action` attribute
-2. The form values get appended to this URL, following this format: `?fieldName=fieldValue`
+2. The form values get appended to this URL, in the format `?fieldName=fieldValue`
 
 So if we enter "pizza" in the search input, submitting the form will take us to the following URL: `/search?q=pizza`. If the form doesn't have an `action` specified, we get redirected to the current page, which is the behaviour we usually avoid with `event.preventDefault()`.
-
-We don't even need to press the "Search" button to submit the form, as HTML forms can also be submitted with the <kbd>Enter</kbd> key!
 
 ## Getting the query from the route params
 
@@ -71,6 +69,8 @@ const { q: query } = router.query;
 </CodeTabs>
 
 ## Demo
+
+We don't even need to press the "Search" button to submit the form, as HTML forms can also be submitted with the <kbd>Enter</kbd> key!
 
 <SnippetSandpack
   files={sandpackFiles}

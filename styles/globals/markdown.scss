@@ -7,8 +7,6 @@ $task-list-checkmark-size: 2rem;
 }
 
 .task-list-item {
-  line-height: 180%;
-  
   input {
     position: relative;
     width: $task-list-checkmark-size;
@@ -39,18 +37,6 @@ $task-list-checkmark-size: 2rem;
 }
 
 article {
-  h1 {
-    & + .markdown > p:first-of-type {
-      &::first-letter {
-        font-family: var(--type-header);
-        float: left;
-        font-size: 6rem;
-        line-height: 0.65;
-        margin: 0.1em 0.15em 0.2em 0;
-      }
-    }
-  }
-
   .codeTab {
     p {
       & + pre {
@@ -82,12 +68,5 @@ article {
         display: none;
       }
     }
-  }
-}
-
-.markdown {
-  & > ul {
-    list-style-type: disc;
-    padding-left: 16px !important;
   }
 }
