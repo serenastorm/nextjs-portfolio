@@ -4,6 +4,7 @@ export { useWindowDimensions } from "./useWindowDimensions";
 
 // Blog
 export { default as useLikes } from "./useLikes";
+export { default as useRelatedPosts } from "./useRelatedPosts";
 
 // Diary
 export { default as useAnimatedCursor } from "./useAnimatedCursor";

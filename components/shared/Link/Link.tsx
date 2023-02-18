@@ -26,6 +26,7 @@ const getLabelFromChildren = (children: ReactNode) => {
 export const Link = ({
   className = "",
   children,
+  hidden = false,
   href,
   type = "link",
   shouldOpenInNewTab,
@@ -54,17 +55,19 @@ export const Link = ({
       rel={isExternal ? "noopener noreferrer" : undefined}
       {...props}
     >
-      <>
-        {wordsTotal > 0 && <span>{labelWords.join(" ")} </span>}
-        <span>
-          {lastWord}
-          {type === "email" ? (
-            <SendEmailIcon />
-          ) : (
-            <>{isExternal && <OpenInNewTabIcon />}</>
-          )}
-        </span>
-      </>
+      {!hidden && (
+        <>
+          {wordsTotal > 0 && <span>{labelWords.join(" ")} </span>}
+          <span>
+            {lastWord}
+            {type === "email" ? (
+              <SendEmailIcon />
+            ) : (
+              <>{isExternal && <OpenInNewTabIcon />}</>
+            )}
+          </span>
+        </>
+      )}
     </NextLink>
   );
 };

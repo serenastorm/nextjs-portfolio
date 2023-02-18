@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
 import likesReducer from "./likesSlice";
+import relatedPostsReducer from "./relatedPostsSlice";
 
 export function makeStore() {
   return configureStore({
     reducer: {
       likes: likesReducer,
+      relatedPosts: relatedPostsReducer,
     },
   });
 }

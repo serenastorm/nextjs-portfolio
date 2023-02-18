@@ -5,17 +5,20 @@ import type { ArticleMetaData } from "components/entries/ArticleWrapper/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type RelatedPost = ArticleMetaData | null;
+export type RelatedPosts = { previousPost: RelatedPost; nextPost: RelatedPost };
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<
-    { previousPost: RelatedPost; nextPost: RelatedPost } | { message: string }
-  >
+  res: NextApiResponse<RelatedPosts | { message: string }>
 ) {
   const { id } = req.query;
 
   if (Array.isArray(id)) {
     return res.status(400).json({ message: "ID can only be set once" });
+  }
+
+  if (!id) {
+    return res.status(400).json({ message: "Please specify a post ID." });
   }
 
   const postSlugs = fs.readdirSync(
@@ -42,7 +45,9 @@ export default async function handler(
   });
 
   const totalPosts = orderedPosts.length;
-  const currentPostIndex = orderedPosts.findIndex((post) => post.id === id);
+  const currentPostIndex = orderedPosts.findIndex(
+    (post) => post.id === parseInt(id)
+  );
   const nextPost =
     currentPostIndex < totalPosts - 1
       ? orderedPosts[currentPostIndex + 1]

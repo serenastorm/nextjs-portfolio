@@ -6,7 +6,7 @@ import Balancer from "react-wrap-balancer";
 import { Page } from "components/shared/Page";
 import { SnippetLikeButton, SnippetTags } from "components/snippets";
 import { routes } from "infrastructure/routes/constants";
-import { useLikes } from "infrastructure/hooks";
+import { useLikes, useRelatedPosts } from "infrastructure/hooks";
 import { getCategory } from "helpers/blog";
 // import { fetchRelatedEntries } from "helpers/blog/api";
 
@@ -37,6 +37,7 @@ export const ArticleWrapper = ({
   tags,
 }: ArticleWrapperProps) => {
   const { totalLikes, addLike, removeLike, likesStatus } = useLikes(id);
+  const { nextPost, previousPost } = useRelatedPosts(id);
 
   return (
     <>
@@ -118,7 +119,7 @@ export const ArticleWrapper = ({
         >
           <MDXProvider components={markdownComponents}>{children}</MDXProvider>
         </article>
-        {/* {(nextPost || previousPost) && (
+        {(nextPost || previousPost) && (
           <aside className={blogArticleStyles.blogArticleNav}>
             <div
               className={blogArticleStyles.blogArticleNavLink}
@@ -127,11 +128,8 @@ export const ArticleWrapper = ({
               {previousPost && (
                 <>
                   <p>Previous post</p>
-                  <Link
-                    href={`/${previousPost.fields.category}/${previousPost.fields.slug}`}
-                    passHref
-                  >
-                    <a>{previousPost.fields.title}</a>
+                  <Link href={`/${previousPost.category}/${previousPost.slug}`}>
+                    {previousPost.title}
                   </Link>
                 </>
               )}
@@ -143,17 +141,14 @@ export const ArticleWrapper = ({
               {nextPost && (
                 <>
                   <p>Next post</p>
-                  <Link
-                    href={`/${nextPost.fields.category}/${nextPost.fields.slug}`}
-                    passHref
-                  >
-                    <a>{nextPost.fields.title}</a>
+                  <Link href={`/${nextPost.category}/${nextPost.slug}`}>
+                    {nextPost.title}
                   </Link>
                 </>
               )}
             </div>
           </aside>
-        )} */}
+        )}
         {likesStatus !== "failed" && likesStatus !== "initial" && (
           <SnippetLikeButton
             total={totalLikes}

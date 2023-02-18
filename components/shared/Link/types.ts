@@ -7,6 +7,7 @@ type HTMLAnchorProps = Omit<
 
 export type LinkProps = {
   className?: string;
+  hidden?: boolean;
   type?: "email" | "link";
   shouldOpenInNewTab?: boolean;
   underline?: boolean;

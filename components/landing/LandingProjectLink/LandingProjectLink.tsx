@@ -27,6 +27,7 @@ const LandingProjectLink = ({
       underline={false}
       tabIndex={-1}
       aria-hidden="true"
+      hidden
     ></Link>
   </div>
 );
