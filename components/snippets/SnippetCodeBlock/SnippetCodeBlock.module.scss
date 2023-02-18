@@ -27,7 +27,7 @@
         font-size: 1.4rem;
       }
 
-      @include breakpoint(1200) {
+      @include breakpoint(desktop) {
         font-size: 1.6rem;
       }
     }

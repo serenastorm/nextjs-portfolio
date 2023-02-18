@@ -10,7 +10,7 @@ h1 {
     font-size: 3.2rem;
   }
 
-  @include breakpoint(1200) {
+  @include breakpoint(desktop) {
     font-size: 4rem;
   }
 }

@@ -10,4 +10,8 @@
   background-color: var(--bg-level-0);
   min-height: 100%;
   position: relative;
+
+  @include breakpoint(desktop) {
+    --max-text-width: 80rem;
+  }
 }

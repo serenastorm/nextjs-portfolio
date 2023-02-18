@@ -21,7 +21,7 @@
       right: 16px;
     }
 
-    @include breakpoint(1200) {
+    @include breakpoint(desktop) {
       top: 50vh;
       right: 0;
       transform: translateX(calc((var(--content-padding-inline) * -0.5) + 50%))

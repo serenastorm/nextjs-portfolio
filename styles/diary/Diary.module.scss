@@ -33,8 +33,8 @@
     grid-row-gap: var(--grid-gutter);
   }
 
-  @include breakpoint(1200) {
-    --max-text-width: 120rem;
+  @include breakpoint(desktop) {
+    --max-text-width: min(120rem, 95vw);
     --content-padding: 24px;
     --grid-gutter: 32px;
   }

@@ -113,8 +113,8 @@ body,
     --max-text-width: 85vw;
   }
 
-  @include breakpoint(1200) {
-    --max-text-width: 80rem;
+  @include breakpoint(desktop) {
+    --max-text-width: 88rem;
   }
 
   @media (hover: hover) {
