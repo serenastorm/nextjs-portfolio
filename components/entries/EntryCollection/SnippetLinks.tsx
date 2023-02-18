@@ -1,21 +1,29 @@
 import Link from "next/link";
 import { SnippetLikeButton } from "components/snippets";
 import { GoToLinkIcon } from "assets/icons";
-import { BlogPostResponse } from "infrastructure/blog/types";
 import { formatRelativeTime } from "helpers/blog";
 import { routes } from "infrastructure/routes/constants";
 import { useLikes } from "infrastructure/hooks";
 
+import type { ArticleMetaData } from "../ArticleWrapper/types";
+
 import styles from "./SnippetLink.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
 
-type BlogPost = BlogPostResponse & {
+type BlogPost = ArticleMetaData & {
   postIndex: number;
 };
 
-export const SnippetLink = ({ fields, sys }: BlogPost) => {
-  const { totalLikes, likesAreLoading, addLike, removeLike } = useLikes(sys.id);
-  const { category, date, shortText, slug, subcategory, title } = fields;
+export const SnippetLink = ({
+  id,
+  category,
+  date,
+  shortText,
+  slug,
+  subcategory,
+  title,
+}: BlogPost) => {
+  const { totalLikes, addLike, removeLike, likesStatus } = useLikes(id);
 
   const titleWords = title.split(" ");
   const titleLastWord = titleWords.pop();
@@ -42,12 +50,12 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
           <time dateTime={new Date(date).toISOString()}>
             {formatRelativeTime(new Date(date))}
           </time>
-          {!likesAreLoading && (
+          {likesStatus !== "failed" && likesStatus !== "initial" && (
             <SnippetLikeButton
               total={totalLikes}
               add={addLike}
               remove={removeLike}
-              articleId={sys.id}
+              articleId={id}
             />
           )}
         </div>
@@ -56,7 +64,7 @@ export const SnippetLink = ({ fields, sys }: BlogPost) => {
   );
 };
 
-const SnippetLinks = ({ posts }: { posts: BlogPostResponse[] | null }) => {
+const SnippetLinks = ({ posts }: { posts: ArticleMetaData[] | null }) => {
   if (!posts) {
     return (
       <div className={blogStyles.blogPost}>
@@ -70,8 +78,8 @@ const SnippetLinks = ({ posts }: { posts: BlogPostResponse[] | null }) => {
   }
   return (
     <>
-      {posts.map((post: BlogPostResponse, postIndex: number) => (
-        <SnippetLink postIndex={postIndex} key={post.sys.id} {...post} />
+      {posts.map((post: ArticleMetaData, postIndex: number) => (
+        <SnippetLink postIndex={postIndex} key={post.slug} {...post} />
       ))}
     </>
   );

@@ -1,0 +1,380 @@
+import { ArticleWrapper } from "components/entries/ArticleWrapper";
+import {
+  CodeTab,
+  CodeTabs,
+  SnippetCodeBlock as Code,
+} from "components/snippets";
+
+export const meta = {
+  id: 1,
+  title: "Accessible custom checkboxes",
+  date: new Date("2022-10-25"),
+  subcategory: "accessibility",
+  slug: "accessible-checkboxes",
+  tags: ["accessibility", "tsx", "react", "html", "css", "scss"],
+  shortText: "Add custom CSS to checkboxes without sacrificing functionality.",
+  isPublished: true,
+};
+
+Native HTML checkboxes look different accross browsers and don't allow for much customisation, which can be frustrating. In this article we'll look at how we can use pseudo elements to style checkboxes—I'll use a React example in order to add validation but this trick works in pure HTML and CSS so there is no JavaScript needed!
+
+Before we dive in, I want to touch on the `accent-color` property. It allows us to set the accent colour for form controls, including radio buttons and checkboxes. In most situations, this property is enough (I would also recommending setting the checkbox size to a relative value so it scales with the font size). The rest of this tutorial will focus on a more complex solution, which is only required if you want to use a custom checkbox shape, including images.
+
+<Code filename="styles.css">
+
+```tsx
+input[type="checkbox"] {
+  accent-color: var(--primary);
+  width: 1.2em;
+  height: 1.2em;
+}
+```
+
+</Code>
+
+## Markup
+
+Before we add interaction to the elements, let's look at the skeleton of our form.
+
+<Code filename="Form.jsx">
+
+```tsx
+const Form = () => {
+  return (
+    <form>
+      <fieldset
+        //  Let screen readers know when field is invalid
+        aria-invalid="false"
+        // And where to look for the error
+        aria-describedby="hobbies-error"
+      >
+        <legend>Hobbies</legend>
+        <label>
+          Sleeping
+          <input type="checkbox" name="hobbies" value="Sleeping" />
+          <span className="checkmark" />
+        </label>
+        <label>
+          Coding
+          <input type="checkbox" name="hobbies" value="Coding" />
+          <span className="checkmark" />
+        </label>
+        {/* This is where our error is going to go. We add role="alert" to the element so screen readers can announce it. */}
+        <p
+          className="error"
+          id="hobbies-error"
+          role="alert"
+          aria-atomic="true"
+        ></p>
+      </fieldset>
+      <input type="submit" value="Submit" />
+    </form>
+  );
+};
+```
+
+</Code>
+
+## Styles
+
+Now we can hide the default checkbox and add our fake checkbox. Since the fake one is a sibling of the `input`, we can use the `~` selector to style the checkbox based on the input state.
+
+<Code filename="checkbox.scss">
+
+```scss
+label {
+  // We need position: relative on the label
+  // to be able to position the checkbox
+  position: relative;
+  display: block;
+  font-size: 1.6rem;
+  // Since our checkbox width is 1.2em,
+  // the line-height and the left padding
+  // need to be at least 1.2em
+  // We'll go for more to give it some breathing space
+  line-height: 1.6;
+  padding: 0 0 0 2em;
+  // Since our input is inside the label, users
+  // can click on the whole label to tick the checkbox
+  // this is great for accessibility!
+  cursor: pointer;
+  user-select: none;
+
+  // Spacing between the checkboxes
+  & + label {
+    margin-top: 8px;
+  }
+
+  // Hide the default input
+  input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    cursor: pointer;
+
+    // When the input is checked, update the
+    // background and colour of the fake checkbox
+    &:checked ~ .checkmark {
+      background-color: $text;
+
+      &:after {
+        opacity: 1;
+        border-color: $white;
+      }
+    }
+
+    // Change the checkmark opacity on focus
+    &:focus-visible ~ .checkmark::after {
+      opacity: 0.5;
+    }
+  }
+
+  // Change the checkmark opacity when hovering
+  // over the whole label
+  &:hover input ~ .checkmark::after {
+    opacity: 0.5;
+  }
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.2em;
+  width: 1.2em;
+  border: 0.15em solid rgba(94, 82, 82, 0.7);
+  border-radius: 4px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    opacity: 0;
+    // We use relative values to support Zoom
+    left: 0.35em;
+    top: 0.05em;
+    width: 0.3em;
+    height: 0.7em;
+    border-color: $text;
+    border-style: solid;
+    // We create the checkmark using two invisible borders
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
+  }
+}
+```
+
+</Code>
+
+## Interaction
+
+Let's say we have an array of four hobbies:
+
+<Code filename="hobbies.ts">
+
+```tsx
+const hobbies = ["Hiking", "Reading", "Sleeping", "Coding"];
+```
+
+</Code>
+
+We can use `map()` to render our checkboxes:
+
+<CodeTabs label="Form and Checkbox components code" tabs={["Form.tsx","Checkbox.tsx"]}>
+
+<CodeTab label="Form.tsx">
+
+```tsx
+export default function Form() {
+  // We create an array of boolean values
+  // the same length as the hobbies array
+  // [false, false, false, false]
+  const [checkboxState, setCheckboxState] = useState(
+    new Array(hobbies.length).fill(false)
+  );
+  const getSelectedHobbies = (selectedState: boolean[] = checkboxState) => {
+    return hobbies.filter((hobby, hobbyIndex) => selectedState[hobbyIndex]);
+  };
+
+  let selectedHobbies = getSelectedHobbies();
+
+  const onFieldChange = async (checkboxIndex: number) => {
+    const updatedCheckedState = checkboxState.map((checked, index) =>
+      index === checkboxIndex ? !checked : checked
+    );
+
+    setCheckboxState(updatedCheckedState);
+  };
+
+  return (
+    <form>
+      <fieldset aria-invalid="false" aria-describedby="hobbies-error">
+        <legend>Hobbies</legend>
+        {hobbies.map((hobby, hobbyIndex) => (
+          <Checkbox
+            key={hobby}
+            value={hobby}
+            onChange={() => onFieldChange(hobbyIndex)}
+          />
+        ))}
+        <p className="error" id="hobbies-error" role="alert" aria-atomic="true">
+          {checkboxError}
+        </p>
+      </fieldset>
+    </form>
+  );
+}
+```
+
+</CodeTab>
+
+<CodeTab label="Checkbox.tsx">
+
+```tsx
+import type { ChangeEventHandler } from "react";
+
+type CheckboxProps = {
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  value: string;
+};
+
+const Checkbox = ({ onChange, value }: CheckboxProps) => {
+  return (
+    <>
+      <label>
+        {value}
+        <input
+          type="checkbox"
+          name="hobbies"
+          value={value}
+          onChange={onChange}
+        />
+        <span className="checkmark" />
+      </label>
+    </>
+  );
+};
+
+export default Checkbox;
+```
+
+</CodeTab>
+
+</CodeTabs>
+
+Before we add a submit function to our `form`, let's make the field required and add some validation. We're going to use `yup`, so let's run `npm install yup` and create a `FormValidationSchema` file.
+
+<Code filename="FormValidationSchema.tsx">
+
+```tsx
+import { array, object, string } from "yup";
+
+export const formSchema = object({
+  hobbies: array()
+    .of(
+      string().oneOf(
+        ["Hiking", "Reading", "Sleeping", "Coding"],
+        "Please select one of the available options."
+      )
+    )
+    .min(1, "Please select at least one hobby.")
+    .required("Please select at least one hobby."),
+});
+```
+
+</Code>
+
+We can import our schema in `Form.tsx` and check if our fields are valid before submitting the form:
+
+<Code filename="Form.tsx">
+
+```tsx
+export default function Form() {
+  const [checkboxState, setCheckboxState] = useState(
+    new Array(hobbies.length).fill(false)
+  );
+  const [checkboxError, setCheckboxError] = useState<string>("");
+  const getSelectedHobbies = (selectedState: boolean[] = checkboxState) => {
+    return hobbies.filter((hobby, hobbyIndex) => selectedState[hobbyIndex]);
+  };
+
+  let selectedHobbies = getSelectedHobbies();
+
+  const submitForm = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const isFormValid = await formSchema.isValid(
+      { hobbies: selectedHobbies },
+      {
+        abortEarly: false
+      }
+    );
+
+    if (isFormValid) {
+      alert("Success!");
+    } else {
+      // If the form is invalid, check which fields are incorrect
+      // In our case, it can only be the "hobbies" field
+      formSchema
+        .validate({ hobbies: selectedHobbies }, { abortEarly: false })
+        .catch((err) => {
+          const errors = err.inner.reduce(
+            (acc: any, error: { path: any; message: any }) => {
+              return {
+                ...acc,
+                [error.path]: error.message
+              };
+            },
+            {}
+          );
+
+          if (errors.hobbies) {
+            setCheckboxError(errors.hobbies);
+          }
+        });
+    }
+  };
+
+  return (
+    <form onSubmit={submitForm} noValidate>
+      {* ... */}
+    </form>
+  );
+}
+```
+
+</Code>
+
+We can improve the validation UX even more and remove the error as soon as the user selects an option by updating the `onFieldChange()` function:
+
+<Code filename="Form.tsx">
+
+```tsx
+const onFieldChange = async (checkboxIndex: number) => {
+  const updatedCheckedState = checkboxState.map((checked, index) =>
+    index === checkboxIndex ? !checked : checked
+  );
+
+  setCheckboxState(updatedCheckedState);
+
+  // Check if the form is valid now that the values have changed
+  const isFormValid = await formSchema.isValid(
+    { hobbies: getSelectedHobbies(updatedCheckedState) },
+    {
+      abortEarly: false, // Prevent aborting validation after first error
+    }
+  );
+
+  // Remove checkbox error if needed
+  if (checkboxError && isFormValid) {
+    setCheckboxError("");
+  }
+};
+```
+
+</Code>
+
+export default ({ children }) => (
+  <ArticleWrapper {...meta}>{children}</ArticleWrapper>
+);

@@ -67,4 +67,5 @@ p.snippetCopyToClipboardButtonLabel {
 .snippetCopyToClipboardButtonWrapper {
   position: sticky;
   inset: 0;
+  z-index: 10;
 }

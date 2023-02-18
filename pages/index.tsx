@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-import type { NextPage } from "next";
 import Link from "next/link";
 import Head from "next/head";
 import { GoToLinkIcon } from "assets/icons";
@@ -12,17 +10,17 @@ import {
 import { Page } from "components/shared/Page";
 import { routes } from "infrastructure/routes/constants";
 import { SnippetLinks } from "components/entries/EntryCollection";
-import { fetchLastEntry } from "helpers/blog/api";
+import { fetchMarkdownEntries } from "helpers/blog/api";
+
+import type { NextPage } from "next";
+import type { ArticleMetaData } from "components/entries/ArticleWrapper/types";
 
 import styles from "styles/Home.module.scss";
 import blogIndexStyles from "styles/blog/BlogIndex.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
 
-const Home: NextPage = ({
+const Home: NextPage<{ mostRecentPost: ArticleMetaData }> = ({
   mostRecentPost,
-}: {
-  children?: ReactNode;
-  mostRecentPost?: any;
 }) => {
   const links = [
     {
@@ -88,7 +86,7 @@ const Home: NextPage = ({
           <ul
             className={`${blogIndexStyles.blogPosts} ${styles.landingBlogPost}`}
           >
-            <SnippetLinks posts={[{ ...mostRecentPost }]} />
+            <SnippetLinks posts={[mostRecentPost]} />
           </ul>
           <Link
             href={routes.blog.snippets.url}
@@ -106,11 +104,11 @@ const Home: NextPage = ({
 export default Home;
 
 export async function getStaticProps() {
-  const mostRecentPost = await fetchLastEntry();
+  const posts = await fetchMarkdownEntries(1);
 
   return {
     props: {
-      mostRecentPost,
+      mostRecentPost: posts[0],
     },
   };
 }

@@ -32,24 +32,7 @@
 }
 
 .blogArticle {
-  pre {
-    position: relative;
-    width: 100%;
-    padding: 1.2rem 1.6rem;
-    border-radius: 0 0 0.4rem 0.4rem;
-    color: var(--text-contrast-8);
-    min-height: 8rem;
 
-    code {
-      @include breakpoint(0, 1199.98) {
-        font-size: 1.4rem;
-      }
-
-      @include breakpoint(1200) {
-        font-size: 1.6rem;
-      }
-    }
-  }
 
   p,
   li {

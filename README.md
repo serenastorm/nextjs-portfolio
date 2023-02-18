@@ -30,6 +30,18 @@ npm run build
 
 Builds the app for production to the `build` folder.
 
+## Database
+
+```sh
+supabase start
+```
+
+```sh
+supabase gen types typescript --local > lib/supabase/database.types.ts
+```
+
+Generate types for Supabase DB.
+
 ## Contact
 
 If you'd like to work together, feel free to contact me at [serena.antonetti@gmail.com](mailto:serena.antonetti@gmail.com)

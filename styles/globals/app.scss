@@ -67,7 +67,7 @@ body,
   --text-contrast-8-rgb: #{$text-contrast-8-light-rgb};
 
   --homepage-bg: #{$homepage-bg-light};
-  --homepage-project-bg: #{$homepage-project-bg-light};
+  --bg-contrast-8: #{$bg-contrast-8-light};
   --like-button-bg: #{$like-button-bg-light};
 
   @media (prefers-color-scheme: dark) {
@@ -87,7 +87,7 @@ body,
     --text-contrast-8-rgb: #{$text-contrast-8-dark-rgb};
 
     --homepage-bg: #{$homepage-bg-dark};
-    --homepage-project-bg: #{$homepage-project-bg-dark};
+    --bg-contrast-8: #{$bg-contrast-8-dark};
 
     --like-button-bg: #{$like-button-bg-dark};
     --link: #{$link-dark};
@@ -114,7 +114,7 @@ body,
   }
 
   @include breakpoint(1200) {
-    --max-text-width: 88rem;
+    --max-text-width: 80rem;
   }
 
   @media (hover: hover) {

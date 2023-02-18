@@ -8,7 +8,7 @@ type SnippetLikeButtonProps = {
   total: number;
   add: () => void;
   remove: () => void;
-  articleId: string;
+  articleId: number;
   fixed?: boolean;
 };
 

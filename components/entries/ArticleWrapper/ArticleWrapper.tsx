@@ -1,37 +1,26 @@
 import Link from "next/link";
 import Head from "next/head";
-import type { ParsedUrlQuery } from "querystring";
-import type { GetStaticProps } from "next/types";
-import { useRouter } from "next/router";
+import Balancer from "react-wrap-balancer";
 import { Page } from "components/shared/Page";
 import {
   SnippetLikeButton,
-  SnippetMarkdown,
-  SnippetPills,
+  SnippetTags,
   SnippetSandpack,
 } from "components/snippets";
+// TODO bring back sandpack component
 import { routes } from "infrastructure/routes/constants";
 import { useLikes } from "infrastructure/hooks";
 import { getCategory } from "helpers/blog";
-import {
-  fetchEntries,
-  fetchEntry,
-  fetchRelatedEntries,
-} from "helpers/blog/api";
+// import { fetchRelatedEntries } from "helpers/blog/api";
 
-import type { BlogPostResponse } from "infrastructure/blog/types";
+import type { ArticleMetaData } from "./types";
 
 import blogStyles from "styles/blog/Blog.module.scss";
 import blogArticleStyles from "styles/blog/BlogArticle.module.scss";
 import blogPageStyles from "styles/blog/BlogPage.module.scss";
+import markdownStyles from "components/snippets/SnippetMarkdown/SnippetMarkdown.module.scss";
 
 const category = "snippets";
-
-type ArticleMetaData = {
-  title: string;
-  subcategory?: string;
-  slug: string;
-};
 
 type ArticleWrapperProps = {
   children: JSX.Element;
@@ -39,10 +28,14 @@ type ArticleWrapperProps = {
 
 export const ArticleWrapper = ({
   children,
+  id,
   title,
   subcategory,
+  shortText,
   slug,
+  tags,
 }: ArticleWrapperProps) => {
+  const { totalLikes, addLike, removeLike, likesStatus } = useLikes(id);
 
   return (
     <>
@@ -62,7 +55,7 @@ export const ArticleWrapper = ({
             subcategory ? `&category=${encodeURIComponent(subcategory)}` : ""
           }`}
         />
-        {/* {shortText && <meta property="og:description" content={shortText} />} */}
+        {shortText && <meta property="og:description" content={shortText} />}
       </Head>
 
       <Page
@@ -70,13 +63,14 @@ export const ArticleWrapper = ({
         as="main"
       >
         <header
-          className={`${blogStyles.blogArticleMeta} ${blogArticleStyles.blogArticleMeta}`}
+          className={`${blogArticleStyles.header}`}
           key={`${subcategory}/${slug}/meta`}
         >
           <nav aria-label="Breadcrumbs">
             <ul
               aria-label="Breadcrumbs"
               className={blogArticleStyles.breadcrumbs}
+              role="list"
             >
               <li>
                 <Link href={`/${category}`}>Code Snippets</Link>
@@ -95,11 +89,32 @@ export const ArticleWrapper = ({
               )}
             </ul>
           </nav>
+          <h1>
+            <Balancer>
+              {/* This can't be a pseudo element bc it breaks the balancer */}
+              <span
+                aria-hidden="true"
+                className={blogArticleStyles.titleOrnament}
+              >
+                &#9830;&#xFE0E;
+              </span>
+              {title}
+            </Balancer>
+          </h1>
 
-          {/* {tags && <SnippetPills types={tags} />} */}
+          {tags && (
+            <div className={blogArticleStyles.tags}>
+              <p id="tagsLabel">Tagged: </p>
+              <SnippetTags types={tags} />
+            </div>
+          )}
         </header>
-        <article id="mainContent" key={`${subcategory}/${slug}/mainContent`}>
-          <h1>{title}</h1>
+
+        <article
+          id="mainContent"
+          key={`${subcategory}/${slug}/mainContent`}
+          className={markdownStyles.markdown}
+        >
           {children}
         </article>
         {/* {(nextPost || previousPost) && (
@@ -137,16 +152,16 @@ export const ArticleWrapper = ({
               )}
             </div>
           </aside>
-        )}
-        {!likesAreLoading && (
+        )} */}
+        {likesStatus !== "failed" && likesStatus !== "initial" && (
           <SnippetLikeButton
             total={totalLikes}
             add={addLike}
             remove={removeLike}
-            articleId={sys.id}
+            articleId={id}
             fixed
           />
-        )} */}
+        )}
       </Page>
     </>
   );

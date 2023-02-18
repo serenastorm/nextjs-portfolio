@@ -1,0 +1,134 @@
+import { ArticleWrapper } from "components/entries/ArticleWrapper";
+import { Link } from "components/shared";
+import {
+  CodeTab,
+  CodeTabs,
+  SnippetCallout,
+  SnippetCodeBlock as Code,
+  SnippetTaskList,
+} from "components/snippets";
+
+export const meta = {
+  id: 2,
+  title: "Add a ‘skip to content’ link to your website",
+  date: new Date("2022-10-25"),
+  subcategory: "accessibility",
+  slug: "skip-to-content-link",
+  tags: ["accessibility", "jsx", "react", "html", "css", "scss"],
+  shortText:
+    "Give keyboard-only users the option to skip navigation links and move focus to the main content.",
+  isPublished: true,
+};
+
+When a user interacts with your website using a keyboard, they might have to tab through your navigation links before getting to the main content. We want to give keyboard-only users the option to skip the navigation, without affecting the experience for other users. To do this, we can hide the skip navigation link until it's focused.
+
+## Markup
+
+First, we need to properly set up our HTML. Let's add a unique `id` to your main content container, excluding the navigation.
+
+<Code filename="index.html">
+
+```html
+<nav>...</nav>
+<main id="mainContent">...</main>
+```
+
+</Code>
+
+\
+Our skip navigation link should have a clear CTA, and we use the `id` we set previously as the destination.
+
+<Code filename="index.html">
+
+```html
+<a id="skiptocontent" href="#mainContent">Skip to main content</a>
+```
+
+</Code>
+
+## Styles
+
+Now we can style the link and animate in on focus. Here it's fading in from the top of the screen but feel free to tinker or remove the animation.
+
+<Code filename="styles.css">
+
+```css
+#skiptocontent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 250ms ease-out;
+
+  &:focus {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+```
+
+</Code>
+
+## WCAG Success Criteria
+
+<SnippetTaskList
+  items={[
+    "A link is the first focusable control on the Web page.",
+    "The description of the link communicates that it links to the main content.",
+    "The link is either always visible or visible when it has keyboard focus.",
+    "Activating the link moves the focus to the main content.",
+    "After activating the link, the keyboard focus has moved to the main content.",
+  ]}
+/>
+
+[View full criteria](https://www.w3.org/TR/WCAG20-TECHS/G1.html)
+
+## Notes
+
+If you decide to animate the skip navigation link, make sure to respect your users' browser preferences and disable animations when requested.
+
+<Code filename="styles.css">
+
+```css
+#skiptocontent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  opacity: 0;
+  transform: translateY(-100%);
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: all 250ms ease-out;
+  }
+
+  &:focus {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+```
+
+</Code>
+
+\
+You can also disable every animation on your website like so:
+
+<Code filename="styles.css">
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+```
+
+</Code>
+
+export default ({ children }) => (
+  <ArticleWrapper {...meta}>{children}</ArticleWrapper>
+);

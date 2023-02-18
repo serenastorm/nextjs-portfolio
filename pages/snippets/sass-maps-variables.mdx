@@ -1,0 +1,129 @@
+import { ArticleWrapper } from "components/entries/ArticleWrapper";
+import {
+  CodeTab,
+  CodeTabs,
+  SnippetCodeBlock as Code,
+} from "components/snippets";
+
+export const meta = {
+  id: 5,
+  title: "Clean CSS variables using SASS maps",
+  date: new Date("2022-10-25"),
+  subcategory: "scss",
+  slug: "sass-maps-variables",
+  tags: ["css", "scss"],
+  shortText:
+    "A simple way to make your code more consistent and easily scalable.",
+  isPublished: true,
+};
+
+Maps in SASS/SCSS allow us to store pairs of keys and values, and make it easy to look up a value by its corresponding key. We can use a SASS map to generate variables for our projects.
+
+## Creating the SCSS map
+
+First, let's create our map. We have a list of 5 font weights, each with a name and a value.
+
+<Code filename="_typography.scss">
+
+```scss
+$font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "semibold": 600,
+  "bold": 700,
+  "extrabold": 800,
+);
+```
+
+</Code>
+
+## Generating the variables
+
+Now, we just need to generate our variables. We want each variable to follow the same naming convention, so we can make it really simple:
+
+<Code filename="_typography.scss">
+
+```scss
+:root {
+  @each $weight, $value in $font-weights {
+    --font-weight-#{$weight}: #{$value};
+  }
+}
+```
+
+</Code>
+
+The code above will compile to this:
+
+<Code filename="_typography.scss">
+
+```css
+:root {
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+}
+```
+
+</Code>
+
+## Usage
+
+To use my variables, I can simply write `font-weight: var(--font-weight-semibold)` (or another weight from my map).
+
+<Code>
+
+```css
+p {
+  font-weight: var(--font-weight-regular);
+}
+```
+
+</Code>
+
+This snippet has been useful when generating typography styles, as well as colour palettes. It adds a few lines of code but I think it makes it more readable, and it guarantees that your variable names are all consistent. Ultimately, this is really a matter of personal preference.
+For our font weight variables, here's the difference between our code and plain old CSS:
+
+<CodeTabs label="Setting CSS variables with and without the mixin" tabs={["_typography.css","_typography.scss"]}>
+
+<CodeTab label="_typography.css">
+
+```scss
+:root {
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+}
+```
+
+</CodeTab>
+
+<CodeTab label="_typography.scss">
+
+```css
+$font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "semibold": 600,
+  "bold": 700,
+  "extrabold": 800,
+);
+
+@each $weight, $value in $font-weights {
+  --font-weight-#{$weight}: #{$value};
+}
+```
+
+</CodeTab>
+
+</CodeTabs>
+
+To see an example with nested maps, have a look a the colour palette demo below.
+
+export default ({ children }) => (
+  <ArticleWrapper {...meta}>{children}</ArticleWrapper>
+);

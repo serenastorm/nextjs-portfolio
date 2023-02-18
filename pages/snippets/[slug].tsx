@@ -50,7 +50,7 @@ const BlogArticlePage = ({
   const slug = getSlug();
   const { fields, sys } = entry;
 
-  const { totalLikes, addLike, removeLike, likesAreLoading } = useLikes(sys.id);
+  const { totalLikes, addLike, removeLike, likesStatus } = useLikes(sys.id);
 
   const {
     title,
@@ -180,7 +180,7 @@ const BlogArticlePage = ({
             </div>
           </aside>
         )}
-        {!likesAreLoading && (
+        {/* {!likesAreLoading && (
           <SnippetLikeButton
             total={totalLikes}
             add={addLike}
@@ -188,7 +188,7 @@ const BlogArticlePage = ({
             articleId={sys.id}
             fixed
           />
-        )}
+        )} */}
       </Page>
     </>
   );
@@ -218,9 +218,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = params;
 
   const entry = await fetchEntry(slug);
-  const { previous: previousPost, next: nextPost } = await fetchRelatedEntries(
-    slug
-  );
+  const { previousPost, nextPost } = await fetchRelatedEntries(slug);
 
   return {
     props: {

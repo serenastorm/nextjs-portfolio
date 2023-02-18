@@ -1,0 +1,10 @@
+@import "~styles/modules/mixins.scss";
+@import "~styles/modules/placeholders.scss";
+
+.taskList {
+  list-style-type: none;
+
+  li + li {
+    margin-top: 0.8rem;
+  }
+}

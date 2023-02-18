@@ -1,9 +1,8 @@
 import { useRef, useState, KeyboardEvent } from "react";
-import { SnippetCopyToClipboardButton } from "components/snippets/SnippetCopyToClipboardButton";
-
-import type { CodeLanguageProps } from "components/lessons/Text/Code/types";
+import { SnippetCodeBlock } from "components/snippets/SnippetCodeBlock";
 
 import styles from "./CodeTabs.module.scss";
+import codeBlockStyles from "components/snippets/SnippetCodeBlock/SnippetCodeBlock.module.scss";
 
 type CodeTabProps = {
   children: JSX.Element;
@@ -11,20 +10,12 @@ type CodeTabProps = {
 };
 
 type CodeTabsProps = {
-  children: (activeTabIndex: number) => JSX.Element;
+  children: JSX.Element;
   label: string;
   tabs: string[];
 };
 
-export const CodeTab = ({
-  isActive,
-  children,
-  label,
-}: CodeTabProps & { isActive: boolean }) => {
-  if (!isActive) {
-    return null;
-  }
-
+export const CodeTab = ({ children, label }: CodeTabProps) => {
   return (
     <div
       tabIndex={0}
@@ -32,12 +23,9 @@ export const CodeTab = ({
       id={`${label}-tab`}
       key={`${label}-panel`}
       aria-labelledby={label}
+      className={codeBlockStyles.codeWrapper}
     >
-      <pre>
-        {/* <SnippetCopyToClipboardButton textToCopy={tabContent} /> */}
-        {/* <code>{children}</code> */}
-        {children}
-      </pre>
+      <SnippetCodeBlock>{children}</SnippetCodeBlock>
     </div>
   );
 };
@@ -90,11 +78,19 @@ export const CodeTabs = ({ children, label, tabs }: CodeTabsProps) => {
   };
 
   return (
-    <div className="tabs">
-      <ul role="tablist" aria-label={label} className={styles.codeBlockNav}>
+    <div
+      className={styles.tabs}
+      // TODO: replace with css :has selector once support is better
+      data-active-tab-index={activeTabIndex + 1}
+    >
+      <ul
+        role="tablist"
+        aria-label={label}
+        className={`${codeBlockStyles.codeHeader} ${styles.codeBlockNav}`}
+      >
         {tabs.map((tab, tabIndex) => {
           return (
-            <li key={`${label}-${tab}`}>
+            <li key={`label-${label}-${tab}`}>
               <button
                 type="button"
                 role="tab"
@@ -116,7 +112,7 @@ export const CodeTabs = ({ children, label, tabs }: CodeTabsProps) => {
           );
         })}
       </ul>
-      {children(activeTabIndex)}
+      {children}
     </div>
   );
 };

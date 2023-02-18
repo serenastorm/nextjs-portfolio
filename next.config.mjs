@@ -2,8 +2,8 @@
 
 import nextMdx from "@next/mdx";
 import rehypeHighlight from "rehype-highlight";
-import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
+// import remarkGfm from "remark-gfm";
+// import rehypeRaw from "rehype-raw";
 
 const withMDX = nextMdx({
   extension: /\.mdx?$/,

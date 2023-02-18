@@ -1,0 +1,23 @@
+import { ArticleWrapper } from "components/entries/ArticleWrapper";
+import { Link } from "components/shared";
+import {
+  CodeTab,
+  CodeTabs,
+  SnippetCallout,
+  SnippetCodeBlock as Code,
+} from "components/snippets";
+
+export const meta = {
+  id: 3,
+  title: "My breakpoint SCSS mixin",
+  date: new Date("2022-10-25"),
+  subcategory: "accessibility",
+  slug: "scss-breakpoints-mixin",
+  tags: ["accessibility", "tsx", "react", "html", "css", "scss"],
+  shortText: "A step by step guide for HTML beginners.",
+  isPublished: false,
+};
+
+export default ({ children }) => (
+  <ArticleWrapper {...meta}>{children}</ArticleWrapper>
+);

@@ -99,6 +99,7 @@ export const NavButtons = () => {
       className={`${styles.buttonsContainer} ${
         scrollDirection === "down" ? styles.hidden : ""
       }`}
+      // TODO: replace with css :has selector once support is better
       data-active-btn-index={`${activeBtnIndex}`}
       // list-style-type: "none" removes list semantics so this is needed
       role="list"

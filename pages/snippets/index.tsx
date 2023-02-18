@@ -3,16 +3,16 @@ import Head from "next/head";
 import { SnippetLinks } from "components/entries/EntryCollection";
 import { Page } from "components/shared/Page";
 import { filterPosts, getCategory } from "helpers/blog";
+import { fetchMarkdownEntries } from "helpers/blog/api";
 import type { GetStaticProps } from "next/types";
-import type { BlogPostResponse } from "infrastructure/blog/types";
+
+import type { ArticleMetaData } from "components/entries/ArticleWrapper/types";
 
 import blogStyles from "styles/blog/Blog.module.scss";
 import blogIndexStyles from "styles/blog/BlogIndex.module.scss";
 import blogPageStyles from "styles/blog/BlogPage.module.scss";
 
-import { fetchEntries } from "helpers/blog/api";
-
-const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
+const SnippetsPage = ({ posts }: { posts: ArticleMetaData[] }) => {
   const { query } = useRouter();
 
   const { cat, tag: queryTag } = query;
@@ -21,8 +21,8 @@ const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
   const subcategory = Array.isArray(cat) ? cat[0] : cat || "";
   const tag = Array.isArray(queryTag) ? queryTag[0] : queryTag || "";
 
-  const posts = filterPosts({
-    entries,
+  const filteredPosts = filterPosts({
+    entries: posts,
     category,
     subcategory,
     tag: tag ? getCategory(tag).value : null,
@@ -63,7 +63,7 @@ const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
           )}
         </h1>
         <div className={blogIndexStyles.blogPosts}>
-          <SnippetLinks posts={posts} />
+          <SnippetLinks posts={filteredPosts} />
         </div>
       </Page>
     </>
@@ -73,15 +73,11 @@ const SnippetsPage = ({ entries }: { entries: BlogPostResponse[] }) => {
 export default SnippetsPage;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const entries = await fetchEntries();
+  const posts = await fetchMarkdownEntries();
 
   return {
     props: {
-      entries,
+      posts,
     },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every 30 seconds
-    revalidate: 30,
   };
 };

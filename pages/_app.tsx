@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Router, { useRouter } from "next/router";
+import { Provider as ReduxProvider } from "react-redux";
+import store from "lib/redux/store";
 import { Loader, NavButtons, SkipToContentLink } from "components/shared";
 import { routes } from "infrastructure/routes/constants";
 import {
@@ -68,9 +70,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       {(isLoading || !windowWidth) && <Loader />}
-      <SkipToContentLink />
-      <NavButtons />
-      <Component {...pageProps} />
+      <ReduxProvider store={store}>
+        <SkipToContentLink />
+        <NavButtons />
+        <Component {...pageProps} />
+      </ReduxProvider>
     </>
   );
 }
