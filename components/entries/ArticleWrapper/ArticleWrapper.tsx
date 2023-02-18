@@ -8,7 +8,6 @@ import { SnippetLikeButton, SnippetTags } from "components/snippets";
 import { routes } from "infrastructure/routes/constants";
 import { useLikes, useRelatedPosts } from "infrastructure/hooks";
 import { getCategory } from "helpers/blog";
-// import { fetchRelatedEntries } from "helpers/blog/api";
 
 import type { ArticleMetaData } from "./types";
 import type { AnchorHTMLAttributes } from "react";

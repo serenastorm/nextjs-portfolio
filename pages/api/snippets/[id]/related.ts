@@ -41,7 +41,7 @@ export default async function handler(
 
   const publishedPosts = allPosts.filter((post) => post?.isPublished);
   const orderedPosts = publishedPosts.sort((a, b) => {
-    return b.date.valueOf() - a.date.valueOf();
+    return a.date.valueOf() - b.date.valueOf();
   });
 
   const totalPosts = orderedPosts.length;
