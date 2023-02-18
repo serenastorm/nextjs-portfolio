@@ -29,7 +29,7 @@ export default async function handler(
 
   let likes = 0;
 
-  if (data && data[0].likes) {
+  if (data && data[0]?.likes) {
     likes = data[0].likes;
   } else {
     const { error } = await supabaseClient
