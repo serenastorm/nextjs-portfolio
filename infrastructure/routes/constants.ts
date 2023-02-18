@@ -5,7 +5,6 @@ const codeSnippetUrl = (slug: string) => `${codeSnippetsBaseUrl}/${slug}`;
 export const routes = {
   home: baseUrl,
   accessibility: `${baseUrl}accessibility`,
-  changelog: `${baseUrl}changelog`,
   diary: `${baseUrl}fun`,
   blog: {
     snippet: {

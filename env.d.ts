@@ -1,7 +1,4 @@
 declare const requiredServerEnvs: readonly [
-  "CF_SPACE",
-  "CF_PUBLISHED_CONTENT_ACCESS_TOKEN",
-  "CF_DRAFT_CONTENT_ACCESS_TOKEN",
   "APP_URL",
   "SUPABASE_TOKEN",
   "SUPABASE_API_KEY"
