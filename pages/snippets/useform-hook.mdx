@@ -1,0 +1,338 @@
+import {
+  ArticleWrapper,
+  CodeTab,
+  CodeTabs,
+  Callout,
+  CodeBlock as Code,
+  Sandpack,
+} from "components/blog";
+import { Link } from "components/shared";
+import sandpackFiles from "snippets/demos/useform-hook";
+
+export const meta = {
+  id: 8,
+  title: "useForm hook",
+  date: new Date("2023-02-19"),
+  subcategory: "react",
+  slug: "useform-hook",
+  tags: ["react", "tsx"],
+  shortText: "Simple hook for form management without a library.",
+  isPublished: true,
+};
+
+This hook covers simple use cases; if your web app is heavily form-based, you might need to customise this hook or use a library like [react-hook-form](https://react-hook-form.com/) or [formik](https://formik.org/).
+
+## Setting up the reducer
+
+Our `useForm` hook only takes in one parameter: the `initialState` of the form. For this hook, I'm going to use a reducer to keep track of and update the form data. Let's create an `"UPDATE"` action type that takes in a field name and value, and updates our state accordingly.
+
+<Code filename="useForm.js">
+
+```jsx
+import { useReducer } from "react";
+
+export function useForm(initialState) {
+  function reducer(state, action) {
+    switch (action.type) {
+      case "UPDATE":
+        return {
+          ...state,
+          [action.field]: action.value,
+        };
+      default:
+        return state;
+    }
+  }
+
+  const [formData, dispatch] = useReducer(reducer, initialState);
+}
+```
+
+</Code>
+
+## Simplifying the code
+
+From there, we could export `formData` and `dispatch` from our `useForm` hook, and use them our Form component like so:
+
+<Code filename="Form.jsx">
+
+```jsx
+<input
+  name="fullName"
+  value={formData.fullName}
+  onChange={(e) =>
+    dispatch({
+      type: "UPDATE",
+      name: "fullName",
+      value: e.target.value,
+    })
+  }
+/>
+```
+
+</Code>
+
+But if we have a lot of fields, this might end up becoming a bit repetitive. So let's go back to our `useHook` file and add a new `updateFormField` function that we can use instead of `dispatch`.
+
+<Code filename="useHook.js">
+
+```jsx
+const updateFormField = (e) => {
+  dispatch({
+    type: "UPDATE",
+    inputType: e.target.type,
+    value: e.target.value,
+    field: e.target.name,
+  });
+};
+
+return { formData, updateFormField };
+```
+
+</Code>
+
+Instead of just receiving the field's name and value, this function takes in the `onChange` event as a parameter. This allows us to get the info we need from the event, and simplify our input to this:
+
+<Code filename="Form.js">
+
+```jsx
+<input
+  name="fullName"
+  value={formData.fullName}
+  onChange={(e) => updateFormField(e)}
+/>
+```
+
+</Code>
+
+## Handling number inputs
+
+There's one more improvement we can make to our code: in our `updateFormField` function, you'll notice that we dispatch an `inputType` variable that gets its value from the input's `type` attribute.
+
+This allows us to parse the value of the input's change event to a number for `number` inputs:
+
+<Code filename="useForm.js">
+
+```jsx
+function reducer(state, action) {
+  switch (action.type) {
+    case "UPDATE":
+      return {
+        ...state,
+        [action.field]:
+          action.inputType === "number" ? parseInt(action.value) : action.value,
+      };
+    default:
+      return state;
+  }
+}
+```
+
+</Code>
+
+Of course, this might not cover 100% of use cases; for example, you might need a fractional number rather than an integer. But this hook is a good starting point.
+
+## The hook
+
+This is what our base hook will look like.
+
+<CodeTabs label="JavaScript and TypeScript examples of useForm in action" tabs={["useForm.ts","useForm.js"]}>
+
+<CodeTab label="useForm.ts">
+
+```tsx
+type Action = {
+  type: "UPDATE";
+  field: string;
+  inputType?: string;
+  value: string;
+};
+
+export function useForm<FormData>(initialState: FormData): {
+  formData: FormData;
+  updateFormField: (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+} {
+  function reducer(state: FormData, action: Action) {
+    switch (action.type) {
+      case "UPDATE":
+        return {
+          ...state,
+          [action.field]:
+            action.inputType === "number"
+              ? parseInt(action.value)
+              : action.value,
+        };
+      default:
+        return state;
+    }
+  }
+
+  const [formData, dispatch] = useReducer(reducer, initialState);
+
+  const updateFormField = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    dispatch({
+      type: "UPDATE",
+      inputType: e.target.type,
+      value: e.target.value,
+      field: e.target.name,
+    });
+  };
+
+  return { formData, updateFormField };
+}
+```
+
+</CodeTab>
+
+<CodeTab label="useForm.js">
+
+```jsx
+import { useReducer } from "react";
+
+export function useForm(initialState) {
+  function reducer(state, action) {
+    switch (action.type) {
+      case "UPDATE":
+        return {
+          ...state,
+          [action.field]:
+            action.inputType === "number"
+              ? parseInt(action.value)
+              : action.value,
+        };
+      default:
+        return state;
+    }
+  }
+
+  const [formData, dispatch] = useReducer(reducer, initialState);
+
+  const updateFormField = (e) => {
+    dispatch({
+      type: "UPDATE",
+      inputType: e.target.type,
+      value: e.target.value,
+      field: e.target.name,
+    });
+  };
+
+  return { formData, updateFormField };
+}
+```
+
+</CodeTab>
+
+</CodeTabs>
+
+## Usage
+
+To make use of the `useForm` hook in a form component, we just need to import it and set its initial state:
+
+<CodeTabs label="JavaScript and TypeScript examples of useForm in action" tabs={["Form.tsx","Form.jsx"]}>
+
+<CodeTab label="Form.tsx">
+
+```tsx
+import { useForm } from "hooks/useForm";
+
+type FormDataType = {
+  fullName: string;
+  birthYear: number;
+};
+
+export default function Form() {
+  const { formData, updateFormField } = useForm<FormDataType>({
+    fullName: "John Doe",
+    birthYear: 1990,
+  });
+
+  return (
+    <form>
+      <label htmlFor="fullName">Full name</label>
+      <input
+        type="text"
+        name="fullName"
+        value={formData.fullName}
+        onChange={(e) => updateFormField(e)}
+        required
+      />
+      <label htmlFor="birthYear">Birth year</label>
+      <input
+        type="number"
+        name="birthYear"
+        value={formData.birthYear}
+        onChange={(e) => updateFormField(e)}
+        required
+      />
+      <input type="submit" value="Submit" />
+    </form>
+  );
+}
+```
+
+</CodeTab>
+
+<CodeTab label="Form.jsx">
+
+```jsx
+import { useForm } from "hooks/useForm";
+
+export default function Form() {
+  const { formData, updateFormField } = useForm({
+    fullName: "John Doe",
+    birthYear: 1990,
+  });
+
+  return (
+    <form role="search" action="/search">
+      <label htmlFor="fullName">Full name</label>
+      <input
+        type="text"
+        name="fullName"
+        value={formData.fullName}
+        onChange={(e) => updateFormField(e)}
+        required
+      />
+      <label htmlFor="birthYear">Birth year</label>
+      <input
+        type="number"
+        name="birthYear"
+        value={formData.birthYear}
+        onChange={(e) => updateFormField(e)}
+        required
+      />
+      <input type="submit" value="Submit" />
+    </form>
+  );
+}
+```
+
+</CodeTab>
+
+</CodeTabs>
+
+## Demo
+
+<Sandpack
+  files={sandpackFiles}
+  setup={{
+    dependencies: {
+      react: "18.0.0",
+      "react-dom": "18.0.0",
+      "react-scripts": "4.0.3",
+    },
+    devDependencies: {
+      "@types/react": "18.0.25",
+      "@types/react-dom": "18.0.9",
+      typescript: "4.4.2",
+    },
+  }}
+/>
+
+export default ({ children }) => (
+  <ArticleWrapper {...meta}>{children}</ArticleWrapper>
+);
