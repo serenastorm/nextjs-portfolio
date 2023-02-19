@@ -1,0 +1,47 @@
+@import "~styles/modules/mixins.scss";
+
+.nav {
+  display: flex;
+  gap: 1.6rem;
+  margin-top: var(--content-padding-top);
+  border-top: 2px solid var(--bg-level-1);
+  padding-top: 4rem;
+}
+
+.navLink {
+  flex: 1;
+
+  &:nth-of-type(2) {
+    text-align: right;
+  }
+
+  a {
+    margin: 0.8rem 0;
+    font-family: var(--type-header);
+    font-weight: var(--font-weight-medium);
+    color: var(--primary);
+
+    background-image: linear-gradient(
+      to right,
+      var(--primary) 50%,
+      rgba(var(--primary-rgb), 0.15) 50%
+    );
+    background-size: 200% 0.1em;
+    background-position: 100% bottom;
+    background-repeat: no-repeat;
+    transition: all 250ms ease;
+
+    @include onHoverAndFocus {
+      background-position: 0% bottom;
+      color: var(--primary);
+    }
+
+    @include breakpoint(0, 859.98) {
+      font-size: 2.2rem;
+    }
+
+    @include breakpoint(860) {
+      font-size: 2vw;
+    }
+  }
+}

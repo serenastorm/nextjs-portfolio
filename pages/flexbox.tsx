@@ -28,9 +28,9 @@ const FlexboxPage = () => {
           background-color: #181a1d;
         }
       `}</style>
-      <div className={styles.lessonPage}>
+      <main className={styles.lessonPage}>
         <Flexbox />
-      </div>
+      </main>
     </>
   );
 };

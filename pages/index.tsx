@@ -9,14 +9,13 @@ import {
 } from "components/landing";
 import { Page } from "components/shared/Page";
 import { routes } from "infrastructure/routes/constants";
-import { SnippetLinks } from "components/blog/EntryCollection";
+import { ArticleLink } from "components/blog/ArticleCollection";
 import { fetchMarkdownEntries } from "helpers/blog/api";
 
 import type { NextPage } from "next";
 import type { ArticleMetaData } from "components/blog/ArticleWrapper/types";
 
 import styles from "styles/Home.module.scss";
-import blogIndexStyles from "styles/blog/BlogIndex.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
 
 const Home: NextPage<{ mostRecentPost: ArticleMetaData }> = ({
@@ -81,16 +80,12 @@ const Home: NextPage<{ mostRecentPost: ArticleMetaData }> = ({
           ))}
         </LandingFootnotes>
         <LandingProjectLinks />
-        <div className={`${blogStyles.blog} ${styles.blogWrapper}`}>
-          <h2 className={styles.landingBlogTitle}>Last snippet</h2>
-          <ul
-            className={`${blogIndexStyles.blogPosts} ${styles.landingBlogPost}`}
-          >
-            <SnippetLinks posts={[mostRecentPost]} />
-          </ul>
+        <div className={`${blogStyles.blog} ${styles.landingBlogWrapper}`}>
+          <h2>Last snippet</h2>
+          <ArticleLink {...mostRecentPost} className={styles.landingBlogPost} />
           <Link
             href={routes.blog.snippets.url}
-            className={`${styles.landingBlogLink}`}
+            className={styles.landingBlogLink}
           >
             View all snippets{" "}
             <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />

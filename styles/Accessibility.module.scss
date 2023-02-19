@@ -1,9 +1,0 @@
-@import "~styles/modules/placeholders.scss";
-
-.accessibilityPage {
-  p {
-    a {
-      @extend %link-with-background;
-    }
-  }
-}

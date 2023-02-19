@@ -35,38 +35,3 @@ $task-list-checkmark-size: 2rem;
     }
   }
 }
-
-article {
-  .codeTab {
-    p {
-      & + pre {
-        margin-top: 1.2rem;
-      }
-    }
-  }
-
-  .codeTabs {
-    ul {
-      list-style-type: none;
-      margin: 2rem 0 0 0;
-    }
-
-    &[filenames] {
-      @for $i from 1 through 6 {
-        &[data-activetab="#{$i}"] {
-          .codeTab:not(:nth-of-type(#{$i})) {
-            display: none;
-          }
-        }
-      }
-    }
-
-    .codeTab {
-      flex: 1;
-
-      & > div {
-        display: none;
-      }
-    }
-  }
-}

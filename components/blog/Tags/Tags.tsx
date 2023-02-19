@@ -34,7 +34,7 @@ export const Tag = ({
         return { color: "pink", label: "Features", url: "" };
       case "tsx":
         return { color: "pink", label: "TypeScript", url: "typescript" };
-      case "jsx":
+      case "js":
         return { color: "plum", label: "JavaScript", url: "javascript" };
       case "react":
         return { color: "purple", label: "React", url: "react" };

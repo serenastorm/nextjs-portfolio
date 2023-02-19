@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { SnippetLinks } from "components/blog/EntryCollection";
+import { ArticleCollection } from "components/blog/ArticleCollection";
 import { Page } from "components/shared/Page";
 import { filterPosts, getCategory } from "helpers/blog";
 import { fetchMarkdownEntries } from "helpers/blog/api";
@@ -9,8 +9,6 @@ import type { GetStaticProps } from "next/types";
 import type { ArticleMetaData } from "components/blog/ArticleWrapper/types";
 
 import blogStyles from "styles/blog/Blog.module.scss";
-import blogIndexStyles from "styles/blog/BlogIndex.module.scss";
-import blogPageStyles from "styles/blog/BlogPage.module.scss";
 
 const SnippetsPage = ({ posts }: { posts: ArticleMetaData[] }) => {
   const { query } = useRouter();
@@ -45,10 +43,7 @@ const SnippetsPage = ({ posts }: { posts: ArticleMetaData[] }) => {
           media="(prefers-color-scheme: dark)"
         />
       </Head>
-      <Page
-        className={`${blogStyles.blog} ${blogPageStyles.blogPage}`}
-        as="main"
-      >
+      <Page className={blogStyles.blog} as="main" type="blog">
         <h1 className={blogStyles.blogIndexTitle}>
           {tag || subcategory ? (
             <>
@@ -62,9 +57,7 @@ const SnippetsPage = ({ posts }: { posts: ArticleMetaData[] }) => {
             "All snippets"
           )}
         </h1>
-        <div className={blogIndexStyles.blogPosts}>
-          <SnippetLinks posts={filteredPosts} />
-        </div>
+        <ArticleCollection posts={filteredPosts} />
       </Page>
     </>
   );

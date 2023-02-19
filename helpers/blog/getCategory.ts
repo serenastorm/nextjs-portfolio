@@ -12,7 +12,7 @@ export const getCategory = (
     case "typescript":
       return { label: "TypeScript", value: "tsx" };
     case "javascript":
-      return { label: "JavaScript", value: "jsx" };
+      return { label: "JavaScript", value: "js" };
     case "react":
       return { label: "React", value: "react" };
     case "html":

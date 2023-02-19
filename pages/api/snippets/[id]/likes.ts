@@ -1,6 +1,9 @@
 import { supabaseClient } from "lib/supabase/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+// Note: we don't need to use try/catch with await supabaseClient
+// https://github.com/supabase/supabase-js/issues/32#issuecomment-1061383837
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{ likes: number } | { message: string }>
@@ -17,28 +20,32 @@ export default async function handler(
 
   const postId = parseInt(id);
 
-  const { data, error } = await supabaseClient
+  const { data, error: getRowError } = await supabaseClient
     .from("posts")
     .select()
     .eq("id", id)
     .limit(1);
 
-  if (error) {
-    // TODO error handling
+  if (getRowError) {
+    const { error: createRowError } = await supabaseClient
+      .from("posts")
+      .insert({ id: postId, likes: 0 });
+
+    if (createRowError) {
+      return res.status(500).json({
+        message: `An error occurred while adding a row for post ${postId} in the likes table. PostGRES error: ${createRowError.message}`,
+      });
+    } else {
+      return res.status(500).json({
+        message: `An error occurred while getting likes for post ${postId}. PostGRES error: ${getRowError.message}`,
+      });
+    }
   }
 
   let likes = 0;
 
   if (data && data[0]?.likes) {
     likes = data[0].likes;
-  } else {
-    const { error } = await supabaseClient
-      .from("posts")
-      .insert({ id: postId, likes: 0 });
-
-    if (error) {
-      // TODO error handling
-    }
   }
 
   if (req.method === "GET") {
@@ -55,13 +62,10 @@ export default async function handler(
       increment_amount: action === "remove" ? -1 : 1,
     });
 
-    // const { error } = await supabaseClient
-    //   .from("posts")
-    //   .update({ likes: updatedLikes })
-    //   .eq("id", postId);
-
     if (error) {
-      // TODO error handling
+      return res.status(500).json({
+        message: `An error occurred while updating likes for post ${postId}. PostGRES error: ${error.message}`,
+      });
     }
 
     res.status(200).json({ likes: updatedLikes });

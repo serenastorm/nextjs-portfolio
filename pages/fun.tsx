@@ -65,7 +65,7 @@ const Fun = () => {
             <figure>
               <Image
                 src="/diary/images/home.jpg"
-                alt="A landscape at sundown with the sun light creating a gradient of greens accross the different layers. There is snow on one of the most distant peaks."
+                alt="A landscape at sundown with the sun light creating a gradient of greens across the different layers. There is snow on one of the most distant peaks."
                 width="750"
                 height="500"
               />

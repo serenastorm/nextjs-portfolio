@@ -3,6 +3,10 @@
 import nextMdx from "@next/mdx";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
+// TODO: maybe simplify the markdown and remove the need for <Code> wrappers
+// using the rehypeMetaAsAttributes helper
+// see components/blog/ArticleWrapper
+// import { rehypeMetaAsAttributes } from "./helpers/blog";
 // import rehypeRaw from "rehype-raw";
 
 const withMDX = nextMdx({

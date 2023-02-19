@@ -3,10 +3,8 @@ import { Link } from "components/shared";
 import { Tags } from "components/blog";
 import { Page } from "components/shared/Page";
 
-import styles from "styles/Error.module.scss";
-
 const Custom404 = () => {
-  const tags = ["accessibility", "tsx", "jsx", "react", "html", "css", "scss"];
+  const tags = ["accessibility", "tsx", "js", "html", "css", "scss"];
 
   return (
     <>
@@ -19,7 +17,7 @@ const Custom404 = () => {
           media="(prefers-color-scheme: dark)"
         />
       </Head>
-      <Page className={styles.errorPage}>
+      <Page type="error">
         <h1>This page could not be found.</h1>
         <p>
           Browse code snippets below, or{" "}

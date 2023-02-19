@@ -2,9 +2,7 @@ import Head from "next/head";
 import { Page } from "components/shared/Page";
 import { Link } from "components/shared";
 
-import styles from "styles/Accessibility.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
-import blogPageStyles from "styles/blog/BlogPage.module.scss";
 
 const Accessibility = () => {
   return (
@@ -18,9 +16,7 @@ const Accessibility = () => {
           media="(prefers-color-scheme: dark)"
         />
       </Head>
-      <Page
-        className={`${blogStyles.blog} ${blogPageStyles.blogPage} ${styles.accessibilityPage}`}
-      >
+      <Page className={blogStyles.blog} type="blog">
         <h1 className={blogStyles.blogIndexTitle}>Accessibility</h1>
         <div className={blogStyles.blogPost}>
           <p>

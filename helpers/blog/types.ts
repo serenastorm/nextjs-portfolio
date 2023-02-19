@@ -10,7 +10,7 @@ export type CategoryLabels =
 export type CategoryValues =
   | "accessibility"
   | "tsx"
-  | "jsx"
+  | "js"
   | "react"
   | "html"
   | "css"

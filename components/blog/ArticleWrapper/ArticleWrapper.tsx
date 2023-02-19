@@ -1,35 +1,69 @@
 import { MDXProvider } from "@mdx-js/react";
 import Link from "next/link";
-import { Link as MarkdownLink } from "components/shared";
 import Head from "next/head";
 import Balancer from "react-wrap-balancer";
 import { Page } from "components/shared/Page";
+import { Link as MarkdownLink } from "components/shared";
 import { LikeButton, Tags } from "components/blog";
-import { routes } from "infrastructure/routes/constants";
+import { RelatedArticles } from "./RelatedArticles";
+import { Breadcrumbs } from "./Breadcrumbs";
 import { useLikes, useRelatedPosts } from "infrastructure/hooks";
-import { getCategory } from "helpers/blog";
-
 import type { ArticleMetaData } from "./types";
 import type { AnchorHTMLAttributes } from "react";
 
+import styles from "./ArticleWrapper.module.scss";
+import markdownStyles from "styles/blog/Markdown.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
-import blogArticleStyles from "styles/blog/BlogArticle.module.scss";
-import blogPageStyles from "styles/blog/BlogPage.module.scss";
-import markdownStyles from "components/blog/Markdown/Markdown.module.scss";
-
-const category = "snippets";
 
 type ArticleWrapperProps = {
   children: JSX.Element;
 } & ArticleMetaData;
 
-export const markdownComponents = {
+const markdownComponents = {
   a: (props: AnchorHTMLAttributes<HTMLAnchorElement>) =>
     props.href ? (
       <MarkdownLink href={props.href}>{props.children}</MarkdownLink>
     ) : (
-      <></>
+      <>{props.children}</>
     ),
+  // TODO: maybe simplify the markdown and remove the need for <Code> wrappers
+  // using the rehypeMetaAsAttributes helper
+  // see next.config.mjs
+
+  // code: ({ node, inline, className, children, ...props }) => {
+  //   const match = /language-(\w+)/.exec(className || "");
+  //   const filename = node?.properties?.filename;
+
+  //   const renderSnippet = () => (
+  //     <code className={className} {...props}>
+  //       {children}
+  //     </code>
+  //   );
+
+  //   return inline ? (
+  //     renderSnippet()
+  //   ) : (
+  //     <>
+  //       {filename && (
+  //         <div className={styles.codeBlockNav}>
+  //           <div>
+  //             <code>{filename}</code>
+  //           </div>
+  //         </div>
+  //       )}
+  //       <pre>
+  //         <CopyToClipboardButton textToCopy={reactNodeToString(children)} />
+  //         {/* {match && (
+  //                   <Tag
+  //                     type={match[1]}
+  //                     className={styles.codeTag}
+  //                   />
+  //                 )} */}
+  //         {renderSnippet()}
+  //       </pre>
+  //     </>
+  //   );
+  // },
 };
 
 export const ArticleWrapper = ({
@@ -65,44 +99,16 @@ export const ArticleWrapper = ({
         {shortText && <meta property="og:description" content={shortText} />}
       </Head>
 
-      <Page
-        className={`${blogPageStyles.blogPage} ${blogStyles.blog} ${blogArticleStyles.blogArticle}`}
-        as="main"
-      >
+      <Page className={blogStyles.blog} as="main" type="blog">
         <header
-          className={`${blogArticleStyles.header}`}
+          className={`${styles.header}`}
           key={`${subcategory}/${slug}/meta`}
         >
-          <nav aria-label="Breadcrumbs">
-            <ul
-              aria-label="Breadcrumbs"
-              className={blogArticleStyles.breadcrumbs}
-              role="list"
-            >
-              <li>
-                <Link href={`/${category}`}>Code Snippets</Link>
-              </li>
-              {subcategory && (
-                <li>
-                  <Link
-                    href={{
-                      pathname: routes.blog.snippets.url,
-                      query: { cat: subcategory },
-                    }}
-                  >
-                    {getCategory(subcategory).label}
-                  </Link>
-                </li>
-              )}
-            </ul>
-          </nav>
+          <Breadcrumbs subcategory={subcategory} />
           <h1>
             <Balancer>
               {/* This can't be a pseudo element bc it breaks the balancer */}
-              <span
-                aria-hidden="true"
-                className={blogArticleStyles.titleOrnament}
-              >
+              <span aria-hidden="true" className={styles.titleOrnament}>
                 &#9830;&#xFE0E;
               </span>
               {title}
@@ -110,7 +116,7 @@ export const ArticleWrapper = ({
           </h1>
 
           {tags && (
-            <div className={blogArticleStyles.tags}>
+            <div className={styles.tags}>
               <p id="tagsLabel">Tagged: </p>
               <Tags types={tags} />
             </div>
@@ -124,36 +130,7 @@ export const ArticleWrapper = ({
         >
           <MDXProvider components={markdownComponents}>{children}</MDXProvider>
         </article>
-        {(nextPost || previousPost) && (
-          <aside className={blogArticleStyles.blogArticleNav}>
-            <div
-              className={blogArticleStyles.blogArticleNavLink}
-              key={`${subcategory}/${slug}/prevLink`}
-            >
-              {previousPost && (
-                <>
-                  <p>Previous post</p>
-                  <Link href={`/${previousPost.category}/${previousPost.slug}`}>
-                    {previousPost.title}
-                  </Link>
-                </>
-              )}
-            </div>
-            <div
-              className={blogArticleStyles.blogArticleNavLink}
-              key={`${subcategory}/${slug}/nextLink`}
-            >
-              {nextPost && (
-                <>
-                  <p>Next post</p>
-                  <Link href={`/${nextPost.category}/${nextPost.slug}`}>
-                    {nextPost.title}
-                  </Link>
-                </>
-              )}
-            </div>
-          </aside>
-        )}
+        <RelatedArticles nextPost={nextPost} previousPost={previousPost} />
         {likesStatus !== "failed" && likesStatus !== "initial" && (
           <LikeButton
             total={totalLikes}

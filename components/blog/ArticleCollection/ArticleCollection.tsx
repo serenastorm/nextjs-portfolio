@@ -7,22 +7,19 @@ import { useLikes } from "infrastructure/hooks";
 
 import type { ArticleMetaData } from "../ArticleWrapper/types";
 
-import styles from "./SnippetLink.module.scss";
+import styles from "./ArticleCollection.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
 
-type BlogPost = ArticleMetaData & {
-  postIndex: number;
-};
+type ArticleLinkProps = ArticleMetaData & { className?: string };
 
-export const SnippetLink = ({
+export const ArticleLink = ({
   id,
   category,
+  className = "",
   date,
-  shortText,
   slug,
-  subcategory,
   title,
-}: BlogPost) => {
+}: ArticleLinkProps) => {
   const { totalLikes, addLike, removeLike, likesStatus } = useLikes(id);
 
   const titleWords = title.split(" ");
@@ -30,7 +27,7 @@ export const SnippetLink = ({
   const titleWordsTotal = titleWords.length;
 
   return (
-    <article className={blogStyles.blogPost}>
+    <article className={`${blogStyles.blogPost} ${className}`}>
       <Link
         href={`/${encodeURIComponent(category)}/${encodeURIComponent(slug)}`}
         className={`${styles.blogPostLink}`}
@@ -43,7 +40,6 @@ export const SnippetLink = ({
           </span>
         </h3>
       </Link>
-      {shortText && <p>{shortText}</p>}
 
       <div className={styles.blogArticleMeta}>
         <div className={styles.blogArticleTags}>
@@ -64,7 +60,11 @@ export const SnippetLink = ({
   );
 };
 
-const SnippetLinks = ({ posts }: { posts: ArticleMetaData[] | null }) => {
+type ArticleCollectionProps = {
+  posts: ArticleMetaData[] | null;
+};
+
+export const ArticleCollection = ({ posts }: ArticleCollectionProps) => {
   if (!posts) {
     return (
       <div className={blogStyles.blogPost}>
@@ -76,13 +76,12 @@ const SnippetLinks = ({ posts }: { posts: ArticleMetaData[] | null }) => {
       </div>
     );
   }
+
   return (
-    <>
-      {posts.map((post: ArticleMetaData, postIndex: number) => (
-        <SnippetLink postIndex={postIndex} key={post.slug} {...post} />
+    <div>
+      {posts.map((post: ArticleMetaData) => (
+        <ArticleLink key={post.slug} {...post} />
       ))}
-    </>
+    </div>
   );
 };
-
-export default SnippetLinks;

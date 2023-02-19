@@ -82,7 +82,8 @@ pre {
       }
     }
 
-    &.language-tsx {
+    &.language-tsx,
+    &.language-jsx {
       .hljs-keyword,
       .hljs-attr {
         color: $code-keyword-color;

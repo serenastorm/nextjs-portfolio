@@ -1,42 +1,4 @@
-@import "~components/blog/variables.scss";
 @import "~styles/modules/mixins.scss";
-
-.header {
-  padding-bottom: var(--content-padding-top);
-  margin-bottom: var(--content-padding-top);
-  position: relative;
-
-  h1 {
-    padding-top: var(--content-padding-top);
-    padding-bottom: calc(var(--content-padding-top) * 0.3);
-  }
-
-  &::after {
-    content: "";
-    display: block;
-    width: 100vw;
-    height: 2px;
-    background-color: var(--bg-level-1);
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-.titleOrnament {
-  color: var(--primary);
-  font-size: 0.6em;
-  // line-height: 1.8em;
-  margin-right: 0.5em;
-}
-
-.tags {
-  p,
-  ul {
-    display: inline;
-  }
-}
 
 $breadcrumb-gap: 4px;
 
