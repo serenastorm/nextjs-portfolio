@@ -1,10 +1,10 @@
-import { ArticleWrapper } from "components/entries/ArticleWrapper";
+import { ArticleWrapper } from "components/blog/ArticleWrapper";
 import {
   CodeTab,
   CodeTabs,
-  SnippetCodeBlock as Code,
-  SnippetSandpack,
-} from "components/snippets";
+  CodeBlock as Code,
+  Sandpack,
+} from "components/blog";
 import sandpackFiles from "snippets/demos/sass-maps-variables";
 
 export const meta = {
@@ -128,7 +128,7 @@ To see an example with nested maps, have a look a the colour palette demo below.
 
 ## Demo
 
-<SnippetSandpack
+<Sandpack
   files={sandpackFiles}
   setup={{
     dependencies: {

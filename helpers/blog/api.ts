@@ -2,7 +2,7 @@
 import fs from "fs";
 import { join } from "path";
 import type { BlogPostResponse } from "infrastructure/blog/types";
-import type { ArticleMetaData } from "components/entries/ArticleWrapper/types";
+import type { ArticleMetaData } from "components/blog/ArticleWrapper/types";
 
 export async function fetchRelatedEntries(id: string): Promise<{
   previousPost: BlogPostResponse | null;

@@ -1,5 +1,5 @@
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { SnippetCopyToClipboardButton } from "components/snippets";
+import { CopyToClipboardButton } from "components/blog";
 
 import { CodeProps } from "../types";
 
@@ -17,7 +17,7 @@ const CodeBlock = ({ code, language }: CodeProps) => {
       >
         {code}
       </SyntaxHighlighter>
-      <SnippetCopyToClipboardButton
+      <CopyToClipboardButton
         textToCopy={code}
         className={styles.copyToClipboardButton}
       />

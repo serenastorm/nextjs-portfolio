@@ -9,11 +9,11 @@ import {
 } from "components/landing";
 import { Page } from "components/shared/Page";
 import { routes } from "infrastructure/routes/constants";
-import { SnippetLinks } from "components/entries/EntryCollection";
+import { SnippetLinks } from "components/blog/EntryCollection";
 import { fetchMarkdownEntries } from "helpers/blog/api";
 
 import type { NextPage } from "next";
-import type { ArticleMetaData } from "components/entries/ArticleWrapper/types";
+import type { ArticleMetaData } from "components/blog/ArticleWrapper/types";
 
 import styles from "styles/Home.module.scss";
 import blogIndexStyles from "styles/blog/BlogIndex.module.scss";

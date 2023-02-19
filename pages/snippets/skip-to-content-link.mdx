@@ -1,12 +1,12 @@
-import { ArticleWrapper } from "components/entries/ArticleWrapper";
+import { ArticleWrapper } from "components/blog/ArticleWrapper";
 import { Link } from "components/shared";
 import {
   CodeTab,
   CodeTabs,
-  SnippetCallout,
-  SnippetCodeBlock as Code,
-  SnippetSandpack,
-} from "components/snippets";
+  Callout,
+  CodeBlock as Code,
+  Sandpack,
+} from "components/blog";
 import sandpackFiles from "snippets/demos/skip-to-content-link";
 
 export const meta = {
@@ -128,7 +128,7 @@ You can also disable every animation on your website like so:
 
 ## Demo
 
-<SnippetSandpack
+<Sandpack
   files={sandpackFiles}
   setup={{
     dependencies: {

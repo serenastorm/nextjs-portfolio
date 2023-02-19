@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { SnippetCopyToClipboardButton } from "components/snippets";
+import { CopyToClipboardButton } from "components/blog";
 import type { CodeLanguageProps } from "../types";
 import type { KeyboardEvent } from "react";
 import styles from "./CodeTabs.module.scss";
@@ -101,7 +101,7 @@ const CodeTabs = ({ code, language, tabs }: CodeTabsProps) => {
           >
             {currentTabContent}
           </SyntaxHighlighter>
-          <SnippetCopyToClipboardButton
+          <CopyToClipboardButton
             textToCopy={currentTabContent}
             className={styles.copyToClipboardButton}
           />

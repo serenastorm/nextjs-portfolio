@@ -1,4 +1,4 @@
-import type { ArticleMetaData } from "components/entries/ArticleWrapper/types";
+import type { ArticleMetaData } from "components/blog/ArticleWrapper/types";
 
 type BlogPostFilters = {
   entries: ArticleMetaData[];

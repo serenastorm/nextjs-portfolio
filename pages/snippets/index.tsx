@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { SnippetLinks } from "components/entries/EntryCollection";
+import { SnippetLinks } from "components/blog/EntryCollection";
 import { Page } from "components/shared/Page";
 import { filterPosts, getCategory } from "helpers/blog";
 import { fetchMarkdownEntries } from "helpers/blog/api";
 import type { GetStaticProps } from "next/types";
 
-import type { ArticleMetaData } from "components/entries/ArticleWrapper/types";
+import type { ArticleMetaData } from "components/blog/ArticleWrapper/types";
 
 import blogStyles from "styles/blog/Blog.module.scss";
 import blogIndexStyles from "styles/blog/BlogIndex.module.scss";

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import type { ArticleMetaData } from "components/entries/ArticleWrapper/types";
+import type { ArticleMetaData } from "components/blog/ArticleWrapper/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type RelatedPost = ArticleMetaData | null;

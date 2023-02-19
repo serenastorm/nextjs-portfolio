@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Link } from "components/shared";
-import { SnippetTags } from "components/snippets";
+import { Tags } from "components/blog";
 import { Page } from "components/shared/Page";
 
 import styles from "styles/Error.module.scss";
@@ -25,7 +25,7 @@ const Custom404 = () => {
           Browse code snippets below, or{" "}
           <Link href="/">go back to the homepage.</Link>
         </p>
-        <SnippetTags types={tags} />
+        <Tags types={tags} />
       </Page>
     </>
   );

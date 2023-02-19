@@ -1,0 +1,72 @@
+@import "~components/blog/variables.scss";
+@import "~styles/modules/mixins.scss";
+@import "~styles/modules/placeholders.scss";
+
+.sandPackCustomNav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: #21222c;
+  padding-right: var(--sp-space-4);
+  font-family: var(--type-paragraph);
+  gap: 0.4rem;
+  border-top-left-radius: var(--sp-border-radius);
+  border-top-right-radius: var(--sp-border-radius);
+}
+
+.sandPackCustomNavButtonss {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.sandPackCustomButton {
+  cursor: pointer;
+}
+
+.sandPackCustomButton {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: transparent;
+  border-width: 0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+
+  @include onHoverAndFocus {
+    background-color: var(--sp-colors-bg-active);
+  }
+
+  svg {
+    width: 1.2rem;
+    height: auto;
+
+    path {
+      fill: $code-blue;
+    }
+  }
+}
+
+.sandPackCustomExpand {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 0.8rem;
+  z-index: 45;
+  min-height: var(--sp-expand-height);
+  background-color: var(--white);
+  border: 1px solid var(--sp-colors-fg-inactive);
+  border-bottom-right-radius: var(--sp-border-radius);
+  border-bottom-left-radius: var(--sp-border-radius);
+
+  @include breakpoint(0, 768) {
+    display: none !important;
+  }
+
+  .sandPackCustomButton {
+    svg {
+      width: 0.8rem;
+    }
+  }
+}
