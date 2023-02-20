@@ -86,7 +86,7 @@ export const CodeTabs = ({ children, label, tabs }: CodeTabsProps) => {
       <ul
         role="tablist"
         aria-label={label}
-        className={`${codeBlockStyles.codeHeader} ${styles.codeBlockNav}`}
+        className={styles.codeTabs}
       >
         {tabs.map((tab, tabIndex) => {
           return (

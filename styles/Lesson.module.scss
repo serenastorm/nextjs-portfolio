@@ -1,3 +1,4 @@
+@import "~components/blog/variables.scss";
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/variables.scss";
 
@@ -57,6 +58,21 @@ $error-bg-dm: rgba($error-dm, 0.3);
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
+
+  --code-blue: #{$code-blue-dark};
+  --code-pink: #{$code-pink-dark};
+  --code-yellow: #{$code-yellow-dark};
+  --code-green: #{$code-green-dark};
+  --code-purple: #{$code-purple-dark};
+  --code-orange: #{$code-orange-dark};
+  --code-comment: #{$code-comment-dark};
+
+  --code-selector-color: #{$code-selector-color-dark};
+  --code-attribute-color: #{$code-attribute-color-dark};
+  --code-comment-color: #{$code-keyword-color-dark};
+  --code-keyword-color: #{$code-keyword-color-dark};
+  --code-number-color: #{$code-number-color-dark};
+  --code-selector-pseudo-color: #{$code-selector-pseudo-color-dark};
 
   display: flex;
   background-color: var(--bg-level-0);

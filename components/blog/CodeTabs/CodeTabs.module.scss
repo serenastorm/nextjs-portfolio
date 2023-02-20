@@ -1,25 +1,58 @@
-@import "~components/blog/variables.scss";
 @import "~styles/modules/mixins.scss";
 
-.codeBlockNav {
+.codeTabs {
   list-style-type: none;
+  // background-color: #21222c;
+  border-radius: 0.4rem 0.4rem 0 0;
+  display: flex;
+  gap: 1px;
+  margin: 2em 0 0 0;
+  padding: 0 8px;
 
-  & > li {
+  & > p,
+  button {
+    font-size: 1.4rem;
+    font-family: var(--type-code);
+    font-weight: var(--font-weight-bold);
+    line-height: 160%;
+    padding: 0.4rem 1.6rem 0.8rem 1.6rem;
+    transform: translateY(0.4rem);
+    margin: 0;
+    border: 1px solid var(--text-contrast-10);
+    border-bottom-width: 0;
+  }
+
+  & > li,
+  & > p,
+  button {
     border-radius: inherit;
+  }
+
+  li + li {
+    margin-left: -1px;
+  }
+
+  button[aria-selected="true"] {
+    background-color: var(--text-contrast-10);
+    color: var(--bg-level-1);
+  }
+
+  & > p,
+  button[aria-selected="false"] {
+    background-color: transparent;
+    color: var(--text-contrast-10);
   }
 
   button {
     cursor: pointer;
     @include removeFocusOutline;
 
-    &[aria-selected="true"] {
-      border-bottom: 1px solid $code-blue;
-      color: $code-blue;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: all 100ms ease-in-out;
     }
 
-    @include onKeyboardFocus {
-      background-color: var(--blue-bg);
-      color: var(--blue);
+    @include onHover {
+      transform: translateY(0);
     }
   }
 }

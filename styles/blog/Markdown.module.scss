@@ -83,6 +83,7 @@
     line-height: 1;
     padding: 2px 4px;
     white-space: nowrap;
+    box-shadow: 1px 1px 0px 0px rgba(var(--text-contrast-8-rgb), 0.2);
   }
 
   & > ul {

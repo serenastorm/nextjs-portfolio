@@ -1,14 +1,31 @@
-$code-blue: #8ae8fc;
-$code-pink: #ff79c6;
-$code-yellow: #f1fa8c;
-$code-green: #4ff67a;
-$code-purple: #b58dee;
-$code-orange: #ffb86c;
-$code-comment: #6272a4;
+// Base colors
+$code-blue-light: #446DFF;
+$code-pink-light: #D74C81;
+$code-yellow-light: #C0A44A;
+$code-green-light: #3A7B6F;
+$code-purple-light: #7A43E7;
+$code-orange-light: #EF7530;
+$code-comment-light: #8B6F6F;
 
-$code-selector-color: #{var(--yellow)};
-$code-attribute-color: $code-blue;
-$code-comment-color: $code-comment;
-$code-keyword-color: $code-pink;
-$code-number-color: $code-purple;
-$code-selector-pseudo-color: $code-purple;
+$code-blue-dark: #8ae8fc;
+$code-pink-dark: #ff79c6;
+$code-yellow-dark: #f1fa8c;
+$code-green-dark: #4ff67a;
+$code-purple-dark: #b58dee;
+$code-orange-dark: #ffb86c;
+$code-comment-dark: #6272a4;
+
+// Components
+$code-selector-color-light: #{var(--yellow)};
+$code-attribute-color-light: $code-blue-light;
+$code-comment-color-light: $code-comment-light;
+$code-keyword-color-light: $code-pink-light;
+$code-number-color-light: $code-purple-light;
+$code-selector-pseudo-color-light: $code-purple-light;
+
+$code-selector-color-dark: #{var(--yellow)};
+$code-attribute-color-dark: $code-blue-dark;
+$code-comment-color-dark: $code-comment-dark;
+$code-keyword-color-dark: $code-pink-dark;
+$code-number-color-dark: $code-purple-dark;
+$code-selector-pseudo-color-dark: $code-purple-dark;

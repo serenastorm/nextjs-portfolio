@@ -1,9 +1,9 @@
 @import "~components/blog/variables";
 
 .selector {
-  color: $code-selector-color;
+  color: var(--code-selector);
 }
 
 .attribute {
-  color: $code-attribute-color;
+  color: var(--code-attribute);
 }

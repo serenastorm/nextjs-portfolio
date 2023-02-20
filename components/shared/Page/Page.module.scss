@@ -1,25 +1,6 @@
+@import "~components/blog/variables.scss";
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/placeholders.scss";
-
-.page-blog {
-  --content-padding-inline: calc((100vw - #{var(--max-text-width)}) / 2);
-
-  padding: var(--content-padding-top) var(--content-padding-inline)
-    calc(var(--nav-button-height) + (var(--nav-button-margin) * 2))
-    var(--content-padding-inline);
-  // Also theme-color in index.html
-  background-color: var(--bg-level-0);
-  min-height: 100%;
-  position: relative;
-
-  @include breakpoint(desktop) {
-    --max-text-width: 80rem;
-  }
-
-  p a {
-    @extend %link-with-background;
-  }
-}
 
 .page-error {
   height: 100%;
@@ -54,5 +35,57 @@
     @include breakpoint(520) {
       text-align: center;
     }
+  }
+}
+
+.page-blog {
+  --content-padding-inline: calc((100vw - #{var(--max-text-width)}) / 2);
+
+  padding: var(--content-padding-top) var(--content-padding-inline)
+    calc(var(--nav-button-height) + (var(--nav-button-margin) * 2))
+    var(--content-padding-inline);
+  // Also theme-color in index.html
+  background-color: var(--bg-level-0);
+  min-height: 100%;
+  position: relative;
+
+  @include breakpoint(desktop) {
+    --max-text-width: 80rem;
+  }
+
+  p a {
+    @extend %link-with-background;
+  }
+
+  --code-blue: #{$code-blue-light};
+  --code-pink: #{$code-pink-light};
+  --code-yellow: #{$code-yellow-light};
+  --code-green: #{$code-green-light};
+  --code-purple: #{$code-purple-light};
+  --code-orange: #{$code-orange-light};
+  --code-comment: #{$code-comment-light};
+
+  --code-selector-color: #{$code-selector-color-light};
+  --code-attribute-color: #{$code-attribute-color-light};
+  --code-comment-color: #{$code-keyword-color-light};
+  --code-keyword-color: #{$code-keyword-color-light};
+  --code-number-color: #{$code-number-color-light};
+  --code-selector-pseudo-color: #{$code-selector-pseudo-color-light};
+
+  @media (prefers-color-scheme: dark) {
+    --code-blue: #{$code-blue-dark};
+    --code-pink: #{$code-pink-dark};
+    --code-yellow: #{$code-yellow-dark};
+    --code-green: #{$code-green-dark};
+    --code-purple: #{$code-purple-dark};
+    --code-orange: #{$code-orange-dark};
+    --code-comment: #{$code-comment-dark};
+
+    --code-selector-color: #{$code-selector-color-dark};
+    --code-attribute-color: #{$code-attribute-color-dark};
+    --code-comment-color: #{$code-keyword-color-dark};
+    --code-keyword-color: #{$code-keyword-color-dark};
+    --code-number-color: #{$code-number-color-dark};
+    --code-selector-pseudo-color: #{$code-selector-pseudo-color-dark};
   }
 }

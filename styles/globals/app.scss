@@ -56,8 +56,8 @@ body,
 
   --divider: #{$divider-light};
 
-  --code-bg-color: #282a36;
-  --code-color: #f8f8f2;
+  --code-bg-color: #{$bg-contrast-8-light};
+  --code-color: #{$text-contrast-10-light};
 
   --bg-level-0: #{$bg-level-0-light};
   --bg-level-1: #{$bg-level-1-light};
@@ -78,6 +78,9 @@ body,
     --inline-link-rgb: #{$inline-link-dark-rgb};
 
     --divider: #{$divider-dark};
+
+    --code-bg-color: #282a36;
+    --code-color: #f8f8f2;
 
     --bg-level-0: #{$bg-level-0-dark};
     --bg-level-1: #{$bg-level-1-dark};

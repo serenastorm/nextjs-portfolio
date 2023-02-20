@@ -12,73 +12,73 @@
 }
 
 .code-selector {
-  color: $code-selector-color;
+  color: var(--code-selector-color);
 }
 
 .code-attribute {
-  color: $code-attribute-color;
+  color: var(--code-attribute-color);
 }
 
 .code-comment {
-  color: $code-comment-color;
+  color: var(--code-comment-color);
 }
 
 .code-keyword {
-  color: $code-keyword-color;
+  color: var(--code-keyword-color);
 }
 
 .code-number {
-  color: $code-number-color;
+  color: var(--code-number-color);
 }
 
 .code-selector-pseudo {
-  color: $code-selector-pseudo-color;
+  color: var(--code-selector-pseudo-color);
 }
 
 pre {
   .hljs {
     .hljs-comment {
-      color: $code-comment-color;
+      color: var(--code-comment-color);
     }
 
     &.language-scss,
     &.language-css {
       .hljs-selector-tag,
       .hljs-selector-class {
-        color: $code-selector-color;
+        color: var(--code-selector-color);
       }
 
       .hljs-selector-id {
-        color: $code-blue;
+        color: var(--code-blue);
       }
 
       .hljs-attribute,
       .hljs-built_in {
-        color: $code-attribute-color;
+        color: var(--code-attribute-color);
       }
 
       .hljs-number {
-        color: $code-number-color;
+        color: var(--code-number-color);
       }
 
       .hljs-string {
-        color: $code-yellow;
+        color: var(--code-yellow);
       }
 
       .hljs-variable {
-        color: $code-orange;
+        color: var(--code-orange);
       }
 
       .hljs-selector-pseudo {
-        color: $code-selector-pseudo-color;
+        color: var(--code-selector-pseudo-color);
       }
 
       .hljs-keyword {
-        color: $code-keyword-color;
+        color: var(--code-keyword-color);
       }
 
       .hljs-meta {
-        color: $code-pink;
+        color: var(--code-pink);
       }
     }
 
@@ -86,53 +86,53 @@ pre {
     &.language-jsx {
       .hljs-keyword,
       .hljs-attr {
-        color: $code-keyword-color;
+        color: var(--code-keyword-color);
       }
 
       .hljs-function {
-        color: $code-green;
+        color: var(--code-green);
       }
 
       .hljs-literal,
       .hljs-class,
       .hljs-built_in {
-        color: $code-blue;
+        color: var(--code-blue);
       }
 
       .hljs-params {
-        color: $code-yellow;
+        color: var(--code-yellow);
       }
 
       .hljs-tag {
-        color: $code-blue;
+        color: var(--code-blue);
       }
 
       .hljs-name,
       .hljs-number {
-        color: $code-number-color;
+        color: var(--code-number-color);
       }
 
       .hljs-string {
-        color: $code-yellow;
+        color: var(--code-yellow);
       }
     }
 
     &.language-html,
     &.language-tsx > .xml {
       .hljs-tag {
-        color: $code-blue;
+        color: var(--code-blue);
       }
 
       .hljs-name {
-        color: $code-pink;
+        color: var(--code-pink);
       }
 
       .hljs-attr {
-        color: $code-green;
+        color: var(--code-green);
       }
 
       .hljs-string {
-        color: $code-yellow;
+        color: var(--code-yellow);
       }
     }
   }

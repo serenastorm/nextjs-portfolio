@@ -41,7 +41,7 @@
 }
 
 .cm-matchingBracket .sp-syntax-punctuation {
-  color: $code-pink;
+  color: var(code-pink);
 }
 
 .sp-code-editor > div {

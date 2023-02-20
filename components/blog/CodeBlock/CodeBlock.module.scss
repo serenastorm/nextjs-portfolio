@@ -13,12 +13,17 @@
   }
 
   pre {
+    position: relative;
     width: 100%;
     padding: 1.2rem 1.6rem;
     border-radius: 0.4rem;
-    background-color: var(--code-bg-color);
-    color: var(--text-contrast-8);
+    // background-color: var(--code-bg-color);
+    background-color: var(--bg-level-0);
+    color: var(--text-contrast-10);
+    border: 1px solid var(--text-contrast-10);
+    box-shadow: 4px 4px 0px 0px var(--text-contrast-10);
     min-height: 8rem;
+    z-index: 2;
 
     code {
       color: var(--code-color);
@@ -31,32 +36,5 @@
         font-size: 1.6rem;
       }
     }
-  }
-}
-
-.codeHeader {
-  background-color: #21222c;
-  border-radius: 0.4rem 0.4rem 0 0;
-  display: flex;
-  gap: 1px;
-  margin: 2em 0 0 0;
-
-  & > p,
-  button {
-    font-size: 1.4rem;
-    color: #f8f8f2;
-    background-color: #343746;
-    font-family: var(--type-code);
-    line-height: 160%;
-
-    border-radius: inherit;
-    border-width: 0;
-    padding: 0.4rem 1.6rem;
-    margin: 0;
-  }
-
-  & + .codeWrapper pre {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
   }
 }
