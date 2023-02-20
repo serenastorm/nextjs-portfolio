@@ -99,13 +99,17 @@ export default function Document() {
           crossOrigin="true"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
-
         <link
           href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=DM+Serif+Display:ital@1&family=Space+Grotesk:wght@400;500&display=swap"
           rel="stylesheet"
+        />
+        <meta
+          name="viewport"
+          id="viewport"
+          content="width=device-width,user-scalable=yes,initial-scale=1"
         />
       </Head>
       <body>

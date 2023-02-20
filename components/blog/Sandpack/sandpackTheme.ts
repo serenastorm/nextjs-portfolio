@@ -46,7 +46,7 @@ export const sandpackTheme: SandpackTheme = {
   //   },
   font: {
     body: '""IBM Plex Sans"", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-    mono: '"Inconsolata", "Lucida Console", monospace',
+    mono: '"DM Mono", "Lucida Console", monospace',
     size: "1.34rem",
     lineHeight: "1.5",
   },

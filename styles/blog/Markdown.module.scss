@@ -35,8 +35,10 @@
   li {
     // Inline code
     code {
+      border-radius: 2px;
       background-color: var(--bg-level-1);
       padding: 0.2rem 0.4rem;
+      font-size: 0.9em;
     }
   }
 
@@ -51,9 +53,6 @@
   }
 
   code {
-    font-family: var(--type-code);
-    line-height: 160%;
-
     .comment {
       color: var(--myqr-gray-400);
       display: block;

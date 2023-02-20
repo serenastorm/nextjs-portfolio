@@ -27,14 +27,6 @@
 
     code {
       color: var(--code-color);
-
-      @include breakpoint(0, 1199.98) {
-        font-size: 1.4rem;
-      }
-
-      @include breakpoint(desktop) {
-        font-size: 1.6rem;
-      }
     }
   }
 }

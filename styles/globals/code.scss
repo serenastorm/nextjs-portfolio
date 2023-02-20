@@ -1,5 +1,9 @@
 @import "~components/blog/variables";
 
+code {
+  font-family: var(--type-code);
+}
+
 .sp-syntax-property,
 .sp-syntax-tag,
 .sp-syntax-string,
@@ -8,7 +12,7 @@
 .hljs-tag,
 .hljs-string,
 .hljs-function {
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-medium);
 }
 
 .code-selector {

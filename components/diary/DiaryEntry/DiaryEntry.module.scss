@@ -59,8 +59,8 @@
   h2,
   time {
     color: $text-contrast-8-light;
-    font-size: 1.6rem;
-    font-weight: var(--font-weight-semibold);
+    font-size: 1.4rem;
+    font-weight: var(--font-weight-medium);
   }
 }
 
@@ -99,8 +99,8 @@
   cite {
     display: block;
     margin: 8px 0 0 0;
-    font-weight: var(--font-weight-bold);
-    font-size: 1.4rem;
+    font-weight: var(--font-weight-medium);
+    font-size: 0.8em;
     font-style: normal;
     line-height: 140%;
     letter-spacing: 0.04em;
@@ -145,7 +145,7 @@
 }
 
 .statLabel {
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-medium);
   font-size: 1.4rem;
   line-height: 140%;
   letter-spacing: 0.04em;

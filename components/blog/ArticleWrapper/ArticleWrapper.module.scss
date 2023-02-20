@@ -36,38 +36,3 @@
     display: inline;
   }
 }
-
-$breadcrumb-gap: 4px;
-
-.breadcrumbs {
-  margin: 0;
-  list-style-type: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: $breadcrumb-gap;
-
-  li {
-    font-size: 1.6rem;
-
-    &:not(:first-of-type) {
-      &::before {
-        content: "/";
-        margin-right: $breadcrumb-gap;
-      }
-    }
-  }
-
-  a {
-    font-weight: var(--font-weight-regular);
-    color: var(--text-contrast-8);
-    text-decoration: underline;
-    text-underline-offset: var(--primary-underline-offset);
-    text-decoration-color: rgba(var(--text-contrast-8-rgb), 0.4);
-    text-decoration-thickness: 0.08em;
-
-    @include onHoverAndFocus {
-      color: var(--primary);
-      text-decoration-color: var(--primary);
-    }
-  }
-}

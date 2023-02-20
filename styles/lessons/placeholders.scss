@@ -52,14 +52,6 @@
   background-color: var(--bg-level-1);
   border-radius: 0.4rem;
   color: var(--text-contrast-10);
-
-  @include breakpoint(0, desktop) {
-    font-size: 1.6rem;
-  }
-
-  @include breakpoint(desktop) {
-    font-size: 1.8rem;
-  }
 }
 
 %text-small {
