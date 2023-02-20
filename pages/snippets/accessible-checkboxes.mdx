@@ -1,10 +1,4 @@
-import {
-  ArticleWrapper,
-  CodeTab,
-  CodeTabs,
-  CodeBlock as Code,
-  Sandpack,
-} from "components/blog";
+import { ArticleWrapper, CodeTab, CodeTabs, Sandpack } from "components/blog";
 import sandpackFiles from "snippets/demos/accessible-checkboxes";
 
 export const meta = {
@@ -22,9 +16,7 @@ Native HTML checkboxes look different accross browsers and don't allow for much 
 
 Before we dive in, I want to touch on the `accent-color` property. It allows us to set the accent colour for form controls, including radio buttons and checkboxes. In most situations, this property is enough (I would also recommending setting the checkbox size to a relative value so it scales with the font size). The rest of this tutorial will focus on a more complex solution, which is only required if you want to use a custom checkbox shape, including images.
 
-<Code filename="styles.css">
-
-```tsx
+```css filename="styles.css"
 input[type="checkbox"] {
   accent-color: var(--primary);
   width: 1.2em;
@@ -32,15 +24,11 @@ input[type="checkbox"] {
 }
 ```
 
-</Code>
-
 ## Markup
 
 Before we add interaction to the elements, let's look at the skeleton of our form.
 
-<Code filename="Form.jsx">
-
-```tsx
+```tsx filename="Form.jsx"
 const Form = () => {
   return (
     <form>
@@ -75,15 +63,11 @@ const Form = () => {
 };
 ```
 
-</Code>
-
 ## Styles
 
 Now we can hide the default checkbox and add our fake checkbox. Since the fake one is a sibling of the `input`, we can use the `~` selector to style the checkbox based on the input state.
 
-<Code filename="checkbox.scss">
-
-```scss
+```scss filename="checkbox.scss"
 label {
   // We need position: relative on the label
   // to be able to position the checkbox
@@ -167,19 +151,13 @@ label {
 }
 ```
 
-</Code>
-
 ## Interaction
 
 Let's say we have an array of four hobbies:
 
-<Code filename="hobbies.ts">
-
-```tsx
+```tsx filename="hobbies.ts"
 const hobbies = ["Hiking", "Reading", "Sleeping", "Coding"];
 ```
-
-</Code>
 
 We can use `map()` to render our checkboxes:
 
@@ -267,9 +245,7 @@ export default Checkbox;
 
 Before we add a submit function to our `form`, let's make the field required and add some validation. We're going to use `yup`, so let's run `npm install yup` and create a `FormValidationSchema` file.
 
-<Code filename="FormValidationSchema.tsx">
-
-```tsx
+```tsx filename="FormValidationSchema.tsx"
 import { array, object, string } from "yup";
 
 export const formSchema = object({
@@ -285,13 +261,9 @@ export const formSchema = object({
 });
 ```
 
-</Code>
-
 We can import our schema in `Form.tsx` and check if our fields are valid before submitting the form:
 
-<Code filename="Form.tsx">
-
-```tsx
+```tsx filename="Form.tsx"
 export default function Form() {
   const [checkboxState, setCheckboxState] = useState(
     new Array(hobbies.length).fill(false)
@@ -346,13 +318,9 @@ export default function Form() {
 }
 ```
 
-</Code>
-
 We can improve the validation UX even more and remove the error as soon as the user selects an option by updating the `onFieldChange()` function:
 
-<Code filename="Form.tsx">
-
-```tsx
+```tsx filename="Form.tsx"
 const onFieldChange = async (checkboxIndex: number) => {
   const updatedCheckedState = checkboxState.map((checked, index) =>
     index === checkboxIndex ? !checked : checked
@@ -374,8 +342,6 @@ const onFieldChange = async (checkboxIndex: number) => {
   }
 };
 ```
-
-</Code>
 
 ## Demo
 

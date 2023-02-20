@@ -3,7 +3,6 @@ import {
   CodeTab,
   CodeTabs,
   Callout,
-  CodeBlock as Code,
   Sandpack,
 } from "components/blog";
 import { Link } from "components/shared";
@@ -26,9 +25,7 @@ This hook covers simple use cases; if your web app is heavily form-based, you mi
 
 Our `useForm` hook only takes in one parameter: the `initialState` of the form. For this hook, I'm going to use a reducer to keep track of and update the form data. Let's create an `"UPDATE"` action type that takes in a field name and value, and updates our state accordingly.
 
-<Code filename="useForm.js">
-
-```jsx
+```jsx filename="useForm.js"
 import { useReducer } from "react";
 
 export function useForm(initialState) {
@@ -48,15 +45,11 @@ export function useForm(initialState) {
 }
 ```
 
-</Code>
-
 ## Simplifying the code
 
 From there, we could export `formData` and `dispatch` from our `useForm` hook, and use them our Form component like so:
 
-<Code filename="Form.jsx">
-
-```jsx
+```jsx filename="Form.jsx"
 <input
   name="fullName"
   value={formData.fullName}
@@ -70,13 +63,9 @@ From there, we could export `formData` and `dispatch` from our `useForm` hook, a
 />
 ```
 
-</Code>
-
 But if we have a lot of fields, this might end up becoming a bit repetitive. So let's go back to our `useHook` file and add a new `updateFormField` function that we can use instead of `dispatch`.
 
-<Code filename="useHook.js">
-
-```jsx
+```jsx filename="useForm.js"
 const updateFormField = (e) => {
   dispatch({
     type: "UPDATE",
@@ -89,13 +78,9 @@ const updateFormField = (e) => {
 return { formData, updateFormField };
 ```
 
-</Code>
-
 Instead of just receiving the field's name and value, this function takes in the `onChange` event as a parameter. This allows us to get the info we need from the event, and simplify our input to this:
 
-<Code filename="Form.js">
-
-```jsx
+```jsx filename="Form.js"
 <input
   name="fullName"
   value={formData.fullName}
@@ -103,17 +88,13 @@ Instead of just receiving the field's name and value, this function takes in the
 />
 ```
 
-</Code>
-
 ## Handling number inputs
 
 There's one more improvement we can make to our code: in our `updateFormField` function, you'll notice that we dispatch an `inputType` variable that gets its value from the input's `type` attribute.
 
 This allows us to parse the value of the input's change event to a number for `number` inputs:
 
-<Code filename="useForm.js">
-
-```jsx
+```jsx filename="Form.js"
 function reducer(state, action) {
   switch (action.type) {
     case "UPDATE":
@@ -127,8 +108,6 @@ function reducer(state, action) {
   }
 }
 ```
-
-</Code>
 
 Of course, this might not cover 100% of use cases; for example, you might need a fractional number rather than an integer. But this hook is a good starting point.
 

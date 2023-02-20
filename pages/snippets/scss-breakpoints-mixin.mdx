@@ -1,10 +1,4 @@
-import {
-  ArticleWrapper,
-  CodeTab,
-  CodeTabs,
-  Callout,
-  CodeBlock as Code,
-} from "components/blog";
+import { ArticleWrapper, CodeTab, CodeTabs, Callout } from "components/blog";
 
 export const meta = {
   id: 3,
@@ -24,9 +18,7 @@ Mixins are easier to memorise than media queries and they can be a great way to 
 
 First, let's create our mixin. We want to accept numbers for our min and max values, since media queries use pixel values. For example, a `min` value of `800` would compile to `@media (min-width: 800px)`. We also need to set the default values to 0, so we know not to compile parts of the media query we don't need.
 
-<Code filename="mixins.scss">
-
-```scss
+```scss filename="mixins.scss"
 @mixin breakpoint($min: 0, $max: 0) {
   $query: "all";
   $minValue: #{$min}px;
@@ -45,8 +37,6 @@ First, let's create our mixin. We want to accept numbers for our min and max val
   }
 }
 ```
-
-</Code>
 
 ## Usage
 
@@ -96,9 +86,7 @@ You'll notice that I write generic first CSS, rather than mobile first (the indu
 
 If you always use the same breakpoints, or if you use a library like Bootstrap, it can be helpful to set some pre-defined values. First, let's save our breakpoints using a [SASS map](https://sass-lang.com/documentation/values/maps). For example, if using Bootstrap, we can accept string values that match the 5 Bootstrap breakpoints: `xs`, `sm`, `md`, `lg`, and `xl`.
 
-<Code filename="mixins.scss">
-
-```scss 
+```scss filename="mixins.scss"
 @mixin breakpoint($min: 0, $max: 0) {
   /* List all accepted values */
   $known-breakpoints: xs, sm, md, lg, xl;
@@ -161,8 +149,6 @@ If you always use the same breakpoints, or if you use a library like Bootstrap, 
   }
 }
 ```
-
-</Code>
 
 ## Usage with pre-defined breakpoints
 

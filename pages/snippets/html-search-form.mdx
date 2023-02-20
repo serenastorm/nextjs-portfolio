@@ -1,10 +1,4 @@
-import {
-  ArticleWrapper,
-  CodeTab,
-  CodeTabs,
-  CodeBlock as Code,
-  Sandpack,
-} from "components/blog";
+import { ArticleWrapper, CodeTab, CodeTabs, Sandpack } from "components/blog";
 import sandpackFiles from "snippets/demos/html-search-form";
 
 export const meta = {
@@ -24,16 +18,12 @@ If you are frequently using React for front-end development, you might end up ha
 
 First, let's create our `SearchForm` component. We only need four lines of code:
 
-<Code filename="SearchForm.tsx">
-
-```tsx
+```tsx filename="SearchForm.tsx"
 <form role="search" action="/search">
   <input aria-label="Search articles" type="search" name="q" required />
   <input type="submit" value="Search" />
 </form>
 ```
-
-</Code>
 
 That's it! Nothing more. To understand how this works, let's take a look at what happens when we submit a HTML form. If you've ever made a form in React, you probably had to add `event.preventDefault()` to prevent the page from reloading on form submit. That's because when we submit a HTML form, the following happens:
 

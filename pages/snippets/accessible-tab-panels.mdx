@@ -1,10 +1,4 @@
-import {
-  ArticleWrapper,
-  CodeTab,
-  CodeTabs,
-  CodeBlock as Code,
-  Sandpack,
-} from "components/blog";
+import { ArticleWrapper, CodeTab, CodeTabs, Sandpack } from "components/blog";
 import sandpackFiles from "snippets/demos/accessible-tab-panels";
 
 export const meta = {
@@ -25,9 +19,7 @@ Tabs are used to display a set of sections of content one at a time. Each panel 
 
 In order to move focus between the buttons, we need to add refs.
 
-<Code filename="Tabs.tsx">
-
-```tsx
+```tsx filename="Tabs.tsx"
 const tabsRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
 return (
@@ -45,15 +37,11 @@ return (
 );
 ```
 
-</Code>
-
 ## Updating the active tab
 
 When updating the active tab, we use the refs to move focus to the corresponding button. We'll also need to change some of the buttons props depending on their current state so we'll store the active tab index with `useState`.
 
-<Code filename="Tabs.tsx">
-
-```tsx
+```tsx filename="Tabs.tsx"
 const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
 const activateTab = (newTabIndex: number) => {
@@ -64,15 +52,11 @@ const activateTab = (newTabIndex: number) => {
 };
 ```
 
-</Code>
-
 ## Handle key press
 
 First, we add an `onKeyDown` event listener to our buttons.
 
-<Code filename="Tabs.tsx">
-
-```tsx
+```tsx filename="Tabs.tsx"
 <button
   onKeyDown={(event: KeyboardEvent<HTMLButtonElement>) =>
     onKeyPressed(event, tabIndex)
@@ -82,14 +66,10 @@ First, we add an `onKeyDown` event listener to our buttons.
 </button>
 ```
 
-</Code>
-
 \
 Here's our `onKeyPress` function. If the tab list has its `aria-orientation` set to vertical, replace `ArrowRight` and `ArrowLeft` with `ArrowDown` and `ArrowUp`:
 
-<Code filename="Tabs.tsx">
-
-```tsx
+```tsx filename="Tabs.tsx"
 const onKeyPressed = (
   event: KeyboardEvent<HTMLButtonElement>,
   tabIndex: number
@@ -126,8 +106,6 @@ const onKeyPressed = (
   }
 };
 ```
-
-</Code>
 
 ## Tags and WAI-ARIA Roles
 

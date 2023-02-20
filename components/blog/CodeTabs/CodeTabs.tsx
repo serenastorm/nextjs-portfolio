@@ -25,7 +25,7 @@ export const CodeTab = ({ children, label }: CodeTabProps) => {
       aria-labelledby={label}
       className={codeBlockStyles.codeWrapper}
     >
-      <CodeBlock>{children}</CodeBlock>
+      {children}
     </div>
   );
 };
@@ -83,11 +83,7 @@ export const CodeTabs = ({ children, label, tabs }: CodeTabsProps) => {
       // TODO: replace with css :has selector once support is better
       data-active-tab-index={activeTabIndex + 1}
     >
-      <ul
-        role="tablist"
-        aria-label={label}
-        className={styles.codeTabs}
-      >
+      <ul role="tablist" aria-label={label} className={styles.codeTabs}>
         {tabs.map((tab, tabIndex) => {
           return (
             <li key={`label-${label}-${tab}`}>

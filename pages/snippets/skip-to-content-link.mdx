@@ -3,7 +3,6 @@ import {
   CodeTab,
   CodeTabs,
   Callout,
-  CodeBlock as Code,
   Sandpack,
 } from "components/blog";
 import { Link } from "components/shared";
@@ -27,33 +26,23 @@ When a user interacts with your website using a keyboard, they might have to tab
 
 First, we need to properly set up our HTML. Let's add a unique `id` to your main content container, excluding the navigation.
 
-<Code filename="index.html">
-
-```html
+```html filename="index.html"
 <nav>...</nav>
 <main id="mainContent">...</main>
 ```
 
-</Code>
-
 \
 Our skip navigation link should have a clear CTA, and we use the `id` we set previously as the destination.
 
-<Code filename="index.html">
-
-```html
+```html filename="index.html"
 <a id="skiptocontent" href="#mainContent">Skip to main content</a>
 ```
-
-</Code>
 
 ## Styles
 
 Now we can style the link and animate in on focus. Here it's fading in from the top of the screen but feel free to tinker or remove the animation.
 
-<Code filename="styles.css">
-
-```css
+```css filename="styles.css"
 #skiptocontent {
   position: absolute;
   top: 0;
@@ -70,8 +59,6 @@ Now we can style the link and animate in on focus. Here it's fading in from the 
 }
 ```
 
-</Code>
-
 ## WCAG Success Criteria
 
 - [x] A link is the first focusable control on the Web page.
@@ -86,9 +73,7 @@ Now we can style the link and animate in on focus. Here it's fading in from the 
 
 If you decide to animate the skip navigation link, make sure to respect your users' browser preferences and disable animations when requested.
 
-<Code filename="styles.css">
-
-```css
+```css filename="styles.css"
 #skiptocontent {
   position: absolute;
   top: 0;
@@ -108,14 +93,10 @@ If you decide to animate the skip navigation link, make sure to respect your use
 }
 ```
 
-</Code>
-
 \
 You can also disable every animation on your website like so:
 
-<Code filename="styles.css">
-
-```css
+```css filename="styles.css"
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
@@ -123,8 +104,6 @@ You can also disable every animation on your website like so:
   }
 }
 ```
-
-</Code>
 
 ## Demo
 

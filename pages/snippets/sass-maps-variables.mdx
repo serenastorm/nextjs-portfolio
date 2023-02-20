@@ -1,10 +1,4 @@
-import {
-  ArticleWrapper,
-  CodeTab,
-  CodeTabs,
-  CodeBlock as Code,
-  Sandpack,
-} from "components/blog";
+import { ArticleWrapper, CodeTab, CodeTabs, Sandpack } from "components/blog";
 import sandpackFiles from "snippets/demos/sass-maps-variables";
 
 export const meta = {
@@ -25,9 +19,7 @@ Maps in SASS/SCSS allow us to store pairs of keys and values, and make it easy t
 
 First, let's create our map. We have a list of 5 font weights, each with a name and a value.
 
-<Code filename="_typography.scss">
-
-```scss
+```scss filename="_typography.scss"
 $font-weights: (
   "regular": 400,
   "medium": 500,
@@ -37,15 +29,11 @@ $font-weights: (
 );
 ```
 
-</Code>
-
 ## Generating the variables
 
 Now, we just need to generate our variables. We want each variable to follow the same naming convention, so we can make it really simple:
 
-<Code filename="_typography.scss">
-
-```scss
+```scss filename="_typography.scss"
 :root {
   @each $weight, $value in $font-weights {
     --font-weight-#{$weight}: #{$value};
@@ -53,13 +41,9 @@ Now, we just need to generate our variables. We want each variable to follow the
 }
 ```
 
-</Code>
-
 The code above will compile to this:
 
-<Code filename="_typography.scss">
-
-```css
+```css filename="_typography.scss"
 :root {
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -69,21 +53,15 @@ The code above will compile to this:
 }
 ```
 
-</Code>
-
 ## Usage
 
 To use my variables, I can simply write `font-weight: var(--font-weight-semibold)` (or another weight from my map).
-
-<Code>
 
 ```css
 p {
   font-weight: var(--font-weight-regular);
 }
 ```
-
-</Code>
 
 This snippet has been useful when generating typography styles, as well as colour palettes. It adds a few lines of code but I think it makes it more readable, and it guarantees that your variable names are all consistent. Ultimately, this is really a matter of personal preference.
 For our font weight variables, here's the difference between our code and plain old CSS:

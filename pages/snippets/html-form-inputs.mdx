@@ -1,10 +1,4 @@
-import {
-  ArticleWrapper,
-  CodeTab,
-  CodeTabs,
-  Callout,
-  CodeBlock as Code,
-} from "components/blog";
+import { ArticleWrapper, CodeTab, CodeTabs, Callout } from "components/blog";
 
 export const meta = {
   id: 4,
@@ -25,16 +19,12 @@ First, we need to pair our input with a label. We can either wrap the label arou
 
 **Option 1 (label wrapped around input):**
 
-<Code>
-
 ```html
 <label>
   First name:
   <input type="text" />
 </label>
 ```
-
-</Code>
 
 **Option 2 (the `for` attribute of the label matches the `id` of the form control):**
 
@@ -128,16 +118,12 @@ In the example above, the input is for the user's first name, so we set the `typ
 
 The `required` attribute marks the input as invalid when empty and prevents it from being submitted to the server.
 
-<Code>
-
 ```html
 <label>
   Phone number (required)
   <input type="tel" required />
 </label>
 ```
-
-</Code>
 
 Note that even if you are handling your form validation with JavaScript, you should still use the `required` attribute where relevant, as it will allow screen readers to announce the input as required. You can then style your inputs using the `:valid` and `:invalid` CSS pseudo-classes.
 
@@ -148,16 +134,12 @@ Your form validation logic should also add the `aria-invalid` attribute to inval
 If we set the `type` of an input, user agents might adapt the keyboard to the expected format; for example, the iOS keyboard for `email` inputs will typically include the "@" character. But that's not true for all input types; iOS just renders a regular keyboard for `number` inputs. In this case, we can use the `inputmode` attribute. We can set it to `numeric` to show the numeric keyboard with the digits 0-9, or we can set it to `decimal` to allow fractional numbers.
 [Here's a good resource with screenshots of the different keyboards](https://css-tricks.com/everything-you-ever-wanted-to-know-about-inputmode/)
 
-<Code>
-
 ```html
 <label>
   Phone number
   <input type="tel" inputmode="tel" />
 </label>
 ```
-
-</Code>
 
 Note that unlike `type`, `inputmode` won't affect validation.
 
@@ -219,7 +201,7 @@ Depending on the `type` of an input, there might be some additional attributes t
 
 <CodeTab label="image">
 
-```html filename="image"
+```html
 <label>
   Profile picture
   <input type="file" accept="image/png, image/jpeg" />
@@ -254,16 +236,12 @@ Depending on the `type` of an input, there might be some additional attributes t
 
 Some inputs will also accept the `pattern` attribute, which allows us to further restrict entered values so they also have to conform to a specific pattern, using a regular expression (RegEx).
 
-<Code>
-
 ```html
 <label>
   Phone number (in the form XXX-XXX-XXXX):
   <input type="tel" inputmode="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
 </label>
 ```
-
-</Code>
 
 export default ({ children }) => (
   <ArticleWrapper {...meta}>{children}</ArticleWrapper>

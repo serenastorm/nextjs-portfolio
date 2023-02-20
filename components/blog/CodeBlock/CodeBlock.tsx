@@ -6,10 +6,15 @@ import codeTabsStyles from "components/blog/CodeTabs/CodeTabs.module.scss";
 
 type CodeBlockProps = {
   children: JSX.Element;
+  className?: string;
   filename?: string;
 };
 
-export const CodeBlock = ({ children, filename }: CodeBlockProps) => {
+export const CodeBlock = ({
+  children,
+  className = "",
+  filename,
+}: CodeBlockProps) => {
   return (
     <div>
       {filename && (
@@ -18,8 +23,12 @@ export const CodeBlock = ({ children, filename }: CodeBlockProps) => {
         </div>
       )}
       <div className={styles.codeWrapper}>
-        <CopyToClipboardButton textToCopy={reactNodeToString(children)} />
-        {children}
+        <pre>
+          <code className={className}>
+            <CopyToClipboardButton textToCopy={reactNodeToString(children)} />
+            {children}
+          </code>
+        </pre>
       </div>
     </div>
 

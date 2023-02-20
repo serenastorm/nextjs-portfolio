@@ -3,11 +3,12 @@
 import nextMdx from "@next/mdx";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
-// TODO: maybe simplify the markdown and remove the need for <Code> wrappers
-// using the rehypeMetaAsAttributes helper
-// see components/blog/ArticleWrapper
-// import { rehypeMetaAsAttributes } from "./helpers/blog";
+import { visit } from "unist-util-visit";
 // import rehypeRaw from "rehype-raw";
+
+// A regex that looks for a simplified attribute name, optionally followed
+// by a double, single, or unquoted attribute value
+const re = /\b([-\w]+)(?:=(?:"([^"]*)"|'([^']*)'|([^"'\s]+)))?/g;
 
 const withMDX = nextMdx({
   extension: /\.mdx?$/,
@@ -16,7 +17,35 @@ const withMDX = nextMdx({
     // as the package is ESM only
     // https://github.com/remarkjs/remark-gfm#install
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight],
+    rehypePlugins: [
+      // Support stuff like ```js filename="App.js"
+      function rehypeMetaAsAttributes() {
+        return (tree) => {
+          visit(tree, "element", (node) => {
+            let match;
+
+            let nodeIsCode = node.tagName === "code";
+            let nodeIsInline = !node.properties.className;
+            let nodeHasMetaAttributes =
+              nodeIsCode && node.data && node.data.meta;
+
+            if (nodeIsCode) {
+              node.properties["inline"] = nodeIsInline;
+
+              if (nodeHasMetaAttributes) {
+                re.lastIndex = 0; // Reset regex.
+
+                while ((match = re.exec(node.data.meta))) {
+                  node.properties[match[1]] =
+                    match[2] || match[3] || match[4] || "";
+                }
+              }
+            }
+          });
+        };
+      },
+      rehypeHighlight,
+    ],
     // If you use `MDXProvider`, uncomment the following line.
     providerImportSource: "@mdx-js/react",
   },

@@ -4,12 +4,17 @@ import Head from "next/head";
 import Balancer from "react-wrap-balancer";
 import { Page } from "components/shared/Page";
 import { Link as MarkdownLink } from "components/shared";
-import { LikeButton, Tags } from "components/blog";
+import { CodeBlock as Code, LikeButton, Tags } from "components/blog";
 import { RelatedArticles } from "./RelatedArticles";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useLikes, useRelatedPosts } from "infrastructure/hooks";
 import type { ArticleMetaData } from "./types";
-import type { AnchorHTMLAttributes } from "react";
+import type {
+  AnchorHTMLAttributes,
+  ClassAttributes,
+  HTMLAttributes,
+  ReactNode,
+} from "react";
 
 import styles from "./ArticleWrapper.module.scss";
 import markdownStyles from "styles/blog/Markdown.module.scss";
@@ -26,44 +31,20 @@ const markdownComponents = {
     ) : (
       <>{props.children}</>
     ),
-  // TODO: maybe simplify the markdown and remove the need for <Code> wrappers
-  // using the rehypeMetaAsAttributes helper
-  // see next.config.mjs
 
-  // code: ({ node, inline, className, children, ...props }) => {
-  //   const match = /language-(\w+)/.exec(className || "");
-  //   const filename = node?.properties?.filename;
-
-  //   const renderSnippet = () => (
-  //     <code className={className} {...props}>
-  //       {children}
-  //     </code>
-  //   );
-
-  //   return inline ? (
-  //     renderSnippet()
-  //   ) : (
-  //     <>
-  //       {filename && (
-  //         <div className={styles.codeBlockNav}>
-  //           <div>
-  //             <code>{filename}</code>
-  //           </div>
-  //         </div>
-  //       )}
-  //       <pre>
-  //         <CopyToClipboardButton textToCopy={reactNodeToString(children)} />
-  //         {/* {match && (
-  //                   <Tag
-  //                     type={match[1]}
-  //                     className={styles.codeTag}
-  //                   />
-  //                 )} */}
-  //         {renderSnippet()}
-  //       </pre>
-  //     </>
-  //   );
-  // },
+  pre: (props: ClassAttributes<HTMLElement> & HTMLAttributes<HTMLElement>) => (
+    <>{props.children}</>
+  ),
+  // TODO fix those types
+  // @ts-ignore
+  code: ({ children, className, inline, filename }) =>
+    inline ? (
+      <code>{children}</code>
+    ) : (
+      <Code className={className} filename={filename}>
+        {children}
+      </Code>
+    ),
 };
 
 export const ArticleWrapper = ({
@@ -98,7 +79,6 @@ export const ArticleWrapper = ({
         />
         {shortText && <meta property="og:description" content={shortText} />}
       </Head>
-
       <Page className={blogStyles.blog} as="main" type="blog">
         <header
           className={`${styles.header}`}
@@ -128,6 +108,7 @@ export const ArticleWrapper = ({
           key={`${subcategory}/${slug}/mainContent`}
           className={markdownStyles.markdown}
         >
+          {/* @ts-ignore */}
           <MDXProvider components={markdownComponents}>{children}</MDXProvider>
         </article>
         <RelatedArticles nextPost={nextPost} previousPost={previousPost} />

@@ -77,8 +77,8 @@
       var(--bg-contrast-8);
     color: var(--text-contrast-10);
     font-family: var(--type-code);
-    font-size: 1em;
-    font-weight: 700;
+    font-size: 0.9em;
+    font-weight: var(--font-weight-medium);
     line-height: 1;
     padding: 2px 4px;
     white-space: nowrap;
