@@ -4,7 +4,6 @@ import nextMdx from "@next/mdx";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
-// import rehypeRaw from "rehype-raw";
 
 // A regex that looks for a simplified attribute name, optionally followed
 // by a double, single, or unquoted attribute value
@@ -13,8 +12,7 @@ const re = /\b([-\w]+)(?:=(?:"([^"]*)"|'([^']*)'|([^"'\s]+)))?/g;
 const withMDX = nextMdx({
   extension: /\.mdx?$/,
   options: {
-    // If you use remark-gfm, you'll need to use next.config.mjs
-    // as the package is ESM only
+    // remark-gfm is ESM only hence why we're using .mjs instead of .js
     // https://github.com/remarkjs/remark-gfm#install
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
@@ -46,7 +44,7 @@ const withMDX = nextMdx({
       },
       rehypeHighlight,
     ],
-    // If you use `MDXProvider`, uncomment the following line.
+    // Required to use `MDXProvider`
     providerImportSource: "@mdx-js/react",
   },
 });

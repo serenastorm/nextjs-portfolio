@@ -25,7 +25,6 @@
     "react-syntax-highlighter": "^15.5.0",
     "react-wrap-balancer": "^0.3.0",
     "rehype-highlight": "^5.0.2",
-    "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
     "sass": "^1.49.0",
     "scroll-into-view-if-needed": "^2.2.29",
