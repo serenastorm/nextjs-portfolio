@@ -98,7 +98,7 @@ export const ArticleWrapper = ({
           {tags && (
             <div className={styles.tags}>
               <p id="tagsLabel">Tagged: </p>
-              <Tags types={tags} />
+              <Tags label="tagsLabel" types={tags} />
             </div>
           )}
         </header>

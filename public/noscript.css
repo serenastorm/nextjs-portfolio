@@ -1,0 +1,34 @@
+/* Hide loaders */
+*[class^="Loader"],
+*[class*=" Loader"] {
+  display: none;
+}
+
+/* Hide Sandpack */
+.sp-wrapper {
+  display: none !important;
+}
+
+div:has(> .sp-wrapper)::after {
+  display: block;
+  content: "⚠️ JavaScript is disabled, so this demo couldn't load. Please enable JavaScript and reload the page.";
+  font-family: var(--type-paragraph);
+  font-weight: var(--font-weight-regular);
+  font-size: 1.8rem;
+  line-height: 170%;
+  color: var(--text-contrast-10);
+  padding: 8px;
+  background-color: var(--bg-level-1);
+  border-radius: 4px;
+}
+
+/* Hide tags */
+div:has(> #tagsLabel) {
+  display: none;
+}
+
+/* Hide like buttons */
+div[class^="LikeButton"],
+div[class*=" LikeButton"] {
+  display: none;
+}

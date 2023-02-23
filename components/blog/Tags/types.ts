@@ -34,5 +34,6 @@ export type TagProps = {
 
 export type TagsProps = {
   asLinks?: boolean;
+  label?: string;
   types: string[];
 };

@@ -90,7 +90,7 @@ export const Tag = ({
   return createElement(wrapperElement(), {}, renderChildren());
 };
 
-export const Tags = ({ asLinks = true, types }: TagsProps) => {
+export const Tags = ({ asLinks = true, label, types }: TagsProps) => {
   const [focusedPillIndex, setFocusedPillIndex] = useState<number>(0);
   const pillsRefs = useRef<Array<HTMLAnchorElement | null>>([]);
 
@@ -139,7 +139,12 @@ export const Tags = ({ asLinks = true, types }: TagsProps) => {
   return createElement(
     asList ? "ul" : Fragment,
     asList
-      ? { role: "list", "aria-label": "Snippet tags", className: styles.pills }
+      ? {
+          role: "list",
+          "aria-label": label ? undefined : "Snippet tags",
+          "aria-labelledby": label,
+          className: styles.pills,
+        }
       : {},
     types.map((type, pillIndex) => (
       <Tag
