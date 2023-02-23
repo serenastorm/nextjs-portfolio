@@ -1,10 +1,10 @@
-/* Hide loaders */
+/* Hide loader */
 *[class^="Loader"],
 *[class*=" Loader"] {
   display: none;
 }
 
-/* Hide Sandpack */
+/* Hide Sandpack and display error message */
 .sp-wrapper {
   display: none !important;
 }
@@ -22,7 +22,8 @@ div:has(> .sp-wrapper)::after {
   border-radius: 4px;
 }
 
-/* Hide tags */
+/* Hide tags (the filtering is done
+with JS so the links are useless) */
 div:has(> #tagsLabel) {
   display: none;
 }
@@ -30,5 +31,11 @@ div:has(> #tagsLabel) {
 /* Hide like buttons */
 div[class^="LikeButton"],
 div[class*=" LikeButton"] {
+  display: none;
+}
+
+/* Hide copy to clipboard buttons */
+div[class^="CopyToClipboardButton"],
+div[class*=" CopyToClipboardButton"] {
   display: none;
 }
