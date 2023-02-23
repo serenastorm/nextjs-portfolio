@@ -21,7 +21,7 @@ First, we need to pair our input with a label. We can either wrap the label arou
 
 ```html
 <label>
-  First name:
+  First name
   <input type="text" />
 </label>
 ```
@@ -33,7 +33,7 @@ First, we need to pair our input with a label. We can either wrap the label arou
 <CodeTab label="HTML">
 
 ```html
-<label for="firstname">First name:</label> <input type="text" id="firstname" />
+<label for="firstname">First name</label> <input type="text" id="firstname" />
 ```
 
 </CodeTab>
@@ -41,7 +41,7 @@ First, we need to pair our input with a label. We can either wrap the label arou
 <CodeTab label="React">
 
 ```html
-<label htmlFor="firstname">First name:</label>
+<label htmlFor="firstname">First name</label>
 <input type="text" id="firstname" />
 ```
 
@@ -61,7 +61,7 @@ In the example above, the input is for the user's first name, so we set the `typ
 
 ```html
 <label>
-  Email address:
+  Email address
   <input type="email" />
 </label>
 ```
@@ -114,6 +114,8 @@ In the example above, the input is for the user's first name, so we set the `typ
 
 </CodeTabs>
 
+<Callout>The default `type` of an HTML input is `text`.</Callout>
+
 ## The required attribute
 
 The `required` attribute marks the input as invalid when empty and prevents it from being submitted to the server.
@@ -147,7 +149,7 @@ You can read more about the `inputmode` attribute in the [MDN docs](https://deve
 
 ## The autocomplete attribute
 
-The last thing we can do to help our users fill our forms more quickly is adding autocomplete support. The `autocomplete` attribute allows user agents to idenfity the format of the expected value for an input, and pre-fill the values accordingly. This makes forms more efficient for all users, especially users that are attention deficit, have cognitive impairments, reduced mobility, low vision, or blind users.
+The last thing we can do to help our users fill our forms more quickly is adding autocomplete support. The `autocomplete` attribute allows user agents to identify the format of the expected value for an input, and pre-fill the values accordingly. This makes forms more efficient for all users, especially users that are attention deficit, have cognitive impairments, reduced mobility, low vision, or blind users.
 
 `autocomplete` allows us to get a lot more specific than by just using `type`: a name field might have an autocomplete value of `name`, `given-name`, `additional-name`, `family-name`, or even `nickname`. But all of these would use a regular `text` input type.
 
@@ -161,7 +163,7 @@ Ever wondered how your phone can pre-fill a one-time-code that was texted to you
 
 ```html
 <label>
-  Password:
+  Password
   <input type="password" autocomplete="new-password" />
 </label>
 ```
@@ -172,7 +174,7 @@ Ever wondered how your phone can pre-fill a one-time-code that was texted to you
 
 ```html
 <label>
-  Authentication token:
+  Authentication token
   <input type="number" inputmode="numeric" autocomplete="one-time-code" />
 </label>
 ```
@@ -242,6 +244,12 @@ Some inputs will also accept the `pattern` attribute, which allows us to further
   <input type="tel" inputmode="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
 </label>
 ```
+
+<Callout>
+  Regardless of how you choose to handle form validation on the client-side,
+  remember that is is still easy to bypass, so your apps should always perform
+  security checks on any submitted data on the server-side as well.
+</Callout>
 
 export default ({ children }) => (
   <ArticleWrapper {...meta}>{children}</ArticleWrapper>

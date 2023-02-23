@@ -19,7 +19,7 @@ Maps in SASS/SCSS allow us to store pairs of keys and values, and make it easy t
 
 First, let's create our map. We have a list of 5 font weights, each with a name and a value.
 
-```scss filename="_typography.scss"
+```scss filename="typography.scss"
 $font-weights: (
   "regular": 400,
   "medium": 500,
@@ -33,7 +33,7 @@ $font-weights: (
 
 Now, we just need to generate our variables. We want each variable to follow the same naming convention, so we can make it really simple:
 
-```scss filename="_typography.scss"
+```scss filename="typography.scss"
 :root {
   @each $weight, $value in $font-weights {
     --font-weight-#{$weight}: #{$value};
@@ -41,9 +41,9 @@ Now, we just need to generate our variables. We want each variable to follow the
 }
 ```
 
-The code above will compile to this:
+The code above will compile to this CSS:
 
-```css filename="_typography.scss"
+```css filename="typography.css"
 :root {
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -66,9 +66,9 @@ p {
 This snippet has been useful when generating typography styles, as well as colour palettes. It adds a few lines of code but I think it makes it more readable, and it guarantees that your variable names are all consistent. Ultimately, this is really a matter of personal preference.
 For our font weight variables, here's the difference between our code and plain old CSS:
 
-<CodeTabs label="Setting CSS variables with and without the mixin" tabs={["_typography.css","_typography.scss"]}>
+<CodeTabs label="Setting CSS variables with and without the mixin" tabs={["typography.css","typography.scss"]}>
 
-<CodeTab label="_typography.css">
+<CodeTab label="typography.css">
 
 ```scss
 :root {
@@ -82,7 +82,7 @@ For our font weight variables, here's the difference between our code and plain 
 
 </CodeTab>
 
-<CodeTab label="_typography.scss">
+<CodeTab label="typography.scss">
 
 ```css
 $font-weights: (

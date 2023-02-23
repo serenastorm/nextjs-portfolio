@@ -57,7 +57,6 @@ export default function App() {
 `,
   },
   "Search.tsx": {
-    hidden: true,
     code: `import { useSearchParams } from "react-router-dom";
 
 export default function Search() {
