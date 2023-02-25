@@ -66,7 +66,7 @@ const Home: NextPage<{ mostRecentPost: ArticleMetaData }> = ({
           developer currently based in Edinburgh. I recently worked at{" "}
           {renderTextWithFootnote(1)} where most of my projects were under{" "}
           <abbr title="Non Disclosure Agreements">NDAs</abbr>, but you can find
-          some of my public works below. You can also check out the code for
+          some of my side projects below. You can also check out the code for
           this website on my {renderTextWithFootnote(2)}
         </h1>
         <LandingFootnotes>

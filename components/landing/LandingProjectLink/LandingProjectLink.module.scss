@@ -185,3 +185,33 @@
   inset: 0;
   z-index: 1;
 }
+
+.landingProjectDescription {
+  a {
+    --arrow-pointer-color: var(--text-contrast-10);
+    --arrow-pointer-color-hover: var(--primary);
+
+    color: var(--text-contrast-10);
+
+    @include breakpoint(860, 1199.99) {
+      font-size: 1.8rem;
+    }
+
+    @include breakpoint(desktop) {
+      font-size: 2.2rem;
+    }
+  }
+
+  p {
+    clear: both;
+    color: var(--text-contrast-8);
+
+    @include breakpoint(0, 859.98) {
+      font-size: 1.6rem;
+    }
+
+    @include breakpoint(860) {
+      font-size: 1.8rem;
+    }
+  }
+}

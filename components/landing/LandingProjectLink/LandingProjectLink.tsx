@@ -5,22 +5,15 @@ import { PROJECTS } from "./constants";
 
 import styles from "./LandingProjectLink.module.scss";
 
-const LandingProjectLink = ({
-  label,
-  description,
-  url,
-  isExternal,
-}: LinkProps) => (
-  <div className={styles.landingProject}>
+const LandingProjectLink = ({ label, description, url }: LinkProps) => (
+  <li className={styles.landingProject}>
     <div className={styles.landingProjectImg} />
-    <dl>
-      <dt>
-        <Link href={url} underline={false}>
-          {label}
-        </Link>
-      </dt>
-      <dd>{description}</dd>
-    </dl>
+    <div className={styles.landingProjectDescription}>
+      <Link href={url} underline={false}>
+        {label}
+      </Link>
+      <p>{description}</p>
+    </div>
     <Link
       className={styles.landingProjectLink}
       href={url}
@@ -29,15 +22,19 @@ const LandingProjectLink = ({
       aria-hidden="true"
       hidden
     ></Link>
-  </div>
+  </li>
 );
 
 export const LandingProjectLinks = () => {
   return (
-    <dl className={styles.landingProjects}>
-      {PROJECTS.map((project: LinkProps, projectIndex: number) => (
+    <ul
+      className={styles.landingProjects}
+      role="list"
+      aria-label="Side projects"
+    >
+      {PROJECTS.map((project: LinkProps) => (
         <LandingProjectLink {...project} key={project.label} />
       ))}
-    </dl>
+    </ul>
   );
 };
