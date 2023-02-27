@@ -140,7 +140,9 @@
   }
 
   dd {
-    margin-top: 0.8rem;
+    line-height: 100%;
+    margin-bottom: 0;
+    margin-top: 0.6rem;
     color: var(--text-contrast-8);
 
     @include breakpoint(0, 859.98) {
@@ -219,4 +221,14 @@ a.landingProjectNewTabLink {
   height: 100%;
   inset: 0;
   z-index: 1;
+}
+
+.landingProjectDownloads {
+  display: block;
+  max-width: max-content;
+  font-weight: var(--font-weight-semibold);
+  color: #6272a4;
+  border-radius: 4px;
+  margin-top: 0.4em;
+  font-size: 1.2rem;
 }
