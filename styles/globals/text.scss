@@ -87,7 +87,8 @@ i {
 }
 
 p,
-li {
+li,
+label {
   font-family: var(--type-paragraph);
   font-weight: var(--font-weight-regular);
   font-size: 1.8rem;

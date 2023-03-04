@@ -16,4 +16,5 @@ export const routes = {
       url: codeSnippetsBaseUrl,
     },
   },
+  portfolio: `${baseUrl}portfolio`,
 };
