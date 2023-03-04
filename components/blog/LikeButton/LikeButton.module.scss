@@ -2,11 +2,33 @@
 @import "~styles/modules/placeholders.scss";
 
 .likeButton {
+  background-color: transparent;
+  border-width: 0;
+  cursor: pointer;
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--pink);
   border-radius: 0.4rem;
+  font-size: 1.4rem;
+  font-family: var(--type-paragraph);
+  font-weight: var(--font-weight-medium);
+
+  svg,
+  .likeButtonLabel {
+    position: relative;
+    z-index: 1;
+  }
+
+  @include onFocus {
+    outline: none;
+
+    .likeButtonBackground {
+      outline: 2px solid var(--pink);
+    }
+  }
 
   &.likeButtonIsFixed {
     --heart-size: 3.2rem;
@@ -28,20 +50,15 @@
         translateY(-50%);
     }
 
-    .likeButtonFocusMarker {
+    .likeButtonBackground {
       inset: 0;
-      box-shadow: 0 0 0 2px var(--pink-bg);
       border-radius: inherit;
-      transform: scale(0);
-      opacity: 0;
+      background-color: transparent;
     }
 
-    .likeButtonInput {
-      @include onFocus {
-        & ~ .likeButtonFocusMarker {
-          transform: scale(1);
-          opacity: 1;
-        }
+    @include onHoverAndFocus {
+      svg {
+        transform: scale(1.1);
       }
     }
   }
@@ -51,7 +68,7 @@
     position: relative;
     padding: 0.2rem;
 
-    .likeButtonFocusMarker {
+    .likeButtonBackground {
       width: calc(var(--heart-size) * 2);
       height: calc(var(--heart-size) * 2);
       background-image: var(--like-button-bg);
@@ -59,11 +76,13 @@
       transform: translateX(calc(var(--heart-size) * 0.1)) scale(0);
     }
 
-    .likeButtonInput {
-      @include onHoverAndFocus {
-        & ~ .likeButtonFocusMarker {
-          transform: translateX(calc(var(--heart-size) * 0.1)) scale(1);
-        }
+    .likeButtonLabel {
+      color: var(--text-contrast-8);
+    }
+
+    @include onHoverAndFocus {
+      .likeButtonBackground {
+        transform: translateX(calc(var(--heart-size) * 0.1)) scale(1);
       }
     }
   }
@@ -97,196 +116,173 @@
   }
 }
 
-p.likeButtonLabel {
-  margin: 0;
-  font-size: 1.4rem !important;
-  position: relative;
-  z-index: 1;
-  font-weight: var(--font-weight-medium);
-}
+.likeButton[aria-pressed="true"] {
+  path[data-layer="mainHeart"] {
+    transform: scale(0.2);
+    animation: animateHeart 0.3s linear forwards 0.25s;
 
-.likeButtonInput {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
+    @keyframes animateHeart {
+      0% {
+        transform: scale(0.2);
+      }
 
-  @include onHoverAndFocus {
-    & ~ svg {
-      transform: scale(1.2);
+      40% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
   }
 
-  &:checked ~ svg {
-    path[data-layer="mainHeart"] {
-      transform: scale(0.2);
-      animation: animateHeart 0.3s linear forwards 0.25s;
+  path[data-layer="heart"] {
+    transform-origin: center;
 
-      @keyframes animateHeart {
-        0% {
-          transform: scale(0.2);
-        }
-
-        40% {
-          transform: scale(1.2);
-        }
-
-        100% {
-          transform: scale(1);
-        }
-      }
+    &[data-order="1"] {
+      transition: 0.5s transform 0.3s;
     }
 
-    path[data-layer="heart"] {
-      transform-origin: center;
+    &[data-order="2"] {
+      transition: 1.5s transform 0.3s;
+    }
+  }
 
-      &[data-order="1"] {
-        transition: 0.5s transform 0.3s;
+  path[data-layer="circle"] {
+    transition: all 2s;
+    animation: animateCircle 0.3s linear forwards;
+    opacity: 1;
+
+    @keyframes animateCircle {
+      40% {
+        transform: scale(10);
+        opacity: 1;
+        fill: #dd4688;
       }
 
-      &[data-order="2"] {
-        transition: 1.5s transform 0.3s;
+      55% {
+        transform: scale(11);
+        opacity: 1;
+        fill: #d46abf;
+      }
+
+      65% {
+        transform: scale(12);
+        opacity: 1;
+        fill: #cc8ef5;
+      }
+
+      75% {
+        transform: scale(13);
+        opacity: 1;
+        fill: transparent;
+        stroke: #cc8ef5;
+        stroke-width: 0.5;
+      }
+
+      85% {
+        transform: scale(17);
+        opacity: 1;
+        fill: transparent;
+        stroke: #cc8ef5;
+        stroke-width: 0.2;
+      }
+
+      95% {
+        transform: scale(18);
+        opacity: 1;
+        fill: transparent;
+        stroke: #cc8ef5;
+        stroke-width: 0.1;
+      }
+
+      100% {
+        transform: scale(19);
+        opacity: 1;
+        fill: transparent;
+        stroke: #cc8ef5;
+        stroke-width: 0;
       }
     }
+  }
 
-    path[data-layer="circle"] {
-      transition: all 2s;
-      animation: animateCircle 0.3s linear forwards;
-      opacity: 1;
-
-      @keyframes animateCircle {
-        40% {
-          transform: scale(10);
-          opacity: 1;
-          fill: #dd4688;
-        }
-
-        55% {
-          transform: scale(11);
-          opacity: 1;
-          fill: #d46abf;
-        }
-
-        65% {
-          transform: scale(12);
-          opacity: 1;
-          fill: #cc8ef5;
-        }
-
-        75% {
-          transform: scale(13);
-          opacity: 1;
-          fill: transparent;
-          stroke: #cc8ef5;
-          stroke-width: 0.5;
-        }
-
-        85% {
-          transform: scale(17);
-          opacity: 1;
-          fill: transparent;
-          stroke: #cc8ef5;
-          stroke-width: 0.2;
-        }
-
-        95% {
-          transform: scale(18);
-          opacity: 1;
-          fill: transparent;
-          stroke: #cc8ef5;
-          stroke-width: 0.1;
-        }
-
-        100% {
-          transform: scale(19);
-          opacity: 1;
-          fill: transparent;
-          stroke: #cc8ef5;
-          stroke-width: 0;
-        }
-      }
+  g[data-layer="hearts"][data-order="1"] {
+    path[data-layer="heart"][data-order="1"] {
+      transform: scale(0) translate(0, -5px);
     }
 
-    g[data-layer="hearts"][data-order="1"] {
-      path[data-layer="heart"][data-order="1"] {
-        transform: scale(0) translate(0, -5px);
-      }
+    path[data-layer="heart"][data-order="2"] {
+      transform: scale(0) translate(5px, -20px);
+    }
+  }
 
-      path[data-layer="heart"][data-order="2"] {
-        transform: scale(0) translate(5px, -20px);
-      }
+  g[data-layer="hearts"][data-order="2"] {
+    path[data-layer="heart"][data-order="1"] {
+      transform: scale(0) translate(10px, 0);
     }
 
-    g[data-layer="hearts"][data-order="2"] {
-      path[data-layer="heart"][data-order="1"] {
-        transform: scale(0) translate(10px, 0);
-      }
+    path[data-layer="heart"][data-order="2"] {
+      transform: scale(0) translate(20px, 10px);
+    }
+  }
 
-      path[data-layer="heart"][data-order="2"] {
-        transform: scale(0) translate(20px, 10px);
-      }
+  g[data-layer="hearts"][data-order="3"] {
+    path[data-layer="heart"][data-order="1"] {
+      transform: scale(0) translate(-10px, -5px);
     }
 
-    g[data-layer="hearts"][data-order="3"] {
-      path[data-layer="heart"][data-order="1"] {
-        transform: scale(0) translate(-10px, -5px);
-      }
+    path[data-layer="heart"][data-order="2"] {
+      transform: scale(0) translate(-20px, 10px);
+    }
+  }
 
-      path[data-layer="heart"][data-order="2"] {
-        transform: scale(0) translate(-20px, 10px);
-      }
+  g[data-layer="hearts"][data-order="4"] {
+    path[data-layer="heart"][data-order="1"] {
+      transform: scale(0) translate(5px, -5px);
     }
 
-    g[data-layer="hearts"][data-order="4"] {
-      path[data-layer="heart"][data-order="1"] {
-        transform: scale(0) translate(5px, -5px);
-      }
+    path[data-layer="heart"][data-order="2"] {
+      transform: scale(0) translate(20px, -20px);
+    }
+  }
 
-      path[data-layer="heart"][data-order="2"] {
-        transform: scale(0) translate(20px, -20px);
-      }
+  g[data-layer="hearts"][data-order="5"] {
+    path[data-layer="heart"][data-order="1"] {
+      transform: scale(0) translate(10px, -0);
     }
 
-    g[data-layer="hearts"][data-order="5"] {
-      path[data-layer="heart"][data-order="1"] {
-        transform: scale(0) translate(10px, -0);
-      }
+    path[data-layer="heart"][data-order="2"] {
+      transform: scale(0) translate(20px, 10px);
+    }
+  }
 
-      path[data-layer="heart"][data-order="2"] {
-        transform: scale(0) translate(20px, 10px);
-      }
+  g[data-layer="hearts"][data-order="6"] {
+    path[data-layer="heart"][data-order="1"] {
+      transform: scale(0) translate(-10px, -10px);
     }
 
-    g[data-layer="hearts"][data-order="6"] {
-      path[data-layer="heart"][data-order="1"] {
-        transform: scale(0) translate(-10px, -10px);
-      }
+    path[data-layer="heart"][data-order="2"] {
+      transform: scale(0) translate(-20px, -20px);
+    }
+  }
 
-      path[data-layer="heart"][data-order="2"] {
-        transform: scale(0) translate(-20px, -20px);
-      }
+  g[data-layer="hearts"][data-order="7"] {
+    path[data-layer="heart"][data-order="1"] {
+      transform: scale(0) translate(-5px, -10px);
     }
 
-    g[data-layer="hearts"][data-order="7"] {
-      path[data-layer="heart"][data-order="1"] {
-        transform: scale(0) translate(-5px, -10px);
-      }
-
-      path[data-layer="heart"][data-order="2"] {
-        transform: scale(0) translate(-15px, -25px);
-      }
+    path[data-layer="heart"][data-order="2"] {
+      transform: scale(0) translate(-15px, -25px);
     }
+  }
 
-    g[data-layer="hearts"] {
-      opacity: 1;
-      transition: 0.1s opacity 0.3s;
-    }
+  g[data-layer="hearts"] {
+    opacity: 1;
+    transition: 0.1s opacity 0.3s;
   }
 }
 
-.likeButtonFocusMarker {
+.likeButtonBackground {
   pointer-events: none;
   position: absolute;
   transition: all 100ms ease-in-out;

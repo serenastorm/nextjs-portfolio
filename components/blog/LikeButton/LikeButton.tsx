@@ -44,34 +44,21 @@ const LikeButton = ({
   };
 
   return (
-    <div
+    <button
+      aria-pressed={inputShouldBeChecked} // Announce the button as a toggle button
       className={`${styles.likeButton}${
         fixed ? ` ${styles.likeButtonIsFixed}` : ""
       }`}
+      title="Like this article"
+      onClick={() => updateLikes()}
     >
-      <p
-        id={`likeButtonLabel${articleId}`}
-        className="screenReaderText"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        {inputShouldBeChecked ? "Unlike" : "Like"} this article
-      </p>
-      <input
-        type="checkbox"
-        className={styles.likeButtonInput}
-        aria-labelledby={`likeButtonLabel${articleId}`}
-        checked={inputShouldBeChecked}
-        onChange={() => updateLikes()}
-        onKeyDown={() => updateLikes()}
-      />
-      <div className={styles.likeButtonFocusMarker} />
+      <div className={styles.likeButtonBackground} />
       <LikeButtonIcon filled={inputShouldBeChecked} />
-      <p className={styles.likeButtonLabel}>
+      <span className={styles.likeButtonLabel}>
         {likesCount === 0 && fixed ? "No" : likesCount}
         {fixed ? ` like${likesCount > 1 || likesCount === 0 ? "s" : ""}` : ""}
-      </p>
-    </div>
+      </span>
+    </button>
   );
 };
 
