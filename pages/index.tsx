@@ -28,11 +28,6 @@ const Home: NextPage<{ mostRecentPost: ArticleMetaData }> = ({
       description: "LinkedIn Profile",
     },
     {
-      label: "Storm Ideas,",
-      description: "Storm Ideas' website",
-      url: "https://stormideas.com/",
-    },
-    {
       label: "Github.",
       description: "Source code on Github",
       url: "https://github.com/serenastorm/nextjs-portfolio",
@@ -46,7 +41,7 @@ const Home: NextPage<{ mostRecentPost: ArticleMetaData }> = ({
   return (
     <>
       <Head>
-        <title>Portfolio | Serena Antonetti</title>
+        <title>Serena Antonetti | Blog</title>
         <meta name="theme-color" content="#f5f7fb" />
         <meta
           name="theme-color"
@@ -61,14 +56,13 @@ const Home: NextPage<{ mostRecentPost: ArticleMetaData }> = ({
       `}</style>
       <Page className={styles.landingPage}>
         {/* ARIA role="text" prevents 'text splitting' in VoiceOver iOS https://axesslab.com/text-splitting/  */}
-        <h1 role="text">
-          Hi, I’m {renderTextWithFootnote(0)} a product designer &amp; front-end
-          developer currently based in Edinburgh. I recently worked at{" "}
-          {renderTextWithFootnote(1)} where most of my projects were under{" "}
-          <abbr title="Non Disclosure Agreements">NDAs</abbr>, but you can find
-          some of my side projects below. You can also check out the code for
-          this website on my {renderTextWithFootnote(2)}
-        </h1>
+        <p role="text" className={styles.landingPageIntro}>
+          Hi, I’m {renderTextWithFootnote(0)} a product designer, front-end
+          developer, &amp; educator currently based in Edinburgh. Most of my
+          work is under <abbr title="Non Disclosure Agreements">NDAs</abbr>, but
+          you can find some of my side projects below. You can also check out
+          the code for this website on my {renderTextWithFootnote(1)}
+        </p>
         <LandingFootnotes>
           {links.map((link, linkIndex) => (
             <LandingFootnote

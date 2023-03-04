@@ -85,7 +85,7 @@ export default function Document() {
 
         <meta
           name="description"
-          content="The portfolio of product designer & front-end developer Serena Antonetti."
+          content="The website of product designer & front-end developer Serena Antonetti."
         />
 
         {/* manifest.json provides metadata used when your web app is installed on a
