@@ -25,4 +25,6 @@ export default async function handler(
 
     res.status(401).json({ error: "Wrong password!" });
   }
+
+  res.status(400).json({ error: "Please enter a password." });
 }
