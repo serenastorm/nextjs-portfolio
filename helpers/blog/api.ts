@@ -7,7 +7,7 @@ export async function fetchRelatedEntries(id: string): Promise<{
   previousPost: ArticleMetaData | null;
   nextPost: ArticleMetaData | null;
 }> {
-  const res = await fetch(`${process.env.APP_URL}/api/snippets/${id}/related`, {
+  const res = await fetch(`/api/snippets/${id}/related`, {
     method: "GET",
   });
 

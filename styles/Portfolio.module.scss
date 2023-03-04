@@ -66,11 +66,23 @@
     &[type="submit"] {
       margin-top: 12px;
       background-color: var(--text-contrast-8);
+      color: var(--bg-level-1);
       cursor: pointer;
+
+      @include onHoverAndFocus {
+        background-color: var(--primary);
+      }
+    }
+
+    @include onHoverAndFocus {
+      border-color: var(--primary);
     }
 
     @include onKeyboardFocus {
-      outline: 3px solid var(--primary);
+      // We can't use outline with border-radius in Safari
+      outline: none;
+      box-shadow: 0px 0px 0px 2px var(--bg-level-1),
+        0px 0px 0px 5px var(--primary);
     }
 
     // Error messages

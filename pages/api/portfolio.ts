@@ -20,11 +20,11 @@ export default async function handler(
     const [user, pwd] = atob(authValue).split(":");
 
     if (pwd === process.env.PORTFOLIO_PASSWORD) {
-      res.status(200).json({ redirectUrl: process.env.PORTFOLIO_URL });
+      return res.status(200).json({ redirectUrl: process.env.PORTFOLIO_URL });
     }
 
-    res.status(401).json({ error: "Wrong password!" });
+    return res.status(401).json({ error: "Wrong password!" });
   }
 
-  res.status(400).json({ error: "Please enter a password." });
+  return res.status(400).json({ error: "Please enter a password." });
 }

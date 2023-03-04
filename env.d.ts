@@ -1,5 +1,4 @@
 declare const requiredServerEnvs: readonly [
-  "APP_URL",
   "SUPABASE_TOKEN",
   "SUPABASE_API_KEY",
   "PORTFOLIO_PASSWORD",

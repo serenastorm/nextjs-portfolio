@@ -14,7 +14,7 @@ const Portfolio: NextPage = () => {
   const submitForm = async (e: FormEvent) => {
     e.preventDefault();
 
-    const authRes = await fetch(`/api/portfolio`, {
+    const authRes = await fetch("/api/portfolio", {
       method: "GET",
       headers: {
         Authorization: `Basic ${Buffer.from(":" + password).toString(
@@ -34,7 +34,7 @@ const Portfolio: NextPage = () => {
 
   useEffect(() => {
     if (portfolioUrl) {
-      window.location.href = portfolioUrl;
+      // window.location.href = portfolioUrl;
     }
   }, [portfolioUrl]);
 
@@ -59,9 +59,7 @@ const Portfolio: NextPage = () => {
           <div className={styles.portfolioForm}>
             <h1>Redirecting...</h1>
             <p>
-              <Link href={portfolioUrl}>
-                Take me to the portfolio
-              </Link>
+              <Link href={portfolioUrl}>Take me to the portfolio</Link>
             </p>
           </div>
         ) : (

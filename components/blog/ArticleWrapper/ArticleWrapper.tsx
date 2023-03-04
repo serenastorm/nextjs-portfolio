@@ -85,6 +85,7 @@ export const ArticleWrapper = ({
         >
           <Breadcrumbs subcategory={subcategory} />
           <h1>
+            {/* Replace with CSS text-wrap: balance when support is better */}
             <Balancer>
               {/* This can't be a pseudo element bc it breaks the balancer */}
               <span aria-hidden="true" className={styles.titleOrnament}>
