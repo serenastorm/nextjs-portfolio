@@ -34,7 +34,7 @@ const Portfolio: NextPage = () => {
 
   useEffect(() => {
     if (portfolioUrl) {
-      // window.location.href = portfolioUrl;
+      window.location.href = portfolioUrl;
     }
   }, [portfolioUrl]);
 
