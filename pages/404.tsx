@@ -1,7 +1,6 @@
 import Head from "next/head";
-import { Link } from "components/shared";
+import { Link, Page } from "components/shared";
 import { Tags } from "components/blog";
-import { Page } from "components/shared/Page";
 
 const Custom404 = () => {
   const tags = ["accessibility", "tsx", "js", "html", "css", "scss"];

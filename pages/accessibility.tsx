@@ -1,6 +1,5 @@
 import Head from "next/head";
-import { Page } from "components/shared/Page";
-import { Link } from "components/shared";
+import { Link, Page } from "components/shared";
 
 import blogStyles from "styles/blog/Blog.module.scss";
 

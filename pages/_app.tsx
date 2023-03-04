@@ -67,7 +67,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="viewport"
+          id="viewport"
+          content="width=device-width,user-scalable=yes,initial-scale=1"
+        />
       </Head>
       {(isLoading || !windowWidth) && <Loader />}
       <ReduxProvider store={store}>
