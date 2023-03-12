@@ -43,11 +43,11 @@
 
   ::-moz-selection {
     /* Firefox */
-    background: #F0C9DE;
+    background: #f0c9de;
   }
 
   ::selection {
-    background: #F0C9DE;
+    background: #f0c9de;
   }
 
   p {
@@ -69,7 +69,12 @@
 
   h1,
   h2 {
-    font-size: clamp(18px, 5vw, 2rem);
+    font-weight: var(--font-weight-medium);
+    font-size: clamp(16px, 5vw, 1.8rem);
+
+    a {
+      font-weight: inherit;
+    }
   }
 
   a {

@@ -1,18 +1,17 @@
 import { MDXProvider } from "@mdx-js/react";
-import Link from "next/link";
 import Head from "next/head";
 import Balancer from "react-wrap-balancer";
 import { Link as MarkdownLink, Page } from "components/shared";
 import { CodeBlock as Code, LikeButton, Tags } from "components/blog";
 import { RelatedArticles } from "./RelatedArticles";
 import { Breadcrumbs } from "./Breadcrumbs";
+import { getTag } from "components/blog/Tags/constants";
 import { useLikes, useRelatedPosts } from "infrastructure/hooks";
 import type { ArticleMetaData } from "./types";
 import type {
   AnchorHTMLAttributes,
   ClassAttributes,
   HTMLAttributes,
-  ReactNode,
 } from "react";
 
 import styles from "./ArticleWrapper.module.scss";
@@ -73,7 +72,9 @@ export const ArticleWrapper = ({
           content={`https://nextjs-portfolio-beryl.vercel.app/api/og?title=${encodeURIComponent(
             title
           )}${
-            subcategory ? `&category=${encodeURIComponent(subcategory)}` : ""
+            subcategory
+              ? `&category=${encodeURIComponent(getTag(subcategory).label)}`
+              : ""
           }`}
         />
         {shortText && <meta property="og:description" content={shortText} />}

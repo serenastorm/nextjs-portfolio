@@ -107,8 +107,7 @@
   /* :focus and focus-visible need to be targeted separately for 
   styles to work in Safari since it doesn't support focus-visible */
   &:active,
-  &:focus,
-  &.focus-visible {
+  &:focus {
     outline: none !important;
   }
 
@@ -118,31 +117,21 @@
 }
 
 @mixin onKeyboardFocus() {
-  /* :focus and focus-visible need to be targeted separately for 
-  styles to work in Safari since it doesn't support focus-visible */
-  &.focus-visible {
-    @content;
-  }
-
   &:focus-visible {
     @content;
   }
 }
 
 @mixin onMouseFocus() {
-  /* Some browsers don't support :focus-visible so I'm using a 
-polyfill that adds a .focus-visible className
-https://github.com/WICG/focus-visible */
-  &:focus:not(.focus-visible) {
+  &:focus:not(:focus-visible) {
     @content;
   }
 }
 
 @mixin onFocus() {
   /* :focus and focus-visible need to be targeted separately for 
-  styles to work in Safari since it doesn't support focus-visible */
-  &:focus,
-  &.focus-visible {
+  styles to work in Safari  */
+  &:focus {
     @content;
   }
 
@@ -153,7 +142,7 @@ https://github.com/WICG/focus-visible */
 
 @mixin onHoverAndFocus() {
   /* :focus and focus-visible need to be targeted separately for 
-  styles to work in Safari since it doesn't support focus-visible */
+  styles to work in Safari  */
   &:focus {
     @content;
   }

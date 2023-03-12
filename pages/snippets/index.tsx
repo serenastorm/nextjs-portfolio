@@ -42,6 +42,12 @@ const SnippetsPage = ({ posts }: { posts: ArticleMetaData[] }) => {
           content="#181a1d"
           media="(prefers-color-scheme: dark)"
         />
+        <meta
+          property="og:image"
+          content={`https://nextjs-portfolio-beryl.vercel.app/api/og?title=${encodeURIComponent(
+            "Code snippets"
+          )}`}
+        />
       </Head>
       <Page className={blogStyles.blog} as="main" type="blog">
         <h1 className={blogStyles.blogIndexTitle}>

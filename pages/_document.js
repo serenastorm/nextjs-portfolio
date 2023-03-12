@@ -77,6 +77,12 @@ export default function Document() {
         />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta
+          property="og:image"
+          content={`https://nextjs-portfolio-beryl.vercel.app/api/og?title=${encodeURIComponent(
+            "Personal website"
+          )}`}
+        />
+        <meta
           name="msapplication-TileImage"
           content="/favicons/ms-icon-144x144.png"
         />

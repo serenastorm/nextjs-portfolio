@@ -80,6 +80,7 @@
 
     @include onKeyboardFocus {
       // We can't use outline with border-radius in Safari
+      // so we use a box-shadow
       outline: none;
       box-shadow: 0px 0px 0px 2px var(--bg-level-1),
         0px 0px 0px 5px var(--primary);

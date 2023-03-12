@@ -48,6 +48,12 @@ const Portfolio: NextPage = () => {
           content="#181a1d"
           media="(prefers-color-scheme: dark)"
         />
+        <meta
+          property="og:image"
+          content={`https://nextjs-portfolio-beryl.vercel.app/api/og?title=${encodeURIComponent(
+            "Portfolio"
+          )}`}
+        />
       </Head>
       <style jsx global>{`
         html {

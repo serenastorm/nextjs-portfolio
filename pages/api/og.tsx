@@ -8,26 +8,26 @@ export const config = {
   runtime: "experimental-edge",
 };
 
-const ibmPlexSansMediumUrl = new URL(
-  "assets/fonts/IBMPlexSans-Medium.ttf",
+const beVietnamProMediumUrl = new URL(
+  "assets/fonts/BeVietnamPro-Medium.ttf",
   import.meta.url
 );
 
-const ibmPlexSansSemiboldUrl = new URL(
-  "assets/fonts/IBMPlexSans-SemiBold.ttf",
+const beVietnamProSemiboldUrl = new URL(
+  "assets/fonts/BeVietnamPro-SemiBold.ttf",
   import.meta.url
 );
 
-const ibmPlexSansMedium = fetch(`${ibmPlexSansMediumUrl}`).then(async (res) =>
+const beVietnamProMedium = fetch(`${beVietnamProMediumUrl}`).then(async (res) =>
   res.arrayBuffer()
 );
-const ibmPlexSansSemibold = fetch(`${ibmPlexSansSemiboldUrl}`).then(
+const beVietnamProSemibold = fetch(`${beVietnamProSemiboldUrl}`).then(
   async (res) => res.arrayBuffer()
 );
 
 export default async function handler(req: NextRequest) {
-  const ibmPlexSansMediumData = await ibmPlexSansMedium;
-  const ibmPlexSansSemiboldData = await ibmPlexSansSemibold;
+  const beVietnamProMediumData = await beVietnamProMedium;
+  const beVietnamProSemiboldData = await beVietnamProSemibold;
 
   try {
     const { searchParams } = new URL(req.url);
@@ -57,7 +57,7 @@ export default async function handler(req: NextRequest) {
             color: "#5E5252",
           }}
         >
-          <div style={{ display: "flex", flex: 1, paddingTop: "12.5%" }}>
+          <div style={{ display: "flex", flex: 1, paddingTop: "15%" }}>
             {title}
           </div>
           <div
@@ -65,10 +65,10 @@ export default async function handler(req: NextRequest) {
               width: "100%",
               display: "flex",
               flexDirection: "row",
-              justifyContent: category ? "space-between" : "flex-end",
+              justifyContent: category ? "space-between" : "flex-start",
               alignItems: "center",
               fontWeight: 600,
-              paddingBottom: "10%",
+              paddingBottom: "12%",
             }}
           >
             {category && (
@@ -105,7 +105,7 @@ export default async function handler(req: NextRequest) {
                 height="31"
                 fill="none"
                 viewBox="0 0 31 31"
-                style={{ width: 40, height: 40 }}
+                style={{ width: 48, height: 48 }}
               >
                 <circle
                   cx="15.667"
@@ -176,13 +176,13 @@ export default async function handler(req: NextRequest) {
         fonts: [
           {
             name: "IBM Plex Sans",
-            data: ibmPlexSansMediumData,
+            data: beVietnamProMediumData,
             style: "normal",
             weight: 500,
           },
           {
             name: "IBM Plex Sans",
-            data: ibmPlexSansSemiboldData,
+            data: beVietnamProSemiboldData,
             style: "normal",
             weight: 600,
           },
