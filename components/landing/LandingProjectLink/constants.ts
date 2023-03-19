@@ -2,15 +2,20 @@ import { LinkProps } from "helpers/main/types";
 
 export const PROJECTS: LinkProps[] = [
   {
-    label: "2023 portfolio",
+    label: "UX portfolio",
     description: "(password protected)",
     url: "/portfolio",
   },
   {
-    label: "myqr.studio",
-    description: "case study",
-    url: "https://zealous-visvesvaraya-033757.netlify.app",
+    label: "UI portfolio",
+    description: "selected works",
+    url: "https://ui-portfolio-neon.vercel.app",
   },
+  // {
+  //   label: "myqr.studio",
+  //   description: "case study",
+  //   url: "https://zealous-visvesvaraya-033757.netlify.app",
+  // },
   {
     label: "developer handoff",
     description: "Figma widget",
