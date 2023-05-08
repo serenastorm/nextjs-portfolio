@@ -10,7 +10,7 @@ export type LinkProps = {
   className?: string;
   hidden?: boolean;
   type?: "email" | "link";
-  shouldOpenInNewTab?: boolean;
+  showArrow?: boolean;
   underline?: boolean;
 } & HTMLAnchorProps &
   NextLinkProps;

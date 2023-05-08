@@ -38,11 +38,9 @@
   margin-top: 4rem;
 
   time {
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    letter-spacing: 0.15em;
+    font-size: 1.4rem;
     color: var(--text-contrast-8);
-    font-family: var(--type-header);
+    font-family: var(--type-paragraph);
     font-weight: var(--font-weight-medium);
   }
 }
@@ -51,4 +49,10 @@
   font-family: var(--type-paragraph);
   line-height: 160%;
   font-size: 2.2rem;
+
+  svg {
+    width: 1.2em;
+    height: auto;
+    margin-left: 0.1em;
+  }
 }

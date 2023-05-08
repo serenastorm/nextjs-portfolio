@@ -1,9 +1,9 @@
 export { default as AccessibilityIcon } from "./AccessibilityIcon";
+export { default as ArrowIcon } from "./ArrowIcon";
 export { default as CheckmarkIcon } from "./CheckmarkIcon";
 export { default as CopyToClipboardIcon } from "./CopyToClipboardIcon";
 export { default as DiaryIcon } from "./DiaryIcon";
 export { default as ExpandIcon } from "./ExpandIcon";
-export { default as GoToLinkIcon } from "./GoToLinkIcon";
 export { default as HomeIcon } from "./HomeIcon";
 export { default as InfoIcon } from "./InfoIcon";
 export { default as SnippetsIcon } from "./SnippetsIcon";

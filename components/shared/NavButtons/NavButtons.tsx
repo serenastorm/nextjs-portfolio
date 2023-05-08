@@ -1,6 +1,7 @@
 import { useRef, useState, type KeyboardEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useWindowDimensions } from "infrastructure/hooks";
 import { routes } from "infrastructure/routes/constants";
 import { useAnimatedCursor, useScrollDirection } from "infrastructure/hooks";
 import { NAV_ITEMS } from "./constants";
@@ -9,11 +10,13 @@ import styles from "./NavButtons.module.scss";
 import cursorStyles from "styles/diary/DiaryCursor.module.scss";
 
 export const NavButtons = () => {
+  const { width: windowWidth } = useWindowDimensions();
+
   const [previousTabIndex, setPreviousTabIndex] = useState<number>(0);
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
   const tabsRefs = useRef<Array<HTMLAnchorElement | null>>([]);
 
-  const activeCursorIndex = useAnimatedCursor();
+  // const activeCursorIndex = useAnimatedCursor();
   const { pathname } = useRouter();
   const scrollDirection = useScrollDirection();
 
@@ -94,50 +97,58 @@ export const NavButtons = () => {
     return null;
   }
 
+  // Breakpoint also in app.scss
+  const isStacked = windowWidth && windowWidth > 999.99;
+
   return (
-    <ul
+    <div
       className={`${styles.buttonsContainer} ${
-        scrollDirection === "down" ? styles.hidden : ""
-      }`}
+        scrollDirection === "down" && !isStacked ? styles.hidden : ""
+      } ${isStacked ? styles.stacked : styles.inline}`}
       // TODO: replace with css :has selector once support is better
       data-active-btn-index={`${activeBtnIndex}`}
-      // list-style-type: "none" removes list semantics so this is needed
-      role="list"
     >
-      <div
-        className={styles.activeButtonIndicator}
-        style={{ animationDuration: getAnimationDuration() }}
-      />
-      {items.map((navItem, navItemIndex) => (
-        <li
-          key={navItem.label}
-          className={`${styles.listItem} ${
-            navItem.label === "Blog"
-              ? `${styles.blogListItem} ${cursorStyles.cursorContainer}`
-              : ""
-          }`}
-          data-cursor-index={
-            navItem.label === "Blog" ? activeCursorIndex + 1 : null
-          }
-        >
-          <Link
-            href={navItem.url}
-            className={styles.link}
-            aria-current={navItem.isCurrent ? "page" : "false"}
-            tabIndex={navItemIndex === activeTabIndex ? 0 : -1}
-            ref={(el: HTMLAnchorElement) =>
-              (tabsRefs.current[navItemIndex] = el)
-            }
-            onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
-              onKeyPressed(event, navItemIndex)
-            }
-            onClick={() => activateTab(navItemIndex)}
+      <ul
+        className={styles.navButtons}
+        // list-style-type: "none" removes list semantics so this is needed
+        role="list"
+      >
+        <div
+          className={styles.activeButtonIndicator}
+          style={{ animationDuration: getAnimationDuration() }}
+        />
+        {items.map((navItem, navItemIndex) => (
+          <li
+            key={navItem.label}
+            className={`${styles.listItem} ${
+              navItem.label === "Blog"
+                ? `${styles.blogListItem} ${cursorStyles.cursorContainer}`
+                : ""
+            }`}
+            // data-cursor-index={
+            //   navItem.label === "Blog" ? activeCursorIndex + 1 : null
+            // }
           >
-            {navItem.icon()}
-            <p className={styles.label}>{navItem.label}</p>
-          </Link>
-        </li>
-      ))}
-    </ul>
+            <Link
+              href={navItem.url}
+              className={styles.link}
+              aria-current={navItem.isCurrent ? "page" : "false"}
+              tabIndex={navItemIndex === activeTabIndex ? 0 : -1}
+              ref={(el: HTMLAnchorElement) =>
+                (tabsRefs.current[navItemIndex] = el)
+              }
+              onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
+                onKeyPressed(event, navItemIndex)
+              }
+              onClick={() => activateTab(navItemIndex)}
+              title={isStacked ? navItem.label : undefined}
+            >
+              {navItem.icon()}
+              {!isStacked && <p className={styles.label}>{navItem.label}</p>}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };

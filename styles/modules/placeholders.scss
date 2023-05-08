@@ -24,26 +24,6 @@
   }
 }
 
-%grid-page {
-  --landing-padding-sides: 6vw;
-
-  padding-top: var(--content-padding-top);
-  padding-bottom: calc(
-    var(--nav-button-height) + (var(--nav-button-margin) * 2)
-  );
-
-  min-height: 100%;
-  // Also theme-color in document head
-  background-color: var(--homepage-bg);
-  display: grid;
-  grid-template-columns: 1fr var(--max-text-width) 1fr;
-  grid-template-rows: max-content auto;
-
-  & > *:not(footer) {
-    grid-column: 2;
-  }
-}
-
 %link-with-icon {
   @include onHoverAndFocus {
     svg circle {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { LikeButton } from "components/blog";
-import { GoToLinkIcon } from "assets/icons";
+import { ArrowIcon } from "assets/icons";
 import { formatRelativeTime } from "helpers/blog";
 import { routes } from "infrastructure/routes/constants";
 import { useLikes } from "infrastructure/hooks";
@@ -36,7 +36,7 @@ export const ArticleLink = ({
           {titleWordsTotal > 0 && <span>{titleWords.join(" ")} </span>}
           <span>
             {titleLastWord}
-            <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
+            <ArrowIcon />
           </span>
         </h3>
       </Link>
@@ -71,7 +71,7 @@ export const ArticleCollection = ({ posts }: ArticleCollectionProps) => {
         No posts to show.{" "}
         <Link href={routes.blog.snippets.url} className="semibold">
           All snippets
-          <GoToLinkIcon />
+          <ArrowIcon />
         </Link>
       </div>
     );

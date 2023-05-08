@@ -1,43 +1,16 @@
-import Link from "next/link";
 import Head from "next/head";
-import { GoToLinkIcon } from "assets/icons";
-import {
-  LandingProjectLinks,
-  LandingFootnoteLink,
-  LandingFootnote,
-  LandingFootnotes,
-} from "components/landing";
+import { LandingProjectLinks } from "components/landing";
 import { Page } from "components/shared/Page";
-import { routes } from "infrastructure/routes/constants";
-import { ArticleLink } from "components/blog/ArticleCollection";
 import { fetchMarkdownEntries } from "helpers/blog/api";
 
 import type { NextPage } from "next";
 import type { ArticleMetaData } from "components/blog/ArticleWrapper/types";
 
 import styles from "styles/Home.module.scss";
-import blogStyles from "styles/blog/Blog.module.scss";
 
 const Home: NextPage<{ mostRecentPost: ArticleMetaData }> = ({
   mostRecentPost,
 }) => {
-  const links = [
-    {
-      label: "Serena,",
-      url: "https://www.linkedin.com/in/serena-antonetti",
-      description: "LinkedIn Profile",
-    },
-    {
-      label: "Github.",
-      description: "Source code on Github",
-      url: "https://github.com/serenastorm/nextjs-portfolio",
-    },
-  ];
-
-  const renderTextWithFootnote = (linkIndex: number) => (
-    <LandingFootnoteLink text={links[linkIndex].label} linkIndex={linkIndex} />
-  );
-
   return (
     <>
       <Head>
@@ -55,36 +28,7 @@ const Home: NextPage<{ mostRecentPost: ArticleMetaData }> = ({
         }
       `}</style>
       <Page className={styles.landingPage}>
-        {/* ARIA role="text" prevents 'text splitting' in VoiceOver iOS https://axesslab.com/text-splitting/  */}
-        <p role="text" className={styles.landingPageIntro}>
-          Hi, I’m {renderTextWithFootnote(0)} a product designer, front-end
-          developer, &amp; educator currently based in Edinburgh. Most of my
-          work is under <abbr title="Non Disclosure Agreements">NDAs</abbr>, but
-          you can find some of my side projects below. You can also check out
-          the code for this website on my {renderTextWithFootnote(1)}
-        </p>
-        <LandingFootnotes>
-          {links.map((link, linkIndex) => (
-            <LandingFootnote
-              key={link.label}
-              linkIndex={linkIndex}
-              url={link.url}
-              description={link.description}
-            />
-          ))}
-        </LandingFootnotes>
         <LandingProjectLinks />
-        <div className={`${blogStyles.blog} ${styles.landingBlogWrapper}`}>
-          <h2>Last snippet</h2>
-          <ArticleLink {...mostRecentPost} className={styles.landingBlogPost} />
-          <Link
-            href={routes.blog.snippets.url}
-            className={styles.landingBlogLink}
-          >
-            View all snippets{" "}
-            <GoToLinkIcon className={blogStyles.blogGoToLinkIcon} />
-          </Link>
-        </div>
       </Page>
     </>
   );

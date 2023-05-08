@@ -18,13 +18,13 @@ export const NAV_ITEMS = [
     icon: SnippetsIcon,
   },
   {
-    url: routes.diary,
-    label: "Blog",
-    icon: DiaryIcon,
-  },
-  {
     url: routes.accessibility,
     label: "Accessibility",
     icon: AccessibilityIcon,
+  },
+  {
+    url: routes.diary,
+    label: "Blog",
+    icon: DiaryIcon,
   },
 ];

@@ -1,27 +1,21 @@
 const OpenInNewTabIcon = () => {
   return (
     <>
-      <span className="screenReaderText">(Opens in a new tab)</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid meet"
-        width="512"
-        height="512"
+        width="20"
+        height="20"
         fill="none"
-        viewBox="0 0 512 512"
+        viewBox="0 0 20 20"
         aria-hidden="true"
       >
         <path
-          fill="#EAF0F5"
-          data-layer="background"
-          d="M48 144c0-17.673 14.327-32 32-32h288c17.673 0 32 14.327 32 32v288c0 17.673-14.327 32-32 32H80c-17.673 0-32-14.327-32-32V144z"
+          fill="currentColor"
+          fillRule="evenodd"
+          d="M6.263 5.825a.556.556 0 00-.181.12.498.498 0 00-.149.387l-.016.656v.006c0 .287.232.567.553.541h4.7l-5.364 5.363-.002.002a.545.545 0 00-.002.76l.483.483a.53.53 0 00.765 0l5.37-5.37V10.3l.01 3.197a.493.493 0 00.095.327.554.554 0 00.449.224l.659-.017c.319.024.548-.255.55-.541V6.33a.53.53 0 00-.546-.547h-7.16a.556.556 0 00-.214.042z"
+          clipRule="evenodd"
         ></path>
-        <g data-layer="arrow">
-          <path
-            fill="#868D9E"
-            d="M302.222 47v46.222h82.969L158.009 320.404l32.587 32.587 227.182-227.182v82.969H464V47H302.222z"
-          ></path>
-        </g>
       </svg>
     </>
   );

@@ -29,7 +29,7 @@ export const Link = ({
   hidden = false,
   href,
   type = "link",
-  shouldOpenInNewTab,
+  showArrow,
   underline = true,
   ...props
 }: LinkProps) => {
@@ -38,9 +38,8 @@ export const Link = ({
   // as the icon using white-space: nowrap;
   const destinationUrl = `${type === "email" ? "mailto:" : ""}${href}`;
   const isExternal =
-    shouldOpenInNewTab ||
-    (typeof href === "string" &&
-      (href?.startsWith("http") || href?.startsWith("https")));
+    typeof href === "string" &&
+    (href?.startsWith("http") || href?.startsWith("https"));
   const labelWords = getLabelFromChildren(children).split(" ");
   const lastWord = labelWords.pop();
   const wordsTotal = labelWords.length;
@@ -63,7 +62,12 @@ export const Link = ({
             {type === "email" ? (
               <SendEmailIcon />
             ) : (
-              <>{isExternal && <OpenInNewTabIcon />}</>
+              <>
+                {isExternal && (
+                  <span className="screenReaderText">(Opens in a new tab)</span>
+                )}
+                {(isExternal || showArrow) && <OpenInNewTabIcon />}
+              </>
             )}
           </span>
         </>

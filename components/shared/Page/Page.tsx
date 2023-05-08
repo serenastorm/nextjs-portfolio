@@ -13,7 +13,7 @@ type PageProps = {
   as?: PageContainerType;
   children: ReactNode;
   className?: string;
-  type?: "blog" | "error";
+  type?: "blog" | "error" | "project";
 };
 
 export const Page = ({

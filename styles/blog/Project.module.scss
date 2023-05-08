@@ -1,0 +1,32 @@
+@import "~styles/modules/mixins.scss";
+
+.projectFiles {
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+}
+
+.projectFile {
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.projectFooter {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  a {
+    font-size: 2.4rem;
+
+    @include onHoverAndFocus {
+      color: var(--homepage-bg);
+      background-color: var(--primary);
+      outline: 2px solid var(--primary);
+    }
+  }
+}

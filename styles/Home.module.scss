@@ -2,37 +2,23 @@
 @import "~styles/modules/placeholders.scss";
 
 .landingPage {
-  @extend %grid-page;
+  --landing-padding-sides: 6vw;
+  --projects-gap: clamp(4rem, 12vh, 6.4rem);
 
-  ol,
-  .landingPageIntro {
-    @include breakpoint(400) {
-      padding: 0 1.6rem;
-    }
-  }
+  padding-top: var(--content-padding-top);
+  padding-bottom: calc(
+    var(--nav-button-height) + (var(--nav-button-margin) * 2)
+  );
 
-  .landingPageIntro,
-  dt {
-    @include breakpoint(0, 859.98) {
-      /* Don't go lower for landingPageIntro, otherwise the links wouldn't pass contrast requirements
-      (Large text = 18.66px bold, 24px regular) */
-      font-size: 2rem;
-    }
-  }
+  min-height: 100%;
+  // Also theme-color in document head
+  background-color: var(--homepage-bg);
+  display: grid;
+  grid-template-columns: 1fr var(--max-text-width) 1fr;
+  grid-template-rows: max-content auto;
 
-  abbr[title] {
-    --underline-hover-color: var(--primary);
-  }
-}
-
-.landingPageIntro {
-  text-indent: 2em;
-  line-height: 150%;
-  font-weight: var(--font-weight-regular);
-  margin-bottom: 4rem;
-
-  @include breakpoint(860) {
-    font-size: 2.6rem;
+  & > *:not(footer) {
+    grid-column: 2;
   }
 }
 
@@ -49,25 +35,6 @@
   a {
     font-weight: var(--font-weight-medium);
     font-size: 1.6rem;
-  }
-}
-
-.landingBlogWrapper {
-  display: grid;
-  grid-gap: 0.8rem;
-  grid-template-areas:
-    "blogSectionTitle blogLink"
-    "blogArticle blogArticle";
-
-  h2 {
-    grid-area: blogSectionTitle;
-    font-weight: var(--font-weight-regular);
-    align-self: baseline;
-    margin: 0;
-
-    @include breakpoint(400) {
-      padding-left: 1.6rem;
-    }
   }
 }
 
@@ -88,8 +55,4 @@
   @include onKeyboardFocus {
     color: var(--primary);
   }
-}
-
-.landingBlogPost {
-  grid-area: blogArticle;
 }
