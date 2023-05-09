@@ -49,6 +49,11 @@ export const PROJECTS: LandingProject[] = [
 
     slug: "calleis",
   },
+  {
+    title: "myqr",
+    description: "Web, branding",
+    slug: "myqr",
+  },
 ];
 
 export const FOOTER_PROJECTS: LandingFooterProject[] = [
@@ -95,13 +100,13 @@ export const FOOTER_PROJECTS: LandingFooterProject[] = [
     description: "Interactive flexbox guide",
     url: "/flexbox",
   },
-  {
-    type: "experiment",
-    title: "myqr",
-    year: "2021",
-    description: "Case study",
-    url: "https://zealous-visvesvaraya-033757.netlify.app",
-  },
+  // {
+  //   type: "experiment",
+  //   title: "myqr",
+  //   year: "2021",
+  //   description: "Case study",
+  //   url: "https://zealous-visvesvaraya-033757.netlify.app",
+  // },
 ];
 
 // export const PROJECTS: LinkProps[] = [

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Link } from "components/shared";
 import { ArrowIcon } from "assets/icons";
-import type { LandingProject, LandingFooterProject } from "./types";
+import type { LandingProject as LandingProjectType, LandingFooterProject } from "./types";
 
 import {
   PROJECTS,
@@ -32,7 +32,7 @@ const LandingFooterProjectLink = ({
   </tr>
 );
 
-const LandingProject = ({ title, description, url, slug }: LandingProject) => (
+const LandingProject = ({ title, description, slug }: LandingProjectType) => (
   <article className={styles.landingProject}>
     <div className={styles.landingProjectImage}>
       <Image

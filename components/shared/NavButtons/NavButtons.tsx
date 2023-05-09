@@ -3,11 +3,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useWindowDimensions } from "infrastructure/hooks";
 import { routes } from "infrastructure/routes/constants";
-import { useAnimatedCursor, useScrollDirection } from "infrastructure/hooks";
+import { useScrollDirection } from "infrastructure/hooks";
 import { NAV_ITEMS } from "./constants";
 
 import styles from "./NavButtons.module.scss";
-import cursorStyles from "styles/diary/DiaryCursor.module.scss";
 
 export const NavButtons = () => {
   const { width: windowWidth } = useWindowDimensions();
@@ -16,7 +15,6 @@ export const NavButtons = () => {
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
   const tabsRefs = useRef<Array<HTMLAnchorElement | null>>([]);
 
-  // const activeCursorIndex = useAnimatedCursor();
   const { pathname } = useRouter();
   const scrollDirection = useScrollDirection();
 
@@ -121,13 +119,8 @@ export const NavButtons = () => {
           <li
             key={navItem.label}
             className={`${styles.listItem} ${
-              navItem.label === "Blog"
-                ? `${styles.blogListItem} ${cursorStyles.cursorContainer}`
-                : ""
+              navItem.label === "Blog" ? `${styles.blogListItem}` : ""
             }`}
-            // data-cursor-index={
-            //   navItem.label === "Blog" ? activeCursorIndex + 1 : null
-            // }
           >
             <Link
               href={navItem.url}

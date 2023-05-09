@@ -34,7 +34,7 @@ const SnippetsPage = ({ posts }: { posts: ArticleMetaData[] }) => {
     <>
       <Head>
         <title>
-          {subtitle ? `${subtitle} | ` : ""}Snippets | Serena Antonetti
+          {`${subtitle ? `${subtitle} | ` : ""}Snippets | Serena Antonetti`}
         </title>
         <meta name="theme-color" content="#ffffff" />
         <meta
