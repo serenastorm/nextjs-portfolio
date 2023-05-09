@@ -25,7 +25,6 @@ $navButton-transition: all 200ms ease-in;
       display: none;
     }
   }
-  
 
   // "Blog" page has special hover effects
   &[data-active-btn-index="3"] {
@@ -240,18 +239,6 @@ $navButton-transition: all 200ms ease-in;
 
   &::after {
     bottom: 0;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    // "Blog" page doesn't have a dark theme
-    &[data-active-btn-index="3"] {
-      border: 1px solid var(--divider);
-
-      &::before,
-      &::after {
-        content: "";
-      }
-    }
   }
 
   .listItem {

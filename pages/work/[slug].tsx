@@ -41,8 +41,8 @@ const Work = ({
                 src={`/work/${slug}/${fileSource}`}
                 priority={fileIndex < 3}
                 alt=""
-                fill
-                style={{ objectFit: "cover" }}
+                width={2000}
+                height={1352}
               />
             </div>
           ))}

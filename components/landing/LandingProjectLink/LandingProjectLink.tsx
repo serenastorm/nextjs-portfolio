@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { Link } from "components/shared";
 import { ArrowIcon } from "assets/icons";
-import type { LandingProject as LandingProjectType, LandingFooterProject } from "./types";
+import type {
+  LandingProject as LandingProjectType,
+  LandingFooterProject,
+} from "./types";
 
 import {
   PROJECTS,
@@ -38,8 +41,8 @@ const LandingProject = ({ title, description, slug }: LandingProjectType) => (
       <Image
         src={`/work/${slug}/${slug}-preview.jpg`}
         alt=""
-        fill
-        style={{ objectFit: "cover" }}
+        width={640}
+        height={800}
       />
     </div>
     <div className={styles.landingProjectDescription}>
