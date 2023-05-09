@@ -25,13 +25,13 @@ const Work = ({
     <>
       <Head>
         <title>Work | Serena Antonetti</title>
-        <meta name="theme-color" content="#ffffff" />
-        <meta
-          name="theme-color"
-          content="#181a1d"
-          media="(prefers-color-scheme: dark)"
-        />
+        <meta name="theme-color" content="#FDFEFF" />
       </Head>
+      <style jsx global>{`
+        html {
+          background-color: #FDFEFF;
+        }
+      `}</style>
       <Page className={blogStyles.blog} type="project">
         {title && <h1 className={blogStyles.blogIndexTitle}>{title}</h1>}
         <div className={styles.projectFiles}>

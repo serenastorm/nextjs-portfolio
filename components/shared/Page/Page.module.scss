@@ -1,4 +1,5 @@
 @import "~components/blog/variables.scss";
+@import "~styles/modules/variables.scss";
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/placeholders.scss";
 
@@ -45,22 +46,33 @@
   padding: var(--content-padding-top) var(--content-padding-inline)
     calc(var(--nav-button-height) + (var(--nav-button-margin) * 2))
     var(--content-padding-inline);
-  // Also theme-color in index.html
-  background-color: var(--bg-level-0);
+
   min-height: 100%;
   position: relative;
 }
 
 .page-project {
+  --bg-level-0: #{$bg-level-0-light};
+  --bg-level-1: #{$bg-level-1-light};
+
+  --text-contrast-10: #{$text-contrast-10-light};
+  --primary: #{$primary-light};
+
   @include breakpoint(desktop) {
     --max-text-width: 100rem;
   }
+
+  // Also theme-color in work/[slug].tsx
+  background-color: var(--bg-level-0);
 }
 
 .page-blog {
   @include breakpoint(desktop) {
     --max-text-width: 80rem;
   }
+
+  // Also theme-color in index.html
+  background-color: var(--bg-level-0);
 
   p a {
     @extend %link-with-background;

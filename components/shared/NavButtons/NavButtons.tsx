@@ -97,12 +97,16 @@ export const NavButtons = () => {
 
   // Breakpoint also in app.scss
   const isStacked = windowWidth && windowWidth > 999.99;
+  const shouldForceLightMode =
+    pathname.startsWith("/work/") || pathname.startsWith("/fun");
 
   return (
     <div
       className={`${styles.buttonsContainer} ${
         scrollDirection === "down" && !isStacked ? styles.hidden : ""
-      } ${isStacked ? styles.stacked : styles.inline}`}
+      } ${isStacked ? styles.stacked : styles.inline} ${
+        shouldForceLightMode ? styles.light : ""
+      }`}
       // TODO: replace with css :has selector once support is better
       data-active-btn-index={`${activeBtnIndex}`}
     >

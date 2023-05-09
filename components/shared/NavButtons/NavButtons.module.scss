@@ -31,7 +31,10 @@ $navButton-transition: all 200ms ease-in;
     .activeButtonIndicator {
       background: var(--fun-gradient);
     }
+  }
 
+  // Force light mode on /work and /fun
+  &.light {
     @media (prefers-color-scheme: dark) {
       --primary: #{$primary-light};
       --bg-level-0: #{$bg-level-0-light};
