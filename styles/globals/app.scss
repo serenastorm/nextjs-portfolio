@@ -140,11 +140,11 @@ body,
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  // TODO: Add fallback fonts
-  --type-paragraph: "Be Vietnam Pro", sans-serif;
+  --type-paragraph: "Be Vietnam Pro", "Trebuchet MS", Helvetica, Tahoma,
+    sans-serif;
   // --type-header: "EB Garamond", serif;
-  --type-header: "Space Grotesk", sans-serif;
-  --type-code: "DM Mono", monospace;
+  --type-header: "Space Grotesk", "Trebuchet MS", Helvetica, Tahoma, sans-serif;
+  --type-code: "DM Mono", "Monaco", Courier, monospace;
   --type-italic: "DM Serif Display", serif;
 
   --primary-underline-offset: 0.25em;
