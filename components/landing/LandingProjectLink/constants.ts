@@ -32,27 +32,21 @@ export const PROJECTS: LandingProject[] = [
     slug: "moov",
   },
   {
+    title: "myqr",
+    description: "Web, branding",
+    slug: "myqr",
+  },
+  {
     title: "La Princière",
     description: "Web, branding",
     slug: "la-princiere",
   },
 
   {
-    title: "Honest Cocoa",
-    description: "Branding",
-
-    slug: "honest-cocoa",
-  },
-  {
     title: "Calleis",
     description: "Web, branding",
 
     slug: "calleis",
-  },
-  {
-    title: "myqr",
-    description: "Web, branding",
-    slug: "myqr",
   },
 ];
 
