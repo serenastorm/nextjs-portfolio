@@ -20,12 +20,6 @@ $navButton-transition: all 200ms ease-in;
     }
   }
 
-  &:not([data-active-btn-index="3"]) {
-    .blogListItem {
-      display: none;
-    }
-  }
-
   // "Blog" page has special hover effects
   &[data-active-btn-index="3"] {
     .activeButtonIndicator {
@@ -267,5 +261,22 @@ $navButton-transition: all 200ms ease-in;
         );
       }
     }
+  }
+}
+
+.tooltip {
+  position: absolute;
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--text-contrast-10);
+  padding: 0 4px;
+  border-radius: 2px;
+
+  p {
+    color: var(--bg-level-0);
+    font-size: 1.4rem;
+    font-weight: var(--font-weight-medium);
+    margin: 0;
   }
 }

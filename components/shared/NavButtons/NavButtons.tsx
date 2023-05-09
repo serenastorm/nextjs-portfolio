@@ -13,12 +13,18 @@ export const NavButtons = () => {
 
   const [previousTabIndex, setPreviousTabIndex] = useState<number>(0);
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
+  const [activeTooltipIndex, setActiveTooltipIndex] = useState<number>(-1);
   const tabsRefs = useRef<Array<HTMLAnchorElement | null>>([]);
 
   const { pathname } = useRouter();
   const scrollDirection = useScrollDirection();
 
   const isLessonPage = pathname.startsWith("/flexbox");
+
+  // Breakpoint also in app.scss
+  const isStacked = windowWidth && windowWidth > 999.99;
+  const shouldForceLightMode =
+    pathname.startsWith("/work/") || pathname.startsWith(routes.diary);
 
   const items = NAV_ITEMS.map((navItem) => {
     return {
@@ -28,6 +34,10 @@ export const NavButtons = () => {
           ? pathname === routes.home
           : pathname.startsWith(navItem.url),
     };
+  }).filter((navItem) => {
+    const isHiddenPage = pathname.startsWith(routes.diary);
+
+    return isHiddenPage ? true : navItem.url !== routes.diary;
   });
 
   const totalTabs = items.length;
@@ -59,8 +69,11 @@ export const NavButtons = () => {
     event: KeyboardEvent<HTMLAnchorElement>,
     tabIndex: number
   ) => {
-    const shouldGoToNextTab = event.key === "ArrowRight";
-    const shouldGoToPreviousTab = event.key === "ArrowLeft";
+    const nextTabKey = isStacked ? "ArrowDown" : "ArrowRight";
+    const previousTabKey = isStacked ? "ArrowUp" : "ArrowLeft";
+
+    const shouldGoToNextTab = event.key === nextTabKey;
+    const shouldGoToPreviousTab = event.key === previousTabKey;
     const shouldGoToFirstTab = event.key === "Home";
     const shouldGoToLastTab = event.key === "End";
 
@@ -94,11 +107,6 @@ export const NavButtons = () => {
   if (isLessonPage) {
     return null;
   }
-
-  // Breakpoint also in app.scss
-  const isStacked = windowWidth && windowWidth > 999.99;
-  const shouldForceLightMode =
-    pathname.startsWith("/work/") || pathname.startsWith("/fun");
 
   return (
     <div
@@ -139,10 +147,29 @@ export const NavButtons = () => {
               }
               onClick={() => activateTab(navItemIndex)}
               title={isStacked ? navItem.label : undefined}
+              aria-describedby={
+                isStacked && activeTooltipIndex === navItemIndex
+                  ? `nav-tooltip-${navItemIndex}`
+                  : undefined
+              }
+              onMouseEnter={() => setActiveTooltipIndex(navItemIndex)}
+              onMouseLeave={() => setActiveTooltipIndex(-1)}
+              onFocus={() => setActiveTooltipIndex(navItemIndex)}
+              onBlur={() => setActiveTooltipIndex(-1)}
             >
               {navItem.icon()}
               {!isStacked && <p className={styles.label}>{navItem.label}</p>}
             </Link>
+
+            {isStacked && activeTooltipIndex === navItemIndex && (
+              <div
+                id={`nav-tooltip-${navItemIndex}`}
+                className={styles.tooltip}
+                role="tooltip"
+              >
+                <p>{navItem.label}</p>
+              </div>
+            )}
           </li>
         ))}
       </ul>
