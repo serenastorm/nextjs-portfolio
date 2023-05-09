@@ -104,11 +104,11 @@
 .landingProjectsGrid {
   display: grid;
   grid-template-rows: min-content;
-  grid-row-gap: var(--projects-gap);
 }
 
 .landingProject {
   min-height: 70vh;
+  padding-top: var(--projects-gap);
 
   @for $i from 1 through 8 {
     &:nth-of-type(#{$i}) {

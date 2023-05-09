@@ -191,7 +191,7 @@ const Flexbox = () => {
     <>
       {isDesktop && (
         <ModuleWrapper.Preview>
-          <AnimatePresence exitBeforeEnter>
+          <AnimatePresence mode="wait">
             {["intro", "displayFlex"].includes(currentScrollContainer) && (
               <PreviewIntro name="displayFlex" title="Flexbox" />
             )}

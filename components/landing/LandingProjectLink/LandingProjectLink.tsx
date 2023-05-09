@@ -1,4 +1,13 @@
+import { useRef } from "react";
 import Image from "next/image";
+import {
+  motion,
+  easeInOut,
+  useScroll,
+  useTransform,
+  useVelocity,
+  type MotionValue,
+} from "framer-motion";
 import { Link } from "components/shared";
 import { ArrowIcon } from "assets/icons";
 import type {
@@ -35,24 +44,55 @@ const LandingFooterProjectLink = ({
   </tr>
 );
 
-const LandingProject = ({ title, description, slug }: LandingProjectType) => (
-  <article className={styles.landingProject}>
-    <div className={styles.landingProjectImage}>
-      <Image
-        src={`/work/${slug}/${slug}-preview.jpg`}
-        alt=""
-        width={640}
-        height={800}
-      />
-    </div>
-    <div className={styles.landingProjectDescription}>
-      <p>{description}</p>
-      <Link href={`/work/${slug}`} underline={false} showArrow>
-        {title}
-      </Link>
-    </div>
-  </article>
-);
+// function useParallax(
+//   value: MotionValue<number>,
+//   distance: [number | string, number | string]
+// ) {
+//   return useTransform(value, [0, 1], distance, {
+//     ease: easeInOut,
+//   });
+// }
+
+const LandingProject = ({ title, description, slug }: LandingProjectType) => {
+  const projectRef = useRef<HTMLElement | null>(null);
+  const { scrollY, scrollYProgress } = useScroll({
+    target: projectRef,
+    offset: ["start 100vh", "end 0vh"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["10%", "-10%"], {
+    ease: easeInOut,
+  });
+
+  const scrollYProgressVelocity = useVelocity(scrollYProgress);
+  const skewY = useTransform(
+    scrollYProgressVelocity,
+    [0, 1],
+    ["0deg", "4deg"],
+    {
+      ease: easeInOut,
+    }
+  );
+
+  return (
+    <article className={styles.landingProject} ref={projectRef} key={slug}>
+      <motion.div style={{ y, skewY }} className={styles.landingProjectImage}>
+        <Image
+          src={`/work/${slug}/${slug}-preview.jpg`}
+          alt=""
+          width={640}
+          height={800}
+        />
+      </motion.div>
+
+      <div className={styles.landingProjectDescription}>
+        <p>{description}</p>
+        <Link href={`/work/${slug}`} underline={false} showArrow>
+          {title}
+        </Link>
+      </div>
+    </article>
+  );
+};
 
 export const LandingProjectLinks = () => {
   const categories = FOOTER_PROJECTS_TYPES.map((type) => {
