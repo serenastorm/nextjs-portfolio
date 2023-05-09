@@ -73,22 +73,26 @@
   }
 }
 
-.landingProjectImage {
+.landingProjectImageWrapper {
   width: 100%;
   margin-bottom: 1.6rem;
   overflow: hidden;
-  will-change: transform;
 
   @include breakpoint(0, 859.98) {
     max-width: 32rem;
   }
+}
+
+.landingProjectImage {
+  width: 100%;
+  will-change: transform;
 
   img {
     color: transparent;
     width: 100%;
     height: auto;
-    transform: scale(1.05);
-    transform-origin: 50% 50%;
+    transform: scale(1.2);
+    transform-origin: center center;
   }
 }
 
@@ -109,11 +113,13 @@
 .landingProjectsGrid {
   display: grid;
   grid-template-rows: min-content;
+  scroll-snap-type: y mandatory;
 }
 
 .landingProject {
   min-height: 70vh;
   padding-top: var(--projects-gap);
+  scroll-snap-align: start;
 
   @for $i from 1 through 8 {
     &:nth-of-type(#{$i}) {

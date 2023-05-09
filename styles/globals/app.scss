@@ -54,8 +54,6 @@ body,
   --inline-link: #{$inline-link-light};
   --inline-link-rgb: #{$inline-link-light-rgb};
 
-  --divider: #{$divider-light};
-
   --code-bg-color: #{$bg-contrast-8-light};
   --code-color: #{$text-contrast-10-light};
 
@@ -67,6 +65,8 @@ body,
   --text-contrast-10: #{$text-contrast-10-light};
   --text-contrast-8-rgb: #{$text-contrast-8-light-rgb};
 
+  --divider: rgba(var(--text-contrast-8-rgb), 0.1);
+
   --homepage-bg: #{$homepage-bg-light};
   --bg-contrast-8: #{$bg-contrast-8-light};
   --like-button-bg: #{$like-button-bg-light};
@@ -77,8 +77,6 @@ body,
 
     --inline-link: #{$inline-link-dark};
     --inline-link-rgb: #{$inline-link-dark-rgb};
-
-    --divider: #{$divider-dark};
 
     --code-bg-color: #282a36;
     --code-color: #f8f8f2;

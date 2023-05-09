@@ -75,15 +75,19 @@ const LandingProject = ({ title, description, slug }: LandingProjectType) => {
 
   return (
     <article className={styles.landingProject} ref={projectRef} key={slug}>
-      <motion.div style={{ y, skewY }} className={styles.landingProjectImage}>
-        <Image
-          src={`/work/${slug}/${slug}-preview.jpg`}
-          alt=""
-          width={640}
-          height={800}
-        />
+      <motion.div
+        style={{ skewY }}
+        className={styles.landingProjectImageWrapper}
+      >
+        <motion.div style={{ y }} className={styles.landingProjectImage}>
+          <Image
+            src={`/work/${slug}/${slug}-preview.jpg`}
+            alt=""
+            width={640}
+            height={800}
+          />
+        </motion.div>
       </motion.div>
-
       <div className={styles.landingProjectDescription}>
         <p>{description}</p>
         <Link href={`/work/${slug}`} underline={false} showArrow>

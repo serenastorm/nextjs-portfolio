@@ -167,7 +167,7 @@ $navButton-transition: all 200ms ease-in;
   top: 0;
   left: 0;
   height: 100vh;
-  border-right: 1px solid rgba(var(--text-contrast-8-rgb), 0.1);
+  border-right: 1px solid var(--divider);
 
   display: flex;
   flex-direction: column;
