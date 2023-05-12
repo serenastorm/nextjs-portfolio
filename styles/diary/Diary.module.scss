@@ -1,14 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@400;500&display=swap");
 @import "~styles/modules/variables.scss";
 @import "~styles/modules/mixins.scss";
 @import "~styles/modules/placeholders.scss";
 
 .fun {
+  --type-code: "Spline Sans Mono", "Monaco", Courier, monospace;
   --card-bg-color: var(--white);
   --card-border-color: rgba(94, 82, 82, 0.1);
   --card-border-radius: 2px;
   --text-contrast-10: $text-contrast-10-light;
   --type-paragraph: var(--type-code);
-  // --type-paragraph: "Inconsolata", monospace;
 
   --primary: #{$primary-light};
 
@@ -20,7 +21,7 @@
   // Also theme-color in index.html
   background-color: #f8f3f4;
   min-height: 100%;
-  font-family: var(--type-code);
+  font-family: var(--type-paragraph);
 
   @include breakpoint(0, 1199.99) {
     --content-padding: 8px;
@@ -50,8 +51,9 @@
     background: #f0c9de;
   }
 
-  p {
-    font-size: 1.6rem;
+  p,
+  figcaption {
+    font-size: 1.4rem;
     line-height: 140%;
   }
 
@@ -70,7 +72,7 @@
   h1,
   h2 {
     font-weight: var(--font-weight-medium);
-    font-size: clamp(16px, 5vw, 1.8rem);
+    font-size: clamp(16px, 4vw, 1.6rem);
 
     a {
       font-weight: inherit;
@@ -104,7 +106,6 @@
 
 .diaryCredits {
   margin-top: 4rem;
-  font-size: 1.4rem !important;
   color: $text-contrast-8-light;
   text-align: right;
 
