@@ -1,7 +1,7 @@
 import { supabaseClient } from "lib/supabase/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-// Note: we don't need to use try/catch with await supabaseClient
+// Note: we don’t need to use try/catch with await supabaseClient
 // https://github.com/supabase/supabase-js/issues/32#issuecomment-1061383837
 
 export default async function handler(

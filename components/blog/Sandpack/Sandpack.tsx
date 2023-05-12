@@ -135,7 +135,7 @@ export const Sandpack = ({
 
   const scrollContainerInView = () => {
     if (containerRef?.current) {
-      // TODO: Pretty sure this isn't working because of framer-motion
+      // TODO: Pretty sure this isn’t working because of framer-motion
       scrollIntoView(containerRef.current, {
         scrollMode: "if-needed",
         block: "nearest",

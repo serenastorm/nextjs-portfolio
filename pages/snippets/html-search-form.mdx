@@ -12,11 +12,11 @@ export const meta = {
   isPublished: true,
 };
 
-If you are frequently using React for front-end development, you might end up having to use JavaScript for a lof of your forms. However, in some cases, a HTML form might be enough! Let's take a look at a very basic search form.
+If you are frequently using React for front-end development, you might end up having to use JavaScript for a lof of your forms. However, in some cases, a HTML form might be enough! Let’s take a look at a very basic search form.
 
 ## Creating the form
 
-First, let's create our `SearchForm` component. We only need four lines of code:
+First, let’s create our `SearchForm` component. We only need four lines of code:
 
 ```tsx filename="SearchForm.tsx"
 <form role="search" action="/search">
@@ -25,16 +25,16 @@ First, let's create our `SearchForm` component. We only need four lines of code:
 </form>
 ```
 
-That's it! Nothing more. To understand how this works, let's take a look at what happens when we submit a HTML form. If you've ever made a form in React, you probably had to add `event.preventDefault()` to prevent the page from reloading on form submit. That's because when we submit a HTML form, the following happens:
+That’s it! Nothing more. To understand how this works, let’s take a look at what happens when we submit a HTML form. If you've ever made a form in React, you probably had to add `event.preventDefault()` to prevent the page from reloading on form submit. That’s because when we submit a HTML form, the following happens:
 
-1. We get redirected to the URL specified in the form's `action` attribute
+1. We get redirected to the URL specified in the form’s `action` attribute
 2. The form values get appended to this URL, in the format `?fieldName=fieldValue`
 
-So if we enter "pizza" in the search input, submitting the form will take us to the following URL: `/search?q=pizza`. If the form doesn't have an `action` specified, we get redirected to the current page, which is the behaviour we usually avoid with `event.preventDefault()`.
+So if we enter “pizza” in the search input, submitting the form will take us to the following URL: `/search?q=pizza`. If the form doesn’t have an `action` specified, we get redirected to the current page, which is the behaviour we usually avoid with `event.preventDefault()`.
 
 ## Getting the query from the route params
 
-Now that we've been redirected to the search page, we just need to grab the query from the URL. How you achieve this will depend on the routing system you're using, but it will look something like this:
+Now that we’ve been redirected to the search page, we just need to grab the query from the URL. How you achieve this will depend on the routing system you’re using, but it will look something like this:
 
 <CodeTabs label="Getting route params with React router and Next.js" tabs={["React router","Next.js"]}>
 
@@ -60,7 +60,7 @@ const { q: query } = router.query;
 
 ## Demo
 
-We don't even need to press the "Search" button to submit the form, as HTML forms can also be submitted with the <kbd>Enter</kbd> key!
+We don’t even need to press the “Search” button to submit the form, as HTML forms can also be submitted with the <kbd>Enter</kbd> key!
 
 <Sandpack
   files={sandpackFiles}

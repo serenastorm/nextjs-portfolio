@@ -10,7 +10,7 @@
     text-decoration-thickness: 0.06em;
     text-underline-offset: 0.25em;
 
-    // We always want the last word to be on the same line as the arrow, unless there's only one word
+    // We always want the last word to be on the same line as the arrow, unless there’s only one word
     span:last-of-type:not(:first-of-type) {
       white-space: nowrap;
     }

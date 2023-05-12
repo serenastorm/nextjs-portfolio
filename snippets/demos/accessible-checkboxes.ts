@@ -178,7 +178,7 @@ $text-hover: #403434;`,
   "styles/additional-styles.scss": {
     hidden: true,
     code: `/* These styles are for presentation purposes only,
-they're not required for the component to work */
+they’re not required for the component to work */
 
 @import "variables";
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
@@ -267,7 +267,7 @@ label {
   /* Since our checkbox width is 1.2em,
   the line-height and the left padding
   need to be at least 1.2em
-  We'll go for more to give it some breathing space */
+  we’ll go for more to give it some breathing space */
   line-height: 1.6;
   padding: 0 0 0 2em;
   /* Since our input is inside the label, users

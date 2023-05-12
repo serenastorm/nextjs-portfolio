@@ -149,7 +149,7 @@ samp {
 
 // 1. Remove browser default top margin
 // 2. Reset browser default of `1em` to use `rem`s
-// 3. Don't allow content to break outside
+// 3. don’t allow content to break outside
 
 pre {
   display: block;
@@ -303,14 +303,14 @@ button,
   -webkit-appearance: button; // 2
 }
 
-// Remove inner border and padding from Firefox, but don't restore the outline like Normalize.
+// Remove inner border and padding from Firefox, but don’t restore the outline like Normalize.
 
 ::-moz-focus-inner {
   padding: 0;
   border-style: none;
 }
 
-// 1. Textareas should really only resize vertically so they don't break their (horizontal) containers.
+// 1. Textareas should really only resize vertically so they don’t break their (horizontal) containers.
 
 textarea {
   resize: vertical; // 1
@@ -321,7 +321,7 @@ textarea {
 //    So we reset that to ensure fieldsets behave more like a standard block element.
 //    See https://github.com/twbs/bootstrap/issues/12359
 //    and https://html.spec.whatwg.org/multipage/#the-fieldset-and-legend-elements
-// 2. Reset the default outline behavior of fieldsets so they don't affect page layout.
+// 2. Reset the default outline behavior of fieldsets so they don’t affect page layout.
 
 fieldset {
   min-width: 0; // 1
@@ -365,7 +365,7 @@ legend {
 // 1. Correct the outline style in Safari.
 // 2. This overrides the extra rounded corners on search inputs in iOS so that our
 //    `.form-control` class can properly style them. Note that this cannot simply
-//    be added to `.form-control` as it's not specific enough. For details, see
+//    be added to `.form-control` as it’s not specific enough. For details, see
 //    https://github.com/twbs/bootstrap/issues/11586.
 
 [type="search"] {

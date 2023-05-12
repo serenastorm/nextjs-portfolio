@@ -7,7 +7,7 @@
   right: 16px;
 
   @media (prefers-reduced-motion: no-preference) {
-    // If the user doesn't have motion preferences,
+    // If the user doesn’t have motion preferences,
     // show the loader and only make the "Loading" text available to screen readers
     p {
       @include screenReaderText;

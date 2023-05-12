@@ -36,7 +36,7 @@ export default function App() {
   "styles/additional-styles.scss": {
     hidden: true,
     code: `/* These styles are for presentation purposes only,
-they're not required for the component to work */
+they’re not required for the component to work */
 
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap");
 
@@ -89,7 +89,7 @@ button {
 }`,
   },
   "styles/theme.scss": {
-    code: `/* Let's create our map */
+    code: `/* let’s create our map */
 $brand-colors: (
   "primary": (
     10: #fbeff7,

@@ -14,7 +14,7 @@ const CopyToClipboardButton = ({
 }: CopyToClipboardButtonProps) => {
   const [textCopiedToClipboard, setTextCopiedToClipboard] =
     useState<boolean>(false);
-  // For browsers that don't support navigator.clipboard, we need to add the email to an input, select it, and copy the value
+  // For browsers that don’t support navigator.clipboard, we need to add the email to an input, select it, and copy the value
   const textInputRef = useRef<HTMLInputElement | null>(null);
 
   const showCopiedSuccessMessage = () => {

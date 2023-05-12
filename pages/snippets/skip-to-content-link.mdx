@@ -20,11 +20,11 @@ export const meta = {
   isPublished: true,
 };
 
-When a user interacts with your website using a keyboard, they might have to tab through your navigation links before getting to the main content. We want to give keyboard-only users the option to skip the navigation, without affecting the experience for other users. To do this, we can hide the skip navigation link until it's focused.
+When a user interacts with your website using a keyboard, they might have to tab through your navigation links before getting to the main content. We want to give keyboard-only users the option to skip the navigation, without affecting the experience for other users. To do this, we can hide the skip navigation link until it’s focused.
 
 ## Markup
 
-First, we need to properly set up our HTML. Let's add a unique `id` to your main content container, excluding the navigation.
+First, we need to properly set up our HTML. Let’s add a unique `id` to your main content container, excluding the navigation.
 
 ```html filename="index.html"
 <nav>...</nav>
@@ -40,7 +40,7 @@ Our skip navigation link should have a clear CTA, and we use the `id` we set pre
 
 ## Styles
 
-Now we can style the link and animate in on focus. Here it's fading in from the top of the screen but feel free to tinker or remove the animation.
+Now we can style the link and animate in on focus. Here it’s fading in from the top of the screen but feel free to tinker or remove the animation.
 
 ```css filename="styles.css"
 #skiptocontent {
@@ -71,7 +71,7 @@ Now we can style the link and animate in on focus. Here it's fading in from the 
 
 ## Notes
 
-If you decide to animate the skip navigation link, make sure to respect your users' browser preferences and disable animations when requested.
+If you decide to animate the skip navigation link, make sure to respect your users’ browser preferences and disable animations when requested.
 
 ```css filename="styles.css"
 #skiptocontent {

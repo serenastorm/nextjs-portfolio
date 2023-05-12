@@ -53,7 +53,7 @@ const AlignContentPreview = ({
         />
         <Div.Child
           color="blue"
-          content="Pretend you want to go out but then don't stare out cat door then go back inside carefully drink from water glass and then spill it everywhere"
+          content="Pretend you want to go out but then don’t stare out cat door then go back inside carefully drink from water glass and then spill it everywhere"
           style={{ maxWidth: "24rem" }}
         />
       </Div.Parent>

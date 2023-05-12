@@ -87,7 +87,7 @@ $navButton-transition: all 200ms ease-in;
   // Focus and hover styles for "Blog" page
   &.blogListItem {
     .link {
-      // If the user is on the Blog page, we don't need to show the cute cursor on hover
+      // If the user is on the Blog page, we don’t need to show the cute cursor on hover
       &[aria-current="page"] {
         cursor: initial !important;
       }

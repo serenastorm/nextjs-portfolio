@@ -105,7 +105,7 @@
 
 @mixin removeFocusOutline() {
   /* :focus and focus-visible need to be targeted separately for 
-  styles to work in Safari since it doesn't support focus-visible */
+  styles to work in Safari since it doesn’t support focus-visible */
   &:active,
   &:focus {
     outline: none !important;

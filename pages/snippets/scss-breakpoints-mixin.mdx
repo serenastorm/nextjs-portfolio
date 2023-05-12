@@ -12,11 +12,11 @@ export const meta = {
   isPublished: true,
 };
 
-Mixins are easier to memorise than media queries and they can be a great way to manage your breakpoints. Here's a breakdown of the mixin I use in most of my projects.
+Mixins are easier to memorise than media queries and they can be a great way to manage your breakpoints. Here’s a breakdown of the mixin I use in most of my projects.
 
 ## The mixin
 
-First, let's create our mixin. We want to accept numbers for our min and max values, since media queries use pixel values. For example, a `min` value of `800` would compile to `@media (min-width: 800px)`. We also need to set the default values to 0, so we know not to compile parts of the media query we don't need.
+First, let’s create our mixin. We want to accept numbers for our min and max values, since media queries use pixel values. For example, a `min` value of `800` would compile to `@media (min-width: 800px)`. We also need to set the default values to 0, so we know not to compile parts of the media query we don’t need.
 
 ```scss filename="mixins.scss"
 @mixin breakpoint($min: 0, $max: 0) {
@@ -80,11 +80,11 @@ First, let's create our mixin. We want to accept numbers for our min and max val
 
 </CodeTabs>
 
-You'll notice that I write generic first CSS, rather than mobile first (the industry standard). The main reason behind that decision is that it makes debugging easier (since there are less overrides), and the performance is either the same as mobile first, or slightly faster. So better DX AND better UX! [Read more about generic first code perfomance](https://www.smashingmagazine.com/2018/12/generic-css-mobile-first/#performance-implications)
+You’ll notice that I write generic first CSS, rather than mobile first (the industry standard). The main reason behind that decision is that it makes debugging easier (since there are less overrides), and the performance is either the same as mobile first, or slightly faster. So better DX AND better UX! [Read more about generic first code perfomance](https://www.smashingmagazine.com/2018/12/generic-css-mobile-first/#performance-implications)
 
 ## Setting pre-defined breakpoints
 
-If you always use the same breakpoints, or if you use a library like Bootstrap, it can be helpful to set some pre-defined values. First, let's save our breakpoints using a [SASS map](https://sass-lang.com/documentation/values/maps). For example, if using Bootstrap, we can accept string values that match the 5 Bootstrap breakpoints: `xs`, `sm`, `md`, `lg`, and `xl`.
+If you always use the same breakpoints, or if you use a library like Bootstrap, it can be helpful to set some pre-defined values. First, let’s save our breakpoints using a [SASS map](https://sass-lang.com/documentation/values/maps). For example, if using Bootstrap, we can accept string values that match the 5 Bootstrap breakpoints: `xs`, `sm`, `md`, `lg`, and `xl`.
 
 ```scss filename="mixins.scss"
 @mixin breakpoint($min: 0, $max: 0) {

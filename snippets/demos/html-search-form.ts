@@ -69,7 +69,7 @@ export default function Search() {
   },
   "styles.css": {
     code: `/* These styles are for presentation purposes only,
-they're not required for the component to work  */
+they’re not required for the component to work  */
 
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500&display=swap");

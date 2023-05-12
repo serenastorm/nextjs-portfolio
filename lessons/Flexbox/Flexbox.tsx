@@ -398,8 +398,8 @@ const Flexbox = () => {
             <>
               <p>
                 To understand the baseline value, we need to understand how
-                typography works. The 'baseline' is the line upon which most
-                letters 'sit'. In the example below, note how all the letters
+                typography works. The “baseline” is the line upon which most
+                letters “sit”. In the example below, note how all the letters
                 sit on the same line, regardless of font size. Descenders extend
                 below the baseline.
               </p>
@@ -414,11 +414,11 @@ const Flexbox = () => {
           <Paragraph>
             The <Code.Inline language="css" code="align-content" /> property
             sets the distribution of space between and around content items
-            along the container's cross axis. It{" "}
+            along the container’s cross axis. It{" "}
             <HighlightedText>
               has no effect on single line flex containers
             </HighlightedText>{" "}
-            so it won't work with{" "}
+            so it won’t work with{" "}
             <Code.Inline language="css" code="flex-wrap: nowrap;" />
           </Paragraph>
           <ValueSelector
@@ -519,7 +519,7 @@ const Flexbox = () => {
         >
           <Paragraph>
             The <Code.Inline language="css" code="order" /> property controls
-            the flex items' order within the flex parent flow. It's very useful
+            the flex items’ order within the flex parent flow. It’s useful
             when you need to reorder items on a specific breakpoint.
           </Paragraph>
           <Code.Block
@@ -553,7 +553,7 @@ const Flexbox = () => {
           <Paragraph>
             The <Code.Inline language="css" code="flex" /> shorthand sets how a
             flex item will grow or shrink to fit{" "}
-            <HighlightedText>the available space.</HighlightedText> It's a
+            <HighlightedText>the available space.</HighlightedText> It’s a
             shorthand for <Code.Inline language="css" code="flex-grow" />,{" "}
             <Code.Inline language="css" code="flex-shrink" />, and{" "}
             <Code.Inline language="css" code="flex-basis" />, and it can be
@@ -596,7 +596,7 @@ const Flexbox = () => {
             in the dev tools. Usually you can bring them up by clicking on the
             flexbox icon next to the{" "}
             <Code.Inline language="css" code="display: flex;" /> declaration.
-            Why don't you give them a try by centering this div?
+            Why don’t you give them a try by centering this div?
           </Paragraph>
 
           <FlexboxDevTools

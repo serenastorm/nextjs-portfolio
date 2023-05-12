@@ -50,11 +50,11 @@ First, we need to pair our input with a label. We can either wrap the label arou
 
 </CodeTabs>
 
-Associating inputs with labels is important for screen reader users (so they know what information to enter), but also for sighted users; remember that labels should always be visible, even if the input has a value. So don't use placeholders as labels!
+Associating inputs with labels is important for screen reader users (so they know what information to enter), but also for sighted users; remember that labels should always be visible, even if the input has a value. So don’t use placeholders as labels!
 
 ## The type attribute
 
-In the example above, the input is for the user's first name, so we set the `type` as `text`. The `type` attribute lets the browser know what input to render and how the user can interact with it. Just because the value of an input is a string, it doesn't necessarily mean that the `type` should be `text`: it could also be `email`, `password`, `url`, or even `color`. The same thing applies to numbers: if we needed users to enter a phone number, we'd use `tel` instead of `number`. You can read more about input types in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types).
+In the example above, the input is for the user’s first name, so we set the `type` as `text`. The `type` attribute lets the browser know what input to render and how the user can interact with it. Just because the value of an input is a string, it doesn’t necessarily mean that the `type` should be `text`: it could also be `email`, `password`, `url`, or even `color`. The same thing applies to numbers: if we needed users to enter a phone number, we’d use `tel` instead of `number`. You can read more about input types in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types).
 
 <CodeTabs label="Input types examples" tabs={["email","number", "password", "url", "tel"]}>
 
@@ -134,8 +134,8 @@ Your form validation logic should also add the `aria-invalid` attribute to inval
 
 ## The inputmode attribute
 
-If we set the `type` of an input, user agents might adapt the keyboard to the expected format; for example, the iOS keyboard for `email` inputs will typically include the "@" character. But that's not true for all input types; iOS just renders a regular keyboard for `number` inputs. In this case, we can use the `inputmode` attribute. We can set it to `numeric` to show the numeric keyboard with the digits 0-9, or we can set it to `decimal` to allow fractional numbers.
-[Here's a good resource with screenshots of the different keyboards](https://css-tricks.com/everything-you-ever-wanted-to-know-about-inputmode/)
+If we set the `type` of an input, user agents might adapt the keyboard to the expected format; for example, the iOS keyboard for `email` inputs will typically include the `@` character. But that’s not true for all input types; iOS just renders a regular keyboard for `number` inputs. In this case, we can use the `inputmode` attribute. We can set it to `numeric` to show the numeric keyboard with the digits 0-9, or we can set it to `decimal` to allow fractional numbers.
+[Here’s a good resource with screenshots of the different keyboards](https://css-tricks.com/everything-you-ever-wanted-to-know-about-inputmode/)
 
 ```html
 <label>
@@ -144,7 +144,7 @@ If we set the `type` of an input, user agents might adapt the keyboard to the ex
 </label>
 ```
 
-Note that unlike `type`, `inputmode` won't affect validation.
+Note that unlike `type`, `inputmode` won’t affect validation.
 
 You can read more about the `inputmode` attribute in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode).
 
@@ -184,7 +184,7 @@ Ever wondered how your phone can pre-fill a one-time-code that was texted to you
 
 </CodeTabs>
 
-The `autocomplete` attribute doesn't affect validation. You can read more about `autocomplete` in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete).
+The `autocomplete` attribute doesn’t affect validation. You can read more about `autocomplete` in the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete).
 
 <Callout title="A quick note about internationalisation">
   The concept of "first name" and "last name" is not international. So if you

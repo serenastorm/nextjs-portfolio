@@ -23,7 +23,7 @@ This hook covers simple use cases; if your web app is heavily form-based, you mi
 
 ## Setting up the reducer
 
-Our `useForm` hook only takes in one parameter: the `initialState` of the form. For this hook, I'm going to use a reducer to keep track of and update the form data. Let's create an `"UPDATE"` action type that takes in a field name and value, and updates our state accordingly.
+Our `useForm` hook only takes in one parameter: the `initialState` of the form. For this hook, I’m going to use a reducer to keep track of and update the form data. Let’s create an `"UPDATE"` action type that takes in a field name and value, and updates our state accordingly.
 
 ```jsx filename="useForm.js"
 import { useReducer } from "react";
@@ -63,7 +63,7 @@ From there, we could export `formData` and `dispatch` from our `useForm` hook, a
 />
 ```
 
-But if we have a lot of fields, this might end up becoming a bit repetitive. So let's go back to our `useHook` file and add a new `updateFormField` function that we can use instead of `dispatch`.
+But if we have a lot of fields, this might end up becoming a bit repetitive. So let’s go back to our `useHook` file and add a new `updateFormField` function that we can use instead of `dispatch`.
 
 ```jsx filename="useForm.js"
 const updateFormField = (e) => {
@@ -78,7 +78,7 @@ const updateFormField = (e) => {
 return { formData, updateFormField };
 ```
 
-Instead of just receiving the field's name and value, this function takes in the `onChange` event as a parameter. This allows us to get the info we need from the event, and simplify our input to this:
+Instead of just receiving the field’s name and value, this function takes in the `onChange` event as a parameter. This allows us to get the info we need from the event, and simplify our input to this:
 
 ```jsx filename="Form.js"
 <input
@@ -90,9 +90,9 @@ Instead of just receiving the field's name and value, this function takes in the
 
 ## Handling number inputs
 
-There's one more improvement we can make to our code: in our `updateFormField` function, you'll notice that we dispatch an `inputType` variable that gets its value from the input's `type` attribute.
+There’s one more improvement we can make to our code: in our `updateFormField` function, you’ll notice that we dispatch an `inputType` variable that gets its value from the input’s `type` attribute.
 
-This allows us to parse the value of the input's change event to a number for `number` inputs:
+This allows us to parse the value of the input’s change event to a number for `number` inputs:
 
 ```jsx filename="Form.js"
 function reducer(state, action) {

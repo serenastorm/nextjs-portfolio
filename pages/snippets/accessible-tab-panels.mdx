@@ -13,7 +13,7 @@ export const meta = {
   isPublished: true,
 };
 
-Tabs are used to display a set of sections of content one at a time. Each panel of content ("tab panel") has an associated button, that when activated, displays the panel. The [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel) include guidance on creating accessible tab components. We'll need to use the appropriate tags and WAI-ARIA roles, as well as giving users the ability to navigate between tabs with their keyboard arrows, the `Home` key, and the `End` key.
+Tabs are used to display a set of sections of content one at a time. Each panel of content (“tab panel”) has an associated button, that when activated, displays the panel. The [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel) include guidance on creating accessible tab components. We’ll need to use the appropriate tags and WAI-ARIA roles, as well as giving users the ability to navigate between tabs with their keyboard arrows, the `Home` key, and the `End` key.
 
 ## Adding refs to the buttons
 
@@ -39,7 +39,7 @@ return (
 
 ## Updating the active tab
 
-When updating the active tab, we use the refs to move focus to the corresponding button. We'll also need to change some of the buttons props depending on their current state so we'll store the active tab index with `useState`.
+When updating the active tab, we use the refs to move focus to the corresponding button. We’ll also need to change some of the buttons props depending on their current state so we’ll store the active tab index with `useState`.
 
 ```tsx filename="Tabs.tsx"
 const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
@@ -67,7 +67,7 @@ First, we add an `onKeyDown` event listener to our buttons.
 ```
 
 \
-Here's our `onKeyPress` function. If the tab list has its `aria-orientation` set to vertical, replace `ArrowRight` and `ArrowLeft` with `ArrowDown` and `ArrowUp`:
+Here’s our `onKeyPress` function. If the tab list has its `aria-orientation` set to vertical, replace `ArrowRight` and `ArrowLeft` with `ArrowDown` and `ArrowUp`:
 
 ```tsx filename="Tabs.tsx"
 const onKeyPressed = (

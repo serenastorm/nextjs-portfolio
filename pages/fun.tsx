@@ -74,8 +74,8 @@ const Fun = () => {
           </DiaryEntry>
           <DiaryEntry type="Quote" date={new Date("2022-08-04")}>
             <blockquote>
-              The trains at our parties are the best in Rome. They&apos;re the
-              best &apos;cause they go nowhere.
+              The trains at our parties are the best in Rome. They’re the
+              best ’cause they go nowhere.
               <cite>La grande bellezza · Jep Gambardella</cite>
             </blockquote>
           </DiaryEntry>
@@ -83,7 +83,7 @@ const Fun = () => {
             <figure>
               <Image
                 src="/diary/images/alba-scirocco.jpg"
-                alt="Alba, a small black puppy, is booping her nose against a foal's. They're surrounded by flowers."
+                alt="Alba, a small black puppy, is booping her nose against a foal’s. They’re surrounded by flowers."
                 width="400"
                 height="533"
               />
