@@ -1,4 +1,4 @@
-import { useRef, useState, type KeyboardEvent } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useWindowDimensions } from "infrastructure/hooks";
@@ -7,15 +7,11 @@ import { useScrollDirection } from "infrastructure/hooks";
 import { NAV_ITEMS } from "./constants";
 
 import styles from "./NavButtons.module.scss";
+import useTabNavigation from "infrastructure/hooks/useTabNavigation";
 
 export const NavButtons = () => {
-  const { width: windowWidth } = useWindowDimensions();
-
-  const [previousTabIndex, setPreviousTabIndex] = useState<number>(0);
-  const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
   const [activeTooltipIndex, setActiveTooltipIndex] = useState<number>(-1);
-  const tabsRefs = useRef<Array<HTMLAnchorElement | null>>([]);
-
+  const { width: windowWidth } = useWindowDimensions();
   const { pathname } = useRouter();
   const scrollDirection = useScrollDirection();
 
@@ -40,14 +36,8 @@ export const NavButtons = () => {
     return isHiddenPage ? true : navItem.url !== routes.diary;
   });
 
-  const totalTabs = items.length;
-
-  const updateActiveTabIndex = (newIndex: number) => {
-    setActiveTabIndex((currentIndex: number) => {
-      setPreviousTabIndex(currentIndex);
-      return newIndex;
-    });
-  };
+  const { previousTabIndex, activeTabIndex, getTabProps } =
+    useTabNavigation<HTMLAnchorElement>(items.length);
 
   const getAnimationDuration = () => {
     // Change the animation duration based on the distance between the two items
@@ -60,49 +50,17 @@ export const NavButtons = () => {
 
   const activeBtnIndex = items.findIndex((navItem) => navItem.isCurrent);
 
-  const activateTab = (newTabIndex: number) => {
-    tabsRefs?.current[newTabIndex]?.focus();
-    updateActiveTabIndex(newTabIndex);
-  };
+  useEffect(() => {
+    const handleKeyPress = (event: globalThis.KeyboardEvent) => {
+      const shouldCloseTooltip = event.key === "Escape";
 
-  const onKeyPressed = (
-    event: KeyboardEvent<HTMLAnchorElement>,
-    tabIndex: number
-  ) => {
-    const nextTabKey = isStacked ? "ArrowDown" : "ArrowRight";
-    const previousTabKey = isStacked ? "ArrowUp" : "ArrowLeft";
-
-    const shouldGoToNextTab = event.key === nextTabKey;
-    const shouldGoToPreviousTab = event.key === previousTabKey;
-    const shouldGoToFirstTab = event.key === "Home";
-    const shouldGoToLastTab = event.key === "End";
-
-    const prevTab = tabIndex - 1;
-    const nextTab = tabIndex + 1;
-    const lastTab = totalTabs - 1;
-
-    if (shouldGoToNextTab) {
-      /* If the current active tab is the last, go the the first tab */
-      if (tabIndex >= totalTabs - 1) {
-        activateTab(0);
-      } else {
-        activateTab(nextTab);
+      if (shouldCloseTooltip && activeTooltipIndex > -1) {
+        setActiveTooltipIndex(-1);
       }
-    } else if (shouldGoToPreviousTab) {
-      /* If the current active tab is the first, go the the last tab */
-      if (tabIndex <= 0) {
-        activateTab(lastTab);
-      } else {
-        activateTab(prevTab);
-      }
-    } else if (shouldGoToFirstTab) {
-      activateTab(0);
-    } else if (shouldGoToLastTab) {
-      activateTab(lastTab);
-    } else {
-      return null;
-    }
-  };
+    };
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [activeTooltipIndex]);
 
   if (isLessonPage) {
     return null;
@@ -135,18 +93,10 @@ export const NavButtons = () => {
             }`}
           >
             <Link
+              {...getTabProps(navItemIndex)}
               href={navItem.url}
               className={styles.link}
               aria-current={navItem.isCurrent ? "page" : "false"}
-              tabIndex={navItemIndex === activeTabIndex ? 0 : -1}
-              ref={(el: HTMLAnchorElement) =>
-                (tabsRefs.current[navItemIndex] = el)
-              }
-              onKeyDown={(event: KeyboardEvent<HTMLAnchorElement>) =>
-                onKeyPressed(event, navItemIndex)
-              }
-              onClick={() => activateTab(navItemIndex)}
-              title={isStacked ? navItem.label : undefined}
               aria-describedby={
                 isStacked && activeTooltipIndex === navItemIndex
                   ? `nav-tooltip-${navItemIndex}`
