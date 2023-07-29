@@ -12,9 +12,19 @@ export const FOOTER_PROJECTS_TYPES: ProjectType[] = [
 
 export const PROJECTS: LandingProject[] = [
   {
+    title: "Moov",
+    description: "Mobile, branding",
+    slug: "moov",
+  },
+  {
     title: "Hummingbird",
     description: "Web, branding",
     slug: "hummingbird",
+  },
+  {
+    title: "myqr",
+    description: "Web",
+    slug: "myqr",
   },
   {
     title: "Sol d’Oa",
@@ -25,16 +35,6 @@ export const PROJECTS: LandingProject[] = [
     title: "Motherf**king List",
     description: "Web, branding",
     slug: "motherfucking-list",
-  },
-  {
-    title: "Moov",
-    description: "Mobile, branding",
-    slug: "moov",
-  },
-  {
-    title: "myqr",
-    description: "Web",
-    slug: "myqr",
   },
   {
     title: "La Princière",
