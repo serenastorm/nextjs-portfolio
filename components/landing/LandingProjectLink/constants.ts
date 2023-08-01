@@ -17,6 +17,11 @@ export const PROJECTS: LandingProject[] = [
     slug: "moov",
   },
   {
+    title: "FitLab",
+    description: "Mobile, branding",
+    slug: "fitlab",
+  },
+  {
     title: "Hummingbird",
     description: "Web, branding",
     slug: "hummingbird",
