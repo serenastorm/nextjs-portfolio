@@ -11,114 +11,107 @@ render(<Form />, rootElement)`,
   "Form.tsx": {
     active: true,
     code: `import { useState } from "react";
-import Checkbox from "./components/Checkbox";
-import { formSchema } from "./validation/FormValidationSchema";
-
-import type { FormEvent } from "react";
-
-import "./styles/styles.scss";
-
-const hobbies = ["Hiking", "Reading", "Sleeping", "Coding"];
-
-export default function Form() {
-  const [checkboxState, setCheckboxState] = useState(
-    new Array(hobbies.length).fill(false)
-  );
-  const [checkboxError, setCheckboxError] = useState<string>("");
-
-  const getSelectedHobbies = (selectedState: boolean[] = checkboxState) => {
-    return hobbies.filter((hobby, hobbyIndex) => selectedState[hobbyIndex]);
-  };
-
-  let selectedHobbies = getSelectedHobbies();
-
-  const onFieldChange = async (checkboxIndex: number) => {
-    const updatedCheckedState = checkboxState.map((checked, index) =>
-      index === checkboxIndex ? !checked : checked
-    );
-
-    setCheckboxState(updatedCheckedState);
-
-    // Check if the form is valid now that the values have changed
-    const isFormValid = await formSchema.isValid(
-      { hobbies: getSelectedHobbies(updatedCheckedState) },
-      {
-        abortEarly: false // Prevent aborting validation after first error
-      }
-    );
-
-    // Remove checkbox error if needed
-    if (checkboxError && isFormValid) {
-      setCheckboxError("");
-    }
-  };
-
-  const submitForm = async (e: FormEvent) => {
-    e.preventDefault();
-
-    const isFormValid = await formSchema.isValid(
-      { hobbies: selectedHobbies },
-      {
-        abortEarly: false
-      }
-    );
-
-    if (isFormValid) {
-      alert("Success!");
-    } else {
-      // If the form is invalid, check which fields are incorrect
-      // In our case, it can only be the "hobbies" field
-      formSchema
-        .validate({ hobbies: selectedHobbies }, { abortEarly: false })
-        .catch((err) => {
-          const errors = err.inner.reduce(
-            (acc: any, error: { path: any; message: any }) => {
-              return {
-                ...acc,
-                [error.path]: error.message
-              };
-            },
-            {}
-          );
-
-          if (errors.hobbies) {
-            setCheckboxError(errors.hobbies);
+    import Checkbox from "./components/Checkbox";
+    import { formSchema } from "./validation/FormValidationSchema";
+    
+    import type { FormEvent } from "react";
+    
+    import "./styles/styles.scss";
+    
+    const ALL_HOBBIES = ["Hiking", "Reading", "Sleeping", "Coding"] as const;
+    type Hobby = typeof ALL_HOBBIES[number];
+    
+    export default function Form() {
+      const [selectedHobbies, setSelectedHobbies] = useState<Hobby[]>([]);
+      const [checkboxError, setCheckboxError] = useState<string>("");
+    
+      const onFieldChange = async (fieldValue: Hobby) => {
+        const updatedHobbies = selectedHobbies.includes(fieldValue)
+          ? selectedHobbies.filter((selectedHobby) => selectedHobby !== fieldValue)
+          : [...selectedHobbies, fieldValue];
+    
+        setSelectedHobbies(updatedHobbies);
+    
+        // Check if the form is valid now that the values have changed
+        const isFormValid = await formSchema.isValid(
+          { hobbies: updatedHobbies },
+          {
+            abortEarly: false // Prevent aborting validation after first error
           }
-        });
-    }
-  };
-  return (
-    <form onSubmit={submitForm} noValidate>
-      <fieldset
-        // Let screen readers know when field is invalid
-        aria-invalid={checkboxError ? "true" : "false"}
-        // And where to look for the error
-        aria-describedby="hobbies-error"
-      >
-        <legend>Hobbies</legend>
-        {hobbies.map((hobby, hobbyIndex) => (
-          <Checkbox
-            key={hobby}
-            value={hobby}
-            onChange={() => onFieldChange(hobbyIndex)}
-          />
-        ))}
-        {/* We set role="alert" on the error message */}
-        <p className="error" id="hobbies-error" role="alert" aria-atomic="true">
-          {checkboxError}
-        </p>
-      </fieldset>
-      <input type="submit" value="Submit" />
-      <output name="result" htmlFor="hobbies">
-        <pre>
-          <code>
-            {JSON.stringify({ selectedHobbies, error: checkboxError })}
-          </code>
-        </pre>
-      </output>
-    </form>
-  );
-}`,
+        );
+    
+        // Remove checkbox error if needed
+        if (checkboxError && isFormValid) {
+          setCheckboxError("");
+        }
+      };
+    
+      const submitForm = async (e: FormEvent) => {
+        e.preventDefault();
+    
+        const isFormValid = await formSchema.isValid(
+          { hobbies: selectedHobbies },
+          {
+            abortEarly: false
+          }
+        );
+    
+        if (isFormValid) {
+          alert("Success!");
+        } else {
+          // If the form is invalid, check which fields are incorrect
+          // In our case, it can only be the "hobbies" field
+          formSchema
+            .validate({ hobbies: selectedHobbies }, { abortEarly: false })
+            .catch((err) => {
+              const errors = err.inner.reduce(
+                (acc: any, error: { path: any; message: any }) => {
+                  return {
+                    ...acc,
+                    [error.path]: error.message
+                  };
+                },
+                {}
+              );
+    
+              if (errors.hobbies) {
+                setCheckboxError(errors.hobbies);
+              }
+            });
+        }
+      };
+      return (
+        <form onSubmit={submitForm} noValidate>
+          <fieldset
+            // Let screen readers know when field is invalid
+            aria-invalid={checkboxError ? "true" : "false"}
+            // And where to look for the error
+            aria-describedby="hobbies-error"
+          >
+            <legend>Hobbies</legend>
+            {ALL_HOBBIES.map((hobby) => (
+              <Checkbox
+                key={hobby}
+                value={hobby}
+                onChange={() => onFieldChange(hobby)}
+              />
+            ))}
+            {/* We set role="alert" on the error message */}
+            <p className="error" id="hobbies-error" role="alert" aria-atomic="true">
+              {checkboxError}
+            </p>
+          </fieldset>
+          <input type="submit" value="Submit" />
+          <output name="result" htmlFor="hobbies">
+            <pre>
+              <code>
+                {JSON.stringify({ selectedHobbies, error: checkboxError })}
+              </code>
+            </pre>
+          </output>
+        </form>
+      );
+    }`,
   },
   "validation/FormValidationSchema.tsx": {
     code: `import { array, object, string } from "yup";
@@ -146,18 +139,16 @@ type CheckboxProps = {
 
 const Checkbox = ({ onChange, value }: CheckboxProps) => {
   return (
-    <>
-      <label>
-        {value}
+    <label>
+      {value}
         <input
           type="checkbox"
           name="hobbies"
           value={value}
           onChange={onChange}
         />
-        <span className="checkmark" />
-      </label>
-    </>
+      <span className="checkmark" />
+    </label>
   );
 };
 

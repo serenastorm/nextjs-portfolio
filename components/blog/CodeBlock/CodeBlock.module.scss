@@ -24,9 +24,11 @@
     box-shadow: 4px 4px 0px 0px var(--text-contrast-10);
     min-height: 8rem;
     z-index: 2;
+    font-size: 10px; // For some reason 1.5rem doesn't work on Safari
 
     code {
       color: var(--code-color);
+      font-size: 1.5rem;
     }
   }
 }

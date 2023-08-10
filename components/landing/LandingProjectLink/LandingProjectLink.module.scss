@@ -55,10 +55,11 @@
 
   a {
     color: var(--text-contrast-10);
+    font-family: var(--type-header);
     font-weight: var(--font-weight-medium);
     margin-bottom: 0.2em;
     position: relative;
-    font-size: 1.8rem;
+    font-size: 2rem;
 
     @include onHoverAndFocus {
       color: var(--homepage-bg);

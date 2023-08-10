@@ -19,7 +19,12 @@ export const meta = {
   isPublished: true,
 };
 
-This hook covers simple use cases; if your web app is heavily form-based, you might need to customise this hook or use a library like [react-hook-form](https://react-hook-form.com/) or [formik](https://formik.org/).
+<Callout>
+  This hook covers simple use cases; if your web app is heavily form-based, you
+  might need to customise this hook or use a library like
+  [react-hook-form](https://react-hook-form.com/) or
+  [formik](https://formik.org/).
+</Callout>
 
 ## Setting up the reducer
 
@@ -47,7 +52,7 @@ export function useForm(initialState) {
 
 ## Simplifying the code
 
-From there, we could export `formData` and `dispatch` from our `useForm` hook, and use them our Form component like so:
+From there, we could export `formData` and `dispatch` from our `useForm` hook, and use them in our Form component like so:
 
 ```jsx filename="Form.jsx"
 <input

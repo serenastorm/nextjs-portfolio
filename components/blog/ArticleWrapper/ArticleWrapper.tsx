@@ -18,11 +18,13 @@ import styles from "./ArticleWrapper.module.scss";
 import markdownStyles from "styles/blog/Markdown.module.scss";
 import blogStyles from "styles/blog/Blog.module.scss";
 
+import type { MDXComponents } from "mdx/types";
+
 type ArticleWrapperProps = {
   children: JSX.Element;
 } & ArticleMetaData;
 
-const markdownComponents = {
+const markdownComponents: MDXComponents = {
   a: (props: AnchorHTMLAttributes<HTMLAnchorElement>) =>
     props.href ? (
       <MarkdownLink href={props.href}>{props.children}</MarkdownLink>
@@ -35,7 +37,7 @@ const markdownComponents = {
   ),
   // TODO fix those types
   // @ts-ignore
-  code: ({ children, className, inline, filename }) =>
+  code: ({ children, className, inline, filename, ...props }) =>
     inline ? (
       <code>{children}</code>
     ) : (
@@ -109,7 +111,6 @@ export const ArticleWrapper = ({
           key={`${subcategory}/${slug}/mainContent`}
           className={markdownStyles.markdown}
         >
-          {/* @ts-ignore */}
           <MDXProvider components={markdownComponents}>{children}</MDXProvider>
         </article>
         <RelatedArticles nextPost={nextPost} previousPost={previousPost} />

@@ -156,7 +156,9 @@ label {
 Let’s say we have an array of four hobbies:
 
 ```tsx filename="hobbies.ts"
-const hobbies = ["Hiking", "Reading", "Sleeping", "Coding"];
+const ALL_HOBBIES = ["Hiking", "Reading", "Sleeping", "Coding"] as const;
+
+type Hobby = (typeof ALL_HOBBIES)[number];
 ```
 
 We can use `map()` to render our checkboxes:
@@ -167,35 +169,28 @@ We can use `map()` to render our checkboxes:
 
 ```tsx
 export default function Form() {
-  // We create an array of boolean values
-  // the same length as the hobbies array
-  // [false, false, false, false]
-  const [checkboxState, setCheckboxState] = useState(
-    new Array(hobbies.length).fill(false)
-  );
-  const getSelectedHobbies = (selectedState: boolean[] = checkboxState) => {
-    return hobbies.filter((hobby, hobbyIndex) => selectedState[hobbyIndex]);
-  };
+  const [selectedHobbies, setSelectedHobbies] = useState<Hobby[]>([]);
+  const [checkboxError, setCheckboxError] = useState<string>("");
 
-  let selectedHobbies = getSelectedHobbies();
+  const onFieldChange = async (fieldValue: Hobby) => {
+    // Check if the value is already selected, then add/remove it from the array
+    const updatedHobbies = selectedHobbies.includes(fieldValue)
+      ? selectedHobbies.filter((selectedHobby) => selectedHobby !== fieldValue)
+      : [...selectedHobbies, fieldValue];
 
-  const onFieldChange = async (checkboxIndex: number) => {
-    const updatedCheckedState = checkboxState.map((checked, index) =>
-      index === checkboxIndex ? !checked : checked
+    setSelectedHobbies(updatedHobbies);
+
     );
-
-    setCheckboxState(updatedCheckedState);
-  };
 
   return (
     <form>
       <fieldset aria-invalid="false" aria-describedby="hobbies-error">
         <legend>Hobbies</legend>
-        {hobbies.map((hobby, hobbyIndex) => (
+        {ALL_HOBBIES.map((hobby) => (
           <Checkbox
             key={hobby}
             value={hobby}
-            onChange={() => onFieldChange(hobbyIndex)}
+            onChange={() => onFieldChange(hobby)}
           />
         ))}
         <p className="error" id="hobbies-error" role="alert" aria-atomic="true">
@@ -221,18 +216,11 @@ type CheckboxProps = {
 
 const Checkbox = ({ onChange, value }: CheckboxProps) => {
   return (
-    <>
-      <label>
-        {value}
-        <input
-          type="checkbox"
-          name="hobbies"
-          value={value}
-          onChange={onChange}
-        />
-        <span className="checkmark" />
-      </label>
-    </>
+    <label>
+      {value}
+      <input type="checkbox" name="hobbies" value={value} onChange={onChange} />
+      <span className="checkmark" />
+    </label>
   );
 };
 
@@ -265,15 +253,29 @@ We can import our schema in `Form.tsx` and check if our fields are valid before 
 
 ```tsx filename="Form.tsx"
 export default function Form() {
-  const [checkboxState, setCheckboxState] = useState(
-    new Array(hobbies.length).fill(false)
-  );
+  const [selectedHobbies, setSelectedHobbies] = useState<Hobby[]>([]);
   const [checkboxError, setCheckboxError] = useState<string>("");
-  const getSelectedHobbies = (selectedState: boolean[] = checkboxState) => {
-    return hobbies.filter((hobby, hobbyIndex) => selectedState[hobbyIndex]);
-  };
 
-  let selectedHobbies = getSelectedHobbies();
+  const onFieldChange = async (fieldValue: Hobby) => {
+    const updatedHobbies = selectedHobbies.includes(fieldValue)
+      ? selectedHobbies.filter((selectedHobby) => selectedHobby !== fieldValue)
+      : [...selectedHobbies, fieldValue];
+
+    setSelectedHobbies(updatedHobbies);
+
+    // Check if the form is valid now that the values have changed
+    const isFormValid = await formSchema.isValid(
+      { hobbies: updatedHobbies },
+      {
+        abortEarly: false // Prevent aborting validation after first error
+      }
+    );
+
+    // Remove checkbox error if needed
+    if (checkboxError && isFormValid) {
+      setCheckboxError("");
+    }
+  };
 
   const submitForm = async (e: FormEvent) => {
     e.preventDefault();
@@ -321,16 +323,16 @@ export default function Form() {
 We can improve the validation UX even more and remove the error as soon as the user selects an option by updating the `onFieldChange()` function:
 
 ```tsx filename="Form.tsx"
-const onFieldChange = async (checkboxIndex: number) => {
-  const updatedCheckedState = checkboxState.map((checked, index) =>
-    index === checkboxIndex ? !checked : checked
-  );
+const onFieldChange = async (fieldValue: Hobby) => {
+  const updatedHobbies = selectedHobbies.includes(fieldValue)
+    ? selectedHobbies.filter((selectedHobby) => selectedHobby !== fieldValue)
+    : [...selectedHobbies, fieldValue];
 
-  setCheckboxState(updatedCheckedState);
+  setSelectedHobbies(updatedHobbies);
 
   // Check if the form is valid now that the values have changed
   const isFormValid = await formSchema.isValid(
-    { hobbies: getSelectedHobbies(updatedCheckedState) },
+    { hobbies: updatedHobbies },
     {
       abortEarly: false, // Prevent aborting validation after first error
     }

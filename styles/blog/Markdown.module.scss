@@ -139,4 +139,11 @@
       background-color: var(--bg-level-1);
     }
   }
+
+  mark {
+    color: inherit;
+    background-color: rgba(var(--inline-link-rgb), 0.1);
+    border-radius: 2px;
+    padding: 0.2rem 0.4rem;
+  }
 }
