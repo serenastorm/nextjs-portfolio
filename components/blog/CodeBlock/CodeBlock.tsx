@@ -1,11 +1,13 @@
 import { reactNodeToString } from "helpers/blog";
 import { CopyToClipboardButton } from "components/blog/CopyToClipboardButton";
 
+import type { ReactNode } from "react";
+
 import styles from "./CodeBlock.module.scss";
 import codeTabsStyles from "components/blog/CodeTabs/CodeTabs.module.scss";
 
 type CodeBlockProps = {
-  children: JSX.Element;
+  children: JSX.Element | ReactNode;
   className?: string;
   filename?: string;
 };
